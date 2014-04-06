@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="445.0" prefWidth="605.0" style="-fx-background-image:url(&quot;Images/samplegc.jpg&quot;)" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.MainController">
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="445.0" prefWidth="605.0">
+      <children>
+        <StackPane fx:id="LoginStackPane" layoutX="35.0" layoutY="79.0" prefHeight="342.0" prefWidth="534.0" />
+        <Button cancelButton="false" defaultButton="false" layoutX="239.0" layoutY="36.0" mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="33.9609375" prefWidth="110.00009999999747" text="Login">
+          <font>
+            <Font size="15.0" fx:id="x1" />
+          </font>
+        </Button>
+        <Button fx:id="SignUpButton" font="$x1" layoutX="349.0" layoutY="36.0" mnemonicParsing="false" onAction="#RegisterButtonAction" prefHeight="33.9609375" prefWidth="110.0" text="SignUp" />
+        <Button fx:id="CloseButton" layoutX="575.0" layoutY="8.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="14.0" mnemonicParsing="false" onAction="#CloseButtonAction" prefHeight="22.0" prefWidth="22.0" style="-fx-background-image:url(&quot;applicationlogin/v1/Closebutton.png&quot;)" text="Button" />
+        <Button font="$x1" layoutX="459.0" layoutY="36.0" mnemonicParsing="false" prefHeight="33.9609375" prefWidth="110.0" text="Guest" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

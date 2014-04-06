@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLCustomerMainPageController">
+<children><ToolBar prefHeight="56.0" prefWidth="600.0">
+  <items>
+    <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="102.0" text="Reserve" />
+    <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="95.0" text="Club Member" />
+  </items>
+</ToolBar>
+<StackPane fx:id="CUstomerMainStackPane" layoutX="-8.0" prefHeight="425.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0" />
+</children></AnchorPane>

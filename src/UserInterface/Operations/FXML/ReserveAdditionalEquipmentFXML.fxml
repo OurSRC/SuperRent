@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReserveAdditionalEquipmentFXMLController">
+  <children>
+    <Label layoutX="139.0" layoutY="29.0" text="Vehicle Type" />
+    <TextField fx:id="VehicleClassSelectedTF" editable="false" layoutX="299.0" layoutY="26.0" prefWidth="187.0" />
+    <Label layoutX="139.0" layoutY="222.0" text="Insurance" />
+    <CheckBox layoutX="300.0" layoutY="222.0" mnemonicParsing="false" text="Car Damage Insurance" />
+    <CheckBox layoutX="300.0" layoutY="252.0" mnemonicParsing="false" text="Road Star Insurance" />
+    <CheckBox layoutX="299.0" layoutY="280.0" mnemonicParsing="false" text="Insurance 3" />
+    <CheckBox layoutX="300.0" layoutY="304.0" mnemonicParsing="false" text="Insurance 4" />
+    <Label layoutX="139.0" layoutY="61.0" text="Additional Equipment" />
+    <RadioButton layoutX="300.0" layoutY="61.0" mnemonicParsing="false" text="Required">
+<toggleGroup>
+<ToggleGroup fx:id="AdditionalEquipmentTG" />
+</toggleGroup></RadioButton>
+    <RadioButton layoutX="395.0" layoutY="61.0" mnemonicParsing="false" selected="true" text="Not Required" toggleGroup="$AdditionalEquipmentTG" />
+    <Button layoutX="469.0" layoutY="349.0" mnemonicParsing="false" onAction="#NextButtonAction" prefWidth="80.0" text="Next" />
+    <Button layoutX="344.0" layoutY="348.0" mnemonicParsing="false" onAction="#BackButtonAction" prefWidth="91.0" text="Back" />
+  </children>
+</AnchorPane>

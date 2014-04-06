@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.OperationsFXMLController">
+  <children>
+    <StackPane fx:id="MainOperationsStackPane" layoutX="217.0" layoutY="15.0" prefHeight="466.0" prefWidth="690.0" style="-fx-border-color: #0099CC;&#10;-fx-border-radius: 5;&#10;-fx-border-width:1;" />
+    <Separator layoutX="201.0" layoutY="14.0" orientation="VERTICAL" prefHeight="452.0" />
+    <Pane layoutX="14.0" layoutY="14.0" prefHeight="452.0" prefWidth="177.0" styleClass="link1">
+      <children>
+        <Button layoutX="26.0" layoutY="158.0" mnemonicParsing="false" onAction="#CreateReservationAction" prefWidth="124.0" text="Reserve Vehicle" />
+        <Button layoutX="26.0" layoutY="264.0" mnemonicParsing="false" onAction="#RentVehicleAction" prefWidth="124.0" text="Rent Vehicle" />
+        <Button layoutX="26.0" layoutY="378.0" mnemonicParsing="false" onAction="#ReturnVehicleAction" prefWidth="124.0" text="Return Vehicle" />
+        <Separator layoutX="-1.0" layoutY="152.0" prefWidth="179.0" />
+        <Separator layoutX="0.0" layoutY="126.0" prefWidth="179.0" />
+        <Label layoutX="56.0" layoutY="131.0" text="Reservation">
+          <font>
+            <Font name="System Bold" size="12.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Button layoutX="26.0" layoutY="188.0" mnemonicParsing="false" onAction="#ViewReservationAction" prefWidth="124.0" text="View Reservation" />
+        <Label font="$x1" layoutX="76.0" layoutY="230.0" text="Rent" />
+        <Separator layoutX="2.0" layoutY="227.0" prefWidth="176.0" />
+        <Separator layoutX="0.0" layoutY="252.0" prefWidth="176.0" />
+        <Button layoutX="26.0" layoutY="293.0" mnemonicParsing="false" onAction="#ViewRentAction" prefWidth="124.0" text="View Rent" />
+        <Label font="$x1" layoutX="71.0" layoutY="348.0" text="Return" />
+        <Separator layoutX="3.0" layoutY="345.0" prefWidth="173.0" />
+        <Separator layoutX="2.0" layoutY="369.0" prefWidth="173.0" />
+        <Button layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onAction="#ViewVehicleAvailabilityButtonAction" prefWidth="124.0" text="Vehicle Availability" />
+        <Button layoutX="26.0" layoutY="56.0" mnemonicParsing="false" onAction="#CustomerDetailsButtonAction" prefWidth="124.0" text="Customer Details" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

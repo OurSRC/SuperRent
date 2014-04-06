@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="534.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.Login.FXMLController.FXMLRegisterController">
+  <children>
+    <Pane id="SignUpPane" layoutX="0.0" layoutY="0.0" prefHeight="342.0" prefWidth="534.0">
+      <children>
+        <RadioButton fx:id="NewCustomerRadio" layoutX="26.0" layoutY="26.0" mnemonicParsing="false" onAction="#NewCustomerRadioAction" selected="true" text="New Customer" textFill="BLACK">
+          <toggleGroup>
+            <ToggleGroup fx:id="CustomerGroup" />
+          </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="ExistingCustomerRadio" layoutX="171.0" layoutY="26.0" mnemonicParsing="false" onAction="#ExistingCustomerRadioAction" text="Existing Customer" textFill="BLACK" toggleGroup="$CustomerGroup" />
+        <Label fx:id="MobileLabel" layoutX="26.0" layoutY="61.0" text="Mobile" textFill="BLACK" />
+        <Label fx:id="AddressLabel" layoutX="26.0" layoutY="123.0" text="Address" textFill="BLACK" />
+        <Label fx:id="DOBLabel" layoutX="27.0" layoutY="190.0" text="DOB" textFill="BLACK" />
+        <Label fx:id="EmailLabel" layoutX="26.0" layoutY="159.0" text="Email ID" textFill="BLACK" />
+        <TextField id="MobileNumber" fx:id="MobileNumberTF" layoutX="110.0" layoutY="55.0" onKeyTyped="#ValidateIfInteger" prefWidth="174.0" />
+        <TextField id="Name" fx:id="NameTF" layoutX="111.0" layoutY="89.0" prefWidth="174.0" />
+        <TextField id="Address" fx:id="AddressTF" layoutX="111.0" layoutY="123.0" prefWidth="174.0" />
+        <TextField id="Email" fx:id="EmailTF" layoutX="111.0" layoutY="155.0" prefWidth="174.0" />
+        <TextField id="DOB" fx:id="DOBTF" layoutX="111.0" layoutY="188.0" prefWidth="174.0" />
+        <Label fx:id="NameLabel" layoutX="26.0" layoutY="92.0" text="First Name" textFill="BLACK" />
+        <Label layoutX="24.0" layoutY="223.0" text="Login Username" textFill="BLACK" />
+        <TextField id="Username" fx:id="UsernameTF" layoutX="147.0" layoutY="221.0" prefWidth="137.0" />
+        <PasswordField id="Password" fx:id="PasswordTF" layoutX="147.0" layoutY="251.0" prefWidth="137.0" />
+        <Label layoutX="24.0" layoutY="255.0" text="Password" textFill="BLACK" />
+        <Label layoutX="24.0" layoutY="284.0" text="Confirm Password" textFill="BLACK" />
+        <PasswordField id="ConfirmPassword" fx:id="ConfirmPasswordTF" layoutX="147.0" layoutY="280.0" prefWidth="137.0" />
+        <Button layoutX="415.0" layoutY="282.0" mnemonicParsing="false" onAction="#RegisterButtonAction" prefWidth="96.0" text="Submit" />
+        <Button layoutX="310.0" layoutY="281.0" mnemonicParsing="false" onAction="#ResetCustomerFieldsAction" prefWidth="96.0" text="Reset Fields" />
+        <Label fx:id="LastNameLabel" layoutX="310.0" layoutY="90.0" text="Last Name" />
+        <TextField fx:id="LastNameTF" layoutX="386.0" layoutY="87.0" prefWidth="134.0" />
+        <Label fx:id="PinCodeLabel" layoutX="310.0" layoutY="126.0" prefWidth="58.0" text="Pin Code" />
+        <TextField fx:id="PinCodeTF" layoutX="386.0" layoutY="123.0" prefWidth="134.0" />
+        <TextField fx:id="CityTF" layoutX="386.0" layoutY="156.0" prefWidth="134.0" />
+        <Label id="CItyLabel" fx:id="CityLabel" layoutX="310.0" layoutY="157.0" text="City" />
+        <Label fx:id="InputWarning" layoutX="310.0" layoutY="58.0" text="Please provide an Valid Input" textFill="RED" visible="false" />
+        <Label fx:id="UserNameExistsLabel" layoutX="311.0" layoutY="223.0" text="UserName Already Exists" textFill="RED" visible="false" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

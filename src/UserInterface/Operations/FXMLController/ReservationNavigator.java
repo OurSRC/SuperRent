@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package UserInterface.Operations.FXMLController;
+
+import Operations.Rent;
+import Operations.Reserve;
+import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+
+/**
+ *
+ * @author Vyas
+ */
+public class ReservationNavigator {
+        private static OperationsFXMLController mainController;
+        public static String SampleSharedVariable;
+        public static final String PickDate = "/UserInterface/Operations/FXML/ReservationPickUpdateFXML.fxml";
+        public static final String SelectVehicle = "/UserInterface/Operations/FXML/ReserveAdditionalEquipmentFXML.fxml";
+        public static final String ReservationCustomer = "/UserInterface/Operations/FXML/ReservationCustomerFXML.fxml";
+        public static final String ReservationSummary = "/UserInterface/Operations/FXML/ReservationSummaryFXML.fxml";
+        public static final String ReserveSearchPage = "/UserInterface/Operations/FXML/ReserveSearchPageFXML.fxml";
+        public static final String SelectSpecificVehicle = "/UserInterface/Operations/FXML/SelectParticularVehicleFXML.fxml";
+        public static final String RentConfirmPage = "";
+        public static final String ViewReseration = "/UserInterface/Operations/FXML/ViewReservationsFXML.fxml";
+        
+        /* Common Variables to facilitate navigations */
+        public static Reserve newReserve;
+        public static Rent newRent;
+        public static boolean customerFlag;
+        public static boolean rentFlag;
+        public static boolean modifyFlag;
+
+        public static void setMainController(OperationsFXMLController mainController) {
+        ReservationNavigator.mainController = mainController;
+        
+}
+    
+
+    
+    public static void clearVista()
+    {
+        mainController.ClearStackPane();
+    }
+    public static void loadVista(String fxml) throws IOException {
+        mainController.setStackPane((Node) FXMLLoader.load(ClerkMainPageNavigator.class.getResource(fxml)));
+}
+    
+    public void setCustomerFlag()
+    {
+        customerFlag = true;
+    }
+}

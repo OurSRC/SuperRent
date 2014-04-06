@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ViewReservationsFXMLController">
+  <children>
+    <Label layoutX="64.0" layoutY="40.0" text="Date From " />
+    <Label layoutX="387.0" layoutY="40.0" text="Date To " />
+    <Label layoutX="64.0" layoutY="83.0" text="Reservation #" />
+    <Button fx:id="DisplayReservationsButton" layoutX="475.0" layoutY="118.0" mnemonicParsing="false" onAction="#DisplayReservationsButtonAction" prefHeight="25.0" prefWidth="174.0" text="Display Reservations" />
+    <TableView fx:id="ReservationTable" layoutX="65.0" layoutY="173.0" prefHeight="204.0" prefWidth="584.0">
+      <columns>
+        <TableColumn fx:id="ReservationNumber" editable="false" minWidth="0.0" prefWidth="224.0" text="Reservation #" />
+        <TableColumn fx:id="Type" editable="false" prefWidth="134.0" text="Customer Phone" /><TableColumn prefWidth="300.0" text="Column X" />
+      </columns>
+    </TableView>
+    <TextField layoutX="159.0" layoutY="80.0" prefHeight="25.0" prefWidth="198.0" />
+    <Pane layoutX="18.0" layoutY="389.0" prefHeight="50.0" prefWidth="622.0">
+      <children>
+        <Button fx:id="ViewReservationButton" layoutX="511.0" layoutY="14.0" mnemonicParsing="false" onAction="#ViewReservationButtonAction" text="View Reservation" />
+      </children>
+    </Pane>
+    <DatePicker layoutX="159.0" layoutY="36.0" prefHeight="25.0" prefWidth="106.0" />
+    <DatePicker layoutX="461.0" layoutY="36.0" prefHeight="25.0" prefWidth="98.0" />
+    <ComboBox fx:id="TimeComboBox1" layoutX="270.0" layoutY="36.0" prefHeight="25.0" prefWidth="87.0">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="09 AM" />
+              <String fx:value="10 AM" />
+              <String fx:value="11 AM" />
+              <String fx:value="12 AM" />
+              <String fx:value="01 PM" />
+              <String fx:value="02 PM" />
+              <String fx:value="03 PM" />
+              <String fx:value="04 PM" />
+              <String fx:value="05 PM" />
+              <String fx:value="06 PM" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+    <ComboBox fx:id="TimeComboBox" layoutX="562.0" layoutY="36.0" prefHeight="25.0" prefWidth="87.0">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="09 AM" />
+              <String fx:value="10 AM" />
+              <String fx:value="11 AM" />
+              <String fx:value="12 AM" />
+              <String fx:value="01 PM" />
+              <String fx:value="02 PM" />
+              <String fx:value="03 PM" />
+              <String fx:value="04 PM" />
+              <String fx:value="05 PM" />
+              <String fx:value="06 PM" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+  </children>
+</AnchorPane>
