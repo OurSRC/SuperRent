@@ -141,8 +141,9 @@ public class SqlBuilder {
         if (d == null) {
             return "null";
         }
-        DateFormat df = new SimpleDateFormat("YYYY-MM-DD");
-        return df.format(d);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String ans = df.format(d);
+        return ans;
     }
     
     public static String wrapBool(boolean b) {

@@ -17,7 +17,27 @@ public class Customer extends User {
 
     private boolean isClubMember;
     private int point;				//for club member only
-    private Date membershipExpiry;	//for club member only
+    private Date membershipExpiry;              //for club member only
+
+    public Customer(){
+    }
+    
+    public Customer(String username, String password, String phone, String address, String fistName, String middleName, String lastName, String eMail, String driverLicenseNumber, boolean isClubMember, int point, Date membershipExpiry) {
+        super.setUsername(username);
+        super.setPassword(password);
+        super.setType(TYPE.CUSTOMER);
+        
+        this.phone = phone;
+        this.address = address;
+        this.fistName = fistName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.eMail = eMail;
+        this.driverLicenseNumber = driverLicenseNumber;
+        this.isClubMember = isClubMember;
+        this.point = point;
+        this.membershipExpiry = membershipExpiry;
+    }
 
     /**
      * @return the customerId
