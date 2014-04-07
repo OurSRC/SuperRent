@@ -1,6 +1,6 @@
 package SystemOperations;
 
-public class Error {
+public class ErrorMsg {
 	static public final int	INT_UNKNOWN = -1;
 	static public final long	LNG_UNKNOWN = -1;
 	static public final float	FLT_UNKNOWN = -1;
@@ -11,9 +11,10 @@ public class Error {
 	static public final Object	OBJ_UNKNOWN = null;
 	
 	static public final int	ERROR_GENERAL = -1;
-	static public final int	ERROR_RECORD_DUPLICATE = -2;
-	static public final int	ERROR_WRONG_PASSWORD = -3;
-	static public final int	ERROR_USERNAME_ALREADY_EXIT = -4;
+        static public final int	ERROR_SQL_ERROR = -2;
+	static public final int	ERROR_RECORD_DUPLICATE = -3;
+	static public final int	ERROR_WRONG_PASSWORD = -4;
+	static public final int	ERROR_USERNAME_ALREADY_EXIT = -5;
 
 	static private int lastError;
 	static public void setLastError(int err){

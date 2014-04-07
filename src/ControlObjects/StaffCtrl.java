@@ -2,12 +2,12 @@ package ControlObjects;
 
 import java.util.ArrayList;
 
-import SystemOperations.Error;
+import SystemOperations.ErrorMsg;
 import UserManagement.Staff;
 
 public class StaffCtrl {
 	public Staff createStaff(Staff staff){
-		Error.setLastError(Error.ERROR_USERNAME_ALREADY_EXIT);
+		ErrorMsg.setLastError(ErrorMsg.ERROR_USERNAME_ALREADY_EXIT);
 		return null;
 	}
 	public boolean updateStaff(Staff staff){
@@ -22,7 +22,7 @@ public class StaffCtrl {
 	}
 	public Staff getStaffByUsername(String username){
 		if("admin".compareTo(username)!=0 && "clerk".compareTo(username)!=0 && "manager".compareTo(username)!=0){
-			Error.setLastError(Error.ERROR_GENERAL);
+			ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
 			return null;
 		}
 		

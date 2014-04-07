@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/Operations/Reserve.java</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/SystemOperations/DateClass.java</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/UserInterface/Operations/FXMLController/OperationsFXMLController.java</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/UserInterface/Operations/FXMLController/ReservationPickUpdateFXMLController.java</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/UserInterface/Operations/FXMLController/ReservationSummaryFXMLController.java</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/ControlObjects/VehicleCtrl.java</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/UserInterface/Operations/FXMLController/ReservationNavigator.java</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/UserInterface/Operations/FXMLController/ViewReservationsFXMLController.java</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/UserInterface/Operations/FXML/ReservationPickUpdateFXML.fxml</file>
-            <file>file:/C:/Users/Vyas/Documents/NetBeansProjects/development_project/Rental_Application_Development/src/UserInterface/Operations/FXMLController/ReserveSample.java</file>
+            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/UserManagement/Staff.java</file>
+            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/ControlObjects/CustomerCtrl.java</file>
+            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/SystemOperations/ErrorMsg.java</file>
+            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/UserInterface/Login/FXMLController/FXMLLoginController.java</file>
         </group>
     </open-files>
 </project-private>

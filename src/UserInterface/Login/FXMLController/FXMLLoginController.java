@@ -1,10 +1,10 @@
 package UserInterface.Login.FXMLController;
 
+import ControlObjects.*;
+import entity.User;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import ControlObjects.*;
-import UserManagement.*;
-import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -14,6 +14,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import SystemOperations.ErrorMsg;
+
 /**
 * Controller class for the first vista.
 */
@@ -50,10 +52,10 @@ void nextPane(ActionEvent event) {
     
     String UserName = UserNameTF.getText();
     String Password = PasswordTF.getText();
-    User NewUser= new User();
-    NewUser.type = NewLogin.loginCheck(UserName, Password);
-    System.out.println(NewUser.type);
-    switch(NewUser.type)
+    //User NewUser= new User();
+    User.TYPE type = NewLogin.loginCheck(UserName, Password);
+    System.out.println(type);
+    switch(type)
     {
         case STAFF:
             /* Opening the Staff Form and Passing the UserName to the next screen */
@@ -86,6 +88,7 @@ void nextPane(ActionEvent event) {
             break;
         case ERROR:
             /* Display Invalid Login Error Message Here */
+            InvalidMessage.setText(ErrorMsg.translateError(ErrorMsg.getLastError()));
             InvalidMessage.setVisible(true);   
             break;
     }

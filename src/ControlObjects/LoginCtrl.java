@@ -1,53 +1,44 @@
 package ControlObjects;
 
-import UserManagement.User;
-import SystemOperations.Error;
+import SystemOperations.ErrorMsg;
+import dao.UserDao;
+import entity.User;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoginCtrl {
-	
-	public LoginCtrl() {
-		super();
-		// Initialize database connection ...
-	}
-	
-	public User.TYPE loginCheck(String username, String password){
-		if( "admin".compareTo(username)==0 ){
-			if("admin".compareTo(password)==0)
-				return User.TYPE.STAFF;
-			else
-				Error.setLastError(Error.ERROR_WRONG_PASSWORD);
-		}
-		if( "clerk".compareTo(username)==0 ){
-			if("clerk".compareTo(password)==0)
-				return User.TYPE.STAFF;
-			else
-				Error.setLastError(Error.ERROR_WRONG_PASSWORD);
-		}
-		if( "manager".compareTo(username)==0 ){
-			if("manager".compareTo(password)==0)
-				return User.TYPE.STAFF;
-			else
-				Error.setLastError(Error.ERROR_WRONG_PASSWORD);
-		}
 
-		if( "customer".compareTo(username)==0 ){
-			if("customer".compareTo(password)==0)
-				return User.TYPE.CUSTOMER;
-			else
-				Error.setLastError(Error.ERROR_WRONG_PASSWORD);
-		}
-		if( "club".compareTo(username)==0 ){
-			if("club".compareTo(password)==0)
-				return User.TYPE.CUSTOMER;
-			else
-				Error.setLastError(Error.ERROR_WRONG_PASSWORD);
-		}
-		return User.TYPE.ERROR;
-		
-		//search user table by username & password
-		//if there is a match, get user type
-		//then, use username to check target type table (staff or customer)
-		//get all detail info
-	}
+    public LoginCtrl() {
+        super();
+        // Initialize database connection ...
+    }
+
+    public User.TYPE loginCheck(String username, String password) {
+        //search user table by username & password
+        //if there is a match, get user type
+        //then, use username to check target type table (staff or customer)
+        //get all detail info
+        UserDao userDAO = new UserDao();
+
+        try {
+            User userInfo = userDAO.find(username);
+            if (userInfo == null) {
+                ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+                return User.TYPE.ERROR;
+            } else {
+                if (password.compareTo(userInfo.getPassword()) == 0) {
+                    return userInfo.getType();
+                } else {
+                    ErrorMsg.setLastError(ErrorMsg.ERROR_WRONG_PASSWORD);
+                    return User.TYPE.ERROR;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+            return User.TYPE.ERROR;
+        }
+    }
 
 }
