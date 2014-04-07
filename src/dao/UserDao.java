@@ -5,7 +5,6 @@ import java.sql.*;
 import dbconn.DbConn;
 import dbconn.SqlBuilder;
 
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.IllegalArgumentException;
@@ -14,40 +13,45 @@ public class UserDao implements GenericDao<User, String> {
 
     private static final String tb_name = "user";
 
-    public void UserDao() throws SQLException {
+    public void UserDao() {
     }
 
     @Override
-    public User find(String pk) throws SQLException{
+    public User find(String pk) throws DaoException {
         User user = new User();
         String type;
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
                 .from(tb_name)
-                .where("Username="+SqlBuilder.wrapStr(pk))
+                .where("Username=" + SqlBuilder.wrapStr(pk))
                 .toString();
-        
-        Statement stmt = DbConn.getStmt();
-        ResultSet rs = stmt.executeQuery(sql);
-        
-        if (rs.next()) {
-            user.setUsername(rs.getString(1));
-            user.setPassword(rs.getString(2));
-            user.setType(User.TYPE.valueOf(rs.getString(3)));
-        } else {
-            return null;
-        }
 
+        try {
+            Statement stmt = DbConn.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                user.setUsername(rs.getString(1));
+                user.setPassword(rs.getString(2));
+                user.setType(User.TYPE.valueOf(rs.getString(3)));
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException(tb_name, "find()");
+        }
+        
         return user;
     }
 
     @Override
-    public boolean update(User value) {
+    public boolean update(User value) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         String sql = qb.update(tb_name)
                 .set("Password=" + SqlBuilder.wrapStr(value.getPassword()))
-                .set("Type=" + Integer.toString(parseType(value.getType())))
+                .set("Type=" + SqlBuilder.wrapInt(value.getType().getValue()))
                 .where("Username=" + SqlBuilder.wrapStr(value.getUsername()))
                 .toString();
 
@@ -56,49 +60,40 @@ public class UserDao implements GenericDao<User, String> {
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            throw new DaoException(tb_name, "update()");
+            
         }
-
         return true;
-
-    }
-
-    private int parseType(User.TYPE type) {
-        if (type == User.TYPE.CUSTOMER) {
-            return 1;
-        } else if (type == User.TYPE.STAFF) {
-            return 2;
-        } else {
-            return 0;
-        }
     }
 
     @Override
-    public boolean add(User value) {
+    public boolean add(User value) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .insert(tb_name)
                 .values(
-                        SqlBuilder.wrapStr(value.getUsername()), 
-                        SqlBuilder.wrapStr(value.getPassword()), 
-                        Integer.toString(parseType(value.getType())), "NULL")
+                        SqlBuilder.wrapStr(value.getUsername()),
+                        SqlBuilder.wrapStr(value.getPassword()),
+                        SqlBuilder.wrapInt(value.getType().getValue()),
+                        "NULL")
                 .toString();
-        
-        System.out.println(sql);
 
         try {
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            throw new DaoException(tb_name, "add()");
         }
-
+        
         return true;
     }
 
     @Override
-    public boolean delete(String pk) {
+    public boolean delete(String pk) throws DaoException {
+        if (pk == null) {
+            return true;
+        }
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .deleteFrom(tb_name)
@@ -109,11 +104,11 @@ public class UserDao implements GenericDao<User, String> {
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            throw new DaoException(tb_name, "delete()");
         }
 
         return true;
-                
+
     }
 
 }

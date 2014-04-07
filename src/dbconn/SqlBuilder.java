@@ -89,6 +89,20 @@ public class SqlBuilder {
         return this;
     }
     
+    public SqlBuilder columns(String... columns) {
+        String column = null;
+        for (String str : columns) {
+            if (column == null) {
+                column = str;
+            } else {
+                column += ", " + str;
+            }
+        }
+        
+        insert += "(" + column + ")";
+        return this;
+    }
+    
     public SqlBuilder values(String... strs) {
         for (String str : strs) {
             if (values == null) {

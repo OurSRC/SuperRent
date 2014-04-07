@@ -7,7 +7,6 @@ package dao;
 
 import dbconn.DbConn;
 import dbconn.SqlBuilder;
-import dao.UserDao;
 import entity.Customer;
 import entity.User;
 import java.sql.ResultSet;
@@ -23,71 +22,140 @@ import java.util.Date;
  */
 public class CustomerDao implements GenericDao<Customer, Integer> {
 
-    private static String tb_name = "customer";
+    private static final String tb_name = "customer";
 
+    /**
+     *
+     * @param customerID The ID of customer
+     * @return Customer object that has the id, or null if customer not exist
+     * @throws DaoException
+     */
     @Override
-    public Customer find(Integer customerID) throws SQLException {
-        Customer csmt = new Customer();
+    public Customer find(Integer customerID) throws DaoException {
+
+        Customer customer = null;
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
                 .from(tb_name)
                 .where("CustomerID=" + Integer.toString(customerID))
                 .toString();
+        customer = findOne(sql);
+        return customer;
+    }
 
-        Statement stmt = DbConn.getStmt();
-        ResultSet rs = stmt.executeQuery(sql);
+    /**
+     * This function takes sql query and return a single object.
+     * @param sql The sql to execute.
+     * @return Customer object, or null if not found.
+     * @throws DaoException
+     */
+    public Customer findOne(String sql) throws DaoException {
 
-        if (rs.next()) {
-            csmt.setCustomerId(rs.getInt(1));
-            csmt.setPhone(rs.getString(2));
-            csmt.setFistName(rs.getString(3));
-            csmt.setMiddleName(rs.getString(4));
-            csmt.setLastName(rs.getString(5));
-            csmt.seteMail(rs.getString(6));
-            csmt.setAddress(rs.getString(7));
-            csmt.setDriverLicenseNumber(rs.getString(8));
-            csmt.setIsClubMember(rs.getBoolean(9));
-            csmt.setPoint(rs.getInt(10));
-            csmt.setMembershipExpiry(rs.getDate(11));       //To Chris, need check this line: java.sql.Date getDate() java.sql.Date extend java.util.Date
-            csmt.setUsername(rs.getString(12));
-            /*
-             java.sql.Date jd = new java.sql.Date(0);
-             Date ud = new Date( 0 );
-             csmt.setMembershipExpiry(jd);
-             csmt.setMembershipExpiry(ud);
-             */
+        Customer customer = null;
+        try {
+            Statement stmt = DbConn.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
 
-            if (csmt.getUsername() != null) {
-                UserDao udao = new UserDao();
-                User u;
-                u = udao.find(csmt.getUsername());
-                if (u != null) {
-                    csmt.setPassword(u.getPassword());
-                    csmt.setType(u.getType());
-                } else {
-                    return null;    //database error
-                }
+            if (rs.next()) {
+                customer = parseCustomer(rs);
+            } else {
+                return null;
             }
-        } else {
-            return null;
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException(tb_name, "find()");
+        }
+        return customer;
+    }
+
+    private Customer parseCustomer(ResultSet rs) throws SQLException, DaoException {
+        Customer customer = new Customer();
+        customer.setCustomerId(rs.getInt(1));
+        customer.setPhone(rs.getString(2));
+        customer.setFistName(rs.getString(3));
+        customer.setMiddleName(rs.getString(4));
+        customer.setLastName(rs.getString(5));
+        customer.seteMail(rs.getString(6));
+        customer.setAddress(rs.getString(7));
+        customer.setDriverLicenseNumber(rs.getString(8));
+        customer.setIsClubMember(rs.getBoolean(9));
+        customer.setPoint(rs.getInt(10));
+        customer.setMembershipExpiry(rs.getDate(11));       //To Chris, need check this line: java.sql.Date getDate() java.sql.Date extend java.util.Date
+        customer.setUsername(rs.getString(12));
+        /*
+         java.sql.Date jd = new java.sql.Date(0);
+         Date ud = new Date( 0 );
+         csmt.setMembershipExpiry(jd);
+         csmt.setMembershipExpiry(ud);
+         */
+
+        if (customer.getUsername() != null) {
+            UserDao udao = new UserDao();
+            User user;
+            user = udao.find(customer.getUsername());
+            if (user != null) {
+                customer.setPassword(user.getPassword());
+                customer.setType(user.getType());
+            } else { //database error
+                //return null;
+                customer.setUsername(null);
+            }
         }
 
-        return csmt;
+        return customer;
+
     }
 
-    public Customer findByUsername(String username) throws SQLException {
-        return null;
+    /**
+     * Search customer object by username
+     * @param username The username of customer to find
+     * @return Customer object, or null;
+     * @throws dao.DaoException
+     */
+    public Customer findByUsername(String username) throws DaoException {
+        Customer customer = null;
+        SqlBuilder qb = new SqlBuilder();
+        String sql = qb
+                .select("*")
+                .from(tb_name)
+                .where("Username=" + SqlBuilder.wrapStr(username))
+                .toString();
+        customer = findOne(sql);
+        return customer;
     }
 
-    public Customer findByPhone(String phone) throws SQLException {
-        return null;
+    /**
+     * Search customer object by phone number
+     * @param phone The phone number to search
+     * @return Customer object, or null;
+     * @throws DaoException
+     */
+    public Customer findByPhone(String phone) throws DaoException {
+        Customer customer = null;
+        SqlBuilder qb = new SqlBuilder();
+        String sql = qb
+                .select("*")
+                .from(tb_name)
+                .where("PhoneNo=" + SqlBuilder.wrapStr(phone))
+                .toString();
+        customer = findOne(sql);
+        return customer;
     }
 
+    /**
+     *
+     * @param customer Customer object to update
+     * @return
+     * @throws DaoException
+     */
     @Override
-    public boolean update(Customer customer) {
+    public boolean update(Customer customer) throws DaoException {
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
+        boolean added = false;
+        boolean updated = false;
+        Customer customer_db = null;
         String sql = qb.update(tb_name)
                 .set("PhoneNo=" + SqlBuilder.wrapStr(customer.getPhone()))
                 .set("FirstName=" + SqlBuilder.wrapStr(customer.getFistName()))
@@ -104,31 +172,50 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 .toString();
 
         try {
-            Customer cust = find(customer.getCustomerId());
-            if (cust.getUsername().equals(customer.getUsername())) {
+            customer_db = find(customer.getCustomerId());
+            if (customer_db == null) {
+                throw new DaoException(tb_name, "update() existing record not found");
+            }
+            if (customer_db.getUsername().equals(customer.getUsername())) { // username is not changed
                 udao.update(customer);
-            } else {
-                udao.delete(cust.getUsername());
-                udao.add(customer);
+                updated = true;
+            } else {        // username changed
+                if (udao.find(customer.getUsername()) != null) {  // username exist
+                    throw new DaoException(tb_name, "update() username exist");
+                }
+
+                udao.delete(customer_db.getUsername()); // delete old user name
+                if (customer.getUsername() != null) {
+                    udao.add(customer);                     // add new customer name
+                    added = true;
+                }
             }
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            if (added) {
+                udao.delete(customer.getUsername());
+            }
+            if (updated) {
+                udao.update(customer_db);
+            }
+            throw new DaoException(tb_name, "update()");
         }
 
         return true;
     }
 
     @Override
-    public boolean add(Customer customer) {
+    public boolean add(Customer customer) throws DaoException {
         boolean add_user = false;
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         Date date = customer.getMembershipExpiry();
         String sql = qb
                 .insert(tb_name)
+                //.columns("PhoneNO", "FirstName", "MiddleName", "LastName", "Email", "Address", "DriverLicenseNo", 
+                //        "IsClubMember", "MemberPoint", "MembershipExpireDate", "Username")
                 .values(
                         SqlBuilder.wrapInt(customer.getCustomerId()),
                         SqlBuilder.wrapStr(customer.getPhone()),
@@ -145,27 +232,26 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 )
                 .toString();
         System.out.println(sql);
+
         try {
             if (customer.getUsername() != null) {
-                boolean suc = udao.add(customer);
-                if (suc) {
-                    add_user = true;
-                    Statement stmt = DbConn.getStmt();
-                    stmt.executeUpdate(sql);
-                }
+                udao.add(customer);
+                add_user = true;    // insert user success
             }
+            Statement stmt = DbConn.getStmt();
+            stmt.executeUpdate(sql);
         } catch (SQLException ex) {
-            if (add_user) {
+            if (add_user) {     // insert user success but insert customer failed
                 udao.delete(customer.getUsername());
             }
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            throw new DaoException(tb_name, "add()");
         }
         return true;
     }
 
     @Override
-    public boolean delete(Integer customerID) {
+    public boolean delete(Integer customerID) throws DaoException {
 
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
@@ -174,15 +260,19 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 .toString();
         try {
             Customer cust = find(customerID);
+            if (cust == null) {     // record not in table
+                return true;
+            }
+
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
-            if (cust.getUsername() != null) {
+            if (cust.getUsername() != null) {   // delete user if username exist
                 UserDao udao = new UserDao();
                 udao.delete(cust.getUsername());
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            throw new DaoException(tb_name, "delete()");
         }
 
         return true;
