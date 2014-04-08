@@ -7,6 +7,9 @@ package entityParser;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * This class provide functionalities to transform attributes between database and entity object
@@ -25,11 +28,27 @@ public class EntityParser {
         for (MetaInfo m : ma) {
             try {
                 Object args;
-                args = (String) rs.getClass().getMethod("get" + m.getResult_set_type(), String.class).invoke(rs, m.getColumn_name());
-
+                args = rs.getClass().getMethod("get" + m.getResult_set_type(), String.class).invoke(rs, m.getColumn_name());
+                switch (m.getWrap_type()) {
+                    case INT:
+                        args = (int) args;
+                        break;
+                    case STRING:
+                        args = (String) args;
+                        break;
+                    case ENUM:
+                        args = (String) args;
+                        break;
+                    case BOOLEAN:
+                        args = (boolean) args;
+                        break;
+                    case DATE:
+                        args = (Date) args;
+                        break;
+                }
                 entity.getClass().getMethod("set" + m.getAttr_name(), m.getSetter_arg_cls()).invoke(entity, args);
             } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                throw new ParserException("parserEntity error:" + m.getAttr_name());
+                throw new ParserException("parserEntity error:" + m.getAttr_name() + ":"+ e.toString());
 
             }
         }
@@ -57,6 +76,13 @@ public class EntityParser {
                     break;
                 case ENUM: // parse enum to int then to string
                     str = ((Integer) obj.getClass().getMethod("getValue").invoke(obj)).toString();
+                    break;
+                case BOOLEAN:
+                    str = ((boolean) obj) ? "1" : "0";
+                    break;
+                case DATE:
+                    DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
+                    str = "'" + df.format((Date) obj) + "'";
                     break;
             }
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {

@@ -12,7 +12,7 @@ package entityParser;
 public class MetaInfo {
 
     public enum WrapType {
-        INT, STRING, ENUM
+        INT, STRING, ENUM, BOOLEAN, DATE
     }
 
     private String column_name;         // column name in database
@@ -98,4 +98,6 @@ public class MetaInfo {
     public void setWrap_type(WrapType wrap_type) {
         this.wrap_type = wrap_type;
     }
+    
+    
 }
