@@ -50,8 +50,10 @@ public class UserDao implements GenericDao<User, String> {
     public boolean update(User value) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         String sql = qb.update(tb_name)
-                .set("Password=" + SqlBuilder.wrapStr(value.getPassword()))
-                .set("Type=" + SqlBuilder.wrapInt(value.getType().getValue()))
+                .set(
+                        "Password=" + SqlBuilder.wrapStr(value.getPassword()),
+                        "Type=" + SqlBuilder.wrapInt(value.getType().getValue())
+                )
                 .where("Username=" + SqlBuilder.wrapStr(value.getUsername()))
                 .toString();
 

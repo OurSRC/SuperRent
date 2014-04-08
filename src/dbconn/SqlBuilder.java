@@ -74,12 +74,23 @@ public class SqlBuilder {
         update = new String("UPDATE " + tb_name);
         return this;
     }
-    
+    /*
     public SqlBuilder set(String set_str) {
         if (set == null) {
             set = "SET " + set_str;
         } else {
             set += " ," + set_str;
+        }
+        return this;
+    }*/
+    
+    public SqlBuilder set(String... strs) {
+        for (String str : strs) {
+            if (set == null) {
+                set = "SET " + str;
+            } else {
+                set += ", " + str;
+            }
         }
         return this;
     }

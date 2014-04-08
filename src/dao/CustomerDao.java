@@ -18,7 +18,7 @@ import java.util.Date;
 
 /**
  *
- * @author lenovo
+ * @author Jingchuan Chen
  */
 public class CustomerDao implements GenericDao<Customer, Integer> {
 
@@ -46,6 +46,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
 
     /**
      * This function takes sql query and return a single object.
+     *
      * @param sql The sql to execute.
      * @return Customer object, or null if not found.
      * @throws DaoException
@@ -109,6 +110,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
 
     /**
      * Search customer object by username
+     *
      * @param username The username of customer to find
      * @return Customer object, or null;
      * @throws dao.DaoException
@@ -127,6 +129,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
 
     /**
      * Search customer object by phone number
+     *
      * @param phone The phone number to search
      * @return Customer object, or null;
      * @throws DaoException
@@ -157,19 +160,23 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         boolean updated = false;
         Customer customer_db = null;
         String sql = qb.update(tb_name)
-                .set("PhoneNo=" + SqlBuilder.wrapStr(customer.getPhone()))
-                .set("FirstName=" + SqlBuilder.wrapStr(customer.getFistName()))
-                .set("MiddleName=" + SqlBuilder.wrapStr(customer.getMiddleName()))
-                .set("LastName=" + SqlBuilder.wrapStr(customer.getLastName()))
-                .set("Email=" + SqlBuilder.wrapStr(customer.geteMail()))
-                .set("Address=" + SqlBuilder.wrapStr(customer.getAddress()))
-                .set("DriverLicenseNo=" + SqlBuilder.wrapStr(customer.getDriverLicenseNumber()))
-                .set("IsClubMember=" + SqlBuilder.wrapBool(customer.getIsClubMember()))
-                .set("MemberPoint=" + SqlBuilder.wrapInt(customer.getPoint()))
-                .set("MembershipExpireDate=" + SqlBuilder.wrapDate(customer.getMembershipExpiry()))
-                .set("Username=" + SqlBuilder.wrapStr(customer.getUsername()))
+                .set(
+                        "PhoneNo=" + SqlBuilder.wrapStr(customer.getPhone()),
+                        "FirstName=" + SqlBuilder.wrapStr(customer.getFistName()),
+                        "MiddleName=" + SqlBuilder.wrapStr(customer.getMiddleName()),
+                        "LastName=" + SqlBuilder.wrapStr(customer.getLastName()),
+                        "Email=" + SqlBuilder.wrapStr(customer.geteMail()),
+                        "Address=" + SqlBuilder.wrapStr(customer.getAddress()),
+                        "DriverLicenseNo=" + SqlBuilder.wrapStr(customer.getDriverLicenseNumber()),
+                        "IsClubMember=" + SqlBuilder.wrapBool(customer.getIsClubMember()),
+                        "MemberPoint=" + SqlBuilder.wrapInt(customer.getPoint()),
+                        "MembershipExpireDate=" + SqlBuilder.wrapDate(customer.getMembershipExpiry()),
+                        "Username=" + SqlBuilder.wrapStr(customer.getUsername())
+                )
                 .where("CustomerID=" + SqlBuilder.wrapInt(customer.getCustomerId()))
                 .toString();
+
+        System.out.println(sql);
 
         try {
             customer_db = find(customer.getCustomerId());
@@ -214,10 +221,10 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         Date date = customer.getMembershipExpiry();
         String sql = qb
                 .insert(tb_name)
-                //.columns("PhoneNO", "FirstName", "MiddleName", "LastName", "Email", "Address", "DriverLicenseNo", 
-                //        "IsClubMember", "MemberPoint", "MembershipExpireDate", "Username")
+                .columns("PhoneNO", "FirstName", "MiddleName", "LastName", "Email", "Address", "DriverLicenseNo",
+                        "IsClubMember", "MemberPoint", "MembershipExpireDate", "Username")
                 .values(
-                        SqlBuilder.wrapInt(customer.getCustomerId()),
+                        //SqlBuilder.wrapInt(customer.getCustomerId()),
                         SqlBuilder.wrapStr(customer.getPhone()),
                         SqlBuilder.wrapStr(customer.getFistName()),
                         SqlBuilder.wrapStr(customer.getMiddleName()),
@@ -225,7 +232,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                         SqlBuilder.wrapStr(customer.geteMail()),
                         SqlBuilder.wrapStr(customer.getAddress()),
                         SqlBuilder.wrapStr(customer.getDriverLicenseNumber()),
-                        SqlBuilder.wrapBool(customer.getIsClubMember()), //SqlBuilder.wrapInt(customer.getIsClubMember() ? 1 : 0),
+                        SqlBuilder.wrapBool(customer.getIsClubMember()),
                         SqlBuilder.wrapInt(customer.getPoint()),
                         "NULL", //SqlBuilder.wrapDate(date),
                         SqlBuilder.wrapStr(customer.getUsername())
@@ -275,6 +282,11 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             throw new DaoException(tb_name, "delete()");
         }
 
+        return true;
+    }
+    
+    public boolean delete(Customer customer) throws DaoException {
+        this.delete(customer.getCustomerId());
         return true;
     }
 

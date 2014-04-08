@@ -6,6 +6,7 @@ import dao.UserDao;
 import entity.Customer;
 import entity.User;
 import java.sql.SQLException;
+import dao.DaoException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,7 +40,7 @@ public class LoginCtrl {
                     return User.TYPE.ERROR;
                 }
             }
-        } catch (SQLException ex) {
+        } catch (DaoException ex) {
             Logger.getLogger(LoginCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
             return User.TYPE.ERROR;
