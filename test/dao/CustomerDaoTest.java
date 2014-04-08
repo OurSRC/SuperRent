@@ -102,7 +102,7 @@ public class CustomerDaoTest {
         assertEquals("customer", customer.getUsername());
         assertEquals("customer", customer.getPassword());
         assertEquals("1234567", customer.getPhone());
-        assertEquals("firstName", customer.getFistName());
+        assertEquals("firstName", customer.getFirstName());
     }
 
     /**
@@ -117,7 +117,7 @@ public class CustomerDaoTest {
         assertEquals(cname, customer.getUsername());
         assertEquals("customer", customer.getPassword());
         assertEquals("1234567", customer.getPhone());
-        assertEquals("firstName", customer.getFistName());
+        assertEquals("firstName", customer.getFirstName());
     }
 
     /**
@@ -130,17 +130,17 @@ public class CustomerDaoTest {
         CustomerDao instance = new CustomerDao();
         UserDao udao = new UserDao();
         customer = instance.findByUsername(cname);
-        assertEquals("firstName", customer.getFistName());
+        assertEquals("firstName", customer.getFirstName());
         assertEquals("customer", customer.getUsername());
         assertEquals("customer", customer.getPassword());
         
         
 
         // update name
-        customer.setFistName("new name");
+        customer.setFirstName("new name");
         instance.update(customer);
         customer = instance.findByUsername(cname);
-        assertEquals("new name", customer.getFistName());
+        assertEquals("new name", customer.getFirstName());
 
         //update password
         customer.setPassword("new pass");

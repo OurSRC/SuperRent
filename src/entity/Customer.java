@@ -7,7 +7,7 @@ public class Customer extends User {
     private int customerId;
     private String phone;
     private String address;
-    private String fistName;
+    private String firstName;
     private String middleName;
     private String lastName;
     private String eMail;
@@ -29,7 +29,7 @@ public class Customer extends User {
         
         this.phone = phone;
         this.address = address;
-        this.fistName = fistName;
+        this.firstName = fistName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.eMail = eMail;
@@ -84,15 +84,15 @@ public class Customer extends User {
     /**
      * @return the fistName
      */
-    public String getFistName() {
-        return fistName;
+    public String getFirstName() {
+        return firstName;
     }
 
     /**
      * @param fistName the fistName to set
      */
-    public void setFistName(String fistName) {
-        this.fistName = fistName;
+    public void setFirstName(String fistName) {
+        this.firstName = fistName;
     }
 
     /**

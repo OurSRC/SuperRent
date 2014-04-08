@@ -33,7 +33,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
     @Override
     public Customer find(Integer customerID) throws DaoException {
 
-        Customer customer = null;
+        Customer customer;
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
@@ -74,7 +74,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         Customer customer = new Customer();
         customer.setCustomerId(rs.getInt(1));
         customer.setPhone(rs.getString(2));
-        customer.setFistName(rs.getString(3));
+        customer.setFirstName(rs.getString(3));
         customer.setMiddleName(rs.getString(4));
         customer.setLastName(rs.getString(5));
         customer.seteMail(rs.getString(6));
@@ -116,7 +116,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
      * @throws dao.DaoException
      */
     public Customer findByUsername(String username) throws DaoException {
-        Customer customer = null;
+        Customer customer;
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
@@ -135,7 +135,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
      * @throws DaoException
      */
     public Customer findByPhone(String phone) throws DaoException {
-        Customer customer = null;
+        Customer customer;
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
@@ -162,7 +162,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         String sql = qb.update(tb_name)
                 .set(
                         "PhoneNo=" + SqlBuilder.wrapStr(customer.getPhone()),
-                        "FirstName=" + SqlBuilder.wrapStr(customer.getFistName()),
+                        "FirstName=" + SqlBuilder.wrapStr(customer.getFirstName()),
                         "MiddleName=" + SqlBuilder.wrapStr(customer.getMiddleName()),
                         "LastName=" + SqlBuilder.wrapStr(customer.getLastName()),
                         "Email=" + SqlBuilder.wrapStr(customer.geteMail()),
@@ -175,8 +175,6 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 )
                 .where("CustomerID=" + SqlBuilder.wrapInt(customer.getCustomerId()))
                 .toString();
-
-        System.out.println(sql);
 
         try {
             customer_db = find(customer.getCustomerId());
@@ -226,7 +224,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 .values(
                         //SqlBuilder.wrapInt(customer.getCustomerId()),
                         SqlBuilder.wrapStr(customer.getPhone()),
-                        SqlBuilder.wrapStr(customer.getFistName()),
+                        SqlBuilder.wrapStr(customer.getFirstName()),
                         SqlBuilder.wrapStr(customer.getMiddleName()),
                         SqlBuilder.wrapStr(customer.getLastName()),
                         SqlBuilder.wrapStr(customer.geteMail()),
@@ -238,7 +236,6 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                         SqlBuilder.wrapStr(customer.getUsername())
                 )
                 .toString();
-        System.out.println(sql);
 
         try {
             if (customer.getUsername() != null) {
