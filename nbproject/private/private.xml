@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/test/DAO_Test.java</file>
-            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/UserManagement/Staff.java</file>
-            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/ControlObjects/CustomerCtrl.java</file>
-            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/entity/Customer.java</file>
-            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/dbconn/SqlBuilder.java</file>
-            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/dao/CustomerDao.java</file>
-            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/dao/UserDao.java</file>
-            <file>file:/C:/Users/Elitward/Documents/NetBeansProjects/SuperRent/src/ControlObjects/LoginCtrl.java</file>
+            <file>file:/E:/workspace/SuperRent/src/dbconn/SqlBuilder.java</file>
+            <file>file:/E:/workspace/SuperRent/src/dao/CustomerDao.java</file>
+            <file>file:/E:/workspace/SuperRent/test/DAO_Test.java</file>
+            <file>file:/E:/workspace/SuperRent/test/Tmp.java</file>
         </group>
     </open-files>
 </project-private>

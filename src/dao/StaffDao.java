@@ -27,7 +27,8 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     private static final String tb_name = "staff";
 
     @Override
-    public Staff find(Integer pk) throws SQLException {
+    public Staff find(Integer pk) throws DaoException {
+
         UserDao udao = new UserDao();
         User u;
         Staff staff = new Staff();
@@ -37,35 +38,38 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                 .from(tb_name)
                 .where("StaffID=" + SqlBuilder.wrapInt(pk))
                 .toString();
+        try {
+            Statement stmt = DbConn.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
 
-        Statement stmt = DbConn.getStmt();
-        ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                staff.setStaffId(rs.getInt(1));
+                staff.setFistName(rs.getString(2));
+                staff.setMiddleName(rs.getString(3));
+                staff.setLastName(rs.getString(4));
+                staff.seteMail(rs.getString(5));
+                staff.setPhone(rs.getString(6));
+                staff.setStaffType(Staff.TYPE.valueOf(rs.getString(7)));
+                staff.setStatus(Staff.STATUS.valueOf(rs.getString(8)));
+                staff.setUsername(rs.getString(9));
+                staff.setBranchId(rs.getInt(10));
 
-        if (rs.next()) {
-            staff.setStaffId(rs.getInt(1));
-            staff.setFistName(rs.getString(2));
-            staff.setMiddleName(rs.getString(3));
-            staff.setLastName(rs.getString(4));
-            staff.seteMail(rs.getString(5));
-            staff.setPhone(rs.getString(6));
-            staff.setStaffType(Staff.TYPE.valueOf(rs.getString(7)));
-            staff.setStatus(Staff.STATUS.valueOf(rs.getString(8)));
-            staff.setUsername(rs.getString(9));
-            staff.setBranchId(rs.getInt(10));
+                u = udao.find(staff.getUsername());
+                staff.setPassword(u.getPassword());
+                staff.setType(u.getType());
 
-            u = udao.find(staff.getUsername());
-            staff.setPassword(u.getPassword());
-            staff.setType(u.getType());
+            } else {
+                return null;
+            }
 
-        } else {
-            return null;
+        } catch (SQLException ex) {
+            Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return staff;
     }
 
     @Override
-    public boolean update(Staff value) {
+    public boolean update(Staff value) throws DaoException {
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         String sql = qb.update(tb_name)
@@ -99,7 +103,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     }
 
     @Override
-    public boolean add(Staff value) {
+    public boolean add(Staff value) throws DaoException {
         boolean add_user = false;
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
@@ -138,7 +142,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     }
 
     @Override
-    public boolean delete(Integer pk) {
+    public boolean delete(Integer pk) throws DaoException {
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         String sql = qb

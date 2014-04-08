@@ -64,5 +64,9 @@ public class User {
     public void setType(TYPE type) {
         this.userType = type;
     }
+    
+    public void setType(String type) {
+        this.userType = User.TYPE.valueOf(type);
+    }
 
 }

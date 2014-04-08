@@ -6,15 +6,13 @@
 
 package dao;
 
-import java.sql.SQLException;
-
 /**
  *
  * @author lenovo
  */
 public interface GenericDao<T, K> {
-    public T find(K pk) throws SQLException;
-    public boolean update(T value);
-    public boolean add(T value);
-    public boolean delete (K pk);
+    public T find(K pk) throws DaoException;
+    public boolean update(T value) throws DaoException;
+    public boolean add(T value) throws DaoException;
+    public boolean delete (K pk) throws DaoException;
 }
