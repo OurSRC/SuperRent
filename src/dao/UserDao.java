@@ -92,6 +92,7 @@ public class UserDao implements GenericDao<User, String> {
         if (pk == null) {
             return true;
         }
+        
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .deleteFrom(tb_name)

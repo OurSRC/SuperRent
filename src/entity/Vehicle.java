@@ -13,6 +13,64 @@ import java.util.Date;
  * @author Jingchuan Chen
  */
 public class Vehicle {
+    
+    public enum STATUS {
+        FORRENT(1),
+        FORSALE(2);
+        
+        private int value;
+        
+        private STATUS(int value) {
+            this.value = value;
+        }
+        
+        public int getValue() {
+            return value;
+        }
+    };
+    
+    public enum RENTSTATUS {
+        AVAILABLE(1),
+        UNAVAILABLE(2);
+        
+        private int value;
+        
+        private RENTSTATUS(int value) {
+            this.value = value;
+        }
+        
+        public int getValue() {
+            return value;
+        }
+    };
+    
+    public enum SELLSTATUS {
+        FORSALE(1),
+        SOLD(2);
+        
+        private int value;
+        
+        private SELLSTATUS(int value) {
+            this.value = value;
+        }
+        
+        public int getValue() {
+            return value;
+        }
+    };
+    
+    private int vehicleNo;
+    private String plateNo;
+    private Date manufactureDate;
+    private String mode;
+    private int odometer;
+    private int branchId;
+    private STATUS status;
+    private RENTSTATUS rentStatus;
+    private SELLSTATUS sellStatus;
+    private String className;
+    private int price;
+    
 
     /**
      * @return the vehicleNo
@@ -111,6 +169,10 @@ public class Vehicle {
     public void setStatus(STATUS status) {
         this.status = status;
     }
+    
+    public void setStatus(String status) {
+        this.status = STATUS.valueOf(status);
+    }
 
     /**
      * @return the rentStatus
@@ -125,6 +187,10 @@ public class Vehicle {
     public void setRentStatus(RENTSTATUS rentStatus) {
         this.rentStatus = rentStatus;
     }
+    
+    public void setRentStatus(String rentStatus) {
+        this.rentStatus = RENTSTATUS.valueOf(rentStatus);
+    }
 
     /**
      * @return the sellStatus
@@ -138,6 +204,10 @@ public class Vehicle {
      */
     public void setSellStatus(SELLSTATUS sellStatus) {
         this.sellStatus = sellStatus;
+    }
+    
+    public void setSellStatus(String sellStatus) {
+        this.sellStatus = SELLSTATUS.valueOf(sellStatus);
     }
 
     /**
@@ -167,32 +237,4 @@ public class Vehicle {
     public void setPrice(int price) {
         this.price = price;
     }
-    public enum STATUS {
-        FORRENT,
-        FORSALE
-    };
-    
-    public enum RENTSTATUS {
-        AVAILABLE,
-        UNAVAILABLE
-    };
-    
-    public enum SELLSTATUS {
-        FORSALE,
-        SOLD
-    };
-    
-    private int vehicleNo;
-    private String plateNo;
-    private Date manufactureDate;
-    private String mode;
-    private int odometer;
-    private int branchId;
-    private STATUS status;
-    private RENTSTATUS rentStatus;
-    private SELLSTATUS sellStatus;
-    private String className;
-    private int price;
-    
-    
 }

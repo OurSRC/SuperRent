@@ -65,7 +65,7 @@ public class SqlBuilder {
             where = new String("WHERE");
             where += " " + cond;
         } else {
-            where += ", " + cond;
+            where += " AND " + cond;
         }
         
         return this;
