@@ -11,67 +11,51 @@ package entity;
  * @author Jingchuan Chen
  */
 public class Branch {
-    private int branchId;
-    private String branchName;
-    private String phone;
-    private String address;
+    private int BranchID;
+    private String BranchName;
+    private String BranchPhone;
+    private String BranchAddress;
 
-    /**
-     * @return the branchId
-     */
-    public int getBranchId() {
-        return branchId;
+    public Branch() {
     }
 
-    /**
-     * @param branchId the branchId to set
-     */
-    public void setBranchId(int branchId) {
-        this.branchId = branchId;
+    public Branch(String BranchName, String BranchPhone, String BranchAddress) {
+        this.BranchName = BranchName;
+        this.BranchPhone = BranchPhone;
+        this.BranchAddress = BranchAddress;
     }
 
-    /**
-     * @return the branchName
-     */
+    public int getBranchID() {
+        return BranchID;
+    }
+
+    public void setBranchID(int BranchID) {
+        this.BranchID = BranchID;
+    }
+
     public String getBranchName() {
-        return branchName;
+        return BranchName;
     }
 
-    /**
-     * @param branchName the branchName to set
-     */
-    public void setBranchName(String branchName) {
-        this.branchName = branchName;
+    public void setBranchName(String BranchName) {
+        this.BranchName = BranchName;
     }
 
-    /**
-     * @return the phone
-     */
-    public String getPhone() {
-        return phone;
+    public String getBranchPhone() {
+        return BranchPhone;
     }
 
-    /**
-     * @param phone the phone to set
-     */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setBranchPhone(String BranchPhone) {
+        this.BranchPhone = BranchPhone;
     }
 
-    /**
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
+    public String getBranchAddress() {
+        return BranchAddress;
     }
 
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBranchAddress(String BranchAddress) {
+        this.BranchAddress = BranchAddress;
     }
-    
-    
-    
+
+  
 }

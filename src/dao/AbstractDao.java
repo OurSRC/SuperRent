@@ -25,19 +25,19 @@ public abstract class AbstractDao<T> {
     
     private Class<T> cls;
     
-    public void add(T entity) throws DaoException {
+    public boolean add(T entity) throws DaoException {
         if (entity == null) {
-            return;
+            return false;
         }
         if (PkIsAutoGen()) {
-            addAutoGenPk(entity);
+            return addAutoGenPk(entity);
         } else {
-            addWithPk(entity);
+            return addWithPk(entity);
         }
-        
     }
 
-    public void addWithPk(T entity) throws DaoException {
+    private boolean addWithPk(T entity) throws DaoException {
+        boolean ans = false;
         String tb_name = getTbName();
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
@@ -48,19 +48,21 @@ public abstract class AbstractDao<T> {
         try {
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
+            ans = true;
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "add()");
         }
+        return ans;
     }
     
-    public void addAutoGenPk(T entity) throws DaoException {
+    private boolean addAutoGenPk(T entity) throws DaoException {
+        boolean ans = false;
         String tb_name = getTbName();
         int pk = getPkIndex();
         AttributeParser ap[] = getAP();
         AttributeParser ap_no_pk[] = genAPWithoutPK(ap, pk);
-        
-        
+
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .insert(tb_name)
@@ -71,19 +73,22 @@ public abstract class AbstractDao<T> {
         try {
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
+            ans = true;
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "add()");
         }
+        return ans;
     }
     
     
     
-    public void delete(T entity) throws DaoException {
+    public boolean delete(T entity) throws DaoException {
         if (entity == null) {
-            return;
+            return false;
         }
         
+        boolean ans = false;
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
         int pk = getPkIndex();
@@ -95,20 +100,23 @@ public abstract class AbstractDao<T> {
                 .toString();
         try {
             Statement stmt = DbConn.getStmt();
-            stmt.executeUpdate(sql);
+            int ret = stmt.executeUpdate(sql);
+            if(ret==0)
+                ans = false;
+            else
+                ans = true;
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "delete()");
         }
+        return ans;
     }
     
-    public void update(T entity) throws DaoException {
-        
-        
+    public boolean update(T entity) throws DaoException {
         if (entity == null) {
-            return;
+            return false;
         }
-        
+        boolean ans = false;
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
         int pk = getPkIndex();
@@ -123,11 +131,12 @@ public abstract class AbstractDao<T> {
         try {
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
+            ans = true;
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "update()");
-
         }
+        return ans;
     }
     
     public T findOne(String cond) throws DaoException {
