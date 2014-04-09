@@ -11,17 +11,39 @@ package entity;
  */
 public class VehicleClass {
 
-    public enum STATUS {
-        CAR,
-        TRUCK
+    public enum TYPE {
+        Car(1),
+        Truck(2);
+        
+        private int value;
+        
+        private TYPE(int value) {
+            this.value = value;
+        }
+        
+        public int getValue() {
+            return value;
+        }
     };
 
     private String className;
-    private STATUS vehicleType;
+    private TYPE vehicleType;
     private int hourlyRate;
     private int dailyRate;
-    private int WeeklyRate;
+    private int weeklyRate;
 
+    public VehicleClass(String className, TYPE type, 
+            int hourlyRate, int dailyRate, int weeklyRate) {
+        
+        this.className = className;
+        this.vehicleType = type;
+        this.hourlyRate = hourlyRate;
+        this.dailyRate = dailyRate;
+        this.weeklyRate = weeklyRate;
+    }
+    
+    public VehicleClass() {}
+    
     /**
      * @return the className
      */
@@ -39,15 +61,19 @@ public class VehicleClass {
     /**
      * @return the vehicleType
      */
-    public STATUS getVehicleType() {
+    public TYPE getVehicleType() {
         return vehicleType;
     }
 
     /**
      * @param vehicleType the vehicleType to set
      */
-    public void setVehicleType(STATUS vehicleType) {
+    public void setVehicleType(TYPE vehicleType) {
         this.vehicleType = vehicleType;
+    }
+    
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = TYPE.valueOf(vehicleType);
     }
 
     /**
@@ -82,14 +108,14 @@ public class VehicleClass {
      * @return the WeeklyRate
      */
     public int getWeeklyRate() {
-        return WeeklyRate;
+        return weeklyRate;
     }
 
     /**
      * @param WeeklyRate the WeeklyRate to set
      */
     public void setWeeklyRate(int WeeklyRate) {
-        this.WeeklyRate = WeeklyRate;
+        this.weeklyRate = WeeklyRate;
     }
 
 }
