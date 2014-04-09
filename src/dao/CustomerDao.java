@@ -9,9 +9,13 @@ import dbconn.DbConn;
 import dbconn.SqlBuilder;
 import entity.Customer;
 import entity.User;
+
+import entityParser.*;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Date;
@@ -23,6 +27,21 @@ import java.util.Date;
 public class CustomerDao implements GenericDao<Customer, Integer> {
 
     private static final String tb_name = "customer";
+
+    private static final AttributeParser ap[] = {
+        new IntParser("CustomerID", "CustomerId"),
+        new StringParser("PhoneNo", "Phone"),
+        new StringParser("FirstName", "FirstName"),
+        new StringParser("MiddleName", "MiddleName"),
+        new StringParser("LastName", "LastName"),
+        new StringParser("Email", "Email"),
+        new StringParser("Address", "Address"),
+        new StringParser("DriverLicenseNo", "DriverLicenseNumber"),
+        new BooleanParser("IsClubMember", "IsClubMember"),
+        new IntParser("MemberPoint", "Point"),
+        new DateParser("MembershipExpireDate", "MembershipExpiry"),
+        new StringParser("Username", "Username")
+    };
 
     /**
      *
@@ -72,24 +91,8 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
 
     private Customer parseCustomer(ResultSet rs) throws SQLException, DaoException {
         Customer customer = new Customer();
-        customer.setCustomerId(rs.getInt(1));
-        customer.setPhone(rs.getString(2));
-        customer.setFirstName(rs.getString(3));
-        customer.setMiddleName(rs.getString(4));
-        customer.setLastName(rs.getString(5));
-        customer.seteMail(rs.getString(6));
-        customer.setAddress(rs.getString(7));
-        customer.setDriverLicenseNumber(rs.getString(8));
-        customer.setIsClubMember(rs.getBoolean(9));
-        customer.setPoint(rs.getInt(10));
-        customer.setMembershipExpiry(rs.getDate(11));       //To Chris, need check this line: java.sql.Date getDate() java.sql.Date extend java.util.Date
-        customer.setUsername(rs.getString(12));
-        /*
-         java.sql.Date jd = new java.sql.Date(0);
-         Date ud = new Date( 0 );
-         csmt.setMembershipExpiry(jd);
-         csmt.setMembershipExpiry(ud);
-         */
+
+        EntityParser.parseEntity(rs, customer, ap);
 
         if (customer.getUsername() != null) {
             UserDao udao = new UserDao();
@@ -159,22 +162,11 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         boolean added = false;
         boolean updated = false;
         Customer customer_db = null;
-        String sql = qb.update(tb_name)
-                .set(
-                        "PhoneNo=" + SqlBuilder.wrapStr(customer.getPhone()),
-                        "FirstName=" + SqlBuilder.wrapStr(customer.getFirstName()),
-                        "MiddleName=" + SqlBuilder.wrapStr(customer.getMiddleName()),
-                        "LastName=" + SqlBuilder.wrapStr(customer.getLastName()),
-                        "Email=" + SqlBuilder.wrapStr(customer.geteMail()),
-                        "Address=" + SqlBuilder.wrapStr(customer.getAddress()),
-                        "DriverLicenseNo=" + SqlBuilder.wrapStr(customer.getDriverLicenseNumber()),
-                        "IsClubMember=" + SqlBuilder.wrapBool(customer.getIsClubMember()),
-                        "MemberPoint=" + SqlBuilder.wrapInt(customer.getPoint()),
-                        "MembershipExpireDate=" + SqlBuilder.wrapDate(customer.getMembershipExpiry()),
-                        "Username=" + SqlBuilder.wrapStr(customer.getUsername())
-                )
-                .where("CustomerID=" + SqlBuilder.wrapInt(customer.getCustomerId()))
-                .toString();
+
+        qb.update(tb_name);
+        qb.set(EntityParser.wrapEntityForSet(customer, ap));
+        qb.where("CustomerID=" + SqlBuilder.wrapInt(customer.getCustomerId()));
+        String sql = qb.toString();
 
         try {
             customer_db = find(customer.getCustomerId());
@@ -216,27 +208,14 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         boolean add_user = false;
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
-        Date date = customer.getMembershipExpiry();
-        String sql = qb
-                .insert(tb_name)
-                .columns("PhoneNO", "FirstName", "MiddleName", "LastName", "Email", "Address", "DriverLicenseNo",
-                        "IsClubMember", "MemberPoint", "MembershipExpireDate", "Username")
-                .values(
-                        //SqlBuilder.wrapInt(customer.getCustomerId()),
-                        SqlBuilder.wrapStr(customer.getPhone()),
-                        SqlBuilder.wrapStr(customer.getFirstName()),
-                        SqlBuilder.wrapStr(customer.getMiddleName()),
-                        SqlBuilder.wrapStr(customer.getLastName()),
-                        SqlBuilder.wrapStr(customer.geteMail()),
-                        SqlBuilder.wrapStr(customer.getAddress()),
-                        SqlBuilder.wrapStr(customer.getDriverLicenseNumber()),
-                        SqlBuilder.wrapBool(customer.getIsClubMember()),
-                        SqlBuilder.wrapInt(customer.getPoint()),
-                        "NULL", //SqlBuilder.wrapDate(date),
-                        SqlBuilder.wrapStr(customer.getUsername())
-                )
-                .toString();
 
+        // add each atributes except CustomerId
+        AttributeParser ap_remove_id[] = Arrays.copyOfRange(ap, 1, ap.length);
+        qb.insert(tb_name);
+        qb.columns(EntityParser.getColunmList(ap_remove_id));
+        qb.values(EntityParser.wrapEntity(customer, ap_remove_id));
+        
+        String sql = qb.toString();
         try {
             if (customer.getUsername() != null) {
                 udao.add(customer);
@@ -281,7 +260,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
 
         return true;
     }
-    
+
     public boolean delete(Customer customer) throws DaoException {
         this.delete(customer.getCustomerId());
         return true;

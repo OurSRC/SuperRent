@@ -6,10 +6,6 @@
 package dao;
 
 import entity.User;
-import entityParser.ParserException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -10,7 +10,7 @@ public class Customer extends User {
     private String firstName;
     private String middleName;
     private String lastName;
-    private String eMail;
+    private String email;
     private String driverLicenseNumber;
     //public ArrayList<CreditCard> creditCards;
     //public ArrayList<Payment> paymentHistory;
@@ -22,7 +22,9 @@ public class Customer extends User {
     public Customer(){
     }
     
-    public Customer(String username, String password, String phone, String address, String fistName, String middleName, String lastName, String eMail, String driverLicenseNumber, boolean isClubMember, int point, Date membershipExpiry) {
+    public Customer(String username, String password, String phone, String address, 
+            String fistName, String middleName, String lastName, String email, 
+            String driverLicenseNumber, boolean isClubMember, int point, Date membershipExpiry) {
         super.setUsername(username);
         super.setPassword(password);
         super.setType(TYPE.CUSTOMER);
@@ -32,7 +34,7 @@ public class Customer extends User {
         this.firstName = fistName;
         this.middleName = middleName;
         this.lastName = lastName;
-        this.eMail = eMail;
+        this.email = email;
         this.driverLicenseNumber = driverLicenseNumber;
         this.isClubMember = isClubMember;
         this.point = point;
@@ -126,15 +128,15 @@ public class Customer extends User {
     /**
      * @return the eMail
      */
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param eMail the eMail to set
+     * @param Email the eMail to set
      */
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String Email) {
+        this.email = Email;
     }
 
     /**

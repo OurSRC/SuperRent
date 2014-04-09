@@ -47,7 +47,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                 staff.setFistName(rs.getString(2));
                 staff.setMiddleName(rs.getString(3));
                 staff.setLastName(rs.getString(4));
-                staff.seteMail(rs.getString(5));
+                staff.setEmail(rs.getString(5));
                 staff.setPhone(rs.getString(6));
                 staff.setStaffType(Staff.TYPE.valueOf(rs.getString(7)));
                 staff.setStatus(Staff.STATUS.valueOf(rs.getString(8)));
@@ -76,7 +76,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                 .set("FirstName=" + SqlBuilder.wrapStr(value.getFistName()))
                 .set("MiddleName=" + SqlBuilder.wrapStr(value.getMiddleName()))
                 .set("LastName=" + SqlBuilder.wrapStr(value.getLastName()))
-                .set("Email=" + SqlBuilder.wrapStr(value.geteMail()))
+                .set("Email=" + SqlBuilder.wrapStr(value.getEmail()))
                 .set("PhoneNo=" + SqlBuilder.wrapStr(value.getPhone()))
                 .set("Type=" + SqlBuilder.wrapInt(value.getStaffType().getValue()))
                 .set("Status=" + SqlBuilder.wrapInt(value.getStatus().getValue()))
@@ -114,7 +114,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                         SqlBuilder.wrapStr(value.getFistName()),
                         SqlBuilder.wrapStr(value.getMiddleName()),
                         SqlBuilder.wrapStr(value.getLastName()),
-                        SqlBuilder.wrapStr(value.geteMail()),
+                        SqlBuilder.wrapStr(value.getEmail()),
                         SqlBuilder.wrapStr(value.getPhone()),
                         SqlBuilder.wrapInt(value.getStaffType().getValue()),
                         SqlBuilder.wrapInt(value.getStatus().getValue()),

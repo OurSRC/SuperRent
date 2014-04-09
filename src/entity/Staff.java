@@ -54,7 +54,7 @@ public class Staff extends User {
     private String fistName;
     private String middleName;
     private String lastName;
-    private String eMail;
+    private String email;
     private String phone;
     //public Date onJobDate;
     private STATUS status;
@@ -119,15 +119,15 @@ public class Staff extends User {
     /**
      * @return the eMail
      */
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @param eMail the eMail to set
+     * @param email the eMail to set
      */
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**

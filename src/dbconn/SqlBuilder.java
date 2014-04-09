@@ -25,6 +25,7 @@ public class SqlBuilder {
     private String insert;
     private String values;
     private String delete;
+    private String columns;
     
     public SqlBuilder() {
         select = null;
@@ -100,17 +101,14 @@ public class SqlBuilder {
         return this;
     }
     
-    public SqlBuilder columns(String... columns) {
-        String column = null;
-        for (String str : columns) {
-            if (column == null) {
-                column = str;
+    public SqlBuilder columns(String... col_strs) {
+        for (String str : col_strs) {
+            if (columns == null) {
+                columns = str;
             } else {
-                column += ", " + str;
+                columns += ", " + str;
             }
         }
-        
-        insert += "(" + column + ")";
         return this;
     }
     
@@ -137,6 +135,9 @@ public class SqlBuilder {
         } else if (update != null) {
             return update + " " + set + " " + where + ";";
         } else if (insert != null) {
+            if (columns != null) {
+                insert += "(" + columns + ")";
+            }
             return insert + " VALUES (" + values + ");";
         } else if (delete != null) {
             return delete + " " + where + ";";
@@ -166,9 +167,9 @@ public class SqlBuilder {
         if (d == null) {
             return "null";
         }
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
         String ans = df.format(d);
-        return ans;
+        return wrapStr(ans);
     }
     
     public static String wrapBool(boolean b) {
