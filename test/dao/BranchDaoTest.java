@@ -29,6 +29,15 @@ public class BranchDaoTest {
     
     @BeforeClass
     public static void setUpClass() {
+       
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
         BranchDao dao = new  BranchDao();
         Branch entity;
         entity = new Branch("FirstBranch", "123456", "At Paradise");
@@ -41,33 +50,11 @@ public class BranchDaoTest {
         assertTrue(suc);
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-
-    }
-    
     @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of getInstance method, of class BranchDao.
-     */
-    @Test
-    public void testGetInstance() {
-        /*
-        System.out.println("getInstance");
-        BranchDao instance = new BranchDao();
-        Branch expResult = null;
-        Branch result = instance.getInstance();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-        */
+    public void tearDown() throws DaoException {
+        BranchDao dao = new BranchDao();
+        Branch entity = dao.findByName("FirstBranch");
+        dao.delete(entity);
     }
     
     @Test
@@ -78,7 +65,9 @@ public class BranchDaoTest {
         boolean suc;
         suc = dao.add(entity);
         Branch found = dao.findByName("testBranch");
-        suc = dao.delete(entity);
+        suc = dao.delete(found);
+        Branch found2 = dao.findByName("testBranch");
+        assertEquals(found2, null);
         assertTrue(suc);
     }
     
@@ -89,11 +78,17 @@ public class BranchDaoTest {
         
         Branch found;
         found = dao.findByAddress(entity.getBranchAddress());
-        assertEquals(found, entity);
+        assertEquals(entity.getBranchAddress(), found.getBranchAddress());
+        assertEquals(entity.getBranchName(), found.getBranchName());
+        assertEquals(entity.getBranchPhone(), found.getBranchPhone());
         found = dao.findByName(entity.getBranchName());
-        assertEquals(found, entity);
+        assertEquals(entity.getBranchAddress(), found.getBranchAddress());
+        assertEquals(entity.getBranchName(), found.getBranchName());
+        assertEquals(entity.getBranchPhone(), found.getBranchPhone());
         found = dao.findByPhone(entity.getBranchPhone());
-        assertEquals(found, entity);
+        assertEquals(entity.getBranchAddress(), found.getBranchAddress());
+        assertEquals(entity.getBranchName(), found.getBranchName());
+        assertEquals(entity.getBranchPhone(), found.getBranchPhone());
     }
     
     @Test
@@ -106,7 +101,8 @@ public class BranchDaoTest {
         dao.update(found);
         Branch found2 = dao.findByName("FirstBranch");
         assertTrue(found2!=null);
-        assertTrue( found.getBranchAddress().compareTo(found2.getBranchAddress())==0 );     //string same address
+        assertEquals(found.getBranchAddress(), found2.getBranchAddress());
+        //assertTrue( found.getBranchAddress().compareTo(found2.getBranchAddress())==0 );     //string same address
     }
 
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 import java.util.Date;
@@ -13,52 +12,55 @@ import java.util.Date;
  * @author Jingchuan Chen
  */
 public class Vehicle {
-    
+
     public enum STATUS {
+
         FORRENT(1),
         FORSALE(2);
-        
+
         private int value;
-        
+
         private STATUS(int value) {
             this.value = value;
         }
-        
+
         public int getValue() {
             return value;
         }
     };
-    
+
     public enum RENTSTATUS {
+
         AVAILABLE(1),
         UNAVAILABLE(2);
-        
+
         private int value;
-        
+
         private RENTSTATUS(int value) {
             this.value = value;
         }
-        
+
         public int getValue() {
             return value;
         }
     };
-    
+
     public enum SELLSTATUS {
+
         FORSALE(1),
         SOLD(2);
-        
+
         private int value;
-        
+
         private SELLSTATUS(int value) {
             this.value = value;
         }
-        
+
         public int getValue() {
             return value;
         }
     };
-    
+
     private int vehicleNo;
     private String plateNo;
     private Date manufactureDate;
@@ -70,7 +72,24 @@ public class Vehicle {
     private SELLSTATUS sellStatus;
     private String className;
     private int price;
-    
+
+    public Vehicle() {
+    }
+
+    public Vehicle(String plateNo, Date mDate, String mode, int odometer,
+            int branchId, STATUS status, RENTSTATUS rentstatus, SELLSTATUS sellstatus,
+            String className, int price) {
+
+        this.plateNo = plateNo;
+        this.manufactureDate = mDate;
+        this.odometer = odometer;
+        this.branchId = branchId;
+        this.status = status;
+        this.rentStatus = rentstatus;
+        this.sellStatus = sellstatus;
+        this.className = className;
+        this.price = price;
+    }
 
     /**
      * @return the vehicleNo
@@ -169,9 +188,13 @@ public class Vehicle {
     public void setStatus(STATUS status) {
         this.status = status;
     }
-    
+
     public void setStatus(String status) {
-        this.status = STATUS.valueOf(status);
+        if (status == null) {
+            this.status = null;
+        } else {
+            this.status = STATUS.valueOf(status);
+        }
     }
 
     /**
@@ -187,9 +210,13 @@ public class Vehicle {
     public void setRentStatus(RENTSTATUS rentStatus) {
         this.rentStatus = rentStatus;
     }
-    
+
     public void setRentStatus(String rentStatus) {
-        this.rentStatus = RENTSTATUS.valueOf(rentStatus);
+        if (rentStatus == null) {
+            this.rentStatus = null;
+        } else {
+            this.rentStatus = RENTSTATUS.valueOf(rentStatus);
+        }
     }
 
     /**
@@ -205,9 +232,13 @@ public class Vehicle {
     public void setSellStatus(SELLSTATUS sellStatus) {
         this.sellStatus = sellStatus;
     }
-    
+
     public void setSellStatus(String sellStatus) {
-        this.sellStatus = SELLSTATUS.valueOf(sellStatus);
+        if (sellStatus == null) {
+            this.sellStatus = null;
+        } else {
+            this.sellStatus = SELLSTATUS.valueOf(sellStatus);
+        }
     }
 
     /**

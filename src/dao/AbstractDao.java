@@ -69,6 +69,8 @@ public abstract class AbstractDao<T> {
                 .columns(EntityParser.getColunmList(ap_no_pk))
                 .values(EntityParser.wrapEntity(entity, ap_no_pk))
                 .toString();
+        
+        System.out.println(sql);
 
         try {
             Statement stmt = DbConn.getStmt();
@@ -98,6 +100,8 @@ public abstract class AbstractDao<T> {
                 .deleteFrom(tb_name)
                 .where(ap[pk].getColName() + "=" + ap[pk].wrapAttr(entity))
                 .toString();
+        
+        System.out.println(sql);
         try {
             Statement stmt = DbConn.getStmt();
             int ret = stmt.executeUpdate(sql);
@@ -249,20 +253,4 @@ public abstract class AbstractDao<T> {
     }
     
     protected abstract T getInstance();
-    
-    /*
-    private T getInstance() {
-        try {
-            System.out.println("before");
-            T entity = cls.newInstance();
-            System.out.println("after");
-            return entity;
-        } catch (InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(AbstractDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
-    }
-    */
-
 }

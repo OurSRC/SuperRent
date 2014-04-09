@@ -6,8 +6,10 @@
 
 package dao;
 
+import dbconn.SqlBuilder;
 import entity.Vehicle;
 import entityParser.*;
+import java.util.ArrayList;
 
 
 public class VehicleDao extends AbstractDao<Vehicle> {
@@ -36,6 +38,24 @@ public class VehicleDao extends AbstractDao<Vehicle> {
     @Override
     protected Vehicle getInstance() {
         return new Vehicle();
+    }
+    
+    public ArrayList<Vehicle> findAvailableForRent() throws DaoException {
+        String cond;
+        cond = "Status=" + SqlBuilder.wrapInt(Vehicle.STATUS.FORRENT.getValue());
+        cond += " AND RentStatus=" + SqlBuilder.wrapInt(Vehicle.RENTSTATUS.AVAILABLE.getValue());
+        return find(cond);
+    }
+    
+    public ArrayList<Vehicle> findAvailableForSale() throws DaoException {
+        String cond;
+        cond = "Status=" + SqlBuilder.wrapInt(Vehicle.STATUS.FORSALE.getValue());
+        cond += " AND SellStatus=" + SqlBuilder.wrapInt(Vehicle.SELLSTATUS.FORSALE.getValue());
+        return find(cond);
+    }
+    
+    public Vehicle findByPlateNo(String plateNo) throws DaoException {
+        return findOne("PlateNo=" + SqlBuilder.wrapStr(plateNo));
     }
     
 }
