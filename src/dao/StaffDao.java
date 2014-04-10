@@ -5,13 +5,19 @@
  */
 package dao;
 
-import entity.Staff;
-import entity.User;
-import dbconn.DbConn;
-import dbconn.SqlBuilder;
 import dao.UserDao;
 
-import java.sql.SQLException;
+import dbconn.DbConn;
+import dbconn.SqlBuilder;
+import entity.Staff;
+import entity.User;
+import entityParser.AttributeParser;
+import entityParser.BooleanParser;
+import entityParser.DateParser;
+import entityParser.EntityParser;
+import entityParser.EnumParser;
+import entityParser.IntParser;
+import entityParser.StringParser;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,6 +32,29 @@ public class StaffDao implements GenericDao<Staff, Integer> {
 
     private static final String tb_name = "staff";
 
+    private static final AttributeParser ap[] = {
+        //new IntParser("StaffID", "staffId"),
+        //new StringParser("FirstName", "fistName"),
+        //new StringParser("MiddleName", "middleName"),
+        //new StringParser("LastName", "lastName"),
+        //new StringParser("Email", "email"),
+        //new StringParser("PhoneNo", "phone"),
+        //new EnumParser("Type", "staffType"),
+        //new EnumParser("Status", "status"),
+        //new StringParser("Username", "username"),
+        //new IntParser("BranchID", "branchId")
+        new IntParser("StaffID", "StaffId"),
+        new StringParser("FirstName", "FistName"),
+        new StringParser("MiddleName", "MiddleName"),
+        new StringParser("LastName", "LastName"),
+        new StringParser("Email", "Email"),
+        new StringParser("PhoneNo", "Phone"),
+        new EnumParser("Type", "StaffType"),
+        new EnumParser("Status", "Status"),
+        new StringParser("Username", "Username"),
+        new IntParser("BranchID", "BranchId")
+    };
+
     @Override
     public Staff find(Integer pk) throws DaoException {
 
@@ -38,33 +67,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                 .from(tb_name)
                 .where("StaffID=" + SqlBuilder.wrapInt(pk))
                 .toString();
-        try {
-            Statement stmt = DbConn.getStmt();
-            ResultSet rs = stmt.executeQuery(sql);
-
-            if (rs.next()) {
-                staff.setStaffId(rs.getInt(1));
-                staff.setFistName(rs.getString(2));
-                staff.setMiddleName(rs.getString(3));
-                staff.setLastName(rs.getString(4));
-                staff.setEmail(rs.getString(5));
-                staff.setPhone(rs.getString(6));
-                staff.setStaffType(Staff.TYPE.valueOf(rs.getString(7)));
-                staff.setStatus(Staff.STATUS.valueOf(rs.getString(8)));
-                staff.setUsername(rs.getString(9));
-                staff.setBranchId(rs.getInt(10));
-
-                u = udao.find(staff.getUsername());
-                staff.setPassword(u.getPassword());
-                staff.setType(u.getType());
-
-            } else {
-                return null;
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        staff = findOne(sql);
         return staff;
     }
 
@@ -162,4 +165,55 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         return true;
     }
 
+    private Staff parseCustomer(ResultSet rs) throws SQLException, DaoException {
+        Staff staff = new Staff();
+
+        EntityParser.parseEntity(rs, staff, ap);
+
+        if (staff.getUsername() != null) {
+            UserDao udao = new UserDao();
+            User user;
+            user = udao.find(staff.getUsername());
+            if (user != null) {
+                staff.setPassword(user.getPassword());
+                staff.setType(user.getType());
+            } else { //database error
+                //return null;
+                staff.setUsername(null);
+            }
+        }
+
+        return staff;
+
+    }
+
+    public Staff findOne(String sql) throws DaoException {
+        Staff staff = null;
+        try {
+            Statement stmt = DbConn.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                staff = parseCustomer(rs);
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException(tb_name, "find()");
+        }
+        return staff;
+    }
+
+    public Staff findByUsername(String username) throws DaoException {
+        Staff staff;
+        SqlBuilder qb = new SqlBuilder();
+        String sql = qb
+                .select("*")
+                .from(tb_name)
+                .where("Username=" + SqlBuilder.wrapStr(username))
+                .toString();
+        staff = findOne(sql);
+        return staff;
+    }
 }

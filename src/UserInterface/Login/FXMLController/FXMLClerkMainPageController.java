@@ -2,7 +2,7 @@ package UserInterface.Login.FXMLController;
 
 import ControlObjects.StaffCtrl;
 import UserInterface.MainController;
-import UserManagement.*;
+import entity.Staff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -160,9 +160,9 @@ public class FXMLClerkMainPageController implements Initializable {
         ClerkMainPageNavigator.CurrentUserName=userName;
         StaffCtrl StaffControl = new StaffCtrl();
         NewStaff = StaffControl.getStaffByUsername(username);
-        System.out.println(NewStaff.type + "" + NewStaff.staffId);
+        System.out.println(NewStaff.getStaffType() + "" + NewStaff.getStaffId());
         
-        switch (NewStaff.type)
+        switch (NewStaff.getStaffType())
         {
             case CLERK:
                 UserButton.setVisible(false);
@@ -187,7 +187,7 @@ public class FXMLClerkMainPageController implements Initializable {
         StaffCtrl StaffControl = new StaffCtrl();
         NewStaff = StaffControl.getStaffByUsername(username);
         ClerkMainPageNavigator.CurrentUserName = username;
-        System.out.println(NewStaff.type + "" + NewStaff.staffId);
+        System.out.println(NewStaff.getStaffType() + "" + NewStaff.getStaffId());
     }
 
     @Override

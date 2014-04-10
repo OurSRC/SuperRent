@@ -126,7 +126,7 @@ public class VehicleSearchFXMLController implements Initializable {
     @FXML
     private void VehicleTypeTruckRBAction(ActionEvent event) {
         VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list =  FXCollections.observableArrayList(vehicleControl.getTrunkType());
+        ObservableList<String> list =  FXCollections.observableArrayList(vehicleControl.getTruckType());
         VehicleClassCB.getItems().clear();
         VehicleClassCB.setItems(list);
     }

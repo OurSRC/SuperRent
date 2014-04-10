@@ -49,10 +49,10 @@ public class SelectParticularVehicleFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-        VehicleManagement.Vehicle newVehicle = new VehicleManagement.Vehicle();
+        Vehicle newVehicle = new Vehicle();
         
-        ArrayList<VehicleManagement.Vehicle> newArray = newVehicleCtrl.searchVehicle(newVehicle);
-        ObservableList<VehicleManagement.Vehicle> slist = FXCollections.observableArrayList(newArray);
+        ArrayList<Vehicle> newArray = newVehicleCtrl.searchVehicle(newVehicle);
+        ObservableList<Vehicle> slist = FXCollections.observableArrayList(newArray);
         VehicleTable.setItems(slist);
         System.out.println("Hello buddy");
         

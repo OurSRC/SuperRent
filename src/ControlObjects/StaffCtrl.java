@@ -1,63 +1,76 @@
 package ControlObjects;
 
-import java.util.ArrayList;
-
 import SystemOperations.ErrorMsg;
-import UserManagement.Staff;
+import dao.DaoException;
+import dao.StaffDao;
+import entity.Staff;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StaffCtrl {
-	public Staff createStaff(Staff staff){
-		ErrorMsg.setLastError(ErrorMsg.ERROR_USERNAME_ALREADY_EXIT);
-		return null;
-	}
-	public boolean updateStaff(Staff staff){
-		return false;
-	}
-	public boolean deleteStaff(int staffId){
-		return false;
-	}
-	public Staff getStaffById(int staffId){
-		Staff dummy = dummyStaff();
-		return dummy;
-	}
-	public Staff getStaffByUsername(String username){
-		if("admin".compareTo(username)!=0 && "clerk".compareTo(username)!=0 && "manager".compareTo(username)!=0){
-			ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
-			return null;
-		}
-		
-		Staff dummy = dummyStaff();
-		dummy.username = username;
-		if("admin".compareTo(username)==0){
-			dummy.type = Staff.TYPE.ADMIN;
-			dummy.staffId = 1001;
-		}
-		if("clerk".compareTo(username)==0){
-			dummy.type = Staff.TYPE.CLERK;
-			dummy.staffId = 1002;
-		}
-		if("manager".compareTo(username)==0){
-			dummy.type = Staff.TYPE.MANAGER;
-			dummy.staffId = 1003;
-		}
-		return dummy;
-	}
-	public ArrayList<Staff> searchStaff(Staff staff){
-		return null;
-	}
-	
-	private Staff dummyStaff(){
-		Staff dummy = new Staff();
-		dummy.username = "username";
-		dummy.password = "password";	
-		dummy.staffId = 100;
-		dummy.fistName = "first name";
-		dummy.middleName = "middle name";
-		dummy.lastName = "last name";
-		dummy.eMail = "dummy@nowhere.com";
-		dummy.phone = "123456789";
-		dummy.status = Staff.STATUS.ACTIVE;
-		dummy.type = Staff.TYPE.CLERK;
-		return dummy;
-	}
+
+    public Staff createStaff(Staff staff) {
+        try {
+            StaffDao staffDAO = new StaffDao();
+            boolean suc = staffDAO.add(staff);
+            if (suc) {
+                Staff withIdInfo = staffDAO.findByUsername(staff.getUsername());
+                return withIdInfo;
+            }else{
+                ErrorMsg.setLastError(ErrorMsg.ERROR_DATABASE_LOGIC_ERROR);
+                return null;
+            }
+        } catch (DaoException ex) {
+            Logger.getLogger(StaffCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return null;
+    }
+
+    public boolean updateStaff(Staff staff) {
+        StaffDao staffDAO = new StaffDao();
+        boolean ans = false;
+        try {
+            ans = staffDAO.update(staff);
+        } catch (DaoException ex) {
+            Logger.getLogger(StaffCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return ans;
+    }
+
+    public boolean deleteStaff(int staffId) {
+        StaffDao staffDAO = new StaffDao();
+        boolean ans = false;
+        try {
+            ans = staffDAO.delete(staffId);
+        } catch (DaoException ex) {
+            Logger.getLogger(StaffCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return ans;
+    }
+
+    public Staff getStaffById(int staffId) {
+        ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
+        return null;
+    }
+
+    public Staff getStaffByUsername(String username) {
+        StaffDao staffDAO = new StaffDao();
+        Staff staff = null;
+        try {
+            staff = staffDAO.findByUsername(username);
+        } catch (DaoException ex) {
+            Logger.getLogger(StaffCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return  staff;
+    }
+
+    public ArrayList<Staff> searchStaff(Staff staff) {
+        ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
+        return null;
+    }
 }

@@ -1,88 +1,89 @@
 package ControlObjects;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-import UserManagement.Customer;
-import UserManagement.User;
-
 import SystemOperations.ErrorMsg;
 import dao.CustomerDao;
+import dao.DaoException;
+import entity.Customer;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CustomerCtrl {
 
     public Customer createCustomer(Customer customer) {
-        ErrorMsg.setLastError(ErrorMsg.ERROR_USERNAME_ALREADY_EXIT);
-        /*
-        CustomerDao customerDAO = new CustomerDao();
-        boolean suc = customerDAO.add(customer);
-        if (suc) {
-            entity.Customer newCumstomer = customerDAO.find();  //Locate the customer again to get customerID, which is auto increased by database
-        } else {
-            return null;
+        try {
+            CustomerDao customerDAO = new CustomerDao();
+            boolean suc = customerDAO.add(customer);
+            if (suc) {
+                //Locate the customer again to get customerID, which is auto increased by database
+                Customer withIdInfo = customerDAO.findByUsername(customer.getUsername());
+                return withIdInfo;
+            } else {
+                ErrorMsg.setLastError(ErrorMsg.ERROR_DATABASE_LOGIC_ERROR);
+                return null;
+            }
+        } catch (DaoException ex) {
+            Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        */
         return null;
     }
 
     public boolean updateCustomer(Customer customer) {
-        return false;
+        CustomerDao customerDAO = new CustomerDao();
+        boolean ans = false;
+        try {
+            ans = customerDAO.update(customer);
+        } catch (DaoException ex) {
+            Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return ans;
     }
 
     public boolean deleteCustomer(int customerId) {
-        return false;
+        CustomerDao customerDAO = new CustomerDao();
+        boolean ans = false;
+        try {
+            ans = customerDAO.delete(customerId);
+        } catch (DaoException ex) {
+            Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return ans;
     }
 
     public Customer getCustomerByPhone(String phone) {
-        Customer dummy = dummyCustomer();
-        dummy.phone = phone;
-        return dummy;
+        CustomerDao customerDAO = new CustomerDao();
+        Customer customer = null;
+        try {
+            customer = customerDAO.findByPhone(phone);
+        } catch (DaoException ex) {
+            Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return  customer;
     }
 
     public Customer getCustomerByUsername(String username) {
-        if ("customer".compareTo(username) != 0 && "club".compareTo(username) != 0) {
+        CustomerDao customerDAO = new CustomerDao();
+        Customer customer = null;
+        try {
+            customer = customerDAO.findByUsername(username);
+        } catch (DaoException ex) {
+            Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
-            return null;
         }
-
-        Customer dummy = dummyCustomer();
-        dummy.username = username;
-        if ("customer".compareTo(username) == 0) {
-            dummy.isClubMember = false;
-            dummy.phone = "1357924680";
-        }
-        if ("club".compareTo(username) == 0) {
-            dummy.isClubMember = true;
-            dummy.phone = "2468013579";
-        }
-        return dummy;
+        return  customer;
     }
 
     public ArrayList<Customer> searchCustomer(Customer customer) {
+        ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
         return null;
     }
 
     public boolean payClubMemberFee(Customer customer, int Years) {
+        ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
         return false;
-    }
-
-    private Customer dummyCustomer() {
-        Customer dummy = new Customer();
-        dummy.username = "username";
-        dummy.password = "password";
-        dummy.type = User.TYPE.CUSTOMER;
-        dummy.phone = "1234567890";
-        dummy.address = "homeless";
-        dummy.fistName = "first name";
-        dummy.middleName = "middle name";
-        dummy.lastName = "last name";
-        dummy.eMail = "dummy@nowhere.com";
-        dummy.driverLicenseNumber = "13579";
-		//dummy.creditCards = null;
-        //dummy.paymentHistory = null;
-        dummy.isClubMember = false;
-        dummy.point = 0;
-        dummy.membershipExpiry = new Date();
-        return dummy;
     }
 }
