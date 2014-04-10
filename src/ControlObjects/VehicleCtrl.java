@@ -115,9 +115,56 @@ public class VehicleCtrl {
         ans.add("MIDSIZE");
         return ans;
     }
+    
+    public boolean createVehicleClass(VehicleClass vehicleClass){
+        VehicleClassDao classDAO = new VehicleClassDao();
+        boolean suc = false;
+        try {
+            suc = classDAO.add(vehicleClass);
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return suc;
+    }
 
+    public boolean deleteVehicleClass(VehicleClass vehicleClass){
+        VehicleClassDao classDAO = new VehicleClassDao();
+        boolean suc = false;
+        try {
+            suc = classDAO.delete(vehicleClass);
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return suc;
+    }
+    
+    public boolean updateVehicleClass(VehicleClass vehicleClass){
+        VehicleClassDao classDAO = new VehicleClassDao();
+        boolean suc = false;
+        try {
+            suc = classDAO.update(vehicleClass);
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return suc;
+    }
+
+    public VehicleClass findVehicleClass(String className){
+        VehicleClassDao classDAO = new VehicleClassDao();
+        VehicleClass theClass = null;
+       try {
+            theClass = classDAO.findByName(className);
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return theClass;
+    }
+    
     public ArrayList<String> getVehicleType() {
-
         ArrayList<String> ans = getCarType();
         ans.addAll(getTruckType());
         return ans;
