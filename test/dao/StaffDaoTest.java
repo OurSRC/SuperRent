@@ -26,6 +26,20 @@ public class StaffDaoTest {
     public StaffDaoTest() {
     }
 
+    private static void assertStaffEquals(Staff a, Staff b) {
+        assertEquals(a.getBranchId(), b.getBranchId());
+        assertEquals(a.getEmail(), b.getEmail());
+        assertEquals(a.getFistName(), b.getFistName());
+        assertEquals(a.getLastName(), b.getLastName());
+        assertEquals(a.getMiddleName(), b.getMiddleName());
+        assertEquals(a.getPhone(), b.getPhone());
+        assertEquals(a.getStaffType(), b.getStaffType());
+        assertEquals(a.getStatus(), b.getStatus());
+        assertEquals(a.getUsername(), b.getUsername());
+        assertEquals(a.getPassword(), b.getPassword());
+        assertEquals(a.getType(), b.getType());
+    }
+
     @BeforeClass
     public static void setUpClass() throws DaoException {
         BranchDao bdao = new BranchDao();
@@ -44,11 +58,26 @@ public class StaffDaoTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws DaoException {
+        StaffDao sdao = new StaffDao();
+        Staff staffa = new Staff(branchId, "FNStaffa", null, "LNStaffa", "test@superrent.com", "123123123",
+                Staff.STATUS.ACTIVE, Staff.TYPE.CLERK, "StaffTestUser", "SomePass");
+        Staff staffb = new Staff(branchId, "FNStaffb", null, "LNStaffb", "test@superrent.com", "123123123",
+                Staff.STATUS.ACTIVE, Staff.TYPE.CLERK, "StaffTestUser2", "SomePass");
+        
+        sdao.add(staffa);
+        sdao.add(staffb);
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws DaoException {
+        StaffDao sdao = new StaffDao();
+        Staff s;
+        s = sdao.findByUsername("StaffTestUser");
+        sdao.delete(s.getStaffId());
+        s = sdao.findByUsername("StaffTestUser2");
+        sdao.delete(s.getStaffId());
+        
     }
 
     /**
@@ -56,88 +85,37 @@ public class StaffDaoTest {
      */
     //@Test
     public void testFind() throws Exception {
-        System.out.println("find");
-        Integer pk = null;
-        StaffDao instance = new StaffDao();
-        Staff expResult = null;
-        Staff result = instance.find(pk);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        StaffDao sdao = new StaffDao();
+        Staff staffa = new Staff(branchId, "FNStaffa", null, "LNStaffa", "test@superrent.com", "123123123",
+                Staff.STATUS.ACTIVE, Staff.TYPE.CLERK, "StaffTestUser", "SomePass");
+        Staff result = sdao.findByUsername("StaffTestUser");
+        
+        assertStaffEquals(staffa, result);
+        
+        result = sdao.find(result.getStaffId());
+        
+        assertStaffEquals(staffa, result);
     }
 
     /**
      * Test of update method, of class StaffDao.
      */
-    //@Test
-    public void testUpdate() throws Exception {
-        System.out.println("update");
-        Staff value = null;
-        StaffDao instance = new StaffDao();
-        boolean expResult = false;
-        boolean result = instance.update(value);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of add and delete methods, of class StaffDao.
-     */
     @Test
-    public void testAddDelete() throws Exception {
-        System.out.println("add");
-        Staff value = new Staff(branchId, "FN", null, "LN", "test@superrent.com", "123123123", 
-                Staff.STATUS.ACTIVE, Staff.TYPE.CLERK, "StaffTestUser", "SomePass");
-        StaffDao instance = new StaffDao();
+    public void testUpdate() throws Exception {
+        StaffDao sdao = new StaffDao();
+        Staff result1 = sdao.findByUsername("StaffTestUser");
+        result1.setFistName("another Firse");
+        result1.setUsername("some other user name");
+        sdao.update(result1);
+        Staff result2 = sdao.find(result1.getStaffId());
+        assertStaffEquals(result1, result2);
         
-        instance.add(value);
-        Staff s = instance.findByUsername("StaffTestUser");
-        if (s == null) {
-            fail("not added");
-        }
+        result2 = sdao.findByUsername("StaffTestUser");
+        assertNull(result2);
         
-        assertEquals(s.getBranchId(), value.getBranchId());
-        assertEquals(s.getFistName(), value.getFistName());
-        assertEquals(s.getUsername(), value.getUsername());
-        assertEquals(s.getPassword(), value.getPassword());
-        assertEquals(s.getType(), value.getType());
+        result1.setUsername("StaffTestUser");
+        sdao.update(result1);
         
-        
-        instance.delete(s.getStaffId());
-        
-        s = instance.findByUsername("StaffTestUser");
-        assertEquals(s, null);
-    }
-
-    /**
-     * Test of findOne method, of class StaffDao.
-     */
-    //@Test
-    public void testFindOne() throws Exception {
-        System.out.println("findOne");
-        String sql = "";
-        StaffDao instance = new StaffDao();
-        Staff expResult = null;
-        Staff result = instance.findOne(sql);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of findByUsername method, of class StaffDao.
-     */
-    //@Test
-    public void testFindByUsername() throws Exception {
-        System.out.println("findByUsername");
-        String username = "";
-        StaffDao instance = new StaffDao();
-        Staff expResult = null;
-        Staff result = instance.findByUsername(username);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

@@ -77,6 +77,7 @@ public class VehicleCtrl {
             theVehicle = vehicleDAO.findByVehicleNo(vehicleNo);
         } catch (DaoException ex) {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
         return null;
     }
@@ -88,14 +89,22 @@ public class VehicleCtrl {
             theVehicle = vehicleDAO.findByPlateNo(plateNo);
         } catch (DaoException ex) {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
         return null;
     }
 
     public ArrayList<Vehicle> searchVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
-        ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
-        return null;
+        ArrayList<Vehicle> getList = null;
+        try {
+            getList = vehicleDAO.find(vehicle);
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        //ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
+        return getList;
     }
 
     public ArrayList<String> getVehicleAvailability(String vehicleType, Date pickUpTime, Date returnTime) {
