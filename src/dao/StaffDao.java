@@ -21,6 +21,7 @@ import entityParser.StringParser;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,29 +58,13 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     };
 
     @Override
-    public Staff find(Integer pk) throws DaoException {
-
-        UserDao udao = new UserDao();
-        User u;
-        Staff staff = new Staff();
-        SqlBuilder qb = new SqlBuilder();
-        String sql = qb
-                .select("*")
-                .from(tb_name)
-                .where("StaffID=" + SqlBuilder.wrapInt(pk))
-                .toString();
-        staff = findOne(sql);
-        return staff;
-    }
-
-    @Override
     public boolean update(Staff value) throws DaoException {
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         boolean added = false;
         boolean updated = false;
         Staff staff_db = null;
-        
+
         String sql = qb.update(tb_name)
                 .set(EntityParser.wrapEntityForSet(value, ap))
                 .where("StaffID=" + SqlBuilder.wrapInt(value.getStaffId()))
@@ -97,7 +82,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                 if (udao.find(value.getUsername()) != null) {  // username exist
                     throw new DaoException(tb_name, "update() username exist");
                 }
-                
+
                 udao.delete(staff_db.getUsername());
                 udao.add(value);
                 added = true;
@@ -124,9 +109,9 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         boolean add_user = false;
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
-        
+
         AttributeParser ap_remove_id[] = Arrays.copyOfRange(ap, 1, ap.length);
-        
+
         String sql = qb
                 .insert(tb_name)
                 .columns(EntityParser.getColunmList(ap_remove_id))
@@ -172,7 +157,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         return true;
     }
 
-    private Staff parseCustomer(ResultSet rs) throws SQLException, DaoException {
+    private Staff parseStaff(ResultSet rs) throws SQLException, DaoException {
         Staff staff = new Staff();
 
         EntityParser.parseEntity(rs, staff, ap);
@@ -194,14 +179,49 @@ public class StaffDao implements GenericDao<Staff, Integer> {
 
     }
 
-    public Staff findOne(String sql) throws DaoException {
+    public ArrayList<Staff> find(String cond) throws DaoException {
+        ArrayList<Staff> result = new ArrayList<>();
+
+        SqlBuilder qb = new SqlBuilder();
+        String sql = qb
+                .select("*")
+                .from(tb_name)
+                .where(cond)
+                .toString();
+
+        try {
+            Statement stmt = DbConn.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                Staff entity = new Staff();
+                EntityParser.parseEntity(rs, entity, ap);
+                result.add(entity);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException(tb_name, "find()");
+        }
+
+        return result;
+    }
+
+    public Staff findOne(String cond) throws DaoException {
+        SqlBuilder qb = new SqlBuilder();
+        String sql = qb
+                .select("*")
+                .from(tb_name)
+                .where(cond)
+                .toString();
+
         Staff staff = null;
         try {
             Statement stmt = DbConn.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
-                staff = parseCustomer(rs);
+                staff = parseStaff(rs);
             } else {
                 return null;
             }
@@ -210,17 +230,17 @@ public class StaffDao implements GenericDao<Staff, Integer> {
             throw new DaoException(tb_name, "find()");
         }
         return staff;
+
     }
 
     public Staff findByUsername(String username) throws DaoException {
-        Staff staff;
-        SqlBuilder qb = new SqlBuilder();
-        String sql = qb
-                .select("*")
-                .from(tb_name)
-                .where("Username=" + SqlBuilder.wrapStr(username))
-                .toString();
-        staff = findOne(sql);
+        Staff staff = findOne("Username=" + SqlBuilder.wrapStr(username));
+        return staff;
+    }
+
+    @Override
+    public Staff find(Integer pk) throws DaoException {
+        Staff staff = findOne("StaffID=" + SqlBuilder.wrapInt(pk));
         return staff;
     }
 }

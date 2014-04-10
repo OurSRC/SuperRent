@@ -58,4 +58,23 @@ public class VehicleDao extends AbstractDao<Vehicle> {
     public Vehicle findByVehicleNo(int vehicleNo) throws DaoException {
         return findOne("VehicleNo=" + SqlBuilder.wrapInt(vehicleNo));
     }
+    
+    public ArrayList<Vehicle> find(Vehicle v) throws DaoException {
+        if (v == null) {
+            return null;
+        }
+        
+        SqlBuilder qb = new SqlBuilder();
+        for (AttributeParser attr : ap) {
+            String str = attr.wrapAttr(v);
+            if (!(str.equalsIgnoreCase("null") || (str.equals("0") && attr.getClass().equals(IntParser.class)))) {
+                qb.cond(attr.getColName() + "=" + str);
+            }
+        }
+        
+        String sql = qb.toString();
+        
+        return find(sql);
+    }
+    
 }

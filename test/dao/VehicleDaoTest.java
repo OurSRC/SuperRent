@@ -122,6 +122,24 @@ public class VehicleDaoTest {
             fail("not found");
         }
     }
+    
+    @Test
+    public void testFindByVehicle() throws DaoException {
+        VehicleDao dao = new VehicleDao();
+        Vehicle v = new Vehicle();
+        v.setClassName(className);
+        v.setStatus(Vehicle.STATUS.FORRENT);
+        ArrayList<Vehicle> vlist = dao.find(v);
+        assertEquals(vlist.size(), 2);
+        
+        v.setPlateNo("357-ADF");
+        vlist = dao.find(v);
+        assertEquals(vlist.size(), 1);
+        
+        v.setStatus(Vehicle.STATUS.FORSALE);
+        vlist = dao.find(v);
+        assertEquals(vlist.size(), 0);
+    }
 
 
     
