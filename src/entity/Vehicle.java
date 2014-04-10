@@ -82,6 +82,7 @@ public class Vehicle {
 
         this.plateNo = plateNo;
         this.manufactureDate = mDate;
+        this.mode = mode;
         this.odometer = odometer;
         this.branchId = branchId;
         this.status = status;
