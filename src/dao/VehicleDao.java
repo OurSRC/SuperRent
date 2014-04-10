@@ -30,7 +30,7 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         new EnumParser("SellStatus", "SellStatus")
     };
     
-    protected static final int pkIndex = 0;
+    protected static final int[] pkIndex = {0};
     
     protected static final boolean pkIsAutoGen = true;
     

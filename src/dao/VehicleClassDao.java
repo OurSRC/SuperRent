@@ -23,7 +23,7 @@ public class VehicleClassDao extends AbstractDao<VehicleClass> {
         new IntParser("WeeklyRate", "WeeklyRate"),
     };
     
-    protected static final int pkIndex = 0;
+    protected static final int[] pkIndex = {0};
     
     protected static final boolean pkIsAutoGen = false;
     

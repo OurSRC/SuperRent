@@ -28,7 +28,7 @@ public class BranchDao extends AbstractDao<Branch>{
         new StringParser("BranchAddress", "BranchAddress")
     };
     
-    protected static final int pkIndex = 0;
+    protected static final int[] pkIndex = {0};
     
     protected static final boolean pkIsAutoGen = true;
     
