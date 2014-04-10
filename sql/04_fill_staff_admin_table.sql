@@ -1,0 +1,21 @@
+INSERT INTO `super_rent`.`staff`
+(`FirstName`,
+`MiddleName`,
+`LastName`,
+`Email`,
+`PhoneNo`,
+`Type`,
+`Status`,
+`Username`,
+`BranchID`)
+VALUES
+("admin_f",
+"admin_m",
+"admin_l",
+"admin@scr.com",
+"123456",
+"ADMIN",
+"ACTIVE",
+"admin",
+1
+);
