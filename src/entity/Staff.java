@@ -20,13 +20,13 @@ public class Staff extends User {
 
         ACTIVE(1),
         DISACTIVE(2);
-        
+
         private int value;
-        
+
         private STATUS(int value) {
             this.value = value;
         }
-        
+
         public int getValue() {
             return value;
         }
@@ -37,13 +37,13 @@ public class Staff extends User {
         CLERK(1),
         MANAGER(2),
         ADMIN(3);
-        
+
         private int value;
-        
+
         private TYPE(int value) {
             this.value = value;
         }
-        
+
         public int getValue() {
             return value;
         }
@@ -59,6 +59,25 @@ public class Staff extends User {
     //public Date onJobDate;
     private STATUS status;
     private TYPE staffType;
+
+    public Staff(int branchId, String firstName, String middleName, String lastName, String email,
+            String phone, STATUS status, TYPE staffType, String username, String password) {
+        setUsername(username);
+        setPassword(password);
+        setType(User.TYPE.STAFF);
+        this.branchId = branchId;
+        this.fistName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+        this.staffType = staffType;
+
+    }
+
+    public Staff() {
+    }
 
     /**
      * @return the staffId
@@ -158,6 +177,14 @@ public class Staff extends User {
         this.status = status;
     }
 
+    public void setStatus(String status) {
+        if (status == null) {
+            this.status = null;
+        } else {
+            this.status = STATUS.valueOf(status);
+        }
+    }
+
     /**
      * @return the staffType
      */
@@ -170,6 +197,14 @@ public class Staff extends User {
      */
     public void setStaffType(TYPE staffType) {
         this.staffType = staffType;
+    }
+
+    public void setStaffType(String staffType) {
+        if (staffType == null) {
+            this.staffType = null;
+        } else {
+            this.staffType = TYPE.valueOf(staffType);
+        }
     }
 
 }

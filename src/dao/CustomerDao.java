@@ -18,7 +18,6 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Date;
 
 /**
  *
@@ -193,6 +192,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             if (added) {
                 udao.delete(customer.getUsername());
+                udao.add(customer_db);
             }
             if (updated) {
                 udao.update(customer_db);

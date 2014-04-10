@@ -7,25 +7,22 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ViewReservationsFXMLController">
   <children>
-    <Label layoutX="64.0" layoutY="40.0" text="Date From " />
-    <Label layoutX="387.0" layoutY="40.0" text="Date To " />
-    <Label layoutX="64.0" layoutY="83.0" text="Reservation #" />
-    <Button fx:id="DisplayReservationsButton" layoutX="475.0" layoutY="118.0" mnemonicParsing="false" onAction="#DisplayReservationsButtonAction" prefHeight="25.0" prefWidth="174.0" text="Display Reservations" />
-    <TableView fx:id="ReservationTable" layoutX="65.0" layoutY="173.0" prefHeight="204.0" prefWidth="584.0">
+        <Button fx:id="ViewReservationButton" layoutX="513.0" layoutY="403.0" mnemonicParsing="false" onAction="#ViewReservationButtonAction" prefHeight="25.0" prefWidth="132.0" text="View Reservation" />
+    <TableView fx:id="ReservationTable" layoutX="1.0" layoutY="173.0" prefHeight="204.0" prefWidth="680.0">
       <columns>
-        <TableColumn fx:id="ReservationNumber" editable="false" minWidth="0.0" prefWidth="224.0" text="Reservation #" />
-        <TableColumn fx:id="Type" editable="false" prefWidth="134.0" text="Customer Phone" /><TableColumn prefWidth="300.0" text="Column X" />
+        <TableColumn fx:id="ReservationNumber" minWidth="0.0" prefWidth="114.0" text="Reservation #" />
+        <TableColumn fx:id="Type" editable="false" prefWidth="207.0" sortable="false" text="Customer Phone" /><TableColumn fx:id="PickUpDate" editable="false" prefWidth="125.0" sortable="false" text="Pick Up Date" /><TableColumn editable="false" prefWidth="143.0" sortable="false" text="Return Date" /><TableColumn editable="false" prefWidth="90.0" sortable="false" text="Cost" />
       </columns>
-    </TableView>
-    <TextField layoutX="159.0" layoutY="80.0" prefHeight="25.0" prefWidth="198.0" />
-    <Pane layoutX="18.0" layoutY="389.0" prefHeight="50.0" prefWidth="622.0">
-      <children>
-        <Button fx:id="ViewReservationButton" layoutX="511.0" layoutY="14.0" mnemonicParsing="false" onAction="#ViewReservationButtonAction" text="View Reservation" />
-      </children>
-    </Pane>
-    <DatePicker layoutX="159.0" layoutY="36.0" prefHeight="25.0" prefWidth="106.0" />
-    <DatePicker layoutX="461.0" layoutY="36.0" prefHeight="25.0" prefWidth="98.0" />
-    <ComboBox fx:id="TimeComboBox1" layoutX="270.0" layoutY="36.0" prefHeight="25.0" prefWidth="87.0">
+    </TableView><Pane layoutX="1.0" prefHeight="173.0" prefWidth="681.0">
+<children>
+    <Label layoutX="14.0" layoutY="40.0" text="Date From " />
+    <Label layoutX="380.0" layoutY="40.0" text="Date To " />
+    <Label layoutX="14.0" layoutY="83.0" text="Reservation #" />
+    <Button fx:id="DisplayReservationsButton" layoutX="532.0" layoutY="118.0" mnemonicParsing="false" onAction="#DisplayReservationsButtonAction" prefHeight="25.0" prefWidth="132.0" text="Display Reservations" />
+    <TextField layoutX="109.0" layoutY="79.0" prefHeight="25.0" prefWidth="123.0" />
+    <DatePicker layoutX="109.0" layoutY="36.0" prefHeight="25.0" prefWidth="123.0" />
+    <DatePicker layoutX="432.0" layoutY="36.0" prefHeight="25.0" prefWidth="123.0" />
+    <ComboBox fx:id="TimeComboBox1" layoutX="239.0" layoutY="36.0" prefHeight="25.0" prefWidth="87.0">
         <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="09 AM" />
@@ -41,7 +38,7 @@
             </FXCollections>
           </items>
         </ComboBox>
-    <ComboBox fx:id="TimeComboBox" layoutX="562.0" layoutY="36.0" prefHeight="25.0" prefWidth="87.0">
+    <ComboBox fx:id="TimeComboBox" layoutX="566.0" layoutY="36.0" prefHeight="25.0" prefWidth="98.0">
           <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="09 AM" />
@@ -57,5 +54,6 @@
             </FXCollections>
           </items>
         </ComboBox>
+</children></Pane>
   </children>
 </AnchorPane>

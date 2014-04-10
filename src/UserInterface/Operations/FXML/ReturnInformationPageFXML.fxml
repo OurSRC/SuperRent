@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReturnInformationPageFXMLController">
+<children><Button alignment="CENTER" layoutX="548.0" layoutY="400.0" mnemonicParsing="false" onAction="#PaymentButtonAction" prefHeight="25.0" prefWidth="91.0" text="Payment" /><Label layoutX="137.0" layoutY="61.0" prefHeight="17.0" prefWidth="97.0" text="Return Date" /><DatePicker layoutX="243.0" layoutY="57.0" prefHeight="25.0" prefWidth="122.0" /><ComboBox layoutX="389.0" layoutY="57.0" prefHeight="25.0" prefWidth="84.0" /><Label layoutX="133.0" layoutY="218.0" text="Damaged" /><Label layoutX="133.0" layoutY="127.0" text="Fuel Status" /><RadioButton layoutX="136.0" layoutY="161.0" mnemonicParsing="false" onAction="#FullFuelRadioAction" selected="true" text="Full">
+<toggleGroup>
+<ToggleGroup fx:id="FuelTG" />
+</toggleGroup></RadioButton><RadioButton layoutX="208.0" layoutY="161.0" mnemonicParsing="false" onAction="#NotFullFuelRadioAction" text="Not Full" toggleGroup="$FuelTG" /><RadioButton layoutX="208.0" layoutY="260.0" mnemonicParsing="false" onAction="#DamagedRadioAction" text="Yes">
+<toggleGroup>
+<ToggleGroup fx:id="DamagedTG" />
+</toggleGroup></RadioButton><RadioButton layoutX="133.0" layoutY="260.0" mnemonicParsing="false" onAction="#NoDamagedRadioAction" selected="true" text="No" toggleGroup="$DamagedTG" /><Label fx:id="DamagedLabel" layoutX="331.0" layoutY="260.0" text="Damage Charges" /><Label fx:id="MissingFuelLabel" layoutX="331.0" layoutY="161.0" text="Missing Fuel" /><TextField fx:id="MissingFuelTF" layoutX="440.0" layoutY="157.0" prefHeight="25.0" prefWidth="122.0" /><Separator layoutX="133.0" layoutY="238.0" prefHeight="3.0" prefWidth="427.0" /><Separator layoutX="133.0" layoutY="215.0" prefHeight="3.0" prefWidth="427.0" /><Separator layoutX="133.0" layoutY="147.0" prefHeight="3.0" prefWidth="427.0" /><Separator layoutX="133.0" layoutY="123.0" prefHeight="3.0" prefWidth="427.0" />
+<TextField fx:id="DamagedTF" layoutX="440.0" layoutY="256.0" prefHeight="25.0" prefWidth="122.0" />
+</children></AnchorPane>

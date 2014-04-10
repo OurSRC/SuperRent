@@ -28,51 +28,17 @@ public class OperationsFXMLController implements Initializable{
     public void CreateReservationAction(ActionEvent event) throws IOException
     {
        MainOperationsStackPane.getChildren().clear();
-       CreateReservationFXMLController ReservationContoller = new CreateReservationFXMLController();
-       ResetCommonAttributes();
        ReservationNavigator.newReserve = new Reserve();
        ReservationNavigator.setMainController(this);
-       ReservationNavigator.loadVista(ReservationNavigator.PickDate);
+       ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
     }
     
-     @FXML
-    public void CustomerDetailsButtonAction(ActionEvent event) throws IOException
-    {
-       /* MainReservationStackPane.getChildren().clear();
-        Pane CustomerDetailsPane = FXMLLoader.load(getClass().getResource("/PeopleManagement/CustomerMainPageFXML.fxml"));
-        MainReservationStackPane.getChildren().add(CustomerDetailsPane); 
-        FadeTransitionMethod(CustomerDetailsPane); */
-
-    }
-    
-    public void QueryReservationAction(ActionEvent event) throws IOException
-    {
-        /*MainReservationStackPane.getChildren().clear();*/
-        
-        
-    }
-    
-    public void ViewVehicleAvailabilityButtonAction(ActionEvent event) throws IOException
-    {
-       /* MainReservationStackPane.getChildren().clear();
-        Pane OperationsPane = FXMLLoader.load(getClass().getResource("/FleetManagement/VehicleAvailabilityFXML.fxml"));
-        MainReservationStackPane.getChildren().add(OperationsPane);
-        FadeTransitionMethod(OperationsPane);*/
-
-        
-    }
-
    
     @FXML
     public void ReturnVehicleAction(ActionEvent event) throws IOException
     {
-       /*MainReservationStackPane.getChildren().clear();
-       FXMLLoader myLoader = new  FXMLLoader(getClass().getResource("ReturnMainPageFXML.fxml"));
-       FXMLReturnVehicleController ReturnLoader = (FXMLReturnVehicleController) myLoader.getController();
-       FXMLReturnVehicleController ReturnController = new FXMLReturnVehicleController();
-       Pane RentalReservation  = (Pane)myLoader.load();
-       MainReservationStackPane.getChildren().add(RentalReservation);
-       FadeTransitionMethod(RentalReservation);*/
+        ReturnNavigator.setMainController(this);    
+        ReturnNavigator.loadVista(ReturnNavigator.ReturnMainPage);
 
     }
     
@@ -87,7 +53,7 @@ public class OperationsFXMLController implements Initializable{
     {
 
        RentNavigator.setMainController(this);
-       RentNavigator.loadVista(ReservationNavigator.ReserveSearchPage);
+       RentNavigator.loadVista(RentNavigator.ReserveSearchPage);
 
     }
     
@@ -101,14 +67,14 @@ public class OperationsFXMLController implements Initializable{
     @FXML
     public void ViewReservationAction(ActionEvent event) throws IOException
     {
-        /*MainReservationStackPane.getChildren().clear();
-        Pane OperationsPane = FXMLLoader.load(getClass().getResource("/Operations/ViewReservationsFXML.fxml"));
-        MainReservationStackPane.getChildren().add(OperationsPane);
-        FadeTransitionMethod(OperationsPane);*/
-        
-       //ResetCommonAttributes();
        ViewReservationNavigator.setMainController(this);    
        ViewReservationNavigator.loadVista(ViewReservationNavigator.ViewReservationsPage);
+    }
+    
+    
+    public void CustomerButtonAction(ActionEvent event)
+    {
+        
     }
    
     public void FadeTransitionMethod(Node CurrentNode)
@@ -122,6 +88,7 @@ public class OperationsFXMLController implements Initializable{
     public void setStackPane(Node node)
     {
         MainOperationsStackPane.getChildren().setAll(node);
+        FadeTransitionMethod(node);
     }
     
     public void ClearStackPane()
@@ -129,17 +96,9 @@ public class OperationsFXMLController implements Initializable{
         MainOperationsStackPane.getChildren().clear();
     }
     
-    public void ResetCommonAttributes()
-    {
-        ReservationNavigator.rentFlag=false;
-        ReservationNavigator.newRent=null;
- ReservationNavigator.newReserve=null;
- ReservationNavigator.modifyFlag=false;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
     
 }

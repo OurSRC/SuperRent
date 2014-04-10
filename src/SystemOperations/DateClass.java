@@ -21,28 +21,35 @@ import java.util.Date;
  */
 public class DateClass {
     
-    public static Date getDateObject(LocalDate Date,String Time) throws ParseException 
+    public static Date getDateTimeObject(LocalDate Date,String Time) throws ParseException 
     {
         Date date = ConvertLocalDatetoDate(Date);
         Date time = ConvertStringToTime(Time);
         Date FinalDate = FinalDate(date,time);
         String DATE_FORMAT = "yyyy/MM/dd HH:MM:SS";
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+       //SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        //Date newDate = sdf.;
         return FinalDate;
     }
     
     public static Date ConvertLocalDatetoDate(LocalDate localdate)
     {
         Instant instant = localdate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
-        Date res = Date.from(instant);    
+        Date res = Date.from(instant);
         return res;
     }
     
     public static Date ConvertStringToTime(String Time) throws ParseException
     {
-        String str = Time + ":00";
-        DateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+        System.out.println(Time);
+        String[] TimeSplit = Time.split(" ");
+        System.out.println(TimeSplit[0]);
+        String str = TimeSplit[0] + ":00:00 " + TimeSplit[1];
+        //String str = TimeSplit[0] + ":00:00";
+        System.out.println(str);
+        DateFormat formatter = new SimpleDateFormat("hh:mm:ss aa");
         Date date = (Date)formatter.parse(str);
+        System.out.println(str + "I am here with the date");
         return date;
     }
     
@@ -59,6 +66,23 @@ public class DateClass {
         Date result = calendarA.getTime();
         return result;   
     }
+    
+    
+    
+    
+    public static Date getDateObject(LocalDate date) throws ParseException 
+    {
+        String DATE_FORMAT = "yyyy/MM/dd";
+
+        Instant instant = date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
+        Date res = Date.from(instant);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        String dateString = sdf.format(res);
+        System.out.println(dateString);
+        Date finalDate = sdf.parse(dateString);
+        return finalDate;
+    }
+    
     
 }
     

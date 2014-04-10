@@ -8,7 +8,7 @@ package UserInterface.Operations.FXMLController;
 
 import ControlObjects.VehicleCtrl;
 import SystemOperations.DateClass;
-import static SystemOperations.DateClass.getDateObject;
+import static SystemOperations.DateClass.getDateTimeObject;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -94,7 +94,7 @@ public class ReservationPickUpdateFXMLController implements Initializable {
         ReservationNavigator.newReserve.type = VehicleType;
         System.out.println(VehicleType);
         ReservationNavigator.clearVista();
-        ReservationNavigator.loadVista(ReservationNavigator.SelectVehicle);   
+        ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);   
     }
 
     
@@ -108,15 +108,15 @@ public class ReservationPickUpdateFXMLController implements Initializable {
             {
                         //this.pickUpTime = PickupDate.getValue().toEpochDay();
                         //this.returnTime = ReturnDate.getValue().toEpochDay();
-                        //DateClass.getDateObject(PickupDate.getValue().toString());
+                        //DateClass.getDateTimeObject(PickupDate.getValue().toString());
                         System.out.println(PickupDate.getValue().toString());
                         LocalDate newDate = ReturnDate.getValue();
                         AvailableVehicleTypeCB.setDisable(false);
                         VehicleCtrl vehicleControl = new VehicleCtrl();
-                        ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability(toString, 123,456);
-                        ObservableList<String> list =  FXCollections.observableArrayList(AvailableVehicleTypes);
+                        //ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability(toString, 123,456);
+                       // ObservableList<String> list =  FXCollections.observableArrayList(AvailableVehicleTypes);
                         AvailableVehicleTypeCB.getItems().clear();
-                        AvailableVehicleTypeCB.setItems(list);
+                       // AvailableVehicleTypeCB.setItems(list);
                         System.out.println(pickUpTime);
                         System.out.println(returnTime);
             }
@@ -135,8 +135,8 @@ public class ReservationPickUpdateFXMLController implements Initializable {
         NextButton.setDisable(true); 
         Date input = new Date();
        // pickUpTime = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        System.out.println(getDateObject(PickupDate.getValue(),null).toString() + " hello i am here");
-        Date trial = getDateObject(PickupDate.getValue(),null);
+        System.out.println(getDateTimeObject(PickupDate.getValue(),null).toString() + " hello i am here");
+        Date trial = getDateTimeObject(PickupDate.getValue(),null);
         
         String DATE_FORMAT = "yyyy/MM/dd HH:MM:SS";
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);

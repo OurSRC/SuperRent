@@ -80,6 +80,4 @@ public class Branch {
     public void setBranchAddress(String branchAddress) {
         this.branchAddress = branchAddress;
     }
-
-  
 }

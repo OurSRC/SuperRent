@@ -2,7 +2,7 @@ package UserInterface.Login.FXMLController;
 
 import ControlObjects.StaffCtrl;
 import UserInterface.MainController;
-import UserManagement.*;
+import entity.Staff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.LabelBuilder;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -158,9 +160,9 @@ public class FXMLClerkMainPageController implements Initializable {
         ClerkMainPageNavigator.CurrentUserName=userName;
         StaffCtrl StaffControl = new StaffCtrl();
         NewStaff = StaffControl.getStaffByUsername(username);
-        System.out.println(NewStaff.type + "" + NewStaff.staffId);
+        System.out.println(NewStaff.getStaffType() + "" + NewStaff.getStaffId());
         
-        switch (NewStaff.type)
+        switch (NewStaff.getStaffType())
         {
             case CLERK:
                 UserButton.setVisible(false);
@@ -184,7 +186,8 @@ public class FXMLClerkMainPageController implements Initializable {
     {
         StaffCtrl StaffControl = new StaffCtrl();
         NewStaff = StaffControl.getStaffByUsername(username);
-        System.out.println(NewStaff.type + "" + NewStaff.staffId);
+        ClerkMainPageNavigator.CurrentUserName = username;
+        System.out.println(NewStaff.getStaffType() + "" + NewStaff.getStaffId());
     }
 
     @Override
@@ -197,6 +200,12 @@ public class FXMLClerkMainPageController implements Initializable {
       //  FXMLClerkMainPageController mainController = loader.getController();
         ClerkMainPageNavigator.setMainController(this);
         //ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.HOME_PAGE);
+    }
+    
+    public void VehicleButtonAction(ActionEvent event)
+    {
+               ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.FLEET_MANAGEMENT);
+               
     }
     
     public void setStackPane(Node node) {

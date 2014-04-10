@@ -70,10 +70,7 @@ private Pane loadMainPane() throws IOException {
 */
 private Scene createScene(Pane mainPane) {
 Scene scene = new Scene(mainPane);
- 
-//scene.getStylesheets().setAll(
-//getClass().getResource("vista.css").toExternalForm()
-//);
+
  
 return scene;
 }

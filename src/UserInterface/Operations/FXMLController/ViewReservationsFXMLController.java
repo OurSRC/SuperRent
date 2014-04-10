@@ -22,10 +22,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -53,12 +51,12 @@ public class ViewReservationsFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO   
-        ViewReservationButton.setDisable(true);
+       // ViewReservationButton.setDisable(true);
     }    
     
     public void getList()
     {
+        ReservationTable.getItems().clear();
         ObservableList<String> list =  FXCollections.observableArrayList();
 		for (int i = 0; i < 1; i++) {
 			list.add("Hello");
@@ -69,44 +67,33 @@ public class ViewReservationsFXMLController implements Initializable {
 
         
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
-        
         ArrayList<Reserve> newArray = newReserveCtrl.searchReserve(sample);
-        
-        System.out.println(newArray.get(1).reservationNumber);
-        ObservableList<ReserveSample> slist =  FXCollections.observableArrayList();
-        for(int i=0;i <newArray.size();i++)
-        {
-            slist.add(new ReserveSample(newArray.get(i).reservationNumber, newArray.get(i).type));
-        }
+        ObservableList<Reserve> slist =  FXCollections.observableArrayList(newArray);
         ReservationTable.setItems(slist);
-       // Reserve person = (Reserve)ReservationTable.getSelectionModel().getSelectedItem();
-        //System.out.println(person.reservationNumber);
-    
-        ReservationNumber.setCellValueFactory(new PropertyValueFactory<ReserveSample,String>("ReservationNumber"));
-        Type.setCellValueFactory(new PropertyValueFactory<ReserveSample,String>("Type"));
-        
-        ReservationTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ReserveSample>() {
-
-    @Override
-    public void changed(ObservableValue<? extends ReserveSample> observable,ReserveSample oldValue, ReserveSample newValue) {
-      System.out.println(newValue.getReservationNumber());
-      ViewReservationButton.setDisable(false);
-    }
-
-      
-  });
-    
+        System.out.println("I am here and it is working");
+        ReservationNumber.setCellValueFactory(new PropertyValueFactory("reservationNumber"));
+        Type.setCellValueFactory( new PropertyValueFactory("type"));    
     }
     
     @FXML
     public void DisplayReservationsButtonAction(ActionEvent event)
     {
-        ReservationTable.setItems(null);
+        ReservationTable.getItems().clear();
         getList();
+
     }
 
     @FXML
-    private void ViewReservationButtonAction(ActionEvent event) {
+    private void ViewReservationButtonAction(ActionEvent event) throws IOException {
+
+        if(!ReservationTable.getSelectionModel().isEmpty())
+        {
+        Reserve rrr = (Reserve) ReservationTable.getSelectionModel().getSelectedItem();
+        //RentNavigator.ReservationNumber = rrr.getReservationNumber();
+        //System.out.println(rrr.getReservationNumber());
+        RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
+        }
+        
     }
     
      

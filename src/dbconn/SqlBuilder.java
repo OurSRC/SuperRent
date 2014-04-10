@@ -26,6 +26,7 @@ public class SqlBuilder {
     private String values;
     private String delete;
     private String columns;
+    private String cond;
     
     public SqlBuilder() {
         select = null;
@@ -36,6 +37,7 @@ public class SqlBuilder {
         insert = null;
         values = null;
         delete = null;
+        cond = null;
     }
     
     public SqlBuilder select(String col_name) {
@@ -141,9 +143,19 @@ public class SqlBuilder {
             return insert + " VALUES (" + values + ");";
         } else if (delete != null) {
             return delete + " " + where + ";";
+        } else if (cond != null) {
+            return cond;
         }
         
         return null;
+    }
+    
+    public void cond(String str) {
+        if (cond == null) {
+            cond = str;
+        } else {
+            cond += " AND " + str;
+        }
     }
     
     public void reset() {
