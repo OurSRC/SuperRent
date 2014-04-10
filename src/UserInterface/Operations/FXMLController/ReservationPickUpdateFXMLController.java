@@ -94,7 +94,7 @@ public class ReservationPickUpdateFXMLController implements Initializable {
         ReservationNavigator.newReserve.type = VehicleType;
         System.out.println(VehicleType);
         ReservationNavigator.clearVista();
-        ReservationNavigator.loadVista(ReservationNavigator.SelectVehicle);   
+        ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);   
     }
 
     
@@ -113,10 +113,10 @@ public class ReservationPickUpdateFXMLController implements Initializable {
                         LocalDate newDate = ReturnDate.getValue();
                         AvailableVehicleTypeCB.setDisable(false);
                         VehicleCtrl vehicleControl = new VehicleCtrl();
-                        ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability(toString, 123,456);
-                        ObservableList<String> list =  FXCollections.observableArrayList(AvailableVehicleTypes);
+                        //ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability(toString, 123,456);
+                       // ObservableList<String> list =  FXCollections.observableArrayList(AvailableVehicleTypes);
                         AvailableVehicleTypeCB.getItems().clear();
-                        AvailableVehicleTypeCB.setItems(list);
+                       // AvailableVehicleTypeCB.setItems(list);
                         System.out.println(pickUpTime);
                         System.out.println(returnTime);
             }

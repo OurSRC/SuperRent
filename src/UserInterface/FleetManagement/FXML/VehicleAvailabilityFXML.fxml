@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.VehicleAvailabilityFXMLController">
+  <children>
+    <Label layoutX="26.0" layoutY="40.0" text="Date From " />
+    <Label layoutX="374.0" layoutY="40.0" text="Date To " />
+    <Label layoutX="26.0" layoutY="79.0" text="Vehicle Type" />
+    <ComboBox fx:id="VehicleClass" layoutX="121.0" layoutY="76.0" prefHeight="25.0" prefWidth="208.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Button focusTraversable="false" layoutX="485.0" layoutY="117.0" mnemonicParsing="false" onAction="#DisplayAvailableVehicleAction" prefHeight="25.0" prefWidth="155.0" text="Display Available Vehicles">
+<cursor>
+<Cursor fx:constant="NONE" />
+</cursor></Button>
+    <TableView layoutY="163.0" prefHeight="226.0" prefWidth="681.0">
+      <columns>
+        <TableColumn prefWidth="103.0" text="Vehicle Type" />
+        <TableColumn prefWidth="117.0" text="Vehicle Class" />
+        <TableColumn fx:id="HourlyRate" prefWidth="114.0" text="Hourly Rate" />
+        <TableColumn fx:id="DailyRate" prefWidth="114.0" text="Daily Rate" />
+        <TableColumn fx:id="WeeklyRate" prefWidth="130.0" text="Weekly Rate" />
+      </columns>
+    </TableView><DatePicker fx:id="DateFromDatePicker" layoutX="121.0" layoutY="36.0" prefHeight="25.0" prefWidth="116.0" /><ComboBox fx:id="DateFromTime" layoutX="245.0" layoutY="36.0" prefHeight="25.0" prefWidth="85.0" /><ComboBox fx:id="DateToTime" layoutX="555.0" layoutY="36.0" prefHeight="25.0" prefWidth="85.0" /><DatePicker fx:id="DateToDatePicker" layoutX="431.0" layoutY="36.0" prefHeight="25.0" prefWidth="116.0" />
+  </children>
+</AnchorPane>

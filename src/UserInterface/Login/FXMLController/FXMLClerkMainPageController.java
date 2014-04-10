@@ -21,6 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.LabelBuilder;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBoxBuilder;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -184,6 +186,7 @@ public class FXMLClerkMainPageController implements Initializable {
     {
         StaffCtrl StaffControl = new StaffCtrl();
         NewStaff = StaffControl.getStaffByUsername(username);
+        ClerkMainPageNavigator.CurrentUserName = username;
         System.out.println(NewStaff.type + "" + NewStaff.staffId);
     }
 
@@ -197,6 +200,12 @@ public class FXMLClerkMainPageController implements Initializable {
       //  FXMLClerkMainPageController mainController = loader.getController();
         ClerkMainPageNavigator.setMainController(this);
         //ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.HOME_PAGE);
+    }
+    
+    public void VehicleButtonAction(ActionEvent event)
+    {
+               ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.FLEET_MANAGEMENT);
+               
     }
     
     public void setStackPane(Node node) {

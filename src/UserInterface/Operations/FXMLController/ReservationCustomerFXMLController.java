@@ -30,7 +30,7 @@ public class ReservationCustomerFXMLController implements Initializable{
     {
         System.out.println("I am inside this.Please help");
         ReservationNavigator.clearVista();
-        ReservationNavigator.loadVista(ReservationNavigator.SelectVehicle);
+        ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);
     }
     
     

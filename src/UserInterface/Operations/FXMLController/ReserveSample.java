@@ -6,6 +6,8 @@
 
 package UserInterface.Operations.FXMLController;
 
+import com.sun.javafx.scene.control.skin.DatePickerContent;
+import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -18,6 +20,9 @@ public class ReserveSample {
     
     private StringProperty ReservationNumber;
     private StringProperty Type;
+    private StringProperty PickUpDate;
+    private StringProperty ReturnDate;
+    private StringProperty EstimatedCost;
     
     
     
@@ -27,6 +32,8 @@ public class ReserveSample {
         this.Type = new SimpleStringProperty(Type);
 
     }
+    
+    
 
     public StringProperty ReservationNumberProperty() {
         return this.ReservationNumber;
@@ -40,8 +47,9 @@ public class ReserveSample {
    public String getReservationNumber() {
 	return ReservationNumber.get();
    }
-    
-
+   
+   
+   
     public StringProperty TypeProperty() {
         return this.Type;
     }
@@ -53,5 +61,47 @@ public class ReserveSample {
     
     public String getType() {
 	return Type.get();
-   }
+    }
+    
+    
+    public StringProperty PickUpDateProperty() {
+        return this.PickUpDate;
+    }
+    
+    
+    public void setPickUpDate(String PickUpDate) {
+	this.PickUpDate.set(PickUpDate);
+    }
+    
+    public String getPickUpDate() {
+	return PickUpDate.get();
+    }
+    
+    
+    public StringProperty ReturnDateProperty() {
+        return this.ReturnDate;
+    }
+    
+    
+    public void setReturnDate(String ReturnDate) {
+	this.ReturnDate.set(ReturnDate);
+    }
+    
+    public String getReturnDate() {
+	return ReturnDate.get();
+    }
+    
+    
+    public StringProperty EstimatedCostProperty() {
+        return this.EstimatedCost;
+    }
+    
+    
+    public void setEstimatedCost(String EstimatedCost) {
+	this.EstimatedCost.set(EstimatedCost);
+    }
+    
+    public String getEstimatedCost() {
+	return EstimatedCost.get();
+    }
 }

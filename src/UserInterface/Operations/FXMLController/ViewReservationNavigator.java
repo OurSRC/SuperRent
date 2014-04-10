@@ -19,7 +19,9 @@ public class ViewReservationNavigator {
     public static OperationsFXMLController mainController;
     
     public static final String ViewReservationsPage = "/UserInterface/Operations/FXML/ViewReservationsFXML.fxml";
-    public static final String ReservationModifyOrCancelPage = "";
+    public static final String ReservationModifyOrCancelPage = "/UserInterface/Operations/FXML/ViewReservationForRentFXML.fxml";
+    
+    public static String ReservationNumber;
     
     public static void setMainController(OperationsFXMLController mainController) {
         ViewReservationNavigator.mainController = mainController;

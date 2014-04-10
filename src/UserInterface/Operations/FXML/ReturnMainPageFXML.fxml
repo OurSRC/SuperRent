@@ -1,51 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="690.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Operations.ReturnMainPageFXMLController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReturnMainPageFXMLController">
   <children>
-    <StackPane fx:id="ReturnInnerPane" layoutX="14.0" layoutY="14.0" prefHeight="377.0" prefWidth="662.0">
+    <StackPane fx:id="ReturnInnerPane" layoutX="14.0" layoutY="14.0" prefHeight="435.0" prefWidth="662.0">
       <children>
-        <Pane prefHeight="200.0" prefWidth="200.0">
+        <Pane prefHeight="423.0" prefWidth="662.0">
           <children>
             <Label layoutX="42.0" layoutY="26.0" text="Rental Agreement" />
             <Label layoutX="42.0" layoutY="68.0" text="Vehicle Number" />
             <TextField layoutX="183.0" layoutY="26.0" prefWidth="185.0" />
             <TextField layoutX="183.0" layoutY="62.0" prefWidth="185.0" />
-            <Button layoutX="461.0" layoutY="63.0" mnemonicParsing="false" onAction="#SearchRentButtonAction" prefWidth="96.0" text="Search Rent " />
+            <Button alignment="CENTER" layoutX="461.0" layoutY="63.0" mnemonicParsing="false" onAction="#SearchRentButtonAction" prefWidth="96.0" text="Search Rent " />
             <Separator layoutX="15.0" layoutY="105.0" prefWidth="633.0" />
-            <Pane fx:id="RentalPane" layoutX="15.0" layoutY="130.0" prefHeight="224.0" prefWidth="613.0">
+            <Pane fx:id="RentalPane" layoutX="15.0" layoutY="130.0" prefHeight="287.0" prefWidth="613.0">
               <children>
                 <Label fx:id="CustomerNameLabel" layoutX="27.0" layoutY="10.0" text="Customer Name">
                   <labelFor>
-                    <TextField fx:id="CustomerNameTF" layoutX="168.0" layoutY="7.0" prefWidth="186.0" />
+                    <TextField fx:id="CustomerNameTF" editable="false" layoutX="168.0" layoutY="7.0" prefWidth="186.0" />
                   </labelFor>
                 </Label>
                 <Label fx:id="CustomerNumberLabel" layoutX="27.0" layoutY="45.0" text="Customer Number" />
                 <fx:reference source="CustomerNameTF" />
-                <TextField fx:id="CustomerPhoneTF" layoutX="168.0" layoutY="43.0" prefWidth="186.0" />
+                <TextField fx:id="CustomerPhoneTF" editable="false" layoutX="168.0" layoutY="40.0" prefWidth="186.0" />
                 <Label fx:id="VechicleTypeLabel" layoutX="27.0" layoutY="74.0" text="Vehicle Model" />
                 <Label fx:id="VehicleNumberLabel" layoutX="27.0" layoutY="108.0" text="Vechile Number" />
                 <Label fx:id="RentStartDateLabel" layoutX="27.0" layoutY="145.0" text="Rental Start Date" />
-                <TextField fx:id="VehicleTypeTF" layoutX="167.0" layoutY="71.0" prefWidth="186.0" />
-                <TextField layoutX="168.0" layoutY="105.0" prefWidth="186.0" />
-                <TextField layoutX="168.0" layoutY="142.0" prefWidth="186.0" />
+                <TextField fx:id="VehicleTypeTF" editable="false" layoutX="167.0" layoutY="71.0" prefWidth="186.0" />
+                <TextField editable="false" layoutX="168.0" layoutY="105.0" prefWidth="186.0" />
+                <TextField editable="false" layoutX="168.0" layoutY="142.0" prefWidth="186.0" />
                 <Label fx:id="RentEndDateLabel" layoutX="27.0" layoutY="181.0" text="Rental End Date" />
-                <TextField layoutX="168.0" layoutY="177.0" prefWidth="186.0" />
+                <TextField editable="false" layoutX="168.0" layoutY="177.0" prefWidth="186.0" /><Button alignment="CENTER" layoutX="486.0" layoutY="239.0" mnemonicParsing="false" onAction="#NextButtonAction" prefWidth="113.0" text="Proceed to Return" />
               </children>
             </Pane>
           </children>
         </Pane>
       </children>
     </StackPane>
-    <Pane fx:id="BottomPane" layoutX="14.0" layoutY="391.0" prefHeight="68.0" prefWidth="662.0">
-      <children>
-        <Button layoutX="537.0" layoutY="24.0" mnemonicParsing="false" prefWidth="113.0" text="Next" />
-      </children>
-    </Pane>
   </children>
 </AnchorPane>

@@ -21,6 +21,7 @@ public class ClerkMainPageNavigator {
         public static final String HOME_PAGE = "/UserInterface/Login/FXML/ClerkHomePageFXML.fxml";
         public static final String OPERATIONS = "/UserInterface/Operations/FXML/OperationsFXML.fxml";
         public static final String REPORTS = "/UserInterface/Reports/FXML/ReportsMainPageFXML.fxml";
+        public static final String FLEET_MANAGEMENT = "/UserInterface/FleetManagement/FXML/FleetManagementMainPageFXML.fxml";
         public static String CurrentUserName ;
 
     

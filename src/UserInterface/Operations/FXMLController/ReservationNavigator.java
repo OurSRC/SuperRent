@@ -6,7 +6,6 @@
 
 package UserInterface.Operations.FXMLController;
 
-import Operations.Rent;
 import Operations.Reserve;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import java.io.IOException;
@@ -20,8 +19,9 @@ import javafx.scene.Node;
 public class ReservationNavigator {
         private static OperationsFXMLController mainController;
         public static String SampleSharedVariable;
+        public static final String VEHICLECLASSAVAILABILITY = "/UserInterface/FleetManagement/FXML/VehicleClassAvailabilityFXML.fxml";
         public static final String PickDate = "/UserInterface/Operations/FXML/ReservationPickUpdateFXML.fxml";
-        public static final String SelectVehicle = "/UserInterface/Operations/FXML/ReserveAdditionalEquipmentFXML.fxml";
+        public static final String ADDITIONALEQUIPMENTS = "/UserInterface/Operations/FXML/ReserveAdditionalEquipmentFXML.fxml";
         public static final String ReservationCustomer = "/UserInterface/Operations/FXML/ReservationCustomerFXML.fxml";
         public static final String ReservationSummary = "/UserInterface/Operations/FXML/ReservationSummaryFXML.fxml";
         public static final String ReserveSearchPage = "/UserInterface/Operations/FXML/ReserveSearchPageFXML.fxml";
@@ -31,24 +31,21 @@ public class ReservationNavigator {
         
         /* Common Variables to facilitate navigations */
         public static Reserve newReserve;
-        public static Rent newRent;
         public static boolean customerFlag;
-        public static boolean rentFlag;
         public static boolean modifyFlag;
 
         public static void setMainController(OperationsFXMLController mainController) {
         ReservationNavigator.mainController = mainController;
         
 }
-    
 
-    
     public static void clearVista()
     {
         mainController.ClearStackPane();
     }
+    
     public static void loadVista(String fxml) throws IOException {
-        mainController.setStackPane((Node) FXMLLoader.load(ClerkMainPageNavigator.class.getResource(fxml)));
+        mainController.setStackPane((Node) FXMLLoader.load(ReservationNavigator.class.getResource(fxml)));
 }
     
     public void setCustomerFlag()

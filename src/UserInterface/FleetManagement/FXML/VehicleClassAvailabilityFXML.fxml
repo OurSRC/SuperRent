@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.VehicleAvailabilityFXMLController">
+  <children>
+    <Label layoutX="10.0" layoutY="40.0" text="Date From " />
+    <Label layoutX="390.0" layoutY="40.0" text="Date To " />
+    <Label layoutX="10.0" layoutY="79.0" text="Vehicle Type" />
+    <ComboBox fx:id="VehicleClass" layoutX="96.0" layoutY="75.0" prefHeight="25.0" prefWidth="116.0">
+      <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Car" />
+              <String fx:value="Truck" />
+            </FXCollections>
+          </items>
+    </ComboBox>
+    <TableView layoutY="163.0" prefHeight="226.0" prefWidth="681.0">
+      <columns>
+        <TableColumn prefWidth="103.0" text="Vehicle Type" />
+        <TableColumn prefWidth="117.0" text="Vehicle Class" />
+        <TableColumn fx:id="HourlyRate" prefWidth="114.0" text="Hourly Rate" />
+        <TableColumn fx:id="DailyRate" prefWidth="114.0" text="Daily Rate" />
+        <TableColumn fx:id="WeeklyRate" prefWidth="130.0" text="Weekly Rate" />
+      </columns>
+    </TableView><DatePicker fx:id="DateFromDatePicker" layoutX="96.0" layoutY="36.0" onAction="#DateFromDatePickerAction" prefHeight="25.0" prefWidth="116.0" />
+    <ComboBox fx:id="DateFromTime" layoutX="216.0" layoutY="36.0" onAction="#DateFromTimeCBAction" prefHeight="25.0" prefWidth="100.0">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="09 AM" />
+              <String fx:value="10 AM" />
+              <String fx:value="11 AM" />
+              <String fx:value="12 PM" />
+              <String fx:value="01 PM" />
+              <String fx:value="02 PM" />
+              <String fx:value="03 PM" />
+              <String fx:value="04 PM" />
+              <String fx:value="05 PM" />
+              <String fx:value="06 PM" />
+            </FXCollections>
+          </items>
+    </ComboBox>
+    <ComboBox fx:id="DateToTime" layoutX="566.0" layoutY="36.0" onAction="#DateToTimeCBAction" prefHeight="25.0" prefWidth="100.0">
+            <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="09 AM" />
+              <String fx:value="10 AM" />
+              <String fx:value="11 AM" />
+              <String fx:value="12 PM" />
+              <String fx:value="01 PM" />
+              <String fx:value="02 PM" />
+              <String fx:value="03 PM" />
+              <String fx:value="04 PM" />
+              <String fx:value="05 PM" />
+              <String fx:value="06 PM" />
+            </FXCollections>
+          </items>
+    </ComboBox>
+    <DatePicker fx:id="DateToDatePicker" layoutX="447.0" layoutY="36.0" onAction="#DateToDatePickerAction" prefHeight="25.0" prefWidth="116.0" /><Button alignment="CENTER" layoutX="511.0" layoutY="400.0" mnemonicParsing="false" onAction="#ReserveVehicleActionButton" prefHeight="25.0" prefWidth="155.0" text="Reserve Vehicle" /><Button alignment="CENTER" layoutX="511.0" layoutY="127.0" mnemonicParsing="false" onAction="#DisplayAvailableVehicleAction" prefHeight="25.0" prefWidth="155.0" text="Display Available Vehicles" />
+  </children>
+</AnchorPane>
