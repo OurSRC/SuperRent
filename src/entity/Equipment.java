@@ -26,6 +26,18 @@ public class Equipment {
     private String mode;
     private int branchId;
 
+    public Equipment() {
+    }
+
+    public Equipment(String equipmentType, STATUS status, String manufactor, Date manufactorDate, String mode, int branchId) {
+        this.equipmentType = equipmentType;
+        this.status = status;
+        this.manufactor = manufactor;
+        this.manufactorDate = manufactorDate;
+        this.mode = mode;
+        this.branchId = branchId;
+    }
+
     /**
      * @return the equipmentId
      */

@@ -15,6 +15,14 @@ public class EquipmentType {
     private int hourlyRate;
     private int DailyRate;
 
+    public EquipmentType(String typeName, int hourlyRate,int DailyRate) {
+        this.typeName = typeName;
+        this.hourlyRate = hourlyRate;
+        this.DailyRate = DailyRate;
+       
+    }
+    
+    public EquipmentType(){}
     /**
      * @return the typeName
      */
