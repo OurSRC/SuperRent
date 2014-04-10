@@ -9,11 +9,11 @@ public class User {
         STAFF(2);
 
         private int value;
-        
+
         private TYPE(int value) {
             this.value = value;
         }
-        
+
         public int getValue() {
             return value;
         }
@@ -64,9 +64,13 @@ public class User {
     public void setType(TYPE type) {
         this.userType = type;
     }
-    
+
     public void setType(String type) {
-        this.userType = User.TYPE.valueOf(type);
+        if (type == null) {
+            this.userType = null;
+        } else {
+            this.userType = User.TYPE.valueOf(type);
+        }
     }
 
 }

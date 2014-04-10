@@ -22,9 +22,7 @@ import java.util.logging.Logger;
  * @author Jingchuan Chen
  */
 public abstract class AbstractDao<T> {
-    
-    private Class<T> cls;
-    
+
     public boolean add(T entity) throws DaoException {
         if (entity == null) {
             return false;
@@ -55,11 +53,11 @@ public abstract class AbstractDao<T> {
         }
         return ans;
     }
-    
+
     private boolean addAutoGenPk(T entity) throws DaoException {
         boolean ans = false;
         String tb_name = getTbName();
-        int pk = getPkIndex();
+        int pk = getPkIndex()[0];
         AttributeParser ap[] = getAP();
         AttributeParser ap_no_pk[] = genAPWithoutPK(ap, pk);
 
@@ -69,7 +67,7 @@ public abstract class AbstractDao<T> {
                 .columns(EntityParser.getColunmList(ap_no_pk))
                 .values(EntityParser.wrapEntity(entity, ap_no_pk))
                 .toString();
-        
+
         System.out.println(sql);
 
         try {
@@ -82,40 +80,41 @@ public abstract class AbstractDao<T> {
         }
         return ans;
     }
-    
-    
-    
+
     public boolean delete(T entity) throws DaoException {
         if (entity == null) {
             return false;
         }
-        
+
         boolean ans = false;
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
-        int pk = getPkIndex();
-        
+        int pk[] = getPkIndex();
+
         SqlBuilder qb = new SqlBuilder();
-        String sql = qb
-                .deleteFrom(tb_name)
-                .where(ap[pk].getColName() + "=" + ap[pk].wrapAttr(entity))
-                .toString();
+        qb.deleteFrom(tb_name);
         
+        for (int i : pk) {
+            qb.where(ap[i].getColName() + "=" + ap[i].wrapAttr(entity));
+        }
+        String sql = qb.toString();
+
         System.out.println(sql);
         try {
             Statement stmt = DbConn.getStmt();
             int ret = stmt.executeUpdate(sql);
-            if(ret==0)
+            if (ret == 0) {
                 ans = false;
-            else
+            } else {
                 ans = true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "delete()");
         }
         return ans;
     }
-    
+
     public boolean update(T entity) throws DaoException {
         if (entity == null) {
             return false;
@@ -123,14 +122,17 @@ public abstract class AbstractDao<T> {
         boolean ans = false;
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
-        int pk = getPkIndex();
-        
+        int[] pk = getPkIndex();
+
         SqlBuilder qb = new SqlBuilder();
-        String sql = qb
-                .update(getTbName())
-                .set(EntityParser.wrapEntityForSet(entity, ap))
-                .where(ap[pk].getColName() + "=" + ap[pk].wrapAttr(entity))
-                .toString();
+        qb.update(getTbName());
+        qb.set(EntityParser.wrapEntityForSet(entity, ap));
+
+        for (int i : pk) {
+            qb.where(ap[i].getColName() + "=" + ap[i].wrapAttr(entity));
+        }
+
+        String sql = qb.toString();
 
         try {
             Statement stmt = DbConn.getStmt();
@@ -142,20 +144,19 @@ public abstract class AbstractDao<T> {
         }
         return ans;
     }
-    
+
     public T findOne(String cond) throws DaoException {
-        
+
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
-        int pk = getPkIndex();
-        
+
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
                 .from(tb_name)
                 .where(cond)
                 .toString();
-        
+
         T entity = getInstance();
 
         try {
@@ -171,18 +172,17 @@ public abstract class AbstractDao<T> {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "find()");
         }
-        
+
         return entity;
     }
-    
+
     public ArrayList<T> find(String cond) throws DaoException {
-        
+
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
-        int pk = getPkIndex();
-        
+
         ArrayList<T> result = new ArrayList<>();
-        
+
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
@@ -199,35 +199,35 @@ public abstract class AbstractDao<T> {
                 EntityParser.parseEntity(rs, entity, ap);
                 result.add(entity);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "find()");
         }
-        
+
         return result;
     }
-    
-    protected String getTbName() {
-        String tb_name = (String)getField("tb_name");
+
+    private String getTbName() {
+        String tb_name = (String) getField("tb_name");
         return tb_name;
     }
-    
-    protected AttributeParser[] getAP() {
-        AttributeParser ap[] = (AttributeParser [])getField("ap");
+
+    private AttributeParser[] getAP() {
+        AttributeParser ap[] = (AttributeParser[]) getField("ap");
         return ap;
     }
-    
-    protected int getPkIndex() {
-        int pk = (int)getField("pkIndex");
+
+    private int[] getPkIndex() {
+        int[] pk = (int[]) getField("pkIndex");
         return pk;
     }
-    
-    protected boolean PkIsAutoGen() {
-        boolean b = (boolean)getField("pkIsAutoGen");
+
+    private boolean PkIsAutoGen() {
+        boolean b = (boolean) getField("pkIsAutoGen");
         return b;
     }
-    
+
     private Object getField(String name) {
         Object obj = null;
         try {
@@ -235,10 +235,10 @@ public abstract class AbstractDao<T> {
         } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ex) {
             Logger.getLogger(AbstractDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return obj;
     }
-    
+
     private AttributeParser[] genAPWithoutPK(AttributeParser ap[], int pk) {
         AttributeParser ap_no_pk[] = new AttributeParser[ap.length - 1];
         int j = 0;
@@ -248,9 +248,9 @@ public abstract class AbstractDao<T> {
                 j++;
             }
         }
-        
+
         return ap_no_pk;
     }
-    
+
     protected abstract T getInstance();
 }

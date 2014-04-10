@@ -7,6 +7,8 @@
 package dao;
 
 import entity.Vehicle;
+import entity.VehicleClass;
+import entity.Branch;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.After;
@@ -22,32 +24,53 @@ import org.junit.Test;
  */
 public class VehicleDaoTest {
     
+    private static int branchId;
+    private static String branchName = "TestBranchName";
+    private static String className = "TestClass_unittest";
+    
     public VehicleDaoTest() {
     }
     
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws DaoException {
+        VehicleClassDao vdao = new VehicleClassDao();
+        VehicleClass vc = new VehicleClass(className, VehicleClass.TYPE.Car, 12, 12, 12);
+        vdao.add(vc);
+        
+        BranchDao bdao = new BranchDao();
+        Branch b = new Branch(branchName, "12313123", "some addr");
+        bdao.add(b);
+        b = bdao.findByName(branchName);
+        branchId = b.getBranchID();
     }
     
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass() throws DaoException {
+        VehicleClassDao vdao = new VehicleClassDao();
+        VehicleClass vc = vdao.findByName(className);
+        vdao.delete(vc);
+        
+        BranchDao bdao = new BranchDao();
+        Branch b = bdao.findByName(branchName);
+        bdao.delete(b);
+        
     }
      
     @Before
     public void setUp() throws DaoException {
         VehicleDao dao = new VehicleDao();
         Vehicle entity;
-        entity = new Vehicle("357-ADF", new Date(), "Mimi Copper", 100, 1, 
+        entity = new Vehicle("357-ADF", new Date(), "Mimi Copper", 100, branchId, 
                 Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.AVAILABLE, 
-                null, "TestClass", 0);
+                null, className, 0);
         dao.add(entity);
-        entity = new Vehicle("357-ADG", new Date(), "BMW X5", 100, 1, 
+        entity = new Vehicle("357-ADG", new Date(), "BMW X5", 100, branchId, 
                 Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.AVAILABLE, 
-                null, "TestClass", 0);
+                null, className, 0);
         dao.add(entity);
-        entity = new Vehicle("357-ADH", new Date(), "GM", 100, 1, 
+        entity = new Vehicle("357-ADH", new Date(), "GM", 100, branchId, 
                 Vehicle.STATUS.FORSALE, null, 
-                Vehicle.SELLSTATUS.FORSALE, "TestClass", 10000000);
+                Vehicle.SELLSTATUS.FORSALE, className, 10000000);
         dao.add(entity);
     }
     
