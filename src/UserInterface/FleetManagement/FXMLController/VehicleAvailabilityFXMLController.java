@@ -66,11 +66,11 @@ public class VehicleAvailabilityFXMLController implements Initializable {
         {
                         LocalDate DateFrom = DateFromDatePicker.getValue();
                         String FromTime = DateFromTime.getValue().toString();
-                        Date PickUpDate = DateClass.getDateObject(DateFrom,FromTime);
+                        Date PickUpDate = DateClass.getDateTimeObject(DateFrom,FromTime);
                         
                         LocalDate ToDate = DateToDatePicker.getValue();
                         String ToTime = DateToTime.getValue().toString();
-                        Date ReturnDate = DateClass.getDateObject(ToDate,ToTime);
+                        Date ReturnDate = DateClass.getDateTimeObject(ToDate,ToTime);
                         
                         
                         String VehicleType = VehicleClass.getValue().toString();

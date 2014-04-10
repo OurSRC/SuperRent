@@ -21,7 +21,8 @@ public class VehicleClassNavigator {
         public static final String MODIFYVEHICLECLASSPAGE = "/UserInterface/FleetManagement/FXML/ModifyRatesFXML.fxml";
         public static final String ADDVEHICLECLASSPAGE = "/UserInterface/FleetManagement/FXML/AddVehicleClassFXML.fxml";
 
-
+        /* Variable to store the screen attributes */
+        public static String VehicleClass;
         
         public static void setMainController(FleetManagementMainPageFXMLController mainController) {
         VehicleClassNavigator.mainController = mainController;

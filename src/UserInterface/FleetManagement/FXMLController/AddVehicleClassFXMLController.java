@@ -6,6 +6,8 @@
 
 package UserInterface.FleetManagement.FXMLController;
 
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,6 +70,12 @@ public class AddVehicleClassFXMLController implements Initializable {
         if(ValidateMandatoryRecords())
         {
            /* Call the Create Vehicle Class function in the VehicleClass Control */ 
+            
+             System.out.println("Invalid Dates ");
+                            DialogFX dialog = new DialogFX(Type.INFO);
+                            dialog.setTitleText("Vehicle Class Created");
+                            dialog.setMessage("Vehicle Class " + vehicleClass + " is successfully created");
+                            dialog.showDialog();
         }else
         {
             System.out.println("Please enter all the mandatory records");

@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 
 /**
@@ -33,6 +34,9 @@ public class ModifyRatesFXMLController implements Initializable {
     private RadioButton VehicleTypeCarRB;
     @FXML
     private ComboBox VehicleClassCB;
+    
+    @FXML
+    private TextField VehicleClassTF;
 
     /**
      * Initializes the controller class.
@@ -40,6 +44,7 @@ public class ModifyRatesFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        VehicleClassTF.setText(VehicleClassNavigator.VehicleClass);
     }    
 
     @FXML

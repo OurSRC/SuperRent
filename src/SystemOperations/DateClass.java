@@ -21,7 +21,7 @@ import java.util.Date;
  */
 public class DateClass {
     
-    public static Date getDateObject(LocalDate Date,String Time) throws ParseException 
+    public static Date getDateTimeObject(LocalDate Date,String Time) throws ParseException 
     {
         Date date = ConvertLocalDatetoDate(Date);
         Date time = ConvertStringToTime(Time);
@@ -66,6 +66,23 @@ public class DateClass {
         Date result = calendarA.getTime();
         return result;   
     }
+    
+    
+    
+    
+    public static Date getDateObject(LocalDate date) throws ParseException 
+    {
+        String DATE_FORMAT = "yyyy/MM/dd";
+
+        Instant instant = date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
+        Date res = Date.from(instant);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        String dateString = sdf.format(res);
+        System.out.println(dateString);
+        Date finalDate = sdf.parse(dateString);
+        return finalDate;
+    }
+    
     
 }
     

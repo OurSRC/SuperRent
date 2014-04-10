@@ -7,21 +7,17 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.AddVehicleFXMLController">
   <children>
-    <Label layoutX="28.0" layoutY="228.0" text="Model">
+    <Label layoutX="28.0" layoutY="189.0" text="Model">
       <font>
         <Font name="System Italic" size="12.0" fx:id="x1" />
       </font>
     </Label>
-    <TextField fx:id="ModelTF" layoutX="181.0" layoutY="223.0" onAction="#ModelTFAction" prefWidth="159.0" />
-    <Label font="$x1" layoutX="28.0" layoutY="274.0" text="Manufacturing Date" />
-    <Label font="$x1" layoutX="27.0" layoutY="136.0" text="Plate Number" />
+    <TextField fx:id="ModelTF" layoutX="181.0" layoutY="184.0" prefWidth="159.0" />
+    <Label font="$x1" layoutX="28.0" layoutY="235.0" text="Manufacturing Date" />
+    <Label font="$x1" layoutX="27.0" layoutY="140.0" text="Plate Number" />
     <Button layoutX="513.0" layoutY="403.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Confirm" />
     <Button layoutX="27.0" layoutY="403.0" mnemonicParsing="false" onAction="#BeckToSearchButtonAction" prefHeight="25.0" prefWidth="134.0" text="Back to Search" />
-    <TextField fx:id="PlateNumberTF" layoutX="180.0" layoutY="130.0" onAction="#PlateNumberTFAction" prefWidth="159.0" />
-    <Label font="$x1" layoutX="28.0" layoutY="182.0" text="Manufacturer" />
-    <TextField fx:id="ManufacturerTF" layoutX="180.0" layoutY="176.0" onAction="#ManufacturerTFAction" prefWidth="159.0" />
-    <Label font="$x1" layoutX="365.0" layoutY="272.0" text="Purchase Date" />
-    <Label font="$x1" layoutX="29.0" layoutY="326.0" text="Status" />
+    <TextField fx:id="PlateNumberTF" layoutX="180.0" layoutY="134.0" prefWidth="159.0" />
     <Label layoutX="28.0" layoutY="49.0" text="Vehicle Type">
       <font>
         <Font size="12.0" fx:id="x2" />
@@ -31,10 +27,17 @@
 <toggleGroup>
 <ToggleGroup fx:id="VehicleTypeTG" />
 </toggleGroup></RadioButton>
-    <RadioButton fx:id="VehicleTypeCarRB" layoutX="184.0" layoutY="49.0" mnemonicParsing="false" onAction="#VehicleTypeCarRBAction" text="Car" toggleGroup="$VehicleTypeTG" />
-    <Label font="$x2" layoutX="27.0" layoutY="95.0" text="Vehicle Type" /><DatePicker fx:id="ManufacturingDatePicker" layoutX="183.0" layoutY="269.0" prefHeight="12.0" prefWidth="110.0" showWeekNumbers="true" /><DatePicker fx:id="PurchaseDatePicker" layoutX="464.0" layoutY="269.0" prefHeight="25.0" prefWidth="128.0" /><ComboBox fx:id="VehicleTypeCB" layoutX="180.0" layoutY="89.0" onAction="#VehicleTypeCBAction" prefHeight="25.0" prefWidth="159.0" /><Label layoutX="20.0" layoutY="6.0" text="Add New Vehicle">
+    <RadioButton fx:id="VehicleTypeCarRB" layoutX="184.0" layoutY="49.0" mnemonicParsing="false" onAction="#VehicleTypeCarRBAction" selected="true" text="Car" toggleGroup="$VehicleTypeTG" />
+    <Label font="$x2" layoutX="27.0" layoutY="91.0" text="Vehicle Class" /><DatePicker fx:id="ManufacturingDatePicker" layoutX="181.0" layoutY="230.0" prefHeight="25.0" prefWidth="159.0" showWeekNumbers="true" /><ComboBox fx:id="VehicleClassCB" layoutX="180.0" layoutY="85.0" prefHeight="25.0" prefWidth="159.0" /><Label layoutX="20.0" layoutY="6.0" text="Add New Vehicle">
 <font>
 <Font name="System Italic" size="16.0" />
-</font></Label><Separator layoutX="20.0" layoutY="26.0" prefHeight="4.0" prefWidth="648.0" /><Separator layoutX="20.0" layoutY="4.0" prefHeight="4.0" prefWidth="648.0" /><Separator layoutX="163.0" layoutY="14.0" prefHeight="4.0" prefWidth="505.0" />
+</font></Label>
+<Separator layoutX="20.0" layoutY="26.0" prefHeight="4.0" prefWidth="648.0" />
+<Separator layoutX="20.0" layoutY="4.0" prefHeight="4.0" prefWidth="648.0" />
+<Separator layoutX="163.0" layoutY="14.0" prefHeight="4.0" prefWidth="505.0" />
+<CheckBox fx:id="NewVehicleCheckBox" layoutX="351.0" layoutY="138.0" mnemonicParsing="false" text="New Vehicle" />
+<Label layoutX="30.0048828125" layoutY="280.5" text="Odometer Reading" />
+<TextField fx:id="OdometerReadingTF" layoutX="181.0" layoutY="277.0" prefHeight="25.0" prefWidth="67.0" />
+<Label layoutX="257.0" layoutY="280.0" text="kms" />
   </children>
 </AnchorPane>

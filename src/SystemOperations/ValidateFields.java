@@ -15,7 +15,7 @@ import javafx.scene.Node;
  */
 public class ValidateFields {
     
-    public boolean ValidateFields(Node FieldNodes)
+    public static boolean ValidateFields(Node FieldNodes)
     {
         return true;
     }

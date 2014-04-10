@@ -20,6 +20,6 @@
     <Label font="$x1" layoutX="29.0" layoutY="218.0" text="Daily Rate" />
     <TextField layoutX="116.0" layoutY="213.0" onAction="#DailyRateTF" prefHeight="25.0" prefWidth="149.0" />
     <Label font="$x1" layoutX="32.0" layoutY="263.0" text="Hourly Rate" />
-    <TextField layoutX="117.0" layoutY="259.0" onAction="#HourlyRateTF" prefHeight="25.0" prefWidth="149.0" /><TextField editable="false" layoutX="116.24609375" layoutY="77.0" /><TextField editable="false" layoutX="116.4921875" layoutY="120.0" />
+    <TextField layoutX="117.0" layoutY="259.0" onAction="#HourlyRateTF" prefHeight="25.0" prefWidth="149.0" /><TextField editable="false" layoutX="116.24609375" layoutY="77.0" /><TextField fx:id="VehicleClassTF" editable="false" layoutX="116.4921875" layoutY="120.0" />
   </children>
 </AnchorPane>
