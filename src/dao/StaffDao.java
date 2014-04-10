@@ -35,16 +35,6 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     private static final String tb_name = "staff";
 
     private static final AttributeParser ap[] = {
-        //new IntParser("StaffID", "staffId"),
-        //new StringParser("FirstName", "fistName"),
-        //new StringParser("MiddleName", "middleName"),
-        //new StringParser("LastName", "lastName"),
-        //new StringParser("Email", "email"),
-        //new StringParser("PhoneNo", "phone"),
-        //new EnumParser("Type", "staffType"),
-        //new EnumParser("Status", "status"),
-        //new StringParser("Username", "username"),
-        //new IntParser("BranchID", "branchId")
         new IntParser("StaffID", "StaffId"),
         new StringParser("FirstName", "FistName"),
         new StringParser("MiddleName", "MiddleName"),
@@ -83,17 +73,18 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                     throw new DaoException(tb_name, "update() username exist");
                 }
 
-                udao.delete(staff_db.getUsername());
                 udao.add(value);
                 added = true;
             }
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
+            if (added) {
+                udao.delete(staff_db.getUsername());
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             if (added) {
                 udao.delete(value.getUsername());
-                udao.add(staff_db);
             }
             if (updated) {
                 udao.update(staff_db);
@@ -134,6 +125,10 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         }
 
         return true;
+    }
+    
+    public boolean delete(Staff staff) throws DaoException {
+        return delete(staff.getStaffId());
     }
 
     @Override
@@ -179,7 +174,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
 
     }
 
-    public ArrayList<Staff> find(String cond) throws DaoException {
+    private ArrayList<Staff> find(String cond) throws DaoException {
         ArrayList<Staff> result = new ArrayList<>();
 
         SqlBuilder qb = new SqlBuilder();
@@ -207,7 +202,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         return result;
     }
 
-    public Staff findOne(String cond) throws DaoException {
+    private Staff findOne(String cond) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
