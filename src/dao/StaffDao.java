@@ -21,6 +21,7 @@ import entityParser.StringParser;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -75,31 +76,44 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     public boolean update(Staff value) throws DaoException {
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
+        boolean added = false;
+        boolean updated = false;
+        Staff staff_db = null;
+        
         String sql = qb.update(tb_name)
-                .set("FirstName=" + SqlBuilder.wrapStr(value.getFistName()))
-                .set("MiddleName=" + SqlBuilder.wrapStr(value.getMiddleName()))
-                .set("LastName=" + SqlBuilder.wrapStr(value.getLastName()))
-                .set("Email=" + SqlBuilder.wrapStr(value.getEmail()))
-                .set("PhoneNo=" + SqlBuilder.wrapStr(value.getPhone()))
-                .set("Type=" + SqlBuilder.wrapInt(value.getStaffType().getValue()))
-                .set("Status=" + SqlBuilder.wrapInt(value.getStatus().getValue()))
-                .set("Username=" + SqlBuilder.wrapStr(value.getUsername()))
-                .set("BranchID=" + SqlBuilder.wrapInt(value.getBranchId()))
+                .set(EntityParser.wrapEntityForSet(value, ap))
+                .where("StaffID=" + SqlBuilder.wrapInt(value.getStaffId()))
                 .toString();
 
         try {
-            Staff staff = find(value.getStaffId());
-            if (staff.getUsername().equals(value.getUsername())) {
+            staff_db = find(value.getStaffId());
+            if (staff_db == null) {
+                throw new DaoException(tb_name, "update() existing record not found");
+            }
+            if (staff_db.getUsername().equals(value.getUsername())) { // username not changed
                 udao.update(value);
-            } else {
-                udao.delete(staff.getUsername());
+                updated = true;
+            } else {                                                  // username changed
+                if (udao.find(value.getUsername()) != null) {  // username exist
+                    throw new DaoException(tb_name, "update() username exist");
+                }
+                
+                udao.delete(staff_db.getUsername());
                 udao.add(value);
+                added = true;
             }
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            if (added) {
+                udao.delete(value.getUsername());
+                udao.add(staff_db);
+            }
+            if (updated) {
+                udao.update(staff_db);
+            }
+            throw new DaoException(tb_name, "update()");
         }
 
         return true;
@@ -110,20 +124,13 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         boolean add_user = false;
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
+        
+        AttributeParser ap_remove_id[] = Arrays.copyOfRange(ap, 1, ap.length);
+        
         String sql = qb
                 .insert(tb_name)
-                .values(
-                        SqlBuilder.wrapInt(value.getStaffId()),
-                        SqlBuilder.wrapStr(value.getFistName()),
-                        SqlBuilder.wrapStr(value.getMiddleName()),
-                        SqlBuilder.wrapStr(value.getLastName()),
-                        SqlBuilder.wrapStr(value.getEmail()),
-                        SqlBuilder.wrapStr(value.getPhone()),
-                        SqlBuilder.wrapInt(value.getStaffType().getValue()),
-                        SqlBuilder.wrapInt(value.getStatus().getValue()),
-                        SqlBuilder.wrapStr(value.getUsername()),
-                        SqlBuilder.wrapInt(value.getBranchId())
-                )
+                .columns(EntityParser.getColunmList(ap_remove_id))
+                .values(EntityParser.wrapEntity(value, ap_remove_id))
                 .toString();
 
         try {
