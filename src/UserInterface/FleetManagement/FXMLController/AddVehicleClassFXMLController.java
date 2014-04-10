@@ -31,6 +31,12 @@ public class AddVehicleClassFXMLController implements Initializable {
     private TextField WeeklyRateTF;
     @FXML
     private ToggleGroup VehicleTypeTG;
+    
+    public String vehicleType;
+    public String vehicleClass;
+    public String hourlyRate;
+    public String dailyRate;
+    public String weeklyRate;
 
     /**
      * Initializes the controller class.
@@ -38,23 +44,57 @@ public class AddVehicleClassFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        vehicleType = "CAR";
     }    
 
     @FXML
     private void VehicleTypeCarAction(ActionEvent event) {
+        vehicleType = "CAR";
     }
 
     @FXML
     private void VehicleTypeTruckAction(ActionEvent event) {
+        vehicleType = "TRUCK";
+
     }
 
     @FXML
     private void AddVehicleClassButtonAction(ActionEvent event) {
+        vehicleClass = VehicleClassTF.getText();
+        hourlyRate = HourlyRateTF.getText();
+        dailyRate = DailyRateTF.getText();
+        weeklyRate = WeeklyRateTF.getText();
+        
+        if(ValidateMandatoryRecords())
+        {
+           /* Call the Create Vehicle Class function in the VehicleClass Control */ 
+        }else
+        {
+            System.out.println("Please enter all the mandatory records");
+        }
+        
     }
 
     @FXML
     private void BackToSearchButtonAction(ActionEvent event) throws IOException {
         VehicleClassNavigator.loadVista(VehicleClassNavigator.VEHICLECLASSMAINPAGE);
+    }
+    
+    public boolean ValidateMandatoryRecords()
+    {
+        if(!vehicleClass.equals("")
+                && !hourlyRate.equals("")
+                && !dailyRate.equals("")
+                && !weeklyRate.equals("")
+                && !vehicleType.equals(""))
+        {
+            
+            System.out.println(vehicleType + " " + vehicleClass + " " + hourlyRate + " " + dailyRate + " " + weeklyRate);
+            return true;
+        }else
+        {
+            return false;
+        }
     }
     
 }

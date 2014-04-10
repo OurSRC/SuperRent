@@ -15,7 +15,7 @@
     <TextField fx:id="HourlyRateTF" layoutX="164.0" layoutY="146.0" />
     <TextField fx:id="DailyRateTF" layoutX="164.0" layoutY="186.0" />
     <TextField fx:id="WeeklyRateTF" layoutX="164.0" layoutY="226.0" />
-    <RadioButton layoutX="163.7900390625" layoutY="70.0" mnemonicParsing="false" onAction="#VehicleTypeCarAction" text="Car">
+    <RadioButton layoutX="163.7900390625" layoutY="70.0" mnemonicParsing="false" onAction="#VehicleTypeCarAction" selected="true" text="Car">
 <toggleGroup>
 <ToggleGroup fx:id="VehicleTypeTG" />
 </toggleGroup></RadioButton>
