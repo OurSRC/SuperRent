@@ -1,54 +1,54 @@
 INSERT INTO `super_rent`.`user`
 (`Username`,
 `Password`,
-`Type`,
-`LastLogin`)
+`Type`
+)
 VALUES
 ("clerk",
 "clerk",
-"STAFF",
-0);
+"STAFF"
+);
 
 INSERT INTO `super_rent`.`user`
 (`Username`,
 `Password`,
-`Type`,
-`LastLogin`)
+`Type`
+)
 VALUES
 ("manager",
 "manager",
-"STAFF",
-0);
+"STAFF"
+);
 
 INSERT INTO `super_rent`.`user`
 (`Username`,
 `Password`,
-`Type`,
-`LastLogin`)
+`Type`
+)
 VALUES
 ("admin",
 "admin",
-"STAFF",
-0);
+"STAFF"
+);
 
 INSERT INTO `super_rent`.`user`
 (`Username`,
 `Password`,
-`Type`,
-`LastLogin`)
+`Type`
+)
 VALUES
 ("customer",
 "customer",
-"CUSTOMER",
-0);
+"CUSTOMER"
+);
 
 INSERT INTO `super_rent`.`user`
 (`Username`,
 `Password`,
-`Type`,
-`LastLogin`)
+`Type`
+)
 VALUES
 ("clubmember",
 "clubmember",
-"CUSTOMER",
-0);
+"CUSTOMER"
+);
