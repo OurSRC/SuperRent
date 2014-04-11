@@ -30,8 +30,7 @@ public class VehicleClassSearchFXMLController implements Initializable {
     public void ModifyVehicleClassButtonAction(ActionEvent event) throws IOException
     {
         System.out.println("I am calling heere");
-        
-                VehicleClassNavigator.VehicleClass = " Sample ";
+        VehicleClassNavigator.VehicleClass = " Sample ";
 
         VehicleClassNavigator.loadVista(VehicleClassNavigator.MODIFYVEHICLECLASSPAGE);
     }
