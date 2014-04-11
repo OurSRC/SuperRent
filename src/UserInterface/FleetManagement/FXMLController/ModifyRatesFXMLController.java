@@ -44,7 +44,6 @@ public class ModifyRatesFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        VehicleClassTF.setText(VehicleClassNavigator.VehicleClass);
     }    
 
     @FXML
