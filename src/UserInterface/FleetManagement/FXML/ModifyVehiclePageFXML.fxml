@@ -5,18 +5,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.ModifyVehiclePageFXMLController">
 <children>
     <Label layoutX="47.0" layoutY="143.0" text="Plate Number" />
     <Label layoutX="47.0" layoutY="188.0" text="Manufature Date" />
     <Label layoutX="47.0" layoutY="232.0" text="Model" />
     <Label layoutX="47.0" layoutY="274.0" text="Odometer  Reading" />
     <Label layoutX="47.0" layoutY="318.0" text="Status" />
-    <TextField layoutX="193.0" layoutY="139.0" prefHeight="25.0" prefWidth="164.0" />
-    <TextField editable="false" layoutX="193.0" layoutY="184.0" prefHeight="25.0" prefWidth="164.0" />
-    <TextField layoutX="193.0" layoutY="228.0" prefHeight="25.0" prefWidth="164.0" />
-    <TextField layoutX="193.0" layoutY="270.0" prefHeight="25.0" prefWidth="164.0" />
-    <ComboBox fx:id="StatusCB" layoutX="193.0" layoutY="314.0" onAction="#StatusCBAction" prefHeight="25.0" prefWidth="164.0">
+    <TextField fx:id="PlateNumberTF" layoutX="193.0" layoutY="139.0" prefHeight="25.0" prefWidth="141.0" />
+    <TextField fx:id="ManufactureDate" editable="false" layoutX="193.0" layoutY="184.0" prefHeight="25.0" prefWidth="141.0" />
+    <TextField fx:id="ModelTF" layoutX="193.0" layoutY="228.0" prefHeight="25.0" prefWidth="141.0" />
+    <TextField fx:id="OdometerTF" layoutX="193.0" layoutY="270.0" prefHeight="25.0" prefWidth="141.0" />
+    <ComboBox fx:id="StatusCB" layoutX="193.0" layoutY="314.0" onAction="#StatusCBAction" prefHeight="25.0" prefWidth="141.0">
         <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="Available For Rent" />
@@ -25,11 +25,10 @@
           </items>
         </ComboBox>
     <Label layoutX="47.0048828125" layoutY="90.5" text="Vehicle Class" />
-    <ComboBox layoutX="193.0" layoutY="87.0" onAction="#VehicleClass" prefHeight="25.0" prefWidth="164.0" />
     <Label layoutX="47.0048828125" layoutY="46.5" text="Vehicle Type" />
     <Button alignment="CENTER" layoutX="537.0" layoutY="403.0" mnemonicParsing="false" onAction="#UpdateVehicleButtonAction" prefHeight="25.0" prefWidth="105.0" text="Update" />
-    <Label disable="true" layoutX="417.0" layoutY="318.0" text="Selling Price" />
-    <TextField disable="true" layoutX="503.0" layoutY="314.0" prefHeight="25.0" prefWidth="141.0" />
+    <Label fx:id="SellingPriceLabel" disable="true" layoutX="417.0" layoutY="318.0" text="Selling Price" />
+    <TextField fx:id="SellingPriceTF" disable="true" layoutX="503.0" layoutY="314.0" prefHeight="25.0" prefWidth="141.0" />
     <Button alignment="CENTER" layoutX="38.0" layoutY="403.0" mnemonicParsing="false" onAction="#BackToSearchButtonAction" prefHeight="25.0" prefWidth="116.0" text="Back to Search" />
-    <TextField editable="false" layoutX="193.0" layoutY="43.0" prefHeight="25.0" prefWidth="164.0" />
+    <TextField fx:id="VehicleTypeTF" editable="false" layoutX="193.0" layoutY="43.0" prefHeight="25.0" prefWidth="141.0" /><TextField fx:id="VehicleClassTF" editable="false" layoutX="193.0" layoutY="87.0" prefHeight="25.0" prefWidth="141.0" />
 </children></AnchorPane>

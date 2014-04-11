@@ -164,7 +164,7 @@ public class VehicleSearchFXMLController implements Initializable {
     private void ModifyVehicleButtonAction(ActionEvent event) throws IOException{
         if(!VehicleSearchTable.getSelectionModel().isEmpty())
         {
-            Vehicle modifyVehicle = (Vehicle) VehicleSearchTable.getSelectionModel().getSelectedItem();
+            VehicleNavigator.Modifyvehicle = (Vehicle) VehicleSearchTable.getSelectionModel().getSelectedItem();
             VehicleNavigator.loadVista(VehicleNavigator.MODIFYVEHICLE); 
         }
         else

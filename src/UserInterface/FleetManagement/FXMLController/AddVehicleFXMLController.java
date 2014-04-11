@@ -79,6 +79,10 @@ public class AddVehicleFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         vehicleType = "CAR";
+        VehicleCtrl vehicleControl = new VehicleCtrl();
+        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
+        VehicleClassCB.getItems().clear();
+        VehicleClassCB.setItems(list);
     }
 
     @FXML
