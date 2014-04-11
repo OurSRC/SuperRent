@@ -243,5 +243,13 @@ public class ReservationInfo {
     public void setReservationStatus(STATUS reservationStatus) {
         this.reservationStatus = reservationStatus;
     }
+    
+    public void setReservationStatus(String reservationStatus) {
+        if (reservationStatus == null) {
+            this.reservationStatus = null;
+        } else {
+            this.reservationStatus = STATUS.valueOf(reservationStatus);
+        }
+    }
 
 }
