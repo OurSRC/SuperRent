@@ -60,7 +60,7 @@ public class BranchDaoTest {
     @Test
     public void test1_AddDelete() throws DaoException {
         BranchDao dao = new  BranchDao();
-        Branch entity = new Branch("testBranch", "12345678", "At Paradise2");
+        Branch entity = new Branch("testBranch", "1234", "At Paradise2");
         
         boolean suc;
         suc = dao.add(entity);

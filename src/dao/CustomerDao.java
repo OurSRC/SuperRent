@@ -74,6 +74,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         Customer customer = null;
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
@@ -187,6 +188,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 }
             }
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -222,6 +224,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 add_user = true;    // insert user success
             }
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             if (add_user) {     // insert user success but insert customer failed
@@ -248,6 +251,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             }
 
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
             if (cust.getUsername() != null) {   // delete user if username exist
                 UserDao udao = new UserDao();

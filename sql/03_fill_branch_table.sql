@@ -1,8 +1,12 @@
 INSERT INTO `super_rent`.`branch`
-(`BranchName`,
+(
+`BranchId`,
+`BranchName`,
 `BranchPhone`,
 `BranchAddress`)
 VALUES
-("Main Branch",
+(
+1,
+"Main Branch",
 "12345678",
 "everywhere");

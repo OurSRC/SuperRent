@@ -34,6 +34,7 @@ public class UserDao implements GenericDao<User, String> {
 
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
@@ -59,6 +60,7 @@ public class UserDao implements GenericDao<User, String> {
 
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,6 +79,7 @@ public class UserDao implements GenericDao<User, String> {
 
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,6 +102,7 @@ public class UserDao implements GenericDao<User, String> {
                 .toString();
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);

@@ -26,7 +26,8 @@ import org.junit.Test;
  */
 public class CustomerDaoTest {
     
-    private static final String cname = "customer";
+    private static final String cname1 = "customer1";
+    private static final String cname2 = "customer2";
 
     public CustomerDaoTest() {
     }
@@ -43,16 +44,16 @@ public class CustomerDaoTest {
     public void setUp() throws DaoException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Customer csmt = null;
+        Customer csmt1 = null;
         Customer csmt2 = null;
         try {
-            csmt = new Customer(cname, "customer", "1234567", "No.111, ABC road", "firstName", "middleName", "lastname", "customer@nowhere.com", "NA", false, 0, sdf.parse("2010-12-31"));
-            csmt2 = new Customer("customer2", "customer2", "12345678", "No.111, ABC road", "firstName", "middleName", "lastname", "customer@nowhere.com", "NA", false, 0, sdf.parse("2010-12-31"));
+            csmt1 = new Customer(cname1, cname1, "1234568", "No.111, ABC road", "firstName", "middleName", "lastname", "customer@nowhere.com", "NA", false, 0, sdf.parse("2010-12-31"));
+            csmt2 = new Customer(cname2, cname2, "1234569", "No.111, ABC road", "firstName", "middleName", "lastname", "customer@nowhere.com", "NA", false, 0, sdf.parse("2010-12-31"));
         } catch (ParseException ex) {
             Logger.getLogger(LoginCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
         CustomerDao cDAO = new CustomerDao();
-        cDAO.add(csmt);
+        cDAO.add(csmt1);
         cDAO.add(csmt2);
 
     }
@@ -61,9 +62,9 @@ public class CustomerDaoTest {
     public void tearDown() throws DaoException {
 
         CustomerDao cDAO = new CustomerDao();
-        Customer customer = cDAO.findByUsername(cname);
-        cDAO.delete(customer);
-        Customer customer2 = cDAO.findByUsername("customer2");
+        Customer customer1 = cDAO.findByUsername(cname1);
+        cDAO.delete(customer1);
+        Customer customer2 = cDAO.findByUsername(cname2);
         cDAO.delete(customer2);
 
     }
@@ -84,7 +85,7 @@ public class CustomerDaoTest {
         Customer result = instance.find(customerID);
         assertEquals(result.getCustomerId(), 50);
         assertEquals(result.getPhone(), "1234567");
-        assertEquals(result.getUsername(), cname);
+        assertEquals(result.getUsername(), cname1);
         assertEquals(result.getPassword(), "customer");
         assertEquals(result.getType(), User.TYPE.CUSTOMER);
 
@@ -96,12 +97,12 @@ public class CustomerDaoTest {
     @Test
     public void testFindByUsername() throws Exception {
         System.out.println("findByUsername");
-        String username = cname;
+        String username = cname1;
         CustomerDao instance = new CustomerDao();
         Customer customer = instance.findByUsername(username);
-        assertEquals("customer", customer.getUsername());
-        assertEquals("customer", customer.getPassword());
-        assertEquals("1234567", customer.getPhone());
+        assertEquals(cname1, customer.getUsername());
+        assertEquals(cname1, customer.getPassword());
+        assertEquals("1234568", customer.getPhone());
         assertEquals("firstName", customer.getFirstName());
     }
 
@@ -111,12 +112,12 @@ public class CustomerDaoTest {
     @Test
     public void testFindByPhone() throws Exception {
         System.out.println("findByPhone");
-        String phone = "1234567";
+        String phone = "1234568";
         CustomerDao instance = new CustomerDao();
         Customer customer = instance.findByPhone(phone);
-        assertEquals(cname, customer.getUsername());
-        assertEquals("customer", customer.getPassword());
-        assertEquals("1234567", customer.getPhone());
+        assertEquals(cname1, customer.getUsername());
+        assertEquals(cname1, customer.getPassword());
+        assertEquals(phone, customer.getPhone());
         assertEquals("firstName", customer.getFirstName());
     }
 
@@ -126,58 +127,55 @@ public class CustomerDaoTest {
     @Test
     public void testUpdate() throws DaoException {
         System.out.println("update");
-        Customer customer = null;
+        Customer customer1 = null;
         CustomerDao instance = new CustomerDao();
         UserDao udao = new UserDao();
-        customer = instance.findByUsername(cname);
-        assertEquals("firstName", customer.getFirstName());
-        assertEquals("customer", customer.getUsername());
-        assertEquals("customer", customer.getPassword());
-        
-        
+        customer1 = instance.findByUsername(cname1);
+        assertEquals("firstName", customer1.getFirstName());
+        assertEquals(cname1, customer1.getUsername());
+        assertEquals(cname1, customer1.getPassword());
 
         // update name
-        customer.setFirstName("new name");
-        instance.update(customer);
-        customer = instance.findByUsername(cname);
-        assertEquals("new name", customer.getFirstName());
+        customer1.setFirstName("new name");
+        instance.update(customer1);
+        customer1 = instance.findByUsername(cname1);
+        assertEquals("new name", customer1.getFirstName());
 
         //update password
-        customer.setPassword("new pass");
-        instance.update(customer);
-        customer = instance.findByUsername(cname);
-        assertEquals("new pass", customer.getPassword());
+        customer1.setPassword("new pass");
+        instance.update(customer1);
+        customer1 = instance.findByUsername(cname1);
+        assertEquals("new pass", customer1.getPassword());
         
         // update username
-        customer.setUsername("new username");
-        instance.update(customer);
-        customer = instance.findByUsername("new username");
-        assertEquals("new username", customer.getUsername());
-        assertEquals("new pass", customer.getPassword());
-        assertEquals("1234567", customer.getPhone());
+        customer1.setUsername("new username");
+        instance.update(customer1);
+        customer1 = instance.findByUsername("new username");
+        assertEquals("new username", customer1.getUsername());
+        assertEquals("new pass", customer1.getPassword());
+        assertEquals("1234568", customer1.getPhone());
         // old username has need deleted
-        assertEquals(null, udao.find("customer"));
+        assertEquals(null, udao.find(cname1));
         
-        customer.setUsername(cname);
-        instance.update(customer);
+        customer1.setUsername(cname1);
+        instance.update(customer1);
 
-        
         // test to update existing username 
         boolean thrown = false;
         try {
-            customer.setUsername("customer2");
-            instance.update(customer);
+            customer1.setUsername(cname2);
+            instance.update(customer1);
         } catch (DaoException ex) {
             thrown = true;
         }
         assertTrue(thrown);
-        customer.setUsername("customer");
+        customer1.setUsername(cname1);
         
         // test to update non unique phone number
         thrown = false;
         try {
-            customer.setPhone("12345678");
-            instance.update(customer);
+            customer1.setPhone("1234569");
+            instance.update(customer1);
         } catch (DaoException ex) {
             thrown = true;
         }
@@ -198,7 +196,7 @@ public class CustomerDaoTest {
         String cname2 = "another customername";
 
         try {
-            customer = new Customer(cname2, "customer2", "123456789", "No.111, ABC road", "firstName", "middleName", "lastname", "customer@nowhere.com", "NA", false, 0, sdf.parse("2010-12-31"));
+            customer = new Customer(cname2, cname2, "123456789", "No.111, ABC road", "firstName", "middleName", "lastname", "customer@nowhere.com", "NA", false, 0, sdf.parse("2010-12-31"));
         } catch (ParseException ex) {
             Logger.getLogger(CustomerDaoTest.class.getName()).log(Level.SEVERE, null, ex);
         }

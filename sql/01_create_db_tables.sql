@@ -1,3 +1,5 @@
+DROP DATABASE `super_rent`;	/*Add by Eli*/
+
 CREATE DATABASE  IF NOT EXISTS `super_rent` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `super_rent`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)

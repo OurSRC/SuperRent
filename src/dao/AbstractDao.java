@@ -45,6 +45,7 @@ public abstract class AbstractDao<T> {
 
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
             ans = true;
         } catch (SQLException ex) {
@@ -72,6 +73,7 @@ public abstract class AbstractDao<T> {
 
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
             ans = true;
         } catch (SQLException ex) {
@@ -102,6 +104,7 @@ public abstract class AbstractDao<T> {
         System.out.println(sql);
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             int ret = stmt.executeUpdate(sql);
             if (ret == 0) {
                 ans = false;
@@ -136,6 +139,7 @@ public abstract class AbstractDao<T> {
 
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
             ans = true;
         } catch (SQLException ex) {
@@ -161,6 +165,7 @@ public abstract class AbstractDao<T> {
 
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
@@ -192,6 +197,7 @@ public abstract class AbstractDao<T> {
 
         try {
             Statement stmt = DbConn.getStmt();
+            System.out.println("SQL:" + sql);
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
