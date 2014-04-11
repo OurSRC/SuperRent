@@ -67,7 +67,7 @@ public class EquipmentTypeDaoTest {
        etDao.delete(storedType);
     }
     private EquipmentType getEquipmentTypeObject(){
-        EquipmentType type = new EquipmentType("SomName",15,16);//
+        EquipmentType type = new EquipmentType("SomName",15,16);
         type.setDailyRate(15);
         type.setHourlyRate(16);
         type.setTypeName("SomName");
