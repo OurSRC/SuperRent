@@ -193,4 +193,20 @@ public class VehicleCtrl {
     public ArrayList<String> getTruckType() {
         return getSubVehicleType(VehicleClass.TYPE.Truck);
     }
+    
+    public VehicleClass.TYPE getVehicleTypeByClassName(String className){
+        VehicleClassDao classDAO = new VehicleClassDao();
+        VehicleClass vehicleClass = null;
+        try {
+            vehicleClass = classDAO.findByName(className);
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        if( vehicleClass!=null ){
+            return vehicleClass.getVehicleType();
+        }else{
+            return null;
+        }
+    }
 }
