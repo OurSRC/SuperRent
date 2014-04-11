@@ -21,7 +21,7 @@ public class BranchDao extends AbstractDao<Branch> {
     protected static final String tb_name = "branch";
 
     protected static final AttributeParser ap[] = {
-        new IntParser("BranchID", "BranchID"),
+        new IntParser("BranchId", "BranchID"),
         new StringParser("BranchName", "BranchName"),
         new StringParser("BranchPhone", "BranchPhone"),
         new StringParser("BranchAddress", "BranchAddress")

@@ -28,7 +28,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
     private static final String tb_name = "customer";
 
     private static final AttributeParser ap[] = {
-        new IntParser("CustomerID", "CustomerId"),
+        new IntParser("CustomerId", "CustomerId"),
         new StringParser("PhoneNo", "Phone"),
         new StringParser("FirstName", "FirstName"),
         new StringParser("MiddleName", "MiddleName"),

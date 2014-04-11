@@ -40,7 +40,7 @@ public class VehicleDao extends AbstractDao<Vehicle> {
     public ArrayList<Vehicle> findAvailableForRent() throws DaoException {
         String cond;
         cond = "Status=" + SqlBuilder.wrapInt(Vehicle.STATUS.FORRENT.getValue());
-        cond += " AND RentStatus=" + SqlBuilder.wrapInt(Vehicle.RENTSTATUS.AVAILABLE.getValue());
+        cond += " AND RentStatus=" + SqlBuilder.wrapInt(Vehicle.RENTSTATUS.IDLE.getValue());
         return find(cond);
     }
 

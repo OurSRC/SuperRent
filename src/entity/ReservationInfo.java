@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
+
 import java.util.Date;
 
 /**
@@ -12,6 +12,24 @@ import java.util.Date;
  * @author Jingchuan Chen
  */
 public class ReservationInfo {
+
+    public enum STATUS {
+
+        PENDING(1),
+        RENTED(2),
+        CANCELED(3);
+
+        private int value;
+
+        private STATUS(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
     private int reservationInfoId;
     private int branchId;
     private Date reserveTime;
@@ -24,6 +42,11 @@ public class ReservationInfo {
     private int vHourlyRate;
     private int vDailyRate;
     private int vWeeklyRate;
+    private String reservationNo;
+    private STATUS reservationStatus;
+
+    public ReservationInfo() {
+    }
 
     /**
      * @return the reservationInfoId
@@ -192,7 +215,33 @@ public class ReservationInfo {
     public void setvWeeklyRate(int vWeeklyRate) {
         this.vWeeklyRate = vWeeklyRate;
     }
-    
-    
-    
+
+    /**
+     * @return the reservationNo
+     */
+    public String getReservationNo() {
+        return reservationNo;
+    }
+
+    /**
+     * @param reservationNo the reservationNo to set
+     */
+    public void setReservationNo(String reservationNo) {
+        this.reservationNo = reservationNo;
+    }
+
+    /**
+     * @return the reservationStatus
+     */
+    public STATUS getReservationStatus() {
+        return reservationStatus;
+    }
+
+    /**
+     * @param reservationStatus the reservationStatus to set
+     */
+    public void setReservationStatus(STATUS reservationStatus) {
+        this.reservationStatus = reservationStatus;
+    }
+
 }

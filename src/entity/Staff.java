@@ -19,7 +19,7 @@ public class Staff extends User {
     public enum STATUS {
 
         ACTIVE(1),
-        DISACTIVE(2);
+        DEACTIVATED(2);
 
         private int value;
 
@@ -73,7 +73,6 @@ public class Staff extends User {
         this.phone = phone;
         this.status = status;
         this.staffType = staffType;
-
     }
 
     public Staff() {

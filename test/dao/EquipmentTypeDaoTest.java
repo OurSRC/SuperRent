@@ -64,6 +64,7 @@ public class EquipmentTypeDaoTest {
        etDao.update(type);
        EquipmentType storedType = etDao.findEquipmentTypeByTypename(type.getTypeName());
        assertEquals(type.getDailyRate(), storedType.getDailyRate());
+       etDao.delete(storedType);
     }
     private EquipmentType getEquipmentTypeObject(){
         EquipmentType type = new EquipmentType("SomName",15,16);//

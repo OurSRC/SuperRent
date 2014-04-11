@@ -43,7 +43,7 @@ public class StaffDaoTest {
     @BeforeClass
     public static void setUpClass() throws DaoException {
         BranchDao bdao = new BranchDao();
-        Branch b = new Branch(branchName, "21837419", "some addr");
+        Branch b = new Branch(branchName, "21837419", "some addr testbranch");
         bdao.add(b);
         b = bdao.findByName(branchName);
         branchId = b.getBranchID();
