@@ -37,8 +37,8 @@ public class EquipmentDaoTest {
     public void setUpClass() throws DaoException {
 
         branch = null;
-        String branchName = "someName";
-        Branch b = new Branch(branchName, "12313123", "some addr");
+        String branchName = "someName test equip";
+        Branch b = new Branch(branchName, "1231312", "some addr test equip");
         boolean suc = bdao.add(b);
         if(suc){
             branch = bdao.findByName(branchName);
@@ -53,11 +53,7 @@ public class EquipmentDaoTest {
 //    
      @After
     public void tearDown() throws DaoException {
-        EquipmentDao dao = new EquipmentDao();
-        Equipment entity;
-        entity = new Equipment("SomeType",Equipment.STATUS.AVAILABLE,
-                "SomeManufacture",new Date(),"someMode",branch.getBranchID());
-        dao.delete(entity);
+        bdao.delete(branch);
         
     }
 

@@ -73,7 +73,6 @@ public class UserDao implements GenericDao<User, String> {
         SqlBuilder qb = new SqlBuilder();
         qb.insert(tb_name);
         qb.values(EntityParser.wrapEntity(value, ap));    
-        qb.values("NULL");  // Last login in database, not handled in entity obj
         String sql = qb.toString();
 
         try {

@@ -92,7 +92,7 @@ public class AddVehicleFXMLController implements Initializable {
                 manufacturingDate = DateClass.getDateObject(ManufacturingDatePicker.getValue());
                 odometerReading = Integer.parseInt(OdometerReadingTF.getText());
                 System.out.println(plateNumber + " " + vehicleClass + " " + Model + " " + odometerReading + " " + manufacturingDate.toString());
-                Vehicle newVehicle = new Vehicle(plateNumber, manufacturingDate, Model, odometerReading, 1, Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.AVAILABLE, null, vehicleClass, 0);
+                Vehicle newVehicle = new Vehicle(plateNumber, manufacturingDate, Model, odometerReading, 1, Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0);
 
                 VehicleCtrl newVehicleCtrl = new VehicleCtrl();
                 Vehicle returnVehicle = newVehicleCtrl.createVehicle(newVehicle);

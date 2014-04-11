@@ -25,11 +25,14 @@ DROP TABLE IF EXISTS `branch`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `branch` (
-  `BranchID` int(11) NOT NULL AUTO_INCREMENT,
+  `BranchId` int(11) NOT NULL AUTO_INCREMENT,
   `BranchName` varchar(100) NOT NULL,
   `BranchPhone` varchar(15) NOT NULL,
   `BranchAddress` varchar(200) NOT NULL,
-  PRIMARY KEY (`BranchID`)
+  PRIMARY KEY (`BranchId`),
+  UNIQUE KEY `BranchName_UNIQUE` (`BranchName`),
+  UNIQUE KEY `BranchPhone_UNIQUE` (`BranchPhone`),
+  UNIQUE KEY `BranchAddress_UNIQUE` (`BranchAddress`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,12 +44,28 @@ DROP TABLE IF EXISTS `buy_insurance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `buy_insurance` (
-  `InsuranceId` int(11) NOT NULL DEFAULT '0',
-  `ReservationInfoId` int(11) NOT NULL DEFAULT '0',
+  `InsuranceId` int(11) NOT NULL,
+  `ReservationInfoId` int(11) NOT NULL,
   PRIMARY KEY (`InsuranceId`,`ReservationInfoId`),
   KEY `buy_insur_res_fk_idx` (`ReservationInfoId`),
-  CONSTRAINT `buy_insur_res_fk` FOREIGN KEY (`ReservationInfoId`) REFERENCES `reservation_info` (`ReservationInfoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `buy_insur_insur_fk` FOREIGN KEY (`InsuranceId`) REFERENCES `insurance` (`InsuranceId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `buy_insur_insur_fk` FOREIGN KEY (`InsuranceId`) REFERENCES `insurance` (`InsuranceId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `buy_insur_res_fk` FOREIGN KEY (`ReservationInfoId`) REFERENCES `reservation_info` (`ReservationInfoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `creditcard`
+--
+
+DROP TABLE IF EXISTS `creditcard`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `creditcard` (
+  `CreditCardNo` varchar(16) NOT NULL,
+  `ExpireDate` date NOT NULL,
+  `CardHolderName` varchar(45) NOT NULL,
+  PRIMARY KEY (`CreditCardNo`),
+  UNIQUE KEY `CreditCardNo_UNIQUE` (`CreditCardNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -58,7 +77,7 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
-  `CustomerID` int(11) NOT NULL AUTO_INCREMENT,
+  `CustomerId` int(11) NOT NULL AUTO_INCREMENT,
   `PhoneNo` varchar(45) NOT NULL,
   `FirstName` varchar(45) NOT NULL,
   `MiddleName` varchar(45) DEFAULT NULL,
@@ -70,11 +89,11 @@ CREATE TABLE `customer` (
   `MemberPoint` int(11) DEFAULT NULL,
   `MembershipExpireDate` date DEFAULT NULL,
   `Username` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`CustomerID`),
+  PRIMARY KEY (`CustomerId`),
   UNIQUE KEY `PhoneNo_UNIQUE` (`PhoneNo`),
   KEY `Username_fk_idx` (`Username`),
   CONSTRAINT `customer_username_fk` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,12 +110,12 @@ CREATE TABLE `equipment` (
   `Manufactor` varchar(45) DEFAULT NULL,
   `ManufactureDate` date DEFAULT NULL,
   `Mode` varchar(45) DEFAULT NULL,
-  `BranchID` int(11) NOT NULL,
+  `BranchId` int(11) NOT NULL,
   PRIMARY KEY (`EquipmentId`),
-  KEY `equipment_branch_fk_idx` (`BranchID`),
+  KEY `equipment_branch_fk_idx` (`BranchId`),
   KEY `equipment_equipmenttype_fk_idx` (`EquipmentType`),
-  CONSTRAINT `equipment_etype_fk` FOREIGN KEY (`EquipmentType`) REFERENCES `equipment_type` (`TypeName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `equipment_branch_fk` FOREIGN KEY (`BranchID`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `equipment_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `equipment_etype_fk` FOREIGN KEY (`EquipmentType`) REFERENCES `equipment_type` (`TypeName`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,19 +152,84 @@ CREATE TABLE `insurance` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `reservation`
+-- Table structure for table `pay_memberfee`
 --
 
-DROP TABLE IF EXISTS `reservation`;
+DROP TABLE IF EXISTS `pay_memberfee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reservation` (
-  `ReservationNo` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pay_memberfee` (
+  `PaymentId` int(11) NOT NULL,
+  `CustomerId` int(11) NOT NULL,
+  PRIMARY KEY (`PaymentId`,`CustomerId`),
+  KEY `paymemberfee_customer_fk_idx` (`CustomerId`),
+  CONSTRAINT `paymemberfee_customer_fk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `paymemberfee_payment_fk` FOREIGN KEY (`PaymentId`) REFERENCES `payment` (`PaymentId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `pay_rental`
+--
+
+DROP TABLE IF EXISTS `pay_rental`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pay_rental` (
+  `ContractNo` int(11) NOT NULL,
+  `PaymentId` int(11) NOT NULL,
+  PRIMARY KEY (`ContractNo`,`PaymentId`),
+  KEY `payrental_payment_fk_idx` (`PaymentId`),
+  CONSTRAINT `payrental_payment_fk` FOREIGN KEY (`PaymentId`) REFERENCES `payment` (`PaymentId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `payrental_return_fk` FOREIGN KEY (`ContractNo`) REFERENCES `return` (`ContractNo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment` (
+  `PaymentId` int(11) NOT NULL AUTO_INCREMENT,
+  `Amount` varchar(45) NOT NULL,
+  `Time` datetime NOT NULL,
+  `Method` enum('CASH','CREDITCARD','POINT') NOT NULL,
+  `Point` int(11) DEFAULT NULL,
+  `CreditCardNo` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`PaymentId`),
+  KEY `payment_creditcard_idx` (`CreditCardNo`),
+  CONSTRAINT `payment_creditcard` FOREIGN KEY (`CreditCardNo`) REFERENCES `creditcard` (`CreditCardNo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `rent`
+--
+
+DROP TABLE IF EXISTS `rent`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rent` (
+  `ContractNo` int(11) NOT NULL AUTO_INCREMENT,
   `ReservationInfoId` int(11) NOT NULL,
-  `Status` enum('VALID','CANCELLED') NOT NULL,
-  PRIMARY KEY (`ReservationNo`),
-  KEY `res_resinfo_fk_idx` (`ReservationInfoId`),
-  CONSTRAINT `res_resinfo_fk` FOREIGN KEY (`ReservationInfoId`) REFERENCES `reservation_info` (`ReservationInfoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `VehicleNo` int(11) NOT NULL,
+  `FuelLevel` int(11) NOT NULL,
+  `Odometer` int(11) NOT NULL,
+  `CreditCardNo` varchar(16) NOT NULL,
+  `StaffId` int(11) NOT NULL,
+  `Time` datetime NOT NULL,
+  PRIMARY KEY (`ContractNo`),
+  UNIQUE KEY `ReservationInfoId_UNIQUE` (`ReservationInfoId`),
+  KEY `rent_vehicle_fk_idx` (`VehicleNo`),
+  KEY `rent_creditcard_idx` (`CreditCardNo`),
+  KEY `rent_staff_idx` (`StaffId`),
+  CONSTRAINT `rent_creditcard` FOREIGN KEY (`CreditCardNo`) REFERENCES `creditcard` (`CreditCardNo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `rent_resinfo_fk` FOREIGN KEY (`ReservationInfoId`) REFERENCES `reservation_info` (`ReservationInfoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `rent_staff` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `rent_vehicle_fk` FOREIGN KEY (`VehicleNo`) REFERENCES `vehicle` (`VehicleNo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -165,18 +249,20 @@ CREATE TABLE `reservation_info` (
   `ReturnTime` datetime NOT NULL,
   `CustomerId` int(11) NOT NULL,
   `StaffId` int(11) NOT NULL,
-  `VehicleClassName` varchar(45) NOT NULL,
-  `vDailyRate` int(11) NOT NULL,
-  `vHourlyRate` int(11) NOT NULL,
-  `vWeeklyRate` int(11) NOT NULL,
+  `VehicleClass` varchar(45) NOT NULL,
+  `VDailyRate` int(11) NOT NULL,
+  `VHourlyRate` int(11) NOT NULL,
+  `VWeeklyRate` int(11) NOT NULL,
+  `ReservationNo` varchar(45) DEFAULT NULL,
+  `ReservationStatus` enum('PENDING','RENTED','CANCELED') DEFAULT NULL,
   PRIMARY KEY (`ReservationInfoId`),
   KEY `resinfo_branch_idx` (`BranchId`),
   KEY `resinfo_customer_idx` (`CustomerId`),
   KEY `resinfo_staff_idx` (`StaffId`),
-  KEY `refinfo_vclass_fk_idx` (`VehicleClassName`),
-  CONSTRAINT `refinfo_vclass_fk` FOREIGN KEY (`VehicleClassName`) REFERENCES `vehicle_class` (`ClassName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `refinfo_vclass_fk_idx` (`VehicleClass`),
+  CONSTRAINT `refinfo_customer_fk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `refinfo_vclass_fk` FOREIGN KEY (`VehicleClass`) REFERENCES `vehicle_class` (`ClassName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `resinfo_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `resinfo_customer_fk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `resinfo_staff_fk` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -191,12 +277,33 @@ DROP TABLE IF EXISTS `reserve_equipment`;
 CREATE TABLE `reserve_equipment` (
   `ReservationInfoId` int(11) NOT NULL DEFAULT '0',
   `EquipmentType` varchar(45) NOT NULL DEFAULT '0',
-  `eHourlyRate` int(11) NOT NULL,
-  `eDailyRate` int(11) NOT NULL,
+  `EHourlyRate` int(11) NOT NULL,
+  `EDailyRate` int(11) NOT NULL,
   PRIMARY KEY (`ReservationInfoId`,`EquipmentType`),
   KEY `reserve_equipment_equip_fk_idx` (`EquipmentType`),
   CONSTRAINT `reserve_equipment_equip_fk` FOREIGN KEY (`EquipmentType`) REFERENCES `equipment_type` (`TypeName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `reserve_equipment_reserve_fk` FOREIGN KEY (`ReservationInfoId`) REFERENCES `reservation_info` (`ReservationInfoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `return`
+--
+
+DROP TABLE IF EXISTS `return`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `return` (
+  `ContractNo` int(11) NOT NULL,
+  `ReturnTime` datetime NOT NULL,
+  `Price` int(11) NOT NULL,
+  `FuelLevel` int(11) NOT NULL,
+  `Odometer` int(11) NOT NULL,
+  `StaffId` int(11) NOT NULL,
+  PRIMARY KEY (`ContractNo`),
+  KEY `return_staff_fk_idx` (`StaffId`),
+  CONSTRAINT `rent_return_fk` FOREIGN KEY (`ContractNo`) REFERENCES `rent` (`ContractNo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `return_staff_fk` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,17 +315,17 @@ DROP TABLE IF EXISTS `staff`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `staff` (
-  `StaffID` int(11) NOT NULL AUTO_INCREMENT,
+  `StaffId` int(11) NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(45) NOT NULL,
   `MiddleName` varchar(45) DEFAULT NULL,
   `LastName` varchar(45) NOT NULL,
   `Email` varchar(45) NOT NULL,
   `PhoneNo` varchar(15) NOT NULL,
   `Type` enum('CLERK','MANAGER','ADMIN') NOT NULL,
-  `Status` enum('ACTIVE','DISACTIVE') NOT NULL,
+  `Status` enum('ACTIVE','DEACTIVATED') NOT NULL,
   `Username` varchar(45) NOT NULL,
   `BranchID` int(11) NOT NULL,
-  PRIMARY KEY (`StaffID`),
+  PRIMARY KEY (`StaffId`),
   KEY `Username_fk_idx` (`Username`),
   KEY `staff_branck_fk_idx` (`BranchID`),
   CONSTRAINT `staff_branck_fk` FOREIGN KEY (`BranchID`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE CASCADE,
@@ -273,17 +380,17 @@ CREATE TABLE `vehicle` (
   `ManufactureDate` date DEFAULT NULL,
   `Mode` varchar(45) DEFAULT NULL,
   `Odometer` int(11) DEFAULT NULL,
-  `BranchID` int(11) NOT NULL,
+  `BranchId` int(11) NOT NULL,
   `Status` enum('FORRENT','FORSALE') DEFAULT NULL,
-  `RentStatus` enum('AVAILABLE','UNAVAILABLE') DEFAULT NULL,
+  `RentStatus` enum('IDLE','RENTED','UNAVAILABLE') DEFAULT NULL,
   `ClassName` varchar(45) NOT NULL,
   `Price` int(11) DEFAULT NULL,
   `SellStatus` enum('FORSALE','SOLD') DEFAULT NULL,
   PRIMARY KEY (`VehicleNo`),
   UNIQUE KEY `PlateNo_UNIQUE` (`PlateNo`),
-  KEY `vehicleforrent_branch_fk_idx` (`BranchID`),
+  KEY `vehicleforrent_branch_fk_idx` (`BranchId`),
   KEY `vehicleforrent_class_fk_idx` (`ClassName`),
-  CONSTRAINT `vehicleforrent_branch_fk` FOREIGN KEY (`BranchID`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `vehicleforrent_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `vehicleforrent_class_fk` FOREIGN KEY (`ClassName`) REFERENCES `vehicle_class` (`ClassName`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -315,4 +422,4 @@ CREATE TABLE `vehicle_class` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-06 12:31:20
+-- Dump completed on 2014-04-10 20:39:58

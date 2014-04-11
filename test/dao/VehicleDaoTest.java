@@ -39,7 +39,7 @@ public class VehicleDaoTest {
         vdao.add(vc);
         
         BranchDao bdao = new BranchDao();
-        Branch b = new Branch(branchName, "12313123", "some addr");
+        Branch b = new Branch(branchName, "12313", "some addr test vehicle");
         bdao.add(b);
         b = bdao.findByName(branchName);
         branchId = b.getBranchID();
@@ -65,11 +65,11 @@ public class VehicleDaoTest {
         Vehicle entity;
 
         entity = new Vehicle("357-ADF", new Date(), "Mimi Copper", 100, branchId, 
-                Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.AVAILABLE, 
+                Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, 
                 null, className, 0);
         dao.add(entity);
         entity = new Vehicle("357-ADG", new Date(), "BMW X5", 100, branchId, 
-                Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.AVAILABLE, 
+                Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, 
                 null, className, 0);
         dao.add(entity);
         entity = new Vehicle("357-ADH", new Date(), "GM", 100, branchId, 
