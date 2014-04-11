@@ -5,11 +5,14 @@
  */
 package dao;
 
+import entity.Branch;
 import entity.ReservationInfo;
 import entityParser.AttributeParser;
 import entityParser.DateParser;
 import entityParser.IntParser;
 import entityParser.StringParser;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -55,4 +58,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return new ReservationInfo();
     }
 
+    public ArrayList<ReservationInfo> countReservationBetween(String vehicleClass, Date pickUpTime, Date returnTime, Branch branch){
+        return null;
+    }
 }

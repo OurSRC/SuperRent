@@ -9,6 +9,8 @@ import dbconn.SqlBuilder;
 import entity.Vehicle;
 import entityParser.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class VehicleDao extends AbstractDao<Vehicle> {
 
@@ -77,4 +79,16 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return find(sql);
     }
     
+    public int countVehicle(Vehicle v){ //include int branchId
+        ArrayList<Vehicle> list = null;
+        try {
+            list = find(v);
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(list==null)
+            return 0;
+        else
+            return list.size();
+    }
 }

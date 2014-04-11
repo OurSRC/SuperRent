@@ -6,9 +6,13 @@
 
 package UserInterface.FleetManagement.FXMLController;
 
+import ControlObjects.BranchCtrl;
 import ControlObjects.VehicleCtrl;
 import SystemOperations.DateClass;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
+import entity.VehicleClass;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -24,8 +28,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
-import SystemOperations.DialogFX;
-import SystemOperations.DialogFX.Type;
 /**
  * FXML Controller class
  *
@@ -33,7 +35,7 @@ import SystemOperations.DialogFX.Type;
  */
 public class VehicleAvailabilityFXMLController implements Initializable {
     @FXML
-    private ComboBox<?> VehicleClass;
+    private ComboBox<?> ClassOfVehicle;
     @FXML
     private TableColumn<?, ?> HourlyRate;
     @FXML
@@ -73,7 +75,7 @@ public class VehicleAvailabilityFXMLController implements Initializable {
                         Date ReturnDate = DateClass.getDateTimeObject(ToDate,ToTime);
                         
                         
-                        String VehicleType = VehicleClass.getValue().toString();
+                        String VehicleType = ClassOfVehicle.getValue().toString();
                         System.out.println("Passing Parameters from VehicleAvailabilityFXMLController to Vehicle Control");
                         System.out.println("Vehicle Type : " + VehicleType);
                         System.out.println("PickUpDate : " + PickUpDate.toString());
@@ -83,8 +85,14 @@ public class VehicleAvailabilityFXMLController implements Initializable {
 
                         if(ReturnDate.after(PickUpDate) && PickUpDate.compareTo(ReturnDate)!=0)
                         {
+                            VehicleClass.TYPE type;
+                            if( VehicleType.compareTo("Car")==0 )
+                                type = VehicleClass.TYPE.Car;
+                            else
+                                type = VehicleClass.TYPE.Truck;
+                            
                         VehicleCtrl vehicleControl = new VehicleCtrl();
-                        ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability(VehicleType,PickUpDate,ReturnDate);
+                        ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability( type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch() );
                         ObservableList<String> list =  FXCollections.observableArrayList(AvailableVehicleTypes);
                         //AvailableVehicleTypeCB.getItems().clear();
                         //AvailableVehicleTypeCB.setItems(list);
@@ -139,7 +147,7 @@ public class VehicleAvailabilityFXMLController implements Initializable {
     {
         if(DateFromDatePicker.valueProperty().isNotNull().getValue()  
                 && DateToDatePicker.valueProperty().isNotNull().getValue()  
-                && VehicleClass.valueProperty().isNotNull().getValue()
+                && ClassOfVehicle.valueProperty().isNotNull().getValue()
                 && DateFromTime.valueProperty().isNotNull().getValue()
                 && DateToTime.valueProperty().isNotNull().getValue())
         {

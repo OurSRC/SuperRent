@@ -2,8 +2,10 @@ package ControlObjects;
 
 import SystemOperations.ErrorMsg;
 import dao.DaoException;
+import dao.ReservationInfoDao;
 import dao.VehicleClassDao;
 import dao.VehicleDao;
+import entity.Branch;
 import entity.Vehicle;
 import entity.VehicleClass;
 import java.util.ArrayList;
@@ -107,13 +109,25 @@ public class VehicleCtrl {
         return getList;
     }
 
-    public ArrayList<String> getVehicleAvailability(String vehicleType, Date pickUpTime, Date returnTime) {
-        VehicleDao vehicleDAO = new VehicleDao();
+    public ArrayList<String> getVehicleAvailability(VehicleClass.TYPE type, Date pickUpTime, Date returnTime, Branch branch) {
         ArrayList<String> ans = new ArrayList<String>();
-        ans.add("ECONOMY");
-        ans.add("COMPACT");
-        ans.add("MIDSIZE");
+        ArrayList<String> list = getSubVehicleType(type);
+        for(String vClass : list){
+            if( checkVehicleAvailability(vClass, pickUpTime, returnTime, branch) )
+                ans.add(vClass);
+        }
         return ans;
+    }
+    
+    public boolean checkVehicleAvailability(String vehicleClass, Date pickUpTime, Date returnTime, Branch branch) {
+        VehicleDao vDAO = new VehicleDao();
+        ReservationInfoDao rDAO = new ReservationInfoDao();
+        int vCount = vDAO.countVehicle( new Vehicle(null, null, null, 0, branch.getBranchID(), Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0) );
+        int rCount = rDAO.countReservationBetween(vehicleClass, pickUpTime, returnTime, branch).size();
+        if(vCount>rCount)
+            return true;
+        else
+            return false;
     }
     
     public boolean createVehicleClass(VehicleClass vehicleClass){

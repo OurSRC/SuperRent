@@ -48,6 +48,22 @@ public class ReservationInfo {
     public ReservationInfo() {
     }
 
+    public ReservationInfo(int branchId, Date reserveTime, Date pickupTime, Date returnTime, int estimatePrice, int customerId, int staffId, String vehicleClass, int vHourlyRate, int vDailyRate, int vWeeklyRate, String reservationNo, STATUS reservationStatus) {
+        this.branchId = branchId;
+        this.reserveTime = reserveTime;
+        this.pickupTime = pickupTime;
+        this.returnTime = returnTime;
+        this.estimatePrice = estimatePrice;
+        this.customerId = customerId;
+        this.staffId = staffId;
+        this.vehicleClass = vehicleClass;
+        this.vHourlyRate = vHourlyRate;
+        this.vDailyRate = vDailyRate;
+        this.vWeeklyRate = vWeeklyRate;
+        this.reservationNo = reservationNo;
+        this.reservationStatus = reservationStatus;
+    }
+
     /**
      * @return the reservationInfoId
      */
