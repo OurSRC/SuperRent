@@ -6,6 +6,7 @@
 package entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -16,7 +17,11 @@ public class Equipment {
     public enum STATUS {
 
         AVAILABLE,
-        UNAVAILABLE
+        UNAVAILABLE;
+
+        public int getValue() {
+            return this == AVAILABLE ? 1 : 0;
+        }
     };
     private int equipmentId;
     private String equipmentType;
@@ -79,6 +84,13 @@ public class Equipment {
     public void setStatus(STATUS status) {
         this.status = status;
     }
+    
+        /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = STATUS.valueOf(status);
+    }
 
     /**
      * @return the manufactor
@@ -134,6 +146,39 @@ public class Equipment {
      */
     public void setBranchId(int branchId) {
         this.branchId = branchId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.equipmentType);
+        hash = 83 * hash + Objects.hashCode(this.status);
+        hash = 83 * hash + Objects.hashCode(this.manufactor);
+        hash = 83 * hash + Objects.hashCode(this.manufactorDate);
+        hash = 83 * hash + Objects.hashCode(this.mode);
+        hash = 83 * hash + this.branchId;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Equipment other = (Equipment) obj;
+        if (!Objects.equals(this.equipmentType, other.equipmentType)) {
+            return false;
+        }
+        if (!Objects.equals(this.manufactor, other.manufactor)) {
+            return false;
+        }
+        if (!Objects.equals(this.mode, other.mode)) {
+            return false;
+        }
+        return true;
     }
 
 }
