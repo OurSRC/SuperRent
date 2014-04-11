@@ -7,6 +7,7 @@ package dao;
 
 import entity.Branch;
 import entity.Equipment;
+import entity.EquipmentType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -17,6 +18,7 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.*;
+
 /**
  *
  * @author Xi Yang
@@ -25,64 +27,64 @@ public class EquipmentDaoTest {
 
     private static EquipmentDao eDao = new EquipmentDao();
     private static BranchDao bdao = new BranchDao();
+    private static EquipmentTypeDao eTypeDao = new EquipmentTypeDao();
+    private static EquipmentType type = new EquipmentType("same2",15,16);
     private static Branch branch;
 
     @BeforeClass
-    public static void setUp() {
-    }
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    @Before
-    public void setUpClass() throws DaoException {
+    public static void setUpClass() throws DaoException {
 
         branch = null;
-        String branchName = "someName test equip";
-        Branch b = new Branch(branchName, "1231312", "some addr test equip");
+        String branchName = "someNassasdll";
+        Branch b = new Branch(branchName, "12313123", "some addr");
         boolean suc = bdao.add(b);
-        if(suc){
+        if (suc) {
             branch = bdao.findByName(branchName);
         }
-    }
-    
-//    @After
-//    public void tearDown() throws DaoException {
-//
-//        bdao.delete(branch);
-//    }
-//    
-     @After
-    public void tearDown() throws DaoException {
-        bdao.delete(branch);
         
+        eTypeDao.add(type);
+    }
+
+    @AfterClass
+    public static void tearDown() throws DaoException {
+       bdao.delete(branch);
+       eTypeDao.delete(type);
     }
 
     @Test
-    public void testCanCreate() {
-        Equipment e = new Equipment();
-
-        //eDao.add(create);
+    public void testCanCreateAndFindAndDelete()throws DaoException{
+        Equipment e = getAEquipmentObject();
+        assertTrue(eDao.add(e));
+        ArrayList<Equipment> alist = eDao.findEquipmentByType(e.getEquipmentType());
+        assertTrue(alist.contains(e));
+        clear(e);
+        assertFalse(eDao.findEquipmentByType(e.getEquipmentType()).contains(e));
+    }
+    
+    @Test
+    public void testUpdate() throws DaoException{
+        Equipment e = getAEquipmentObject();
+        eDao.add(e);
+        Equipment storedE = eDao.findEquipmentByType(e.getEquipmentType()).get(0);
+        String expected = "AnotherManufacture";
+        storedE.setManufactor(expected);
+        eDao.update(storedE);
+        Equipment updatedE = eDao.findEquipmentById(storedE.getEquipmentId());
+        assertEquals(updatedE.getManufactor(), expected);
+        eDao.delete(storedE);
     }
 
-    private Equipment createAEquipmentObject() throws DaoException {
-        Equipment e = new Equipment("SomeType",Equipment.STATUS.AVAILABLE,
-                "SomeManufacture",new Date(),"someMode",branch.getBranchID());
-        
-        EquipmentDao equipmentDAO = new EquipmentDao();
+    private Equipment getAEquipmentObject() throws DaoException {
+        Equipment e = new Equipment(type.getTypeName(), Equipment.STATUS.AVAILABLE,
+                "SomeManufacture", new Date(), "someMode", branch.getBranchID());
 
-        boolean suc = equipmentDAO.add(e);
-        assertTrue(suc);
-        ArrayList<Equipment> alist = equipmentDAO.findEquipmentByType(e.getEquipmentType());
-        assertTrue(alist!=null);
-        boolean found = false;
-        for (Equipment equipment : alist) {
-            if(equipment.getManufactor().compareTo(e.getManufactor())==0){
-                if(equipment.getMode().compareTo(e.getMode())==0)
-                    found = true;
-            }
-        }
-        assertTrue(found);
         return e;
+    }
+    private void clear(Equipment e)throws DaoException{
+        ArrayList<Equipment> alist = eDao.findEquipmentByType(e.getEquipmentType());
+        for (Equipment equipment : alist) {
+            eDao.delete(equipment);
+        }
     }
 
 }
