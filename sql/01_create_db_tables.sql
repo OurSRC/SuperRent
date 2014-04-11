@@ -1,4 +1,4 @@
-DROP DATABASE `super_rent`;	/*Add by Eli*/
+DROP DATABASE IF EXISTS `super_rent`;	/*Add by Eli*/
 
 CREATE DATABASE  IF NOT EXISTS `super_rent` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `super_rent`;
