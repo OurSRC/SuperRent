@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Jingchuan Chen
@@ -14,6 +16,14 @@ public class SupportEquipment {
     private String equipmentType;
     private String vehicleClass;
 
+    public SupportEquipment() {
+    }
+
+    public SupportEquipment(String EquipmentType, String VehicleClassName) {
+        this.equipmentType = EquipmentType;
+        this.vehicleClass = VehicleClassName;
+    }
+    
     /**
      * @return the equipmentType
      */
