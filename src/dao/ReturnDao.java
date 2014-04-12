@@ -10,7 +10,6 @@ import dbconn.SqlBuilder;
 import entity.Return;
 import entityParser.AttributeParser;
 import entityParser.IntParser;
-import entityParser.StringParser;
 import entityParser.DateParser;
 
 /**
@@ -30,8 +29,8 @@ public class ReturnDao extends AbstractDao<Return>{
         new IntParser("StaffId", "StaffId")
     };
     protected static final int[] pkIndex = {0};
-
     protected static final boolean pkIsAutoGen = false;
+    
     @Override
     protected Return getInstance() {
         return new Return();
