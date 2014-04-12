@@ -5,6 +5,7 @@
  */
 package dao;
 
+import dbconn.SqlBuilder;
 import entity.Branch;
 import entity.ReservationInfo;
 import entityParser.AttributeParser;
@@ -52,7 +53,17 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
     
     
 
-    public ArrayList<ReservationInfo> countReservationBetween(String vehicleClass, Date pickUpTime, Date returnTime, Branch branch){
-        return null;
+    public ArrayList<ReservationInfo> countReservationBetween(String vehicleClass, Date pickUpTime, 
+            Date returnTime, Branch branch) throws DaoException{
+        
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("PickUpTime <" + SqlBuilder.wrapDate(returnTime));
+        qb.cond("ReturnTime > " + SqlBuilder.wrapDate(pickUpTime));
+        qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
+        qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        String cond = qb.toString();
+        
+        return find(cond);
+        
     }
 }
