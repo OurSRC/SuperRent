@@ -15,9 +15,22 @@ public class Return {
     private int contractNo;
     private Date returnTime;
     private int price;
-    private int FuelLevel;
+    private int fuelLevel;
     private int odometer;
-    private int StaffId;
+    private int staffId;
+
+    public Return() {
+    }
+
+    public Return(int contractNo, Date returnTime, int price, int fuelLevel, 
+            int odometer, int staffId) {
+        this.contractNo = contractNo;
+        this.returnTime = returnTime;
+        this.price = price;
+        this.fuelLevel = fuelLevel;
+        this.odometer = odometer;
+        this.staffId = staffId;
+    }
 
     /**
      * @return the contractNo
@@ -65,14 +78,14 @@ public class Return {
      * @return the FuelLevel
      */
     public int getFuelLevel() {
-        return FuelLevel;
+        return fuelLevel;
     }
 
     /**
      * @param FuelLevel the FuelLevel to set
      */
     public void setFuelLevel(int FuelLevel) {
-        this.FuelLevel = FuelLevel;
+        this.fuelLevel = FuelLevel;
     }
 
     /**
@@ -93,14 +106,14 @@ public class Return {
      * @return the StaffId
      */
     public int getStaffId() {
-        return StaffId;
+        return staffId;
     }
 
     /**
      * @param StaffId the StaffId to set
      */
     public void setStaffId(int StaffId) {
-        this.StaffId = StaffId;
+        this.staffId = StaffId;
     }
     
 }

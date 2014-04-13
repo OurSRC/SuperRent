@@ -17,6 +17,15 @@ public class CreditCard {
     private Date expireDate;
     private String cardHolderName;
 
+    public CreditCard() {
+    }
+
+    public CreditCard(String creditCardNo, Date expireDate, String cardHolderName) {
+        this.creditCardNo = creditCardNo;
+        this.expireDate = expireDate;
+        this.cardHolderName = cardHolderName;
+    }
+    
     /**
      * @return the creditCardNo
      */

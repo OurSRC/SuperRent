@@ -29,7 +29,6 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new IntParser("BranchId", "BranchId"),
         new DatetimeParser("ReserveTime", "ReserveTime"),
-        new IntParser("EstimatePrice", "EstimatePrice"),
         new DatetimeParser("PickUpTime", "PickupTime"),
         new DatetimeParser("ReturnTime", "ReturnTime"),
         new IntParser("CustomerId", "CustomerId"),

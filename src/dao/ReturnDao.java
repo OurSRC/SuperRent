@@ -11,6 +11,7 @@ import entity.Return;
 import entityParser.AttributeParser;
 import entityParser.IntParser;
 import entityParser.DateParser;
+import entityParser.DatetimeParser;
 
 /**
  *
@@ -18,14 +19,14 @@ import entityParser.DateParser;
  */
 public class ReturnDao extends AbstractDao<Return>{
     
-    protected static final String tb_name = "return";
+    protected static final String tb_name = "return_record";
     
     protected static final AttributeParser ap[] = {
-        new IntParser("ContractNo", "contractNo"),
-        new DateParser("ReturnTime", "returnTime"),
-        new IntParser("Price", "price"),
+        new IntParser("ContractNo", "ContractNo"),
+        new DatetimeParser("ReturnTime", "ReturnTime"),
+        new IntParser("Price", "Price"),
         new IntParser("FuelLevel", "FuelLevel"),
-        new IntParser("Odometer", "odometer"),
+        new IntParser("Odometer", "Odometer"),
         new IntParser("StaffId", "StaffId")
     };
     protected static final int[] pkIndex = {0};
@@ -35,7 +36,7 @@ public class ReturnDao extends AbstractDao<Return>{
     protected Return getInstance() {
         return new Return();
     }
-    public Return findByContractNo(String contractNo) throws DaoException{
-        return findOne("ContractNo=" + SqlBuilder.wrapStr(contractNo));
+    public Return findByContractNo(int contractNo) throws DaoException{
+        return findOne("ContractNo=" + SqlBuilder.wrapInt(contractNo));
     }
 }
