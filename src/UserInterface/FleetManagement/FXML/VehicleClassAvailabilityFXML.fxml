@@ -10,7 +10,7 @@
     <Label layoutX="10.0" layoutY="40.0" text="Date From " />
     <Label layoutX="390.0" layoutY="40.0" text="Date To " />
     <Label layoutX="10.0" layoutY="79.0" text="Vehicle Type" />
-    <ComboBox fx:id="VehicleClass" layoutX="96.0" layoutY="75.0" prefHeight="25.0" prefWidth="116.0">
+    <ComboBox fx:id="VehicleType" layoutX="96.0" layoutY="75.0" prefHeight="25.0" prefWidth="116.0">
       <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="Car" />
@@ -18,16 +18,16 @@
             </FXCollections>
           </items>
     </ComboBox>
-    <TableView layoutY="163.0" prefHeight="226.0" prefWidth="681.0">
+    <TableView fx:id="VehicleClassTable" layoutY="163.0" prefHeight="226.0" prefWidth="681.0">
       <columns>
-        <TableColumn prefWidth="103.0" text="Vehicle Type" />
-        <TableColumn prefWidth="117.0" text="Vehicle Class" />
-        <TableColumn fx:id="HourlyRate" prefWidth="114.0" text="Hourly Rate" />
-        <TableColumn fx:id="DailyRate" prefWidth="114.0" text="Daily Rate" />
-        <TableColumn fx:id="WeeklyRate" prefWidth="130.0" text="Weekly Rate" />
+        <TableColumn fx:id="VehicleTypeColumn" prefWidth="103.0" text="Vehicle Type" />
+        <TableColumn fx:id="VehicleClassColumn" prefWidth="117.0" text="Vehicle Class" />
+        <TableColumn fx:id="HourlyRateColumn" prefWidth="114.0" text="Hourly Rate" />
+        <TableColumn fx:id="DailyRateColumn" prefWidth="114.0" text="Daily Rate" />
+        <TableColumn fx:id="WeeklyRateColumn" prefWidth="130.0" text="Weekly Rate" />
       </columns>
-    </TableView><DatePicker fx:id="DateFromDatePicker" layoutX="96.0" layoutY="36.0" onAction="#DateFromDatePickerAction" prefHeight="25.0" prefWidth="116.0" />
-    <ComboBox fx:id="DateFromTime" layoutX="216.0" layoutY="36.0" onAction="#DateFromTimeCBAction" prefHeight="25.0" prefWidth="100.0">
+    </TableView><DatePicker fx:id="DateFromDatePicker" layoutX="96.0" layoutY="36.0" prefHeight="25.0" prefWidth="116.0" />
+    <ComboBox fx:id="DateFromTime" layoutX="216.0" layoutY="36.0" prefHeight="25.0" prefWidth="100.0">
         <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="09 AM" />
@@ -43,7 +43,7 @@
             </FXCollections>
           </items>
     </ComboBox>
-    <ComboBox fx:id="DateToTime" layoutX="566.0" layoutY="36.0" onAction="#DateToTimeCBAction" prefHeight="25.0" prefWidth="100.0">
+    <ComboBox fx:id="DateToTime" layoutX="566.0" layoutY="36.0" prefHeight="25.0" prefWidth="100.0">
             <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="09 AM" />
@@ -59,6 +59,6 @@
             </FXCollections>
           </items>
     </ComboBox>
-    <DatePicker fx:id="DateToDatePicker" layoutX="447.0" layoutY="36.0" onAction="#DateToDatePickerAction" prefHeight="25.0" prefWidth="116.0" /><Button alignment="CENTER" layoutX="511.0" layoutY="400.0" mnemonicParsing="false" onAction="#ReserveVehicleActionButton" prefHeight="25.0" prefWidth="155.0" text="Reserve Vehicle" /><Button alignment="CENTER" layoutX="511.0" layoutY="127.0" mnemonicParsing="false" onAction="#DisplayAvailableVehicleAction" prefHeight="25.0" prefWidth="155.0" text="Display Available Vehicles" />
+    <DatePicker fx:id="DateToDatePicker" layoutX="447.0" layoutY="36.0" prefHeight="25.0" prefWidth="116.0" /><Button alignment="CENTER" layoutX="511.0" layoutY="400.0" mnemonicParsing="false" onAction="#ReserveVehicleActionButton" prefHeight="25.0" prefWidth="155.0" text="Reserve Vehicle" /><Button alignment="CENTER" layoutX="511.0" layoutY="127.0" mnemonicParsing="false" onAction="#DisplayAvailableVehicleAction" prefHeight="25.0" prefWidth="155.0" text="Display Available Vehicles" />
   </children>
 </AnchorPane>

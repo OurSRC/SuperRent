@@ -94,7 +94,7 @@ public class ReserveSearchPageFXMLController implements Initializable {
     @FXML
     private void NewReservationButtonAction(ActionEvent event) throws IOException {  
       //ReservationNavigator.loadVista(ReservationNavigator.PickDate);
-        ReservationNavigator.newReserve = new Reserve();
+    //    ReservationNavigator.newReserve = new Reserve();
         ReservationNavigator.setMainController(RentNavigator.mainController);
         ReservationNavigator.loadVista(ReservationNavigator.PickDate);
 

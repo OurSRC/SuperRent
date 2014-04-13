@@ -36,7 +36,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
       //  VehicleClassSelectedTF.setText(ReservationNavigator.SampleSharedVariable);
-        VehicleClassSelectedTF.setText(ReservationNavigator.newReserve.type);
+        VehicleClassSelectedTF.setText(ReservationNavigator.newReserve.getVehicleClass());
         AdditionalEquipmentListView.setDisable(true);
          
     }    
@@ -50,6 +50,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
                     SelectedEquipments.add(a[i].toString());
                     System.out.println(SelectedEquipments.get(i) + "   Value from ArrayList");
                 }
+                
                 ReservationNavigator.clearVista();
                 ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
 

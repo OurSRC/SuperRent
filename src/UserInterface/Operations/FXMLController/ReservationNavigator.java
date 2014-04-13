@@ -8,6 +8,7 @@ package UserInterface.Operations.FXMLController;
 
 import Operations.Reserve;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import entity.ReservationInfo;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -30,7 +31,7 @@ public class ReservationNavigator {
         public static final String ViewReseration = "/UserInterface/Operations/FXML/ViewReservationsFXML.fxml";
         
         /* Common Variables to facilitate navigations */
-        public static Reserve newReserve;
+        public static ReservationInfo newReserve;
         public static boolean customerFlag;
         public static boolean modifyFlag;
 

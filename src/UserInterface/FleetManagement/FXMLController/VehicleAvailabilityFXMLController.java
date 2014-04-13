@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.FleetManagement.FXMLController;
 
 import ControlObjects.BranchCtrl;
@@ -28,28 +27,43 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 /**
  * FXML Controller class
  *
  * @author Vyas
  */
 public class VehicleAvailabilityFXMLController implements Initializable {
+
     @FXML
-    private ComboBox<?> ClassOfVehicle;
+    private ComboBox VehicleType;
     @FXML
-    private TableColumn<?, ?> HourlyRate;
+    private TableColumn HourlyRateColumn;
     @FXML
-    private TableColumn<?, ?> DailyRate;
+    private TableColumn DailyRateColumn;
     @FXML
-    private TableColumn<?, ?> WeeklyRate;
+    private TableColumn WeeklyRateColumn;
+    @FXML
+    private TableColumn VehicleClassColumn;
+    @FXML
+    private TableColumn VehicleTypeColumn;
     @FXML
     private DatePicker DateFromDatePicker;
     @FXML
     private ComboBox DateFromTime;
     @FXML
-    private ComboBox<?> DateToTime;
+    private ComboBox DateToTime;
     @FXML
     private DatePicker DateToDatePicker;
+    @FXML
+    private TableView VehicleClassTable;
+
+    /* Variables to store */
+    public Date PickUpDate;
+    public Date ReturnDate;
+    public String vehicleType;
 
     /**
      * Initializes the controller class.
@@ -57,57 +71,57 @@ public class VehicleAvailabilityFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
     @FXML
-    public void DisplayAvailableVehicleAction(ActionEvent event) throws ParseException
-    {
-        
+    public void DisplayAvailableVehicleAction(ActionEvent event) throws ParseException {
 
-        if(ValidateInput())
-        {
-                        LocalDate DateFrom = DateFromDatePicker.getValue();
-                        String FromTime = DateFromTime.getValue().toString();
-                        Date PickUpDate = DateClass.getDateTimeObject(DateFrom,FromTime);
-                        
-                        LocalDate ToDate = DateToDatePicker.getValue();
-                        String ToTime = DateToTime.getValue().toString();
-                        Date ReturnDate = DateClass.getDateTimeObject(ToDate,ToTime);
-                        
-                        
-                        String VehicleType = ClassOfVehicle.getValue().toString();
-                        System.out.println("Passing Parameters from VehicleAvailabilityFXMLController to Vehicle Control");
-                        System.out.println("Vehicle Type : " + VehicleType);
-                        System.out.println("PickUpDate : " + PickUpDate.toString());
-                        System.out.println("ReturnDate : " + ReturnDate.toString());
-                        System.out.println("Return Type : ArrayList<VehicleClass>");
+        if (ValidateInput()) {
+            LocalDate DateFrom = DateFromDatePicker.getValue();
+            String FromTime = DateFromTime.getValue().toString();
+            PickUpDate = DateClass.getDateTimeObject(DateFrom, FromTime);
 
+            LocalDate ToDate = DateToDatePicker.getValue();
+            String ToTime = DateToTime.getValue().toString();
+            ReturnDate = DateClass.getDateTimeObject(ToDate, ToTime);
 
-                        if(ReturnDate.after(PickUpDate) && PickUpDate.compareTo(ReturnDate)!=0)
-                        {
-                            VehicleClass.TYPE type;
-                            if( VehicleType.compareTo("Car")==0 )
-                                type = VehicleClass.TYPE.Car;
-                            else
-                                type = VehicleClass.TYPE.Truck;
-                            
-                        VehicleCtrl vehicleControl = new VehicleCtrl();
-                        ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability( type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch() );
-                        ObservableList<String> list =  FXCollections.observableArrayList(AvailableVehicleTypes);
-                        //AvailableVehicleTypeCB.getItems().clear();
-                        //AvailableVehicleTypeCB.setItems(list);
-                        //System.out.println(pickUpTime);
-                        //System.out.println(returnTime);   
-                        }else
-                        {
-                            System.out.println("Invalid Dates ");
-                            DialogFX dialog = new DialogFX(Type.ERROR);
-                            dialog.setTitleText("Error");
-                            dialog.setMessage("Invalid Dates Entered");
-                            dialog.showDialog();
-                        }
-        }else
-        {
+            vehicleType = VehicleType.getValue().toString();
+            System.out.println("Passing Parameters from VehicleAvailabilityFXMLController to Vehicle Control");
+            System.out.println("Vehicle Type : " + vehicleType);
+            System.out.println("PickUpDate : " + PickUpDate.toString());
+            System.out.println("ReturnDate : " + ReturnDate.toString());
+            System.out.println("Return Type : ArrayList<VehicleClass>");
+
+            if (ReturnDate.after(PickUpDate) && PickUpDate.compareTo(ReturnDate) != 0) {
+                VehicleClass.TYPE type;
+                if (vehicleType.compareTo("Car") == 0) {
+                    type = VehicleClass.TYPE.Car;
+                } else {
+                    type = VehicleClass.TYPE.Truck;
+                }
+
+                VehicleCtrl vehicleControl = new VehicleCtrl();
+                //ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability( type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch() );
+                ArrayList<VehicleClass> AvailableVehicleClasses = new ArrayList(); /* Include the method here */
+
+                ObservableList<VehicleClass> list = FXCollections.observableArrayList(AvailableVehicleClasses);
+                VehicleClassTable.getItems().clear();
+                VehicleClassTable.setItems(list);
+
+                VehicleTypeColumn.setCellValueFactory(new PropertyValueFactory(""));
+                VehicleClassColumn.setCellValueFactory(new PropertyValueFactory(""));
+                HourlyRateColumn.setCellValueFactory(new PropertyValueFactory(""));
+                WeeklyRateColumn.setCellValueFactory(new PropertyValueFactory(""));
+                DailyRateColumn.setCellValueFactory(new PropertyValueFactory(""));
+
+            } else {
+                System.out.println("Invalid Dates ");
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("Invalid Dates Entered");
+                dialog.showDialog();
+            }
+        } else {
             System.out.println("Please enter the Mandatory Fields");
             DialogFX dialog = new DialogFX(Type.ERROR);
             dialog.setTitleText("Error");
@@ -115,47 +129,39 @@ public class VehicleAvailabilityFXMLController implements Initializable {
             dialog.showDialog();
         }
     }
-    
-    
-    
-    public void ReserveVehicleActionButton(ActionEvent event) throws IOException
-    {
-        ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);
-    }
-    
-    public void DateFromTimeCBAction(ActionEvent event)
-    {
-        
-    }
-    
-    public void DateToTimeCBAction(ActionEvent event)
-    {
-        
-    }
-    
-    public void DateFromDatePickerAction(ActionEvent event)
-    {
-        
-    }
-    
-    public void DateToDatePickerAction(ActionEvent event)
-    {
-        
-    }
-    
-    public boolean ValidateInput()
-    {
-        if(DateFromDatePicker.valueProperty().isNotNull().getValue()  
-                && DateToDatePicker.valueProperty().isNotNull().getValue()  
-                && ClassOfVehicle.valueProperty().isNotNull().getValue()
-                && DateFromTime.valueProperty().isNotNull().getValue()
-                && DateToTime.valueProperty().isNotNull().getValue())
-        {
-            return true;
+
+    public void ReserveVehicleActionButton(ActionEvent event) throws IOException {
+        if (!VehicleClassTable.getSelectionModel().isEmpty()) {
+            VehicleClass selectedVehicleClass = (VehicleClass) VehicleClassTable.getSelectionModel().getSelectedItem();
+            ReservationNavigator.newReserve.setPickupTime(PickUpDate);
+            ReservationNavigator.newReserve.setReturnTime(ReturnDate);
+            ReservationNavigator.newReserve.setVehicleClass(selectedVehicleClass.getClassName());
+            ReservationNavigator.newReserve.setvDailyRate(selectedVehicleClass.getDailyRate());
+            ReservationNavigator.newReserve.setvHourlyRate(selectedVehicleClass.getHourlyRate());
+            ReservationNavigator.newReserve.setvWeeklyRate(selectedVehicleClass.getWeeklyRate());
+            System.out.println("Successfully stored values into Reservation object in ReservationNavigator");
+            ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);
         }else
         {
+                        ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);
+            System.out.println("Please enter the Mandatory Fields");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage("Please select a vehicle Class to proceed for Reservation");
+            dialog.showDialog();     
+        }
+    }
+
+    public boolean ValidateInput() {
+        if (DateFromDatePicker.valueProperty().isNotNull().getValue()
+                && DateToDatePicker.valueProperty().isNotNull().getValue()
+                && VehicleType.valueProperty().isNotNull().getValue()
+                && DateFromTime.valueProperty().isNotNull().getValue()
+                && DateToTime.valueProperty().isNotNull().getValue()) {
+            return true;
+        } else {
             return false;
         }
     }
-    
+
 }

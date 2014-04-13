@@ -91,7 +91,7 @@ public class ReservationPickUpdateFXMLController implements Initializable {
 
     @FXML
     private void NextButtonAction(ActionEvent event) throws IOException {
-        ReservationNavigator.newReserve.type = VehicleType;
+      //  ReservationNavigator.newReserve.type = VehicleType;
         System.out.println(VehicleType);
         ReservationNavigator.clearVista();
         ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);   

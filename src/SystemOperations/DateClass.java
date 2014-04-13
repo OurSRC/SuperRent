@@ -29,7 +29,12 @@ public class DateClass {
         String DATE_FORMAT = "yyyy/MM/dd HH:MM:SS";
        //SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         //Date newDate = sdf.;
-        return FinalDate;
+        
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        String dateString = sdf.format(FinalDate);
+        System.out.println(dateString);
+        Date finalDate = sdf.parse(dateString);
+        return finalDate;
     }
     
     public static Date ConvertLocalDatetoDate(LocalDate localdate)
