@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.PeopleManagement.FXMLController.UserProfileRemoveFXMLController">
+  <children>
+    <Label layoutX="258.0" layoutY="19.0" text="User Profile">
+      <font>
+        <Font name="System Bold" size="12.0" />
+      </font>
+    </Label>
+    <Separator layoutX="30.0" layoutY="39.0" prefWidth="556.0" />
+    <Separator layoutX="30.0" layoutY="14.0" prefWidth="556.0" />
+    <Label layoutX="28.0" layoutY="173.0" text="User Name">
+      <font>
+        <Font name="System Italic" size="12.0" fx:id="x1" />
+      </font>
+    </Label>
+    <TextField id="UserIdTF" fx:id="UserNameTF" layoutX="210.0" layoutY="170.0" prefWidth="159.0" />
+    <Label font="$x1" layoutX="27.0" layoutY="51.0" text="First Name" />
+    <Button layoutX="463.0" layoutY="358.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Confirm" />
+    <Button layoutX="349.0" layoutY="358.0" mnemonicParsing="false" onAction="#AbortButtonAction" prefWidth="97.0" text="Abort" />
+    <TextField fx:id="FirstNameTF" layoutX="206.0" layoutY="46.0" prefWidth="159.0" />
+    <Label font="$x1" layoutX="28.0" layoutY="82.0" text="Last Name" />
+    <TextField fx:id="LastNameTF" layoutX="207.0" layoutY="78.0" prefWidth="159.0" />
+    <Label layoutX="28.0" layoutY="206.0" text="Branch">
+      <font>
+        <Font size="12.0" fx:id="x2" />
+      </font>
+    </Label>
+    <Label font="$x2" layoutX="28.0" layoutY="238.0" text="Role" />
+    <Label font="$x1" layoutX="28.0" layoutY="334.0" text="Re-enter New Password" />
+    <Label font="$x1" layoutX="28.0" layoutY="302.0" text="Set New Password" />
+    <PasswordField fx:id="SetNewPasswordTF" layoutX="208.0" layoutY="299.0" prefWidth="160.0" />
+    <PasswordField fx:id="ReenterNewPasswordTF" layoutX="209.0" layoutY="329.0" prefWidth="159.0" />
+    <ComboBox fx:id="BranchCB" layoutX="209.0" layoutY="204.0" onAction="#BranchCBAction" prefHeight="21.0" prefWidth="159.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <ComboBox fx:id="RoleCB" layoutX="209.0" layoutY="237.0" onAction="#RoleCBAction" prefHeight="21.0" prefWidth="159.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label font="$x1" layoutX="29.0" layoutY="112.0" text="Phone Number" />
+    <TextField fx:id="PhoneNumberTF" layoutX="208.0" layoutY="109.0" prefWidth="159.0" />
+    <Label font="$x1" layoutX="30.0" layoutY="142.0" text="Email" />
+    <TextField fx:id="EmailTF" layoutX="209.0" layoutY="139.0" prefWidth="159.0" />
+    <Button fx:id="ChangePasswordButtonAction" layoutX="398.0" layoutY="313.0" mnemonicParsing="false" onAction="#ChangePasswordButtonAction" prefWidth="123.0" text="Change Password" />
+    <Label font="$x2" layoutX="29.0" layoutY="271.0" text="Status" />
+    <ComboBox fx:id="StatusCB" layoutX="210.0" layoutY="270.0" onAction="#StatusCBAction" prefHeight="21.0" prefWidth="159.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label font="$x1" layoutX="381.0" layoutY="49.0" text="Middle Name" />
+    <TextField id="FirstNameTF" fx:id="MiddleNameTF" layoutX="467.0" layoutY="47.0" prefWidth="87.0" />
+  </children>
+</AnchorPane>

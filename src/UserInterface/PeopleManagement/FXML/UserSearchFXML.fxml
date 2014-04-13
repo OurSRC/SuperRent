@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.PeopleManagement.FXMLController.UserSearchFXMLController">
+  <children>
+    <Label layoutX="258.0" layoutY="19.0" text="User Search">
+      <font>
+        <Font name="System Bold" size="12.0" />
+      </font>
+    </Label>
+    <Separator layoutX="30.0" layoutY="39.0" prefWidth="556.0" />
+    <Separator layoutX="30.0" layoutY="14.0" prefWidth="556.0" />
+    <Label layoutX="32.0" layoutY="128.0" text="Branch">
+      <font>
+        <Font size="12.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Button layoutX="466.0" layoutY="157.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Display" />
+    <Label font="$x1" layoutX="306.0" layoutY="128.0" text="Role" />
+    <Label font="$x1" layoutX="33.0" layoutY="52.0" text="First Name" />
+    <Label font="$x1" layoutX="305.0" layoutY="53.0" text="Last Name" />
+    <TableView layoutX="33.0" layoutY="193.0" prefHeight="193.0" prefWidth="539.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="86.0" text="First Name" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="134.0" text="Last Name" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="89.0" text="User ID" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="167.0" text="Branch" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="64.0" text="Role" />
+      </columns>
+    </TableView>
+    <TextField layoutX="137.0" layoutY="49.0" prefWidth="159.0" />
+    <TextField layoutX="412.0" layoutY="49.0" prefWidth="159.0" />
+    <ComboBox layoutX="137.0" layoutY="124.0" prefHeight="21.0" prefWidth="159.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <ComboBox layoutX="412.0" layoutY="126.0" prefHeight="21.0" prefWidth="159.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label font="$x1" layoutX="33.0" layoutY="86.0" text="Phone Number" />
+    <TextField layoutX="137.0" layoutY="83.0" prefWidth="159.0" />
+  </children>
+</AnchorPane>
