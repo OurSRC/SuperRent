@@ -1,5 +1,3 @@
-DROP DATABASE IF EXISTS `super_rent`;	/*Add by Eli*/
-
 CREATE DATABASE  IF NOT EXISTS `super_rent` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `super_rent`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
@@ -35,7 +33,7 @@ CREATE TABLE `branch` (
   UNIQUE KEY `BranchName_UNIQUE` (`BranchName`),
   UNIQUE KEY `BranchPhone_UNIQUE` (`BranchPhone`),
   UNIQUE KEY `BranchAddress_UNIQUE` (`BranchAddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,11 +44,14 @@ DROP TABLE IF EXISTS `buy_insurance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `buy_insurance` (
-  `InsuranceId` int(11) NOT NULL,
+  `InsuranceName` varchar(45) NOT NULL,
   `ReservationInfoId` int(11) NOT NULL,
-  PRIMARY KEY (`InsuranceId`,`ReservationInfoId`),
+  `HourlyRate` int(11) NOT NULL,
+  `DailyRate` int(11) NOT NULL,
+  `WeeklyRate` int(11) NOT NULL,
+  PRIMARY KEY (`InsuranceName`,`ReservationInfoId`),
   KEY `buy_insur_res_fk_idx` (`ReservationInfoId`),
-  CONSTRAINT `buy_insur_insur_fk` FOREIGN KEY (`InsuranceId`) REFERENCES `insurance` (`InsuranceId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `buy_insur_insur_fk` FOREIGN KEY (`InsuranceName`) REFERENCES `insurance` (`Name`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `buy_insur_res_fk` FOREIGN KEY (`ReservationInfoId`) REFERENCES `reservation_info` (`ReservationInfoId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -95,7 +96,7 @@ CREATE TABLE `customer` (
   UNIQUE KEY `PhoneNo_UNIQUE` (`PhoneNo`),
   KEY `Username_fk_idx` (`Username`),
   CONSTRAINT `customer_username_fk` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,11 +146,11 @@ DROP TABLE IF EXISTS `insurance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `insurance` (
-  `InsuranceId` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) DEFAULT NULL,
-  `Rate` int(11) DEFAULT NULL,
-  `Status` enum('AVAILABLE','UNAVAILABLE') DEFAULT NULL,
-  PRIMARY KEY (`InsuranceId`)
+  `Name` varchar(45) NOT NULL,
+  `HourlyRate` int(11) NOT NULL,
+  `DailyRate` int(11) NOT NULL,
+  `WeeklyRate` int(11) NOT NULL,
+  PRIMARY KEY (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -196,7 +197,7 @@ DROP TABLE IF EXISTS `payment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment` (
   `PaymentId` int(11) NOT NULL AUTO_INCREMENT,
-  `Amount` varchar(45) NOT NULL,
+  `Amount` int(11) NOT NULL,
   `Time` datetime NOT NULL,
   `Method` enum('CASH','CREDITCARD','POINT') NOT NULL,
   `Point` int(11) DEFAULT NULL,
@@ -204,7 +205,7 @@ CREATE TABLE `payment` (
   PRIMARY KEY (`PaymentId`),
   KEY `payment_creditcard_idx` (`CreditCardNo`),
   CONSTRAINT `payment_creditcard` FOREIGN KEY (`CreditCardNo`) REFERENCES `creditcard` (`CreditCardNo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,7 +333,7 @@ CREATE TABLE `staff` (
   KEY `staff_branck_fk_idx` (`BranchID`),
   CONSTRAINT `staff_branck_fk` FOREIGN KEY (`BranchID`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `staff_username_fk` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,7 +394,7 @@ CREATE TABLE `vehicle` (
   KEY `vehicleforrent_class_fk_idx` (`ClassName`),
   CONSTRAINT `vehicleforrent_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `vehicleforrent_class_fk` FOREIGN KEY (`ClassName`) REFERENCES `vehicle_class` (`ClassName`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -423,4 +424,4 @@ CREATE TABLE `vehicle_class` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-10 23:27:14
+-- Dump completed on 2014-04-12 19:16:15

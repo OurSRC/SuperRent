@@ -129,15 +129,15 @@ public class VehicleDaoTest {
         Vehicle v = new Vehicle();
         v.setClassName(className);
         v.setStatus(Vehicle.STATUS.FORRENT);
-        ArrayList<Vehicle> vlist = dao.find(v);
+        ArrayList<Vehicle> vlist = dao.findByInstance(v);
         assertEquals(vlist.size(), 2);
         
         v.setPlateNo("357-ADF");
-        vlist = dao.find(v);
+        vlist = dao.findByInstance(v);
         assertEquals(vlist.size(), 1);
         
         v.setStatus(Vehicle.STATUS.FORSALE);
-        vlist = dao.find(v);
+        vlist = dao.findByInstance(v);
         assertEquals(vlist.size(), 0);
     }
 

@@ -48,7 +48,9 @@ public class ReservationInfo {
     public ReservationInfo() {
     }
 
-    public ReservationInfo(int branchId, Date reserveTime, Date pickupTime, Date returnTime, int estimatePrice, int customerId, int staffId, String vehicleClass, int vHourlyRate, int vDailyRate, int vWeeklyRate, String reservationNo, STATUS reservationStatus) {
+    public ReservationInfo(int branchId, Date reserveTime, Date pickupTime, Date returnTime, 
+            int estimatePrice, int customerId, int staffId, String vehicleClass, int vHourlyRate, 
+            int vDailyRate, int vWeeklyRate, String reservationNo, STATUS reservationStatus) {
         this.branchId = branchId;
         this.reserveTime = reserveTime;
         this.pickupTime = pickupTime;

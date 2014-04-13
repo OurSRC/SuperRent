@@ -11,36 +11,63 @@ package entity;
  * @author Jingchuan Chen
  */
 public class BuyInsurance {
-    private int insuranceId;
+    private String insuranceName;
     private int reservationInfoId;
+    private int hourlyRate;
+    private int dailyRate;
+    private int weeklyRate;
 
-    /**
-     * @return the insuranceId
-     */
-    public int getInsuranceId() {
-        return insuranceId;
+    public BuyInsurance() {
     }
 
-    /**
-     * @param insuranceId the insuranceId to set
-     */
-    public void setInsuranceId(int insuranceId) {
-        this.insuranceId = insuranceId;
+    public BuyInsurance(String insuranceName, int reservationInfoId, int hourlyRate, int dailyRate, int weeklyRate) {
+        this.insuranceName = insuranceName;
+        this.reservationInfoId = reservationInfoId;
+        this.hourlyRate = hourlyRate;
+        this.dailyRate = dailyRate;
+        this.weeklyRate = weeklyRate;
     }
 
-    /**
-     * @return the reservationInfoId
-     */
+    public String getInsuranceName() {
+        return insuranceName;
+    }
+
+    public void setInsuranceName(String insuranceName) {
+        this.insuranceName = insuranceName;
+    }
+
     public int getReservationInfoId() {
         return reservationInfoId;
     }
 
-    /**
-     * @param reservationInfoId the reservationInfoId to set
-     */
     public void setReservationInfoId(int reservationInfoId) {
         this.reservationInfoId = reservationInfoId;
     }
+
+    public int getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public void setHourlyRate(int hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
+
+    public int getDailyRate() {
+        return dailyRate;
+    }
+
+    public void setDailyRate(int dailyRate) {
+        this.dailyRate = dailyRate;
+    }
+
+    public int getWeeklyRate() {
+        return weeklyRate;
+    }
+
+    public void setWeeklyRate(int weeklyRate) {
+        this.weeklyRate = weeklyRate;
+    }
     
     
+
 }

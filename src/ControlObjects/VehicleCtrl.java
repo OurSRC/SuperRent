@@ -100,7 +100,7 @@ public class VehicleCtrl {
         VehicleDao vehicleDAO = new VehicleDao();
         ArrayList<Vehicle> getList = null;
         try {
-            getList = vehicleDAO.find(vehicle);
+            getList = vehicleDAO.findByInstance(vehicle);
         } catch (DaoException ex) {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
@@ -120,14 +120,19 @@ public class VehicleCtrl {
     }
     
     public boolean checkVehicleAvailability(String vehicleClass, Date pickUpTime, Date returnTime, Branch branch) {
-        VehicleDao vDAO = new VehicleDao();
-        ReservationInfoDao rDAO = new ReservationInfoDao();
-        int vCount = vDAO.countVehicle( new Vehicle(null, null, null, 0, branch.getBranchID(), Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0) );
-        int rCount = rDAO.countReservationBetween(vehicleClass, pickUpTime, returnTime, branch).size();
-        if(vCount>rCount)
-            return true;
-        else
-            return false;
+        try {
+            VehicleDao vDAO = new VehicleDao();
+            ReservationInfoDao rDAO = new ReservationInfoDao();
+            int vCount = vDAO.countVehicle( new Vehicle(null, null, null, 0, branch.getBranchID(), Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0) );
+            int rCount = rDAO.countReservationBetween(vehicleClass, pickUpTime, returnTime, branch).size();
+            if(vCount>rCount)
+                return true;
+            else
+                return false;
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
     public boolean createVehicleClass(VehicleClass vehicleClass){

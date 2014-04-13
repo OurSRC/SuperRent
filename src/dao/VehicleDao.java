@@ -61,6 +61,7 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return findOne("VehicleNo=" + SqlBuilder.wrapInt(vehicleNo));
     }
     
+    /*
     public ArrayList<Vehicle> find(Vehicle v) throws DaoException {
         if (v == null) {
             return null;
@@ -78,11 +79,12 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         
         return find(sql);
     }
+    */
     
     public int countVehicle(Vehicle v){ //include int branchId
         ArrayList<Vehicle> list = null;
         try {
-            list = find(v);
+            list = findByInstance(v);
         } catch (DaoException ex) {
             Logger.getLogger(VehicleDao.class.getName()).log(Level.SEVERE, null, ex);
         }

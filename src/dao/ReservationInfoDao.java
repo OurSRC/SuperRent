@@ -5,10 +5,12 @@
  */
 package dao;
 
+import dbconn.SqlBuilder;
 import entity.Branch;
 import entity.ReservationInfo;
 import entityParser.AttributeParser;
 import entityParser.DateParser;
+import entityParser.EnumParser;
 import entityParser.IntParser;
 import entityParser.StringParser;
 import java.util.ArrayList;
@@ -23,18 +25,6 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
     protected static final String tb_name = "reservation_info";
 
     protected static final AttributeParser ap[] = {
-        //        new IntParser("ReservationInfoId", "reservationInfoId"),
-        //        new IntParser("BranchId", "branchId"),
-        //        new DateParser("ReserveTime", "reserveTime"),
-        //        new IntParser("EstimatePrice", "estimatePrice"),
-        //        new DateParser("PickUpTime", "pickupTime"),
-        //        new DateParser("ReturnTime", "returnTime"),
-        //        new IntParser("CustomerId", "customerId"),
-        //        new IntParser("StaffId", "staffId"),
-        //        new StringParser("VehicleClassName", "vehicleClass"),
-        //        new IntParser("vDailyRate", "vDailyRate"),
-        //        new IntParser("vHourlyRate", "vHourlyRate"),
-        //        new IntParser("vWeeklyRate", "vWeeklyRate")
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new IntParser("BranchId", "BranchId"),
         new DateParser("ReserveTime", "ReserveTime"),
@@ -43,10 +33,12 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         new DateParser("ReturnTime", "ReturnTime"),
         new IntParser("CustomerId", "CustomerId"),
         new IntParser("StaffId", "StaffId"),
-        new StringParser("VehicleClassName", "VehicleClass"),
-        new IntParser("vDailyRate", "VDailyRate"),
-        new IntParser("vHourlyRate", "VHourlyRate"),
-        new IntParser("vWeeklyRate", "VWeeklyRate")
+        new StringParser("VehicleClass", "VehicleClass"),
+        new IntParser("VDailyRate", "VDailyRate"),
+        new IntParser("VHourlyRate", "VHourlyRate"),
+        new IntParser("VWeeklyRate", "VWeeklyRate"),
+        new StringParser("ReservationNo", "ReservationNo"),
+        new EnumParser("ReservationStatus", "ReservationStatus")
     };
 
     protected static final int[] pkIndex = {0};
@@ -57,8 +49,21 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
     protected ReservationInfo getInstance() {
         return new ReservationInfo();
     }
+    
+    
+    
 
-    public ArrayList<ReservationInfo> countReservationBetween(String vehicleClass, Date pickUpTime, Date returnTime, Branch branch){
-        return null;
+    public ArrayList<ReservationInfo> countReservationBetween(String vehicleClass, Date pickUpTime, 
+            Date returnTime, Branch branch) throws DaoException{
+        
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("PickUpTime <" + SqlBuilder.wrapDate(returnTime));
+        qb.cond("ReturnTime > " + SqlBuilder.wrapDate(pickUpTime));
+        qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
+        qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        String cond = qb.toString();
+        
+        return find(cond);
+        
     }
 }
