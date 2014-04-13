@@ -189,6 +189,8 @@ public abstract class AbstractDao<T> {
         ArrayList<T> result = new ArrayList<>();
 
         SqlBuilder qb = new SqlBuilder();
+        
+        
         String sql = qb
                 .select("*")
                 .from(tb_name)
@@ -212,6 +214,27 @@ public abstract class AbstractDao<T> {
         }
 
         return result;
+    }
+    
+    public ArrayList<T> findByInstance(T value) throws DaoException {
+        String tb_name = getTbName();
+        AttributeParser ap[] = getAP();
+        
+        SqlBuilder qb = new SqlBuilder();
+        
+        for (AttributeParser attr : ap) {
+            String str = attr.wrapAttr(value);
+            if (!(str.equalsIgnoreCase("null") || (str.equals("0") && attr.getClass().equals(IntParser.class)))) {
+                qb.cond(attr.getColName() + "=" + str);
+            }
+        }
+        
+        String sql = qb.toString();
+        return find(sql);
+    }
+    
+    public ArrayList<T> all() throws DaoException {
+        return find(null);
     }
     
     protected int count(String cond) throws DaoException {

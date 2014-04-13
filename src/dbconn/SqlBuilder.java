@@ -63,6 +63,10 @@ public class SqlBuilder {
     }
     
     public SqlBuilder where(String cond) {
+        if (cond == null) {
+            return this;
+        }
+        
         if (where == null) {
             where = new String("WHERE");
             where += " " + cond;

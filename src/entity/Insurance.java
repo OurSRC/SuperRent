@@ -11,72 +11,51 @@ package entity;
  * @author Jingchuan Chen
  */
 public class Insurance {
+    
+    private String name;
+    private int hourlyRate;
+    private int dailyRate;
+    private int weeklyRate;
 
-    /**
-     * @return the insuranceId
-     */
-    public int getInsuranceId() {
-        return insuranceId;
+    public Insurance(String name, int hourlyRate, int dailyRate, int weeklyRate) {
+        this.name = name;
+        this.hourlyRate = hourlyRate;
+        this.dailyRate = dailyRate;
+        this.weeklyRate = weeklyRate;
     }
 
-    /**
-     * @param insuranceId the insuranceId to set
-     */
-    public void setInsuranceId(int insuranceId) {
-        this.insuranceId = insuranceId;
+    public Insurance() {
     }
 
-    /**
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * @param name the name to set
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * @return the rate
-     */
-    public int getRate() {
-        return rate;
+    public int getHourlyRate() {
+        return hourlyRate;
     }
 
-    /**
-     * @param rate the rate to set
-     */
-    public void setRate(int rate) {
-        this.rate = rate;
+    public void setHourlyRate(int hourlyRate) {
+        this.hourlyRate = hourlyRate;
     }
 
-    /**
-     * @return the status
-     */
-    public STATUS getStatus() {
-        return status;
+    public int getDailyRate() {
+        return dailyRate;
     }
 
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(STATUS status) {
-        this.status = status;
+    public void setDailyRate(int dailyRate) {
+        this.dailyRate = dailyRate;
     }
-    public enum STATUS {
 
-        AVAILABLE,
-        UNAVAILABLE
-    };
-    private int insuranceId;
-    private String name;
-    private int rate;
-    private STATUS status;
-    
-    
-    
+    public int getWeeklyRate() {
+        return weeklyRate;
+    }
+
+    public void setWeeklyRate(int weeklyRate) {
+        this.weeklyRate = weeklyRate;
+    }
 }
