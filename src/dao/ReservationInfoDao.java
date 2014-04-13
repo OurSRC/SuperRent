@@ -10,6 +10,7 @@ import entity.Branch;
 import entity.ReservationInfo;
 import entityParser.AttributeParser;
 import entityParser.DateParser;
+import entityParser.DatetimeParser;
 import entityParser.EnumParser;
 import entityParser.IntParser;
 import entityParser.StringParser;
@@ -27,16 +28,15 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
     protected static final AttributeParser ap[] = {
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new IntParser("BranchId", "BranchId"),
-        new DateParser("ReserveTime", "ReserveTime"),
-        new IntParser("EstimatePrice", "EstimatePrice"),
-        new DateParser("PickUpTime", "PickupTime"),
-        new DateParser("ReturnTime", "ReturnTime"),
+        new DatetimeParser("ReserveTime", "ReserveTime"),
+        new DatetimeParser("PickUpTime", "PickupTime"),
+        new DatetimeParser("ReturnTime", "ReturnTime"),
         new IntParser("CustomerId", "CustomerId"),
         new IntParser("StaffId", "StaffId"),
         new StringParser("VehicleClass", "VehicleClass"),
-        new IntParser("VDailyRate", "VDailyRate"),
-        new IntParser("VHourlyRate", "VHourlyRate"),
-        new IntParser("VWeeklyRate", "VWeeklyRate"),
+        new IntParser("VDailyRate", "vDailyRate"),
+        new IntParser("VHourlyRate", "vHourlyRate"),
+        new IntParser("VWeeklyRate", "vWeeklyRate"),
         new StringParser("ReservationNo", "ReservationNo"),
         new EnumParser("ReservationStatus", "ReservationStatus")
     };
@@ -50,20 +50,22 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return new ReservationInfo();
     }
     
+    public ReservationInfo findByReservationNo(String reservatioNo) throws DaoException {
+        String cond = "ReservationNo=" + SqlBuilder.wrapStr(reservatioNo);
+        return findOne(cond);
+    }
     
-    
-
-    public ArrayList<ReservationInfo> countReservationBetween(String vehicleClass, Date pickUpTime, 
+    public ArrayList<ReservationInfo> findReservationBetween(String vehicleClass, Date pickUpTime, 
             Date returnTime, Branch branch) throws DaoException{
         
         SqlBuilder qb = new SqlBuilder();
-        qb.cond("PickUpTime <" + SqlBuilder.wrapDate(returnTime));
-        qb.cond("ReturnTime > " + SqlBuilder.wrapDate(pickUpTime));
+        qb.cond("PickUpTime <" + SqlBuilder.wrapDatetime(returnTime));
+        qb.cond("ReturnTime > " + SqlBuilder.wrapDatetime(pickUpTime));
         qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
         qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        qb.cond("ReservationStatus=" + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
         String cond = qb.toString();
         
         return find(cond);
-        
     }
 }

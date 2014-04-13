@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 /**
@@ -11,6 +10,7 @@ package entity;
  * @author Jingchuan Chen
  */
 public class BuyInsurance {
+
     private String insuranceName;
     private int reservationInfoId;
     private int hourlyRate;
@@ -67,7 +67,29 @@ public class BuyInsurance {
     public void setWeeklyRate(int weeklyRate) {
         this.weeklyRate = weeklyRate;
     }
-    
-    
+
+//    public String getHourlyPrice() {
+//        return "123.45";
+//    }
+//
+//    public boolean setHourlyPrice(String price) {
+//        return true;
+//    }
+//
+//    public String getDailyPrice() {
+//        return "123.45";
+//    }
+//
+//    public boolean setDailyPrice(String price) {
+//        return true;
+//    }
+//
+//    public String getWeeklyPrice() {
+//        return "123.45";
+//    }
+//
+//    public boolean setWeeklyPrice(String price) {
+//        return true;
+//    }
 
 }

@@ -27,4 +27,7 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
         return new BuyInsurance();
     }
     
+    public BuyInsurance createBuyInsurance(int reservationInfoId, String insuranceName) throws DaoException {
+        return null;
+    }
 }

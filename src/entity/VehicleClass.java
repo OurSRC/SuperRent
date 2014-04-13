@@ -5,6 +5,8 @@
  */
 package entity;
 
+import finance.Price;
+
 /**
  *
  * @author Jingchuan Chen
@@ -118,4 +120,30 @@ public class VehicleClass {
         this.weeklyRate = WeeklyRate;
     }
 
+    public String getHourlyPrice() {
+        return Price.toText(hourlyRate);
+    }
+
+    public boolean setHourlyPrice(String price) {
+        hourlyRate = Price.toCent(price);
+        return  true;
+    }
+
+    public String getDailyPrice() {
+        return Price.toText(dailyRate);
+    }
+
+    public boolean setDailyPrice(String price) {
+        dailyRate = Price.toCent(price);
+        return true;
+    }
+
+    public String getWeeklyPrice() {
+        return Price.toText(weeklyRate);
+    }
+
+    public boolean setWeeklyPrice(String price) {
+        weeklyRate = Price.toCent(price);
+        return true;
+    }
 }

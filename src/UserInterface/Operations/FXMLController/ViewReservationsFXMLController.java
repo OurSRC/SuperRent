@@ -7,6 +7,7 @@
 package UserInterface.Operations.FXMLController;
 
 
+import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
 import Operations.Reserve;
 import entity.ReservationInfo;
@@ -64,12 +65,12 @@ public class ViewReservationsFXMLController implements Initializable {
                         list.add("Hello123");
 		}
             TimeComboBox1.getItems().clear();
-            ReservationInfo sample = new ReservationInfo();
+            Reservation sample = new Reservation();
 
         
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
-        ArrayList<ReservationInfo> newArray = newReserveCtrl.searchReserve(sample);
-        ObservableList<ReservationInfo> slist =  FXCollections.observableArrayList(newArray);
+        ArrayList<Reservation> newArray = newReserveCtrl.searchReserve(sample);
+        ObservableList<Reservation> slist =  FXCollections.observableArrayList(newArray);
         ReservationTable.setItems(slist);
         System.out.println("I am here and it is working");
         ReservationNumber.setCellValueFactory(new PropertyValueFactory("reservationNumber"));

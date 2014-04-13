@@ -6,6 +6,8 @@
 
 package entity;
 
+import finance.Price;
+
 /**
  *
  * @author Jingchuan Chen
@@ -13,12 +15,12 @@ package entity;
 public class EquipmentType {
     private String typeName;
     private int hourlyRate;
-    private int DailyRate;
+    private int dailyRate;
 
     public EquipmentType(String typeName, int hourlyRate,int DailyRate) {
         this.typeName = typeName;
         this.hourlyRate = hourlyRate;
-        this.DailyRate = DailyRate;
+        this.dailyRate = DailyRate;
        
     }
     
@@ -52,16 +54,35 @@ public class EquipmentType {
     }
 
     /**
-     * @return the DailyRate
+     * @return the dailyRate
      */
     public int getDailyRate() {
-        return DailyRate;
+        return dailyRate;
     }
 
     /**
-     * @param DailyRate the DailyRate to set
+     * @param DailyRate the dailyRate to set
      */
     public void setDailyRate(int DailyRate) {
-        this.DailyRate = DailyRate;
+        this.dailyRate = DailyRate;
     }
+    
+    public String getHourlyPrice() {
+        return Price.toText(hourlyRate);
+    }
+
+    public boolean setHourlyPrice(String price) {
+        hourlyRate = Price.toCent(price);
+        return true;
+    }
+
+    public String getDailyPrice() {
+        return Price.toText(dailyRate);
+    }
+
+    public boolean setDailyPrice(String price) {
+        dailyRate = Price.toCent(price);
+        return true;
+    }
+
 }

@@ -49,13 +49,12 @@ public class ReservationInfo {
     }
 
     public ReservationInfo(int branchId, Date reserveTime, Date pickupTime, Date returnTime, 
-            int estimatePrice, int customerId, int staffId, String vehicleClass, int vHourlyRate, 
+            int customerId, int staffId, String vehicleClass, int vHourlyRate, 
             int vDailyRate, int vWeeklyRate, String reservationNo, STATUS reservationStatus) {
         this.branchId = branchId;
         this.reserveTime = reserveTime;
         this.pickupTime = pickupTime;
         this.returnTime = returnTime;
-        this.estimatePrice = estimatePrice;
         this.customerId = customerId;
         this.staffId = staffId;
         this.vehicleClass = vehicleClass;
@@ -71,6 +70,13 @@ public class ReservationInfo {
      */
     public int getReservationInfoId() {
         return reservationInfoId;
+    }
+    
+    public boolean checkReservationInfoIdValid(){
+        if(reservationInfoId>0)     //the ID is auto increased from 1
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -134,20 +140,6 @@ public class ReservationInfo {
      */
     public void setReturnTime(Date returnTime) {
         this.returnTime = returnTime;
-    }
-
-    /**
-     * @return the estimatePrice
-     */
-    public int getEstimatePrice() {
-        return estimatePrice;
-    }
-
-    /**
-     * @param estimatePrice the estimatePrice to set
-     */
-    public void setEstimatePrice(int estimatePrice) {
-        this.estimatePrice = estimatePrice;
     }
 
     /**

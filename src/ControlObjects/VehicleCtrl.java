@@ -124,7 +124,7 @@ public class VehicleCtrl {
             VehicleDao vDAO = new VehicleDao();
             ReservationInfoDao rDAO = new ReservationInfoDao();
             int vCount = vDAO.countVehicle( new Vehicle(null, null, null, 0, branch.getBranchID(), Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0) );
-            int rCount = rDAO.countReservationBetween(vehicleClass, pickUpTime, returnTime, branch).size();
+            int rCount = rDAO.findReservationBetween(vehicleClass, pickUpTime, returnTime, branch).size();
             if(vCount>rCount)
                 return true;
             else

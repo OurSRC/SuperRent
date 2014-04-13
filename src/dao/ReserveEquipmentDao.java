@@ -14,7 +14,7 @@ import entityParser.StringParser;
  *
  * @author Elitward
  */
-public class ReserveEquitmentDao extends AbstractDao<ReserveEquipment> {
+public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
 
     protected static final String tb_name = "reserve_equipment";
 
@@ -36,6 +36,10 @@ public class ReserveEquitmentDao extends AbstractDao<ReserveEquipment> {
     @Override
     protected ReserveEquipment getInstance() {
         return new ReserveEquipment();
+    }
+    
+    public ReserveEquipment createReserveEquipment( int reservationInfoId,String equipmentType ) throws DaoException{
+        return null;
     }
 
 }
