@@ -179,6 +179,15 @@ public class SqlBuilder {
         return Integer.toString(i);
     }
     
+    public static String wrapDatetime(java.util.Date d) {
+        if (d == null) {
+            return "null";
+        }
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String ans = df.format(d);
+        return wrapStr(ans);
+    }
+    
     public static String wrapDate(java.util.Date d) {
         if (d == null) {
             return "null";

@@ -55,20 +55,17 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return findOne(cond);
     }
     
-    
-    
-
-    public ArrayList<ReservationInfo> countReservationBetween(String vehicleClass, Date pickUpTime, 
+    public ArrayList<ReservationInfo> findReservationBetween(String vehicleClass, Date pickUpTime, 
             Date returnTime, Branch branch) throws DaoException{
         
         SqlBuilder qb = new SqlBuilder();
-        qb.cond("PickUpTime <" + SqlBuilder.wrapDate(returnTime));
-        qb.cond("ReturnTime > " + SqlBuilder.wrapDate(pickUpTime));
+        qb.cond("PickUpTime <" + SqlBuilder.wrapDatetime(returnTime));
+        qb.cond("ReturnTime > " + SqlBuilder.wrapDatetime(pickUpTime));
         qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
         qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        qb.cond("ReservationStatus=" + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
         String cond = qb.toString();
         
         return find(cond);
-        
     }
 }

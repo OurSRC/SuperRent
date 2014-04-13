@@ -13,6 +13,7 @@ import entity.Staff;
 import entity.VehicleClass;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -89,36 +90,90 @@ public class ReservationInfoDaoTest {
     
     @Before
     public void setUp() throws DaoException, ParseException {
-        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
-        Date pickupT = ft.parse("2014-04-10 13:00:00");
-        Date returnT = ft.parse("2014-04-13 13:00:00");
-        
         ReservationInfoDao riDao = new ReservationInfoDao();
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+        Date pickupT;
+        Date returnT;
+        ReservationInfo rinfo;
         
         
-        ReservationInfo ri = new ReservationInfo(branchId, new Date(), pickupT, 
+        pickupT = ft.parse("2014-04-10 13:00:00");
+        returnT = ft.parse("2014-04-13 10:00:00");
+        rinfo = new ReservationInfo(branchId, new Date(), pickupT, 
                 returnT, customerId, staffId, vehicleClassName, 10, 10, 10,
-                "ResNo", ReservationInfo.STATUS.PENDING);
+                "ResNo1", ReservationInfo.STATUS.PENDING);
+        riDao.add(rinfo);
         
-        riDao.add(ri);
+        pickupT = ft.parse("2014-04-09 12:00:00");
+        returnT = ft.parse("2014-04-11 12:00:00");
+        rinfo = new ReservationInfo(branchId, new Date(), pickupT, 
+                returnT, customerId, staffId, vehicleClassName, 10, 10, 10,
+                "ResNo2", ReservationInfo.STATUS.PENDING);
+        riDao.add(rinfo);
+        
+        pickupT = ft.parse("2014-04-12 12:00:00");
+        returnT = ft.parse("2014-04-14 12:00:00");
+        rinfo = new ReservationInfo(branchId, new Date(), pickupT, 
+                returnT, customerId, staffId, vehicleClassName, 10, 10, 10,
+                "ResNo3", ReservationInfo.STATUS.PENDING);
+        riDao.add(rinfo);
+        
+        pickupT = ft.parse("2014-04-10 13:00:00");
+        returnT = ft.parse("2014-04-13 10:00:00");
+        rinfo = new ReservationInfo(branchId, new Date(), pickupT, 
+                returnT, customerId, staffId, vehicleClassName, 10, 10, 10,
+                "ResNo4", ReservationInfo.STATUS.CANCELED);
+        riDao.add(rinfo);
     }
     
     @After
     public void tearDown() throws DaoException {
         ReservationInfoDao riDao = new ReservationInfoDao();
-        ReservationInfo rd = riDao.findByReservationNo("ResNo");
+        ReservationInfo rd;
+        
+        rd = riDao.findByReservationNo("ResNo1");
         riDao.delete(rd);
         
+        rd = riDao.findByReservationNo("ResNo2");
+        riDao.delete(rd);
         
+        rd = riDao.findByReservationNo("ResNo3");
+        riDao.delete(rd);
         
+        rd = riDao.findByReservationNo("ResNo4");
+        riDao.delete(rd);
     }
 
     /**
      * Test of getInstance method, of class ReservationInfoDao.
      */
     @Test
-    public void testAdd() {
-        System.out.println("add");
+    public void testFindReservationBetween() throws ParseException, DaoException {
+        ReservationInfoDao riDao = new ReservationInfoDao();
+        ArrayList<ReservationInfo> rInfoList;
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+        Branch b = new Branch();
+        b.setBranchID(branchId);
+        Date pickupT;
+        Date returnT;
+        
+        pickupT = ft.parse("2014-04-09 13:00:00");
+        returnT = ft.parse("2014-04-11 10:00:00");
+        rInfoList = riDao.findReservationBetween(vehicleClassName, pickupT, returnT, b);
+        assertEquals(rInfoList.size(), 2);
+        
+        pickupT = ft.parse("2014-04-11 12:00:00");
+        returnT = ft.parse("2014-04-12 12:00:00");
+        rInfoList = riDao.findReservationBetween(vehicleClassName, pickupT, returnT, b);
+        assertEquals(rInfoList.size(), 1);
+        
+        pickupT = ft.parse("2014-04-7 12:00:00");
+        returnT = ft.parse("2014-04-16 12:00:00");
+        rInfoList = riDao.findReservationBetween(vehicleClassName, pickupT, returnT, b);
+        assertEquals(rInfoList.size(), 3);
+        
+        
+        
 
     }
     
