@@ -28,14 +28,19 @@ public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     
     protected static final boolean pkIsAutoGen = false;
     
-    public SupportEquipment findSupportEquipmentByEquipmenttype(String type) throws DaoException{
-        return findOne("EquipmentType="+SqlBuilder.wrapStr(type));
-    }
-    public SupportEquipment findEquipmentTypeByVehicleclassname(String className) throws DaoException{
-        return findOne("VehicleClassName="+SqlBuilder.wrapStr(className));
-    }
-    public ArrayList<SupportEquipment> findEquipmentByType(String type,String className) throws DaoException{
-        return find("Support ="+ SqlBuilder.wrapStr(type)+ SqlBuilder.wrapStr(className));
+//    public SupportEquipment findSupportEquipmentByEquipmenttype(String type) throws DaoException{
+//        return findOne("EquipmentType="+SqlBuilder.wrapStr(type));
+//    }
+//    public SupportEquipment findEquipmentTypeByVehicleclassname(String className) throws DaoException{
+//        return findOne("VehicleClassName="+SqlBuilder.wrapStr(className));
+//    }
+//    public ArrayList<SupportEquipment> findEquipmentByType(String type,String className) throws DaoException{
+//        return find("Support ="+ SqlBuilder.wrapStr(type)+ SqlBuilder.wrapStr(className));
+//    }
+    
+    
+    public SupportEquipment findEquipmentByType(String type,String className) throws DaoException{
+        return findOne("Support ="+ SqlBuilder.wrapStr(type)+ SqlBuilder.wrapStr(className));
     }
     
     public ArrayList<SupportEquipment> findByVehicleClass(String vehicleClass) throws DaoException{
