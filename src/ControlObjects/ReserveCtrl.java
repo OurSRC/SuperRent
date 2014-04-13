@@ -1,15 +1,14 @@
 package ControlObjects;
 
-import entity.ReservationInfo;
 import java.util.ArrayList;
 
 public class ReserveCtrl {
 
-    public ReservationInfo createReserve(ReservationInfo reserve) {
+    public Reservation createReserve(Reservation reserve) {
         return null;
     }
 
-    public boolean updateReserve(ReservationInfo reserve) {	//modify & cancel
+    public boolean updateReserve(Reservation reserve) {	//modify & cancel
         return true;
     }
 
@@ -17,16 +16,16 @@ public class ReserveCtrl {
         return false;
     }
 
-    public ReservationInfo getReserve(int reserveId) {
+    public Reservation getReserve(int reserveId) {
         return null;
     }
 
-    public ReservationInfo getReserve(String ReservationNumber) {
+    public Reservation getReserve(String ReservationNumber) {
         return null;
     }
 
-    public ArrayList<ReservationInfo> searchReserve(ReservationInfo reserve) {
-        ArrayList<ReservationInfo> sample = new ArrayList<ReservationInfo>();
+    public ArrayList<Reservation> searchReserve(Reservation reserve) {
+        ArrayList<Reservation> sample = new ArrayList<Reservation>();
         return sample;
     }
 

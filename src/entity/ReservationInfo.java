@@ -71,6 +71,13 @@ public class ReservationInfo {
     public int getReservationInfoId() {
         return reservationInfoId;
     }
+    
+    public boolean checkReservationInfoIdValid(){
+        if(reservationInfoId>0)     //the ID is auto increased from 1
+            return true;
+        else
+            return false;
+    }
 
     /**
      * @param reservationInfoId the reservationInfoId to set
