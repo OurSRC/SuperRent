@@ -9,10 +9,10 @@
     <Label layoutX="39.0" layoutY="30.0" text="Vehicle Type" />
     <TextField fx:id="VehicleClassSelectedTF" editable="false" layoutX="199.0" layoutY="27.0" prefWidth="187.0" />
     <Label layoutX="39.0" layoutY="223.0" text="Insurance" />
-    <CheckBox layoutX="196.0" layoutY="223.0" mnemonicParsing="false" text="Damage Waiver" />
-    <CheckBox layoutX="196.0" layoutY="251.0" mnemonicParsing="false" text="Personal Accident Insurance" />
-    <CheckBox layoutX="195.0" layoutY="280.0" mnemonicParsing="false" text="Personal Effects Coverage" />
-    <CheckBox layoutX="196.0" layoutY="309.0" mnemonicParsing="false" text="Roadside Assistance" />
+    <CheckBox fx:id="DamageWaiverCheckBox" layoutX="196.0" layoutY="223.0" mnemonicParsing="false" text="Damage Waiver" />
+    <CheckBox fx:id="PersonalAccidentCheckBox" layoutX="196.0" layoutY="251.0" mnemonicParsing="false" text="Personal Accident Insurance" />
+    <CheckBox fx:id="PersonalEffectsCoverageCheckBox" layoutX="195.0" layoutY="280.0" mnemonicParsing="false" text="Personal Effects Coverage" />
+    <CheckBox fx:id="RoadsideAssistanceCheckBox" layoutX="196.0" layoutY="309.0" mnemonicParsing="false" text="Roadside Assistance" />
     <Label layoutX="39.0" layoutY="62.0" text="Additional Equipment" />
     <RadioButton layoutX="200.0" layoutY="62.0" mnemonicParsing="false" onAction="#RequiredCBAction" text="Required">
 <toggleGroup>

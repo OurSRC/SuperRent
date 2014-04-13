@@ -10,6 +10,7 @@ import ControlObjects.StaffCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ErrorMsg;
+import SystemOperations.ValidateFields;
 import entity.Staff;
 import java.io.IOException;
 import java.net.URL;
@@ -178,11 +179,13 @@ public class AddUserFXMLController implements Initializable {
             validPhoneNumber = false;
         }
         if (UserNameTF.getText().equals("") || FirstNameTF.getText().equals("") ||
-                LastNameTF.getText().equals("") || !validPhoneNumber || EmailTF.getText().equals("") ||
+                LastNameTF.getText().equals("")  || !ValidateFields.CheckForNumbersOnly(PhoneNumberTF.getText()) || EmailTF.getText().equals("") ||
                 BranchCB.valueProperty().isNull().getValue() || RoleCB.valueProperty().isNull().getValue() ||
                 StatusCB.valueProperty().isNull().getValue() || SetPasswordPF.getText().equals("") 
                 ||!SetPasswordPF.getText().equals(ReenterPasswordPF.getText()))
         {
+            System.out.println(UserNameTF.getText() +  " " + FirstNameTF.getText() +  
+                    " " +  LastNameTF.getText() + " " +  " " +  " " +  " " +  " ");
             System.out.println(SetPasswordPF.getText() + ReenterPasswordPF.getText());
             System.out.println("returned false, phone neumber: " + validPhoneNumber);
             return false;

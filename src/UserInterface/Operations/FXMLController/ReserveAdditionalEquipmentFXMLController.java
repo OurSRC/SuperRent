@@ -15,9 +15,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * FXML Controller class
@@ -28,6 +30,15 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
     @FXML
     private TextField VehicleClassSelectedTF;
     public ListView AdditionalEquipmentListView;
+    
+    
+    public CheckBox DamageWaiverCheckBox;
+    public CheckBox PersonalAccidentCheckBox;
+    public CheckBox PersonalEffectsCoverageCheckBox;
+    public CheckBox RoadsideAssistanceCheckBox;
+    
+    @FXML
+    private ToggleGroup AdditionalEquipmentTG;
 
     /**
      * Initializes the controller class.
@@ -41,10 +52,11 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
          
     }    
     
+    @FXML
     public void NextButtonAction(ActionEvent event) throws IOException, NoSuchMethodException
     {
                 Object[] a = AdditionalEquipmentListView.getSelectionModel().getSelectedItems().toArray();
-                ArrayList<String> SelectedEquipments = new ArrayList<>();
+                ArrayList<String> SelectedEquipments = new ArrayList<>(); 
                 for(int i=0;i < a.length;i++)
                 {
                     SelectedEquipments.add(a[i].toString());
@@ -56,6 +68,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
 
     }
     
+    @FXML
     public void BackButtonAction(ActionEvent event) throws IOException, NoSuchMethodException
     {
               ReservationNavigator.clearVista();
@@ -64,10 +77,12 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
     
     public void populateListView()
     {
-        ObservableList<String> items =FXCollections.observableArrayList ("Single", "Double", "Suite", "Family App");
+        ArrayList<String> AdditionalEquipmentArray = new ArrayList(); /* Get the ArrayList here */
+        ObservableList<String> items =FXCollections.observableArrayList (AdditionalEquipmentArray);
         AdditionalEquipmentListView.setItems(items);
     }
     
+    @FXML
     public void RequiredCBAction(ActionEvent event)
     {
         AdditionalEquipmentListView.setDisable(false);
@@ -75,6 +90,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
         populateListView();
     }
     
+    @FXML
     public void NotRequiredCBAction(ActionEvent event)
     {
             AdditionalEquipmentListView.getItems().clear();
