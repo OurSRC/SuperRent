@@ -70,7 +70,14 @@ public class StaffCtrl {
     }
 
     public ArrayList<Staff> searchStaff(Staff staff) {
-        ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
-        return null;
+        StaffDao staffDAO = new StaffDao();
+        ArrayList<Staff> list = null;
+        try {
+            list = staffDAO.findByInstance(staff);
+        } catch (DaoException ex) {
+            Logger.getLogger(StaffCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return list;
     }
 }
