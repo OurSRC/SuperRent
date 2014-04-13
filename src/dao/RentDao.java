@@ -12,6 +12,7 @@ import entityParser.AttributeParser;
 import entityParser.IntParser;
 import entityParser.StringParser;
 import entityParser.DateParser;
+import entityParser.DatetimeParser;
 /**
  *
  * @author Xi Yang
@@ -27,7 +28,7 @@ public class RentDao extends AbstractDao<Rent>{
         new IntParser("Odometer","odometer"),
         new StringParser("CreditCardNo","creditCardNo"),
         new IntParser("StaffId","staffId"),
-        new DateParser("Time","time")
+        new DatetimeParser("Time","time")
     };
     
     protected static final int[] pkIndex = {0};

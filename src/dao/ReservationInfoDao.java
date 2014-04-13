@@ -10,6 +10,7 @@ import entity.Branch;
 import entity.ReservationInfo;
 import entityParser.AttributeParser;
 import entityParser.DateParser;
+import entityParser.DatetimeParser;
 import entityParser.EnumParser;
 import entityParser.IntParser;
 import entityParser.StringParser;
@@ -27,16 +28,16 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
     protected static final AttributeParser ap[] = {
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new IntParser("BranchId", "BranchId"),
-        new DateParser("ReserveTime", "ReserveTime"),
+        new DatetimeParser("ReserveTime", "ReserveTime"),
         new IntParser("EstimatePrice", "EstimatePrice"),
-        new DateParser("PickUpTime", "PickupTime"),
-        new DateParser("ReturnTime", "ReturnTime"),
+        new DatetimeParser("PickUpTime", "PickupTime"),
+        new DatetimeParser("ReturnTime", "ReturnTime"),
         new IntParser("CustomerId", "CustomerId"),
         new IntParser("StaffId", "StaffId"),
         new StringParser("VehicleClass", "VehicleClass"),
-        new IntParser("VDailyRate", "VDailyRate"),
-        new IntParser("VHourlyRate", "VHourlyRate"),
-        new IntParser("VWeeklyRate", "VWeeklyRate"),
+        new IntParser("VDailyRate", "vDailyRate"),
+        new IntParser("VHourlyRate", "vHourlyRate"),
+        new IntParser("VWeeklyRate", "vWeeklyRate"),
         new StringParser("ReservationNo", "ReservationNo"),
         new EnumParser("ReservationStatus", "ReservationStatus")
     };
@@ -48,6 +49,11 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
     @Override
     protected ReservationInfo getInstance() {
         return new ReservationInfo();
+    }
+    
+    public ReservationInfo findByReservationNo(String reservatioNo) throws DaoException {
+        String cond = "ReservationNo=" + SqlBuilder.wrapStr(reservatioNo);
+        return findOne(cond);
     }
     
     

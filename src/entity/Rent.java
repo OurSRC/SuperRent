@@ -22,6 +22,20 @@ public class Rent {
     private int staffId;
     private Date time;
 
+    public Rent() {
+    }
+
+    public Rent(int contractNo, int reservationInfold, int vehicleNo, int fuelLevel, int odometer, String creditCardNo, int staffId, Date time) {
+        this.contractNo = contractNo;
+        this.reservationInfold = reservationInfold;
+        this.vehicleNo = vehicleNo;
+        this.fuelLevel = fuelLevel;
+        this.odometer = odometer;
+        this.creditCardNo = creditCardNo;
+        this.staffId = staffId;
+        this.time = time;
+    }
+
     /**
      * @return the contractNo
      */
