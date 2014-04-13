@@ -8,6 +8,7 @@ package UserInterface.PeopleManagement.FXML;
 import ControlObjects.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
+import SystemOperations.ValidateFields;
 import entity.Customer;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,6 +48,7 @@ public class CreateCustomerFXMLController implements Initializable {
     public String middleName;
     public String email;
     public String address;
+    public String licenseNumber;
 
     /**
      * Initializes the controller class.
@@ -67,7 +69,7 @@ public class CreateCustomerFXMLController implements Initializable {
             newCustomer.setLastName(lastName);
             newCustomer.setMiddleName(middleName);
             newCustomer.setEmail(email);
-            newCustomer.setDriverLicenseNumber("1233");
+            newCustomer.setDriverLicenseNumber(licenseNumber);
             newCustomer.setIsClubMember(false);
             newCustomer.setUsername(null);
             CustomerCtrl newCustomerCtrl = new CustomerCtrl();
@@ -100,10 +102,26 @@ public class CreateCustomerFXMLController implements Initializable {
         middleName = MiddleNameTF.getText();
         address = AddressTF.getText();
         email = EmailTF.getText();
+        licenseNumber = LicenseTF.getText();
         if (!customerPhone.equals("")
                 && !firstName.equals("")
-                && !lastName.equals("")) {
-            return true;
+                && !lastName.equals("")
+                && !middleName.equals("")
+                && !address.equals("")
+                && !email.equals("")
+                && !licenseNumber.equals("")) {
+            if(ValidateFields.CheckForNumbersOnly(customerPhone) && ValidateFields.CheckForNumbersOnly(licenseNumber))
+            {
+                
+                return true;
+            }else 
+            {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("Improrper Phone Number");
+                dialog.showDialog();
+                return false;
+            }
         } else {
             return false;
         }
