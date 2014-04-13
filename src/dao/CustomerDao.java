@@ -15,6 +15,7 @@ import entityParser.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,6 +90,34 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         return customer;
     }
 
+    private ArrayList<Customer> find(String cond) throws DaoException {
+        ArrayList<Customer> result = new ArrayList<>();
+
+        SqlBuilder qb = new SqlBuilder();
+        String sql = qb
+                .select("*")
+                .from(tb_name)
+                .where(cond)
+                .toString();
+
+        try {
+            Statement stmt = DbConn.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                Customer entity = new Customer();
+                EntityParser.parseEntity(rs, entity, ap);
+                result.add(entity);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException(tb_name, "find()");
+        }
+
+        return result;
+    }
+
     private Customer parseCustomer(ResultSet rs) throws SQLException, DaoException {
         Customer customer = new Customer();
 
@@ -149,6 +178,20 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         return customer;
     }
 
+    public ArrayList<Customer> findByInstance(Customer value) throws DaoException {
+        SqlBuilder qb = new SqlBuilder();
+
+        for (AttributeParser attr : ap) {
+            String str = attr.wrapAttr(value);
+            if (!(str.equalsIgnoreCase("null") || (str.equals("0") && attr.getClass().equals(IntParser.class)))) {
+                qb.cond(attr.getColName() + "=" + str);
+            }
+        }
+
+        String sql = qb.toString();
+        return find(sql);
+    }
+
     /**
      *
      * @param customer Customer object to update
@@ -173,8 +216,8 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             if (customer_db == null) {
                 throw new DaoException(tb_name, "update() existing record not found");
             }
-            if (customer_db.getUsername() != null && 
-                    customer_db.getUsername().equals(customer.getUsername())) { // username is not changed
+            if (customer_db.getUsername() != null
+                    && customer_db.getUsername().equals(customer.getUsername())) { // username is not changed
                 udao.update(customer);
                 updated = true;
             } else {        // username changed
@@ -217,7 +260,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         qb.insert(tb_name);
         qb.columns(EntityParser.getColunmList(ap_remove_id));
         qb.values(EntityParser.wrapEntity(customer, ap_remove_id));
-        
+
         String sql = qb.toString();
         try {
             if (customer.getUsername() != null) {
