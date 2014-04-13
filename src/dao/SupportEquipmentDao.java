@@ -37,6 +37,13 @@ public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     public ArrayList<SupportEquipment> findEquipmentByType(String type,String className) throws DaoException{
         return find("Support ="+ SqlBuilder.wrapStr(type)+ SqlBuilder.wrapStr(className));
     }
+    
+    public ArrayList<SupportEquipment> findByVehicleClass(String vehicleClass) throws DaoException{
+        return find("VehicleClassName ="+ SqlBuilder.wrapStr(vehicleClass));
+    }
+    public ArrayList<SupportEquipment> findByEquipmentType(String equipmentType) throws DaoException{
+        return find("EquipmentType ="+ SqlBuilder.wrapStr(equipmentType));
+    }
     @Override
     protected SupportEquipment getInstance() {
         return new SupportEquipment();
