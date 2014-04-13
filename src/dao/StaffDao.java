@@ -227,6 +227,22 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         return staff;
 
     }
+    
+    public ArrayList<Staff> findByInstance(Staff value) throws DaoException { 
+        SqlBuilder qb = new SqlBuilder();
+        
+        for (AttributeParser attr : ap) {
+            String str = attr.wrapAttr(value);
+            if (!(str.equalsIgnoreCase("null") || (str.equals("0") && attr.getClass().equals(IntParser.class)))) {
+                qb.cond(attr.getColName() + "=" + str);
+            }
+        }
+        
+        String sql = qb.toString();
+        return find(sql);
+    }
+    
+    
 
     public Staff findByUsername(String username) throws DaoException {
         Staff staff = findOne("Username=" + SqlBuilder.wrapStr(username));
