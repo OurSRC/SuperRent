@@ -10,9 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.animation.FadeTransition;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 /**
@@ -73,9 +75,12 @@ public class OperationsFXMLController implements Initializable{
     }
     
     
-    public void CustomerButtonAction(ActionEvent event)
+    public void CustomerButtonAction(ActionEvent event) throws IOException
     {
-        
+        MainOperationsStackPane.getChildren().clear();
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/PeopleManagement/FXML/CustomerMainPageFXML.fxml"));
+        Pane CustomerInfoPane = (Pane) myLoader.load();
+        MainOperationsStackPane.getChildren().add(CustomerInfoPane);
     }
    
     public void FadeTransitionMethod(Node CurrentNode)

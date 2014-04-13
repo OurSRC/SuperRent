@@ -41,7 +41,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
          
     }    
     
-    public void NextButtonAction(ActionEvent event) throws IOException
+    public void NextButtonAction(ActionEvent event) throws IOException, NoSuchMethodException
     {
                 Object[] a = AdditionalEquipmentListView.getSelectionModel().getSelectedItems().toArray();
                 ArrayList<String> SelectedEquipments = new ArrayList<>();
@@ -56,7 +56,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
 
     }
     
-    public void BackButtonAction(ActionEvent event) throws IOException
+    public void BackButtonAction(ActionEvent event) throws IOException, NoSuchMethodException
     {
               ReservationNavigator.clearVista();
               ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);

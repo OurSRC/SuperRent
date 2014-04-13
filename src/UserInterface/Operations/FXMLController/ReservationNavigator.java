@@ -8,8 +8,11 @@ package UserInterface.Operations.FXMLController;
 
 import Operations.Reserve;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import UserInterface.Login.FXMLController.FXMLCustomerMainPageController;
 import entity.ReservationInfo;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 
@@ -18,7 +21,9 @@ import javafx.scene.Node;
  * @author Vyas
  */
 public class ReservationNavigator {
-        private static OperationsFXMLController mainController;
+        //private static OperationsFXMLController mainController;
+        private static Object mainController;
+
         public static String SampleSharedVariable;
         public static final String VEHICLECLASSAVAILABILITY = "/UserInterface/FleetManagement/FXML/VehicleClassAvailabilityFXML.fxml";
         public static final String PickDate = "/UserInterface/Operations/FXML/ReservationPickUpdateFXML.fxml";
@@ -35,19 +40,50 @@ public class ReservationNavigator {
         public static boolean customerFlag;
         public static boolean modifyFlag;
 
-        public static void setMainController(OperationsFXMLController mainController) {
+        public static void setMainController(Object mainController) {
+            
         ReservationNavigator.mainController = mainController;
         
 }
+        
+        
 
-    public static void clearVista()
+    public static void clearVista() throws NoSuchMethodException
     {
-        mainController.ClearStackPane();
+        try
+        {
+        Class aClass = mainController.getClass();
+        Method method = aClass.getMethod("ClearStackPane", null);
+        }catch(NoSuchMethodException e)
+        {
+            
+        }
+        //mainController.ClearStackPane();
     }
     
     public static void loadVista(String fxml) throws IOException {
-        mainController.setStackPane((Node) FXMLLoader.load(ReservationNavigator.class.getResource(fxml)));
-}
+        System.out.println("I am calling from here");
+        try
+        {Class aClass = mainController.getClass();
+        Method method = aClass.getMethod("setStackPane", new Class[]{Node.class});
+        method.invoke(mainController, new Object[] {(Node) FXMLLoader.load(ReservationNavigator.class.getResource(fxml))});
+        }catch(NoSuchMethodException e)
+        {
+            
+        }catch(IllegalAccessException e)
+        {
+            
+        }catch(IllegalArgumentException e)
+        {
+            
+        }catch(InvocationTargetException e)
+        {
+            
+        }
+        //mainController.setStackPane((Node) FXMLLoader.load(ReservationNavigator.class.getResource(fxml)));
+    }
+    
+   
     
     public void setCustomerFlag()
     {

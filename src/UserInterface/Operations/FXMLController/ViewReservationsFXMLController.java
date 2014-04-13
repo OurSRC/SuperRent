@@ -93,10 +93,6 @@ public class ViewReservationsFXMLController implements Initializable {
         //RentNavigator.ReservationNumber = rrr.getReservationNumber();
         //System.out.println(rrr.getReservationNumber());
         RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
-        }
-        
-    }
-    
-     
-    
+        } 
+    }    
 }

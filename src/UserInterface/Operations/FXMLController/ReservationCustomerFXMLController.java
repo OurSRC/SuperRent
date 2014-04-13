@@ -44,7 +44,7 @@ public class ReservationCustomerFXMLController implements Initializable {
     }
 
     @FXML
-    public void NextButtonAction(ActionEvent event) throws IOException {
+    public void NextButtonAction(ActionEvent event) throws IOException, NoSuchMethodException {
         
         if (!CustomerEmailTF.getText().isEmpty()) {
             ReservationNavigator.newReserve.setCustomerId(customer.getCustomerId());
@@ -58,7 +58,7 @@ public class ReservationCustomerFXMLController implements Initializable {
 
     }
 
-    public void BackButtonAction(ActionEvent event) throws IOException {
+    public void BackButtonAction(ActionEvent event) throws IOException, NoSuchMethodException {
         System.out.println("I am inside this.Please help");
         ReservationNavigator.clearVista();
         ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);

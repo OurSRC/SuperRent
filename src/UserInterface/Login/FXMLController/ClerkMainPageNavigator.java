@@ -17,6 +17,7 @@ import javafx.scene.Node;
 public class ClerkMainPageNavigator {
     
         private static FXMLClerkMainPageController mainController;
+        private static FXMLCustomerMainPageController mainController1;
 
         public static final String HOME_PAGE = "/UserInterface/Login/FXML/ClerkHomePageFXML.fxml";
         public static final String OPERATIONS = "/UserInterface/Operations/FXML/OperationsFXML.fxml";
