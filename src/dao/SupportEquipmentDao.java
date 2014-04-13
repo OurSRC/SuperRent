@@ -20,27 +20,19 @@ import java.util.ArrayList;
 public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     protected static final String tb_name = "support";
     protected static final AttributeParser ap[] = {
-        new StringParser("EquipmentType", "equipmentType"),
-        new StringParser("VehicleClassName", "vehicleClass"),
+        new StringParser("EquipmentType", "EquipmentType"),
+        new StringParser("VehicleClassName", "VehicleClass"),
     };
     
     protected static final int[] pkIndex = {0,1};
     
     protected static final boolean pkIsAutoGen = false;
-    
-//    public SupportEquipment findSupportEquipmentByEquipmenttype(String type) throws DaoException{
-//        return findOne("EquipmentType="+SqlBuilder.wrapStr(type));
-//    }
-//    public SupportEquipment findEquipmentTypeByVehicleclassname(String className) throws DaoException{
-//        return findOne("VehicleClassName="+SqlBuilder.wrapStr(className));
-//    }
-//    public ArrayList<SupportEquipment> findEquipmentByType(String type,String className) throws DaoException{
-//        return find("Support ="+ SqlBuilder.wrapStr(type)+ SqlBuilder.wrapStr(className));
-//    }
-    
-    
-    public SupportEquipment findEquipmentByType(String type,String className) throws DaoException{
-        return findOne("Support ="+ SqlBuilder.wrapStr(type)+ SqlBuilder.wrapStr(className));
+
+    public SupportEquipment findEquipmentByType(String vehicleClass,String equipmentType) throws DaoException{
+        String cond;
+        cond = "VehicleClassName=" + SqlBuilder.wrapStr(vehicleClass);
+        cond += " AND EquipmentType=" + SqlBuilder.wrapStr(equipmentType);
+        return findOne(cond);
     }
     
     public ArrayList<SupportEquipment> findByVehicleClass(String vehicleClass) throws DaoException{
