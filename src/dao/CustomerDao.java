@@ -173,7 +173,8 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             if (customer_db == null) {
                 throw new DaoException(tb_name, "update() existing record not found");
             }
-            if (customer_db.getUsername().equals(customer.getUsername())) { // username is not changed
+            if (customer_db.getUsername() != null && 
+                    customer_db.getUsername().equals(customer.getUsername())) { // username is not changed
                 udao.update(customer);
                 updated = true;
             } else {        // username changed
