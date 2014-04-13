@@ -33,9 +33,9 @@ public class ReservationSummaryFXMLController implements Initializable {
     private Font x1;
     public CheckBox ProceedToRent;
    
+   
   
 
-    
     @FXML
     public void ConfirmButtonAction(ActionEvent event) throws IOException
     {
@@ -72,5 +72,5 @@ public class ReservationSummaryFXMLController implements Initializable {
 
    
     
-    
+ 
 }

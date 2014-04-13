@@ -204,8 +204,12 @@ public class FXMLClerkMainPageController implements Initializable {
     
     public void VehicleButtonAction(ActionEvent event)
     {
-               ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.FLEET_MANAGEMENT);
-               
+               ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.FLEET_MANAGEMENT);        
+    }
+    
+    public void UserButtonAction(ActionEvent event)
+    {
+        ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.USER_MANAGEMENT);        
     }
     
     public void setStackPane(Node node) {
