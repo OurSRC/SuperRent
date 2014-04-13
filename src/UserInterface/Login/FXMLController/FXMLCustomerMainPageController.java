@@ -5,6 +5,7 @@
  */
 package UserInterface.Login.FXMLController;
 
+import ControlObjects.Reservation;
 import UserInterface.Operations.FXMLController.OperationsFXMLController;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
 import entity.ReservationInfo;
@@ -39,7 +40,7 @@ public class FXMLCustomerMainPageController implements Initializable {
 
     @FXML
     private void ReserveButtonAction(ActionEvent event) throws IOException {
-        ReservationNavigator.newReserve = new ReservationInfo();
+        ReservationNavigator.newReserve = new Reservation();
         ReservationNavigator.setMainController(this);
         ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
 

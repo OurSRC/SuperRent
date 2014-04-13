@@ -30,6 +30,9 @@ public class Reservation {
     private ArrayList<BuyInsurance> reserveInsu;
 
     public Reservation() {
+        this.reserveInfo = new ReservationInfo();
+        this.reserveEqmt = new ArrayList();
+        this.reserveInsu = new ArrayList();
     }
 
     public Reservation(ReservationInfo reserveInfo, ArrayList<ReserveEquipment> reserveEqmt, ArrayList<BuyInsurance> reserveInsn) {

@@ -13,15 +13,18 @@
 <Button layoutX="525.0" layoutY="6.0" mnemonicParsing="false" onAction="#AddVehicleClassButtonAction" prefHeight="25.0" prefWidth="151.0" text="Add Vehicle Class" />
 <Label layoutX="21.0048828125" layoutY="63.5" text="Vehicle Type " />
 <Label layoutX="22.009765625" layoutY="102.5" text="Vehicle Class" />
-<RadioButton layoutX="134.0" layoutY="64.0" mnemonicParsing="false" text="Car " />
-<RadioButton layoutX="205.0" layoutY="64.0" mnemonicParsing="false" text="Truck" />
-<ComboBox layoutX="134.0" layoutY="99.0" prefHeight="25.0" prefWidth="125.0" />
-<TableView layoutY="175.0" prefHeight="184.0" prefWidth="681.0">
+<RadioButton layoutX="134.0" layoutY="64.0" mnemonicParsing="false" onAction="#VehicleTypeRBCarAction" selected="true" text="Car ">
+<toggleGroup>
+<ToggleGroup fx:id="VehicleTypeTG" />
+</toggleGroup></RadioButton>
+<RadioButton layoutX="205.0" layoutY="64.0" mnemonicParsing="false" onAction="#VehicleTypeRBTruckAction" text="Truck" toggleGroup="$VehicleTypeTG" />
+<ComboBox fx:id="VehicleClassCB" layoutX="134.0" layoutY="99.0" onAction="#VehicleClassCBAction" prefHeight="25.0" prefWidth="125.0" />
+<TableView fx:id="VehicleClassTableView" layoutY="175.0" prefHeight="184.0" prefWidth="681.0">
   <columns>
-    <TableColumn prefWidth="174.0" text="Vehicle Class" />
-    <TableColumn prefWidth="169.0" text="Hourly Rate" />
-    <TableColumn prefWidth="161.0" text="Daily Rate" />
-    <TableColumn prefWidth="174.0" text="Weekly Rate" />
+    <TableColumn fx:id="VehicleClassColumn" prefWidth="174.0" text="Vehicle Class" />
+    <TableColumn fx:id="HourlyRateColumn" prefWidth="169.0" text="Hourly Rate" />
+    <TableColumn fx:id="DailyRateColumn" prefWidth="161.0" text="Daily Rate" />
+    <TableColumn fx:id="WeeklyRateColumn" prefWidth="174.0" text="Weekly Rate" />
   </columns>
-</TableView><Button layoutX="536.0" layoutY="391.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="View Information" /><Button layoutX="396.0" layoutY="391.0" mnemonicParsing="false" onAction="#ModifyVehicleClassButtonAction" prefHeight="25.0" prefWidth="125.0" text="Modify Vehicle Class" /><Separator layoutX="20.0" layoutY="4.0" prefHeight="8.0" prefWidth="490.0" /><Separator layoutX="20.0" layoutY="26.0" prefHeight="8.0" prefWidth="490.0" /><Separator layoutX="128.0" layoutY="14.0" prefHeight="8.0" prefWidth="382.0" /><Button layoutX="536.0" layoutY="136.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Search" />
+</TableView><Button layoutX="536.0" layoutY="391.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="View Information" /><Button layoutX="396.0" layoutY="391.0" mnemonicParsing="false" onAction="#ModifyVehicleClassButtonAction" prefHeight="25.0" prefWidth="125.0" text="Modify Vehicle Class" /><Separator layoutX="20.0" layoutY="4.0" prefHeight="8.0" prefWidth="490.0" /><Separator layoutX="20.0" layoutY="26.0" prefHeight="8.0" prefWidth="490.0" /><Separator layoutX="128.0" layoutY="14.0" prefHeight="8.0" prefWidth="382.0" /><Button layoutX="536.0" layoutY="136.0" mnemonicParsing="false" onAction="#SearchButtonAction" prefHeight="25.0" prefWidth="125.0" text="Search" />
 </children></AnchorPane>

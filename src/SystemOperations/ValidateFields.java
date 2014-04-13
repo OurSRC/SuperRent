@@ -15,9 +15,17 @@ import javafx.scene.Node;
  */
 public class ValidateFields {
     
-    public static boolean ValidateFields(Node FieldNodes)
+    public static boolean CheckForNumbersOnly(String inputString)
     {
-        return true;
+        try
+        {
+            Double newDouble = Double.parseDouble(inputString);
+            return true;
+
+        }catch(Exception e)
+        {
+            return false;
+        }
     }
     
 }

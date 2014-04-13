@@ -37,6 +37,8 @@ public class CreateCustomerFXMLController implements Initializable {
     private TextField EmailTF;
     @FXML
     private TextField AddressTF;
+    @FXML
+    private TextField LicenseTF;
 
     /* Variables to store values */
     public String customerPhone;

@@ -10,6 +10,7 @@ import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ErrorMsg;
+import SystemOperations.ValidateFields;
 import entity.Vehicle;
 import java.io.IOException;
 import java.net.URL;
@@ -96,8 +97,18 @@ public class AddVehicleFXMLController implements Initializable {
                 manufacturingDate = DateClass.getDateObject(ManufacturingDatePicker.getValue());
                 odometerReading = Integer.parseInt(OdometerReadingTF.getText());
                 System.out.println(plateNumber + " " + vehicleClass + " " + Model + " " + odometerReading + " " + manufacturingDate.toString());
-                Vehicle newVehicle = new Vehicle(plateNumber, manufacturingDate, Model, odometerReading, 1, Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0);
-
+                //Vehicle newVehicle = new Vehicle(plateNumber, manufacturingDate, Model, odometerReading, 1, Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0);
+                Vehicle newVehicle = new Vehicle();
+                newVehicle.setPlateNo(plateNumber);
+                newVehicle.setManufactureDate(manufacturingDate);
+                newVehicle.setMode(Model);
+                newVehicle.setOdometer(odometerReading);
+                newVehicle.setBranchId(1);
+                newVehicle.setStatus(Vehicle.STATUS.FORRENT);
+                newVehicle.setRentStatus(Vehicle.RENTSTATUS.IDLE);
+                newVehicle.setSellStatus((Vehicle.SELLSTATUS) null);
+                newVehicle.setClassName(vehicleClass);
+                newVehicle.setPrice(0);
                 VehicleCtrl newVehicleCtrl = new VehicleCtrl();
                 Vehicle returnVehicle = newVehicleCtrl.createVehicle(newVehicle);
                 System.out.println("I am Vyas");
@@ -154,6 +165,10 @@ public class AddVehicleFXMLController implements Initializable {
                 && !ModelTF.getText().equals("")
                 && !VehicleClassCB.valueProperty().isNull().getValue()
                 && !ManufacturingDatePicker.valueProperty().isNull().getValue()) {
+            if(ValidateFields.CheckForNumbersOnly(Integer.toString(odometerReading)))
+            {
+                System.out.println("Hello i am insde the checkfornumbersonly");
+            }
             return true;
         } else {
             return false;

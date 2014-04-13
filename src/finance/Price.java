@@ -12,8 +12,10 @@ package finance;
  */
 public class Price {
     public static String toText(int cent){
-        float f = (float)(cent/100);
-        return String.format("%f", f);
+        System.out.println(cent + " Value of cent");
+        float f = (float)(cent)/(float) 100;
+        System.out.println(f + "value in float");
+        return String.format("%.02f", f);
     }
     
     public static int toCent(String text){

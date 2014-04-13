@@ -6,6 +6,7 @@
 
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.Reservation;
 import Operations.Reserve;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import UserInterface.Login.FXMLController.FXMLCustomerMainPageController;
@@ -36,7 +37,7 @@ public class ReservationNavigator {
         public static final String ViewReseration = "/UserInterface/Operations/FXML/ViewReservationsFXML.fxml";
         
         /* Common Variables to facilitate navigations */
-        public static ReservationInfo newReserve;
+        public static Reservation newReserve;
         public static boolean customerFlag;
         public static boolean modifyFlag;
 

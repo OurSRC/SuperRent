@@ -14,14 +14,17 @@ public class CustomerCtrl {
         try {
             CustomerDao customerDAO = new CustomerDao();
             boolean suc = customerDAO.add(customer);
-            if (suc) {
+            Customer withIdInfo = customerDAO.findByPhone(customer.getPhone());
+            return withIdInfo;
+
+            /*if (suc) {
                 //Locate the customer again to get customerID, which is auto increased by database
                 Customer withIdInfo = customerDAO.findByUsername(customer.getUsername());
                 return withIdInfo;
             } else {
                 ErrorMsg.setLastError(ErrorMsg.ERROR_DATABASE_LOGIC_ERROR);
                 return null;
-            }
+            }*/
         } catch (DaoException ex) {
             Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);

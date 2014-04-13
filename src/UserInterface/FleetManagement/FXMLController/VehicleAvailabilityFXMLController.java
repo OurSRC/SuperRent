@@ -101,18 +101,22 @@ public class VehicleAvailabilityFXMLController implements Initializable {
                 }
 
                 VehicleCtrl vehicleControl = new VehicleCtrl();
-                //ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability( type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch() );
-                ArrayList<VehicleClass> AvailableVehicleClasses = new ArrayList(); /* Include the method here */
+                ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability(type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch());
 
-                ObservableList<VehicleClass> list = FXCollections.observableArrayList(AvailableVehicleClasses);
+                ArrayList<VehicleClass> VehicleClassArray = new ArrayList();
+                System.out.println(AvailableVehicleTypes.size() + " Size of the ARraylist");
+                for (int i = 0; i < AvailableVehicleTypes.size(); i++) {
+                    VehicleClassArray.add(vehicleControl.findVehicleClass(AvailableVehicleTypes.get(i)));
+                }
+                ObservableList<VehicleClass> list = FXCollections.observableArrayList(VehicleClassArray);
                 VehicleClassTable.getItems().clear();
                 VehicleClassTable.setItems(list);
 
-                VehicleTypeColumn.setCellValueFactory(new PropertyValueFactory(""));
-                VehicleClassColumn.setCellValueFactory(new PropertyValueFactory(""));
-                HourlyRateColumn.setCellValueFactory(new PropertyValueFactory(""));
-                WeeklyRateColumn.setCellValueFactory(new PropertyValueFactory(""));
-                DailyRateColumn.setCellValueFactory(new PropertyValueFactory(""));
+                VehicleTypeColumn.setCellValueFactory(new PropertyValueFactory("vehicleType"));
+                VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("className"));
+                HourlyRateColumn.setCellValueFactory(new PropertyValueFactory("hourlyPrice"));
+                WeeklyRateColumn.setCellValueFactory(new PropertyValueFactory("weeklyPrice"));
+                DailyRateColumn.setCellValueFactory(new PropertyValueFactory("dailyPrice"));
 
             } else {
                 System.out.println("Invalid Dates ");
@@ -136,19 +140,18 @@ public class VehicleAvailabilityFXMLController implements Initializable {
             ReservationNavigator.newReserve.setPickupTime(PickUpDate);
             ReservationNavigator.newReserve.setReturnTime(ReturnDate);
             ReservationNavigator.newReserve.setVehicleClass(selectedVehicleClass.getClassName());
-            ReservationNavigator.newReserve.setvDailyRate(selectedVehicleClass.getDailyRate());
-            ReservationNavigator.newReserve.setvHourlyRate(selectedVehicleClass.getHourlyRate());
-            ReservationNavigator.newReserve.setvWeeklyRate(selectedVehicleClass.getWeeklyRate());
+            ReservationNavigator.newReserve.setHourlyPrice(selectedVehicleClass.getHourlyPrice());
+            ReservationNavigator.newReserve.setWeeklyPrice(selectedVehicleClass.getWeeklyPrice());
+            ReservationNavigator.newReserve.setDailyPrice(selectedVehicleClass.getDailyPrice());
+
             System.out.println("Successfully stored values into Reservation object in ReservationNavigator");
             ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);
-        }else
-        {
-                        ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);
+        } else {
             System.out.println("Please enter the Mandatory Fields");
             DialogFX dialog = new DialogFX(Type.ERROR);
             dialog.setTitleText("Error");
             dialog.setMessage("Please select a vehicle Class to proceed for Reservation");
-            dialog.showDialog();     
+            dialog.showDialog();
         }
     }
 

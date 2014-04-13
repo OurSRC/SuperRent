@@ -1,6 +1,7 @@
 
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.Reservation;
 import Operations.Reserve;
 import entity.ReservationInfo;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class OperationsFXMLController implements Initializable{
     public void CreateReservationAction(ActionEvent event) throws IOException
     {
        MainOperationsStackPane.getChildren().clear();
-       ReservationNavigator.newReserve = new ReservationInfo();
+       ReservationNavigator.newReserve = new Reservation();
        ReservationNavigator.setMainController(this);
        ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
     }
