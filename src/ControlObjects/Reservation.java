@@ -177,5 +177,27 @@ public class Reservation {
         }
         return true;
     }
+    public String getHourlyPrice() {
+        return "123.45";
+    }
 
+    public boolean setHourlyPrice(String price) {
+        return true;
+    }
+
+    public String getDailyPrice() {
+        return "123.45";
+    }
+
+    public boolean setDailyPrice(String price) {
+        return true;
+    }
+
+    public String getWeeklyPrice() {
+        return "123.45";
+    }
+
+    public boolean setWeeklyPrice(String price) {
+        return true;
+    }
 }

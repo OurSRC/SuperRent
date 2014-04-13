@@ -1,3 +1,4 @@
+mysql --user superrent --password=superrent < 00_drop_db_tables.sql
 mysql --user superrent --password=superrent < 01_create_db_tables.sql
 mysql --user superrent --password=superrent < 02_fill_user_table.sql
 mysql --user superrent --password=superrent < 03_fill_branch_table.sql
