@@ -6,22 +6,16 @@
 
 package UserInterface.Operations.FXMLController;
 
-import SystemOperations.DialogFX;
-import SystemOperations.DialogFX.Type;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-//import javafx.scene.control.Dialogs;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -31,46 +25,54 @@ import javafx.stage.Stage;
 public class ReservationSummaryFXMLController implements Initializable {
     @FXML
     private Font x1;
-    public CheckBox ProceedToRent;
-   
-   
-  
+    @FXML
+    private TextField PickUpDateTF;
+    @FXML
+    private TextField ReturnDateTF;
+    @FXML
+    private TextField VehicleClassTF;
+    @FXML
+    private TextField VehicleTypeTF;
+    @FXML
+    private ListView AdditionalEquipmentList;
+    @FXML
+    private TextField EstimatedCostTF;
+    @FXML
+    private TextField CreditCardTF;
+    @FXML
+    private ListView InsuranceList;
 
-    @FXML
-    public void ConfirmButtonAction(ActionEvent event) throws IOException
-    {
-        DialogFX dialog = new DialogFX(Type.ACCEPT);
-        dialog.setTitleText("Reservation Successfull");
-        dialog.setMessage("Your Reservation Number is " + "12345" + ".");
-        dialog.showDialog();
-        //
-    }
-    
-    
-    @FXML
-    public void AbortButtonAction(ActionEvent event) throws IOException
-    {
-        
-       // ReserveAnReservationNavigatorta();
-        // Clear the Reservation Object in the Navigator before this
-      // ReserveAndReReservationNavigatoreserveAndRentNReservationNavigator    }
-    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        VehicleClassTF.setText(ReservationNavigator.newReserve.getVehicleClass());
+        PickUpDateTF.setText(ReservationNavigator.newReserve.getPickupTime().toString());
+        ReturnDateTF.setText(ReservationNavigator.newReserve.getReturnTime().toString());
+        System.out.println("Outside Additional Equipments");
+
+        if(!ReservationNavigator.newReserve.getEquipmentType().isEmpty())
+        {
+            System.out.println("Inside Additional Equipments");
+            ObservableList<String> items =FXCollections.observableArrayList (ReservationNavigator.newReserve.getEquipmentType());
+            AdditionalEquipmentList.setItems(items);
+        }
         
-        
+        if(!ReservationNavigator.newReserve.getInsurance().isEmpty())
+        {
+            ObservableList<String> items =FXCollections.observableArrayList (ReservationNavigator.newReserve.getInsurance());
+            InsuranceList.setItems(items);
+        }
     }    
-    
-    public void ProceedToRentAction(ActionEvent event)
-    {
-        //ReserveAndRentNavigatReservationNavigatornt.isSelected();
+
+    @FXML
+    private void ConfirmButtonAction(ActionEvent event) {
     }
 
-   
+    @FXML
+    private void AbortButtonAction(ActionEvent event) {
+    }
     
- 
 }

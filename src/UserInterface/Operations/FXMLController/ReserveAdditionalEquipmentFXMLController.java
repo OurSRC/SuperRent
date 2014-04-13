@@ -6,6 +6,8 @@
 
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.EquipmentCtrl;
+import ControlObjects.VehicleCtrl;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -36,6 +39,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
     public CheckBox PersonalAccidentCheckBox;
     public CheckBox PersonalEffectsCoverageCheckBox;
     public CheckBox RoadsideAssistanceCheckBox;
+    public RadioButton RequiredCB;
     
     @FXML
     private ToggleGroup AdditionalEquipmentTG;
@@ -55,17 +59,22 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
     @FXML
     public void NextButtonAction(ActionEvent event) throws IOException, NoSuchMethodException
     {
+        if(RequiredCB.isSelected() && !AdditionalEquipmentListView.getSelectionModel().getSelectedItems().isEmpty())
+        {
                 Object[] a = AdditionalEquipmentListView.getSelectionModel().getSelectedItems().toArray();
                 ArrayList<String> SelectedEquipments = new ArrayList<>(); 
                 for(int i=0;i < a.length;i++)
                 {
                     SelectedEquipments.add(a[i].toString());
-                    System.out.println(SelectedEquipments.get(i) + "   Value from ArrayList");
+                    System.out.println(SelectedEquipments.get(i) + "   Value from ArrayList" );
                 }
-                
+                ReservationNavigator.newReserve.setEquipmentType(SelectedEquipments);
                 ReservationNavigator.clearVista();
                 ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
-
+        }else
+        {
+            System.out.println("Please select an Additional Item");
+        }
     }
     
     @FXML
@@ -77,7 +86,8 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
     
     public void populateListView()
     {
-        ArrayList<String> AdditionalEquipmentArray = new ArrayList(); /* Get the ArrayList here */
+        EquipmentCtrl equipCtrl = new EquipmentCtrl();
+        ArrayList<String> AdditionalEquipmentArray = equipCtrl.getEquipmentTypeByVehicleClass(VehicleClassSelectedTF.getText());
         ObservableList<String> items =FXCollections.observableArrayList (AdditionalEquipmentArray);
         AdditionalEquipmentListView.setItems(items);
     }

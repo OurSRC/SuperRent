@@ -20,8 +20,8 @@ import java.util.ArrayList;
 public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     protected static final String tb_name = "support";
     protected static final AttributeParser ap[] = {
-        new StringParser("EquipmentType", "equipmentType"),
-        new StringParser("VehicleClassName", "vehicleClass"),
+        new StringParser("EquipmentType", "EquipmentType"),
+        new StringParser("VehicleClassName", "VehicleClass"),
     };
     
     protected static final int[] pkIndex = {0,1};

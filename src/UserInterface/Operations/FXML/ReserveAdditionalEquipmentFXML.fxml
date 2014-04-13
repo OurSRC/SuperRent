@@ -14,11 +14,11 @@
     <CheckBox fx:id="PersonalEffectsCoverageCheckBox" layoutX="195.0" layoutY="280.0" mnemonicParsing="false" text="Personal Effects Coverage" />
     <CheckBox fx:id="RoadsideAssistanceCheckBox" layoutX="196.0" layoutY="309.0" mnemonicParsing="false" text="Roadside Assistance" />
     <Label layoutX="39.0" layoutY="62.0" text="Additional Equipment" />
-    <RadioButton layoutX="200.0" layoutY="62.0" mnemonicParsing="false" onAction="#RequiredCBAction" text="Required">
+    <RadioButton fx:id="RequiredCB" layoutX="200.0" layoutY="62.0" mnemonicParsing="false" onAction="#RequiredCBAction" text="Required">
 <toggleGroup>
 <ToggleGroup fx:id="AdditionalEquipmentTG" />
 </toggleGroup></RadioButton>
-    <RadioButton layoutX="295.0" layoutY="62.0" mnemonicParsing="false" onAction="#NotRequiredCBAction" selected="true" text="Not Required" toggleGroup="$AdditionalEquipmentTG" />
+    <RadioButton fx:id="NotRequiredCB" layoutX="295.0" layoutY="62.0" mnemonicParsing="false" onAction="#NotRequiredCBAction" selected="true" text="Not Required" toggleGroup="$AdditionalEquipmentTG" />
     <Button layoutX="461.0" layoutY="349.0" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="106.0" text="Next" />
     <Button layoutX="27.0" layoutY="349.0" mnemonicParsing="false" onAction="#BackButtonAction" prefHeight="25.0" prefWidth="128.0" text="Back" /><ListView fx:id="AdditionalEquipmentListView" layoutX="195.0" layoutY="90.0" prefHeight="120.0" prefWidth="195.0" />
   </children>
