@@ -141,7 +141,7 @@ public class Reservation {
     }
     
     public boolean setEquipmentType(ArrayList<String> equipmentType) {
-        if (reserveInfo==null || reserveInfo.checkReservationInfoIdValid() == false) {
+        if (reserveInfo==null ) {
             ErrorMsg.setLastError(ErrorMsg.ERROR_INVOKE_MISTAKE);
             return false;
         }
@@ -162,7 +162,7 @@ public class Reservation {
 
 
     public boolean setInsurance(ArrayList<String> Insurance) {
-        if (reserveInfo==null || reserveInfo.checkReservationInfoIdValid() == false) {
+        if (reserveInfo==null ) {
             ErrorMsg.setLastError(ErrorMsg.ERROR_INVOKE_MISTAKE);
             return false;
         }
