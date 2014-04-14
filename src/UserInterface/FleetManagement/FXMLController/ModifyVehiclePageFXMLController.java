@@ -8,7 +8,6 @@ package UserInterface.FleetManagement.FXMLController;
 import ControlObjects.VehicleCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
-import static UserInterface.FleetManagement.FXMLController.VehicleClassNavigator.VehicleClass;
 import entity.Vehicle;
 import entity.VehicleClass;
 import java.io.IOException;

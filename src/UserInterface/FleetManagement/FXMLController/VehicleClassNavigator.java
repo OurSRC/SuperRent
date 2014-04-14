@@ -6,6 +6,7 @@
 
 package UserInterface.FleetManagement.FXMLController;
 
+import entity.VehicleClass;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,7 +23,7 @@ public class VehicleClassNavigator {
         public static final String ADDVEHICLECLASSPAGE = "/UserInterface/FleetManagement/FXML/AddVehicleClassFXML.fxml";
 
         /* Variable to store the screen attributes */
-        public static String VehicleClass;
+        public static VehicleClass vehicleClass;
         
         public static void setMainController(FleetManagementMainPageFXMLController mainController) {
         VehicleClassNavigator.mainController = mainController;

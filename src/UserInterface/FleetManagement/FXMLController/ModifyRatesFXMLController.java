@@ -3,20 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.FleetManagement.FXMLController;
 
 import ControlObjects.VehicleCtrl;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 
@@ -26,17 +20,16 @@ import javafx.scene.text.Font;
  * @author Vyas
  */
 public class ModifyRatesFXMLController implements Initializable {
+
     @FXML
     private Font x1;
     @FXML
-    private RadioButton VehicleTypeTruckRB;
-    @FXML
-    private RadioButton VehicleTypeCarRB;
-    @FXML
-    private ComboBox VehicleClassCB;
-    
-    @FXML
     private TextField VehicleClassTF;
+
+    public TextField VehicleTypeTF;
+    public TextField DailyRateTF;
+    public TextField WeeklyRateTF;
+    public TextField HourlyRateTF;
 
     /**
      * Initializes the controller class.
@@ -44,35 +37,25 @@ public class ModifyRatesFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        HourlyRateTF.setText(VehicleClassNavigator.vehicleClass.getHourlyPrice());
+        WeeklyRateTF.setText(VehicleClassNavigator.vehicleClass.getWeeklyPrice());
+        DailyRateTF.setText(VehicleClassNavigator.vehicleClass.getDailyPrice());
+        VehicleClassTF.setText(VehicleClassNavigator.vehicleClass.getClassName());
+
+        VehicleCtrl newVehicleCtrl = new VehicleCtrl();
+        
+    }
 
     @FXML
     private void ConfirmButtonAction(ActionEvent event) {
     }
 
     @FXML
-    private void BackToSearchButtonAction(ActionEvent event) throws IOException {
-        VehicleClassNavigator.loadVista(VehicleClassNavigator.VEHICLECLASSMAINPAGE);
+    private void BackToSearchButtonAction(ActionEvent event) {
     }
 
     @FXML
     private void WeeklyRateTF(ActionEvent event) {
-    }
-
-    @FXML
-    private void VehicleTypeTruckRBAction(ActionEvent event) {
-        VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list =  FXCollections.observableArrayList(vehicleControl.getTruckType());
-        VehicleClassCB.getItems().clear();
-        VehicleClassCB.setItems(list);
-    }
-
-    @FXML
-    private void VehicleTypeCarRBAction(ActionEvent event) {
-        VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list =  FXCollections.observableArrayList(vehicleControl.getCarType());
-        VehicleClassCB.getItems().clear();
-        VehicleClassCB.setItems(list);
     }
 
     @FXML
@@ -83,8 +66,4 @@ public class ModifyRatesFXMLController implements Initializable {
     private void HourlyRateTF(ActionEvent event) {
     }
 
-    @FXML
-    private void VehicleTypeCBAction(ActionEvent event) {
-    }
-    
 }
