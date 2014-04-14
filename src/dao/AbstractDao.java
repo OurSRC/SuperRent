@@ -234,7 +234,7 @@ public abstract class AbstractDao<T> {
     }
     
     public ArrayList<T> all() throws DaoException {
-        return find(null);
+        return find("true");
     }
     
     protected int count(String cond) throws DaoException {

@@ -81,8 +81,15 @@ public class CustomerCtrl {
     }
 
     public ArrayList<Customer> searchCustomer(Customer customer) {
-        ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
-        return null;
+        CustomerDao customerDAO = new CustomerDao();
+        ArrayList<Customer> list = null;
+        try {
+            list = customerDAO.findByInstance(customer);
+        } catch (DaoException ex) {
+            Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return list;
     }
 
     public boolean payClubMemberFee(Customer customer, int Years) {
