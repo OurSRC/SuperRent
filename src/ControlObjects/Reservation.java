@@ -27,19 +27,19 @@ import java.util.logging.Logger;
 public final class Reservation {
 
     private ReservationInfo reserveInfo;
-    private ArrayList<ReserveEquipment> reserveEqmt;
-    private ArrayList<BuyInsurance> reserveInsu;
+    private ArrayList<ReserveEquipment> reserveEquipment;
+    private ArrayList<BuyInsurance> reserveInsurance;
 
     public Reservation() {
         this.reserveInfo = new ReservationInfo();
-        this.reserveEqmt = new ArrayList();
-        this.reserveInsu = new ArrayList();
+        this.reserveEquipment = new ArrayList();
+        this.reserveInsurance = new ArrayList();
     }
 
     public Reservation(ReservationInfo reserveInfo, ArrayList<ReserveEquipment> reserveEqmt, ArrayList<BuyInsurance> reserveInsn) {
         this.reserveInfo = reserveInfo;
-        this.reserveEqmt = reserveEqmt;
-        this.reserveInsu = reserveInsn;
+        this.reserveEquipment = reserveEqmt;
+        this.reserveInsurance = reserveInsn;
     }
 
     public Reservation(int branchId, Date pickupTime, Date returnTime, int customerId, int staffId, String vehicleClass, ArrayList<String> equipmentType, ArrayList<String> insurance) {
@@ -58,6 +58,18 @@ public final class Reservation {
         setEquipmentType(equipmentType);
 
         setInsurance(insurance);
+    }
+
+    public ReservationInfo getReserveInfo() {
+        return reserveInfo;
+    }
+
+    public ArrayList<ReserveEquipment> getReserveEquipment() {
+        return reserveEquipment;
+    }
+
+    public ArrayList<BuyInsurance> getReserveInsurance() {
+        return reserveInsurance;
     }
 
     public int getBranchId() {
@@ -142,7 +154,7 @@ public final class Reservation {
 
     public ArrayList<String> getEquipmentType() {
         ArrayList<String> equipments = new ArrayList<>();
-        for (ReserveEquipment anEqmt : reserveEqmt) {
+        for (ReserveEquipment anEqmt : reserveEquipment) {
             equipments.add(anEqmt.getEquipmentType());
         }
         return equipments;
@@ -150,7 +162,7 @@ public final class Reservation {
 
     public ArrayList<String> getInsurance() {
         ArrayList<String> insurances = new ArrayList<>();
-        for (BuyInsurance anInsu : reserveInsu) {
+        for (BuyInsurance anInsu : reserveInsurance) {
             insurances.add(anInsu.getInsuranceName());
         }
         return insurances;
@@ -162,13 +174,13 @@ public final class Reservation {
             return false;
         }
 
-        this.reserveEqmt = new ArrayList();
+        this.reserveEquipment = new ArrayList();
         for (String str : equipmentType) {
             ReserveEquipmentDao reDAO = new ReserveEquipmentDao();
             SupportEquipmentDao seDAO = new SupportEquipmentDao();
             try {
                 if (seDAO.matchVehicleClassAndEquipmentType(reserveInfo.getVehicleClass(), str)) {
-                    this.reserveEqmt.add( reDAO.makeReserveEquipment(this.reserveInfo.getReservationInfoId(), str) );
+                    this.reserveEquipment.add( reDAO.makeReserveEquipment(this.reserveInfo.getReservationInfoId(), str) );
                 }
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
@@ -186,11 +198,11 @@ public final class Reservation {
             return false;
         }
 
-        this.reserveInsu = new ArrayList<BuyInsurance>();
+        this.reserveInsurance = new ArrayList<BuyInsurance>();
         for( String str : insurance ) {
             BuyInsuranceDao binDAO = new BuyInsuranceDao();
             try {
-                this.reserveInsu.add( binDAO.makeBuyInsurance(this.reserveInfo.getReservationInfoId(), str) );
+                this.reserveInsurance.add( binDAO.makeBuyInsurance(this.reserveInfo.getReservationInfoId(), str) );
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
                 ErrorMsg.setLastError(ErrorMsg.ERROR_PARAMETER_ERROR);
