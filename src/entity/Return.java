@@ -18,18 +18,19 @@ public class Return {
     private int fuelLevel;
     private int odometer;
     private int staffId;
+    private int paymentId;
 
     public Return() {
     }
 
-    public Return(int contractNo, Date returnTime, int price, int fuelLevel, 
-            int odometer, int staffId) {
+    public Return(int contractNo, Date returnTime, int price, int fuelLevel, int odometer, int staffId, int paymentId) {
         this.contractNo = contractNo;
         this.returnTime = returnTime;
         this.price = price;
         this.fuelLevel = fuelLevel;
         this.odometer = odometer;
         this.staffId = staffId;
+        this.paymentId = paymentId;
     }
 
     /**
@@ -75,17 +76,17 @@ public class Return {
     }
 
     /**
-     * @return the FuelLevel
+     * @return the fuelLevel
      */
     public int getFuelLevel() {
         return fuelLevel;
     }
 
     /**
-     * @param FuelLevel the FuelLevel to set
+     * @param fuelLevel the fuelLevel to set
      */
-    public void setFuelLevel(int FuelLevel) {
-        this.fuelLevel = FuelLevel;
+    public void setFuelLevel(int fuelLevel) {
+        this.fuelLevel = fuelLevel;
     }
 
     /**
@@ -103,17 +104,33 @@ public class Return {
     }
 
     /**
-     * @return the StaffId
+     * @return the staffId
      */
     public int getStaffId() {
         return staffId;
     }
 
     /**
-     * @param StaffId the StaffId to set
+     * @param staffId the staffId to set
      */
-    public void setStaffId(int StaffId) {
-        this.staffId = StaffId;
+    public void setStaffId(int staffId) {
+        this.staffId = staffId;
     }
+
+    /**
+     * @return the paymentId
+     */
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    /**
+     * @param paymentId the paymentId to set
+     */
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
+    
+    
     
 }

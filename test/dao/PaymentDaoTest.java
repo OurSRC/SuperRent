@@ -7,6 +7,8 @@
 package dao;
 
 import entity.Payment;
+import entity.Customer;
+
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.After;
@@ -24,22 +26,32 @@ import org.junit.Test;
 public class PaymentDaoTest {
     
     private static Payment p;
+    private static int customerId;
     
     public PaymentDaoTest() {
     }
     
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws DaoException {
+        CustomerDao cdao = new CustomerDao();
+        Customer c = new Customer("cname_test", "somepass", "123123", 
+                "somd addr", "fn", null, "Ln", "gmail", "lic", false, 0, null);
+        cdao.add(c);
+        c = cdao.findByUsername("cname_test");
+        customerId = c.getCustomerId();
     }
     
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass() throws DaoException {
+        CustomerDao cdao = new CustomerDao();
+        Customer c = cdao.findByUsername("cname_test");
+        cdao.delete(c);
     }
     
     @Before
     public void setUp() throws DaoException {
         Date d = new Date();
-        p = new Payment(5001, d, Payment.PAYMETHOD.CASH, 0, null);
+        p = new Payment(customerId, "Test payment", 100, null, d);
         PaymentDao pdao = new PaymentDao();
         pdao.add(p);
     }
@@ -55,12 +67,11 @@ public class PaymentDaoTest {
      * Test of findById method, of class PaymentDao.
      */
     @Test
-    public void testFindById() throws Exception {
-        System.out.println("findById");
-        ArrayList<Payment> pList;
+    public void testFind() throws Exception {
         PaymentDao pdao = new PaymentDao();
-        pList = pdao.findByInstance(p);
-        System.out.println(pList.size());
+        
+        ArrayList<Payment> pList = pdao.findByInstance(p);
+        assertEquals(pList.size(), 1);
     }
     
 }

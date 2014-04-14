@@ -14,6 +14,7 @@ import entity.Return;
 import entity.Staff;
 import entity.Vehicle;
 import entity.VehicleClass;
+import entity.Payment;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,6 +42,7 @@ public class ReturnDaoTest {
     private static int customerId;
     private static int staffId;
     private static int contractNo;
+    private static int paymentId;
 
     public ReturnDaoTest() {
     }
@@ -96,11 +98,21 @@ public class ReturnDaoTest {
         rdao.add(rent);
         rent = rdao.findByInstance(rent).get(0);
         contractNo = rent.getContractNo();
+        
+        PaymentDao pdao = new PaymentDao();
+        Payment payment = new Payment(customerId, "title", 1000, null, new Date());
+        pdao.add(payment);
+        payment = pdao.findByInstance(payment).get(0);
+        paymentId = payment.getPaymentId();
 
     }
 
     @AfterClass
     public static void tearDownClass() throws DaoException {
+        
+        PaymentDao pdao = new PaymentDao();
+        Payment payment = pdao.findById(paymentId);
+        pdao.delete(payment);
 
         RentDao rdao = new RentDao();
         Rent rent = rdao.findByReservationInfo(reservationInfoNo);
@@ -138,7 +150,7 @@ public class ReturnDaoTest {
     @Before
     public void setUp() throws DaoException {
         ReturnDao rtnDao = new ReturnDao();
-        Return rtn = new Return(contractNo, new Date(), 100, 100, 100, staffId);
+        Return rtn = new Return(contractNo, new Date(), 100, 100, 100, staffId, paymentId);
         rtnDao.add(rtn);
     }
 

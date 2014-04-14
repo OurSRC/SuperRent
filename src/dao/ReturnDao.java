@@ -27,7 +27,8 @@ public class ReturnDao extends AbstractDao<Return>{
         new IntParser("Price", "Price"),
         new IntParser("FuelLevel", "FuelLevel"),
         new IntParser("Odometer", "Odometer"),
-        new IntParser("StaffId", "StaffId")
+        new IntParser("StaffId", "StaffId"),
+        new IntParser("PaymentId", "PaymentId")
     };
     protected static final int[] pkIndex = {0};
     protected static final boolean pkIsAutoGen = false;
