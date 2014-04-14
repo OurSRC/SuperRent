@@ -6,9 +6,10 @@
 
 package dao;
 
-import entityParser.*;
-import entity.Insurance;
 import dbconn.SqlBuilder;
+import entity.Insurance;
+import entityParser.*;
+import java.util.ArrayList;
 
 
 public class InsuranceDao extends AbstractDao<Insurance> {
@@ -36,5 +37,8 @@ public class InsuranceDao extends AbstractDao<Insurance> {
         String cond = "Name = " + SqlBuilder.wrapStr(insuranceName);
         return findOne(cond);
     }
-    
+
+    public ArrayList<Insurance> findAll() throws DaoException {
+        return all();
+    }
 }
