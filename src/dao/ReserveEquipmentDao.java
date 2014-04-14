@@ -5,6 +5,8 @@
  */
 package dao;
 
+import entity.Equipment;
+import entity.EquipmentType;
 import entity.ReserveEquipment;
 import entityParser.AttributeParser;
 import entityParser.IntParser;
@@ -38,8 +40,16 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
         return new ReserveEquipment();
     }
     
-    public ReserveEquipment createReserveEquipment( int reservationInfoId,String equipmentType ) throws DaoException{
-        return null;
+    public ReserveEquipment makeReserveEquipment( int reservationInfoId,String equipmentType ) throws DaoException{
+        EquipmentTypeDao dao = new EquipmentTypeDao();
+        EquipmentType eqt = dao.findEquipmentTypeByTypename(equipmentType);
+        
+        ReserveEquipment ans = new ReserveEquipment();
+        ans.setReservationInfoId(reservationInfoId);
+        ans.setEquipmentType(equipmentType);
+        ans.seteHourlyRate( eqt.getHourlyRate() );
+        ans.seteDailyRate( eqt.getDailyRate() );
+        return ans;
     }
 
 }

@@ -28,11 +28,14 @@ public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     
     protected static final boolean pkIsAutoGen = false;
 
-    public SupportEquipment findEquipmentByType(String vehicleClass,String equipmentType) throws DaoException{
+    public boolean matchVehicleClassAndEquipmentType(String vehicleClass,String equipmentType) throws DaoException{
         String cond;
         cond = "VehicleClassName=" + SqlBuilder.wrapStr(vehicleClass);
         cond += " AND EquipmentType=" + SqlBuilder.wrapStr(equipmentType);
-        return findOne(cond);
+        if( findOne(cond)!=null )
+            return true;
+        else
+            return false;
     }
     
     public ArrayList<SupportEquipment> findByVehicleClass(String vehicleClass) throws DaoException{
