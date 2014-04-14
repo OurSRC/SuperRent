@@ -24,7 +24,7 @@ public class InsuranceCtrl {
         ArrayList<Insurance> list = new ArrayList<>();
         ArrayList<String> ans = new ArrayList<>();
         try {
-            dao.findAll();
+            list = dao.findAll();
         } catch (DaoException ex) {
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
             Logger.getLogger(InsuranceCtrl.class.getName()).log(Level.SEVERE, null, ex);
