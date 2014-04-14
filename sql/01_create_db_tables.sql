@@ -96,7 +96,11 @@ CREATE TABLE `customer` (
   UNIQUE KEY `PhoneNo_UNIQUE` (`PhoneNo`),
   KEY `Username_fk_idx` (`Username`),
   CONSTRAINT `customer_username_fk` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE SET NULL ON UPDATE CASCADE
+<<<<<<< Upstream, based on origin/master
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +166,11 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item` (
+<<<<<<< Upstream, based on origin/master
   `ItemId` int(11) NOT NULL,
+=======
+  `ItemId` int(11) NOT NULL AUTO_INCREMENT,
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.
   `PaymentId` int(11) NOT NULL,
   `Type` enum('VEHICLE','EQUIPMENT','DELAY','MILE','DAMAGE','MEMBERSHIP','TICKET','POINTEXCHANGE','OTHER') NOT NULL,
   `Name` varchar(100) NOT NULL,
@@ -171,7 +179,11 @@ CREATE TABLE `item` (
   PRIMARY KEY (`ItemId`),
   KEY `item_payment_fk_idx` (`PaymentId`),
   CONSTRAINT `item_payment_fk` FOREIGN KEY (`PaymentId`) REFERENCES `payment` (`PaymentId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+<<<<<<< Upstream, based on origin/master
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,7 +205,11 @@ CREATE TABLE `payment` (
   KEY `payment_ccard_fk_idx` (`CreditCardNo`),
   CONSTRAINT `payment_ccard_fk` FOREIGN KEY (`CreditCardNo`) REFERENCES `creditcard` (`CreditCardNo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `payment_customer_fk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+<<<<<<< Upstream, based on origin/master
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +237,11 @@ CREATE TABLE `rent` (
   CONSTRAINT `rent_resinfo_fk` FOREIGN KEY (`ReservationInfoId`) REFERENCES `reservation_info` (`ReservationInfoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `rent_staff` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `rent_vehicle_fk` FOREIGN KEY (`VehicleNo`) REFERENCES `vehicle` (`VehicleNo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+<<<<<<< Upstream, based on origin/master
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +275,11 @@ CREATE TABLE `reservation_info` (
   CONSTRAINT `refinfo_vclass_fk` FOREIGN KEY (`VehicleClass`) REFERENCES `vehicle_class` (`ClassName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `resinfo_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `resinfo_staff_fk` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+<<<<<<< Upstream, based on origin/master
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,6 +317,7 @@ CREATE TABLE `return_record` (
   `StaffId` int(11) NOT NULL,
   `PaymentId` int(11) NOT NULL,
   PRIMARY KEY (`ContractNo`),
+  UNIQUE KEY `PaymentId_UNIQUE` (`PaymentId`),
   KEY `return_staff_fk_idx` (`StaffId`),
   KEY `return_payment_idx` (`PaymentId`),
   CONSTRAINT `rent_return_fk` FOREIGN KEY (`ContractNo`) REFERENCES `rent` (`ContractNo`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -324,7 +349,11 @@ CREATE TABLE `staff` (
   KEY `staff_branck_fk_idx` (`BranchID`),
   CONSTRAINT `staff_branck_fk` FOREIGN KEY (`BranchID`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `staff_username_fk` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE NO ACTION ON UPDATE CASCADE
+<<<<<<< Upstream, based on origin/master
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,7 +414,11 @@ CREATE TABLE `vehicle` (
   KEY `vehicleforrent_class_fk_idx` (`ClassName`),
   CONSTRAINT `vehicleforrent_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `vehicleforrent_class_fk` FOREIGN KEY (`ClassName`) REFERENCES `vehicle_class` (`ClassName`) ON DELETE NO ACTION ON UPDATE NO ACTION
+<<<<<<< Upstream, based on origin/master
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -415,4 +448,8 @@ CREATE TABLE `vehicle_class` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< Upstream, based on origin/master
 -- Dump completed on 2014-04-13 15:45:02
+=======
+-- Dump completed on 2014-04-13 17:05:37
+>>>>>>> b2ca76b Add PaymentDao, PaymentItemDao. Modify ReturnDao.

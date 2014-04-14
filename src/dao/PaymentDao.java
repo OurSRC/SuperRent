@@ -21,11 +21,11 @@ public class PaymentDao extends AbstractDao<Payment>{
 
     protected static final AttributeParser ap[] = {
         new IntParser("PaymentId", "PaymentId"),
+        new IntParser("CustomerId", "CustomerId"),
+        new StringParser("Title", "Title"),
         new IntParser("Amount", "Amount"),
-        new DatetimeParser("Time", "Time"),
-        new EnumParser("Method", "Method"),
-        new IntParser("Point", "Point"),
-        new StringParser("CreditCardNo", "CreditCardNo")
+        new StringParser("CreditCardNo", "CreditCardNo"),
+        new DatetimeParser("Time", "Time")
     };
 
     protected static final int[] pkIndex = {0};
