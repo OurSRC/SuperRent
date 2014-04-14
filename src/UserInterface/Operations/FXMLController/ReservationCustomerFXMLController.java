@@ -49,7 +49,6 @@ public class ReservationCustomerFXMLController implements Initializable {
         if (!CustomerEmailTF.getText().isEmpty()) {
             ReservationNavigator.newReserve.setCustomerId(customer.getCustomerId());
             ReservationNavigator.clearVista();
-            //CreateReservationNavigator.loadVista(ReservationNavigator.SelectVehicle);
             ReservationNavigator.loadVista(ReservationNavigator.ReservationSummary);
         } else {
             ReservationNavigator.loadVista(ReservationNavigator.ReservationSummary);
