@@ -58,13 +58,7 @@ public class ViewReservationsFXMLController implements Initializable {
     
     public void getList()
     {
-        ReservationTable.getItems().clear();
-        ObservableList<String> list =  FXCollections.observableArrayList();
-		for (int i = 0; i < 1; i++) {
-			list.add("Hello");
-                        list.add("Hello123");
-		}
-            TimeComboBox1.getItems().clear();
+        
             Reservation sample = new Reservation();
 
         
@@ -88,12 +82,14 @@ public class ViewReservationsFXMLController implements Initializable {
     @FXML
     private void ViewReservationButtonAction(ActionEvent event) throws IOException {
 
-        if(!ReservationTable.getSelectionModel().isEmpty())
+       /* if(!ReservationTable.getSelectionModel().isEmpty())
         {
         Reserve rrr = (Reserve) ReservationTable.getSelectionModel().getSelectedItem();
         //RentNavigator.ReservationNumber = rrr.getReservationNumber();
         //System.out.println(rrr.getReservationNumber());
         RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
-        } 
+        } */
+                RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
+
     }    
 }

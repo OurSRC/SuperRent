@@ -53,7 +53,7 @@ public class ReservationSummaryFXMLController implements Initializable {
         ReturnDateTF.setText(ReservationNavigator.newReserve.getReturnTime().toString());
         System.out.println("Outside Additional Equipments");
 
-        if(!ReservationNavigator.newReserve.getEquipmentType().isEmpty())
+        if(ReservationNavigator.newReserve.getEquipmentType().size()!=0)
         {
             System.out.println("Inside Additional Equipments");
             ObservableList<String> items =FXCollections.observableArrayList (ReservationNavigator.newReserve.getEquipmentType());

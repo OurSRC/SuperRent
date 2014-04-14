@@ -145,18 +145,20 @@ public class Reservation {
             ErrorMsg.setLastError(ErrorMsg.ERROR_INVOKE_MISTAKE);
             return false;
         }
-        
+        System.out.println("Setting additional equipment");
         this.reserveEqmt = new ArrayList<ReserveEquipment>();
         for (String anEquipment : equipmentType) {
             ReserveEquipmentDao dao = new ReserveEquipmentDao();
             try {
                 reserveEqmt.add(dao.createReserveEquipment(reserveInfo.getReservationInfoId(), anEquipment));
+                System.out.println(reserveEqmt.size() + " Eli is checkng");
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
                 ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
                 return false;
             }
         }
+        System.out.println(" Size of Additional equipment " + reserveEqmt.size());
         return true;
     }
 

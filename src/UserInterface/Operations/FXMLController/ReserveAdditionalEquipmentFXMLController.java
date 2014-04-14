@@ -7,6 +7,7 @@
 package UserInterface.Operations.FXMLController;
 
 import ControlObjects.EquipmentCtrl;
+import ControlObjects.InsuranceCtrl;
 import ControlObjects.VehicleCtrl;
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +34,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
     @FXML
     private TextField VehicleClassSelectedTF;
     public ListView AdditionalEquipmentListView;
+    public ListView InsuranceList;
     
     
     public CheckBox DamageWaiverCheckBox;
@@ -53,6 +55,13 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
       //  VehicleClassSelectedTF.setText(ReservationNavigator.SampleSharedVariable);
         VehicleClassSelectedTF.setText(ReservationNavigator.newReserve.getVehicleClass());
         AdditionalEquipmentListView.setDisable(true);
+        ArrayList<String> newInsuranceList = new ArrayList();
+        InsuranceCtrl newInsuranceCtrl = new InsuranceCtrl();
+        newInsuranceList = newInsuranceCtrl.getInsuranceType();
+        
+        System.out.println(newInsuranceList.size() + " Size of insurance list");
+        ObservableList<String> items =FXCollections.observableArrayList (newInsuranceList);
+        AdditionalEquipmentListView.setItems(items);
          
     }    
     

@@ -50,6 +50,7 @@ public class SelectParticularVehicleFXMLController implements Initializable {
         // TODO
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
         Vehicle newVehicle = new Vehicle();
+        newVehicle.setClassName("COMPACT");
         
         ArrayList<Vehicle> newArray = newVehicleCtrl.searchVehicle(newVehicle);
         ObservableList<Vehicle> slist = FXCollections.observableArrayList(newArray);

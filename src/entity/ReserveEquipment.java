@@ -41,6 +41,7 @@ public class ReserveEquipment {
      * @param equipmentType the equipmentType to set
      */
     public void setEquipmentType(String equipmentType) {
+        System.out.println("equipmentType : " + equipmentType);
         this.equipmentType = equipmentType;
     }
 
