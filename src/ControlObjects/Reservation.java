@@ -8,14 +8,15 @@ package ControlObjects;
 import SystemOperations.ErrorMsg;
 import dao.BuyInsuranceDao;
 import dao.DaoException;
-import dao.EquipmentTypeDao;
 import dao.ReserveEquipmentDao;
+import dao.SupportEquipmentDao;
+import dao.VehicleClassDao;
 import entity.BuyInsurance;
 import entity.ReservationInfo;
 import entity.ReserveEquipment;
+import entity.VehicleClass;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
  *
  * @author Elitward
  */
-public class Reservation {
+public final class Reservation {
 
     private ReservationInfo reserveInfo;
     private ArrayList<ReserveEquipment> reserveEqmt;
@@ -41,7 +42,22 @@ public class Reservation {
         this.reserveInsu = reserveInsn;
     }
 
-    public Reservation(int branchId, Date pickupTime, Date returnTime, int customerId, int staffId, String vehicleClass, ArrayList<String> equipmentType, ArrayList<String> Insurance) {
+    public Reservation(int branchId, Date pickupTime, Date returnTime, int customerId, int staffId, String vehicleClass, ArrayList<String> equipmentType, ArrayList<String> insurance) {
+        VehicleClassDao vcDAO = new VehicleClassDao();
+        VehicleClass vc = null;
+        try {
+            vc = vcDAO.findByName(vehicleClass);
+        } catch (DaoException ex) {
+            Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_PARAMETER_ERROR);
+            return;
+        }
+        this.reserveInfo = new ReservationInfo(branchId, new Date(), pickupTime, returnTime, customerId, staffId, vehicleClass,
+                vc.getHourlyRate(), vc.getDailyRate(), vc.getWeeklyRate(), null, ReservationInfo.STATUS.PENDING);
+
+        setEquipmentType(equipmentType);
+
+        setInsurance(insurance);
     }
 
     public int getBranchId() {
@@ -139,47 +155,50 @@ public class Reservation {
         }
         return insurances;
     }
-    
+
     public boolean setEquipmentType(ArrayList<String> equipmentType) {
-        if (reserveInfo==null ) {
+        if (reserveInfo == null) {
             ErrorMsg.setLastError(ErrorMsg.ERROR_INVOKE_MISTAKE);
             return false;
         }
-        
-        this.reserveEqmt = new ArrayList<ReserveEquipment>();
-        for (String anEquipment : equipmentType) {
-            ReserveEquipmentDao dao = new ReserveEquipmentDao();
+
+        this.reserveEqmt = new ArrayList();
+        for (String str : equipmentType) {
+            ReserveEquipmentDao reDAO = new ReserveEquipmentDao();
+            SupportEquipmentDao seDAO = new SupportEquipmentDao();
             try {
-                reserveEqmt.add(dao.createReserveEquipment(reserveInfo.getReservationInfoId(), anEquipment));
+                if (seDAO.matchVehicleClassAndEquipmentType(reserveInfo.getVehicleClass(), str)) {
+                    this.reserveEqmt.add( reDAO.makeReserveEquipment(this.reserveInfo.getReservationInfoId(), str) );
+                }
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
                 ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
                 return false;
             }
         }
+
         return true;
     }
 
-
-    public boolean setInsurance(ArrayList<String> Insurance) {
-        if (reserveInfo==null ) {
+    public boolean setInsurance(ArrayList<String> insurance) {
+        if (reserveInfo == null) {
             ErrorMsg.setLastError(ErrorMsg.ERROR_INVOKE_MISTAKE);
             return false;
         }
-        
+
         this.reserveInsu = new ArrayList<BuyInsurance>();
-        for(String anInsurance: Insurance){
-            BuyInsuranceDao dao = new BuyInsuranceDao();
+        for( String str : insurance ) {
+            BuyInsuranceDao binDAO = new BuyInsuranceDao();
             try {
-                reserveInsu.add(dao.createBuyInsurance(reserveInfo.getReservationInfoId(), anInsurance));
+                this.reserveInsu.add( binDAO.makeBuyInsurance(this.reserveInfo.getReservationInfoId(), str) );
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
-                ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
-                return false;
+                ErrorMsg.setLastError(ErrorMsg.ERROR_PARAMETER_ERROR);
             }
         }
         return true;
     }
+
     public String getHourlyPrice() {
         return "123.45";
     }

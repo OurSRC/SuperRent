@@ -7,6 +7,7 @@
 package dao;
 
 import entity.BuyInsurance;
+import entity.Insurance;
 import entityParser.*;
 
 public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
@@ -27,7 +28,11 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
         return new BuyInsurance();
     }
     
-    public BuyInsurance createBuyInsurance(int reservationInfoId, String insuranceName) throws DaoException {
-        return null;
+    public BuyInsurance makeBuyInsurance(int reservationInfoId, String insuranceName) throws DaoException {
+        InsuranceDao dao = new InsuranceDao();
+        Insurance insu = dao.findByName(insuranceName);
+        
+        BuyInsurance ans = new BuyInsurance(insuranceName, reservationInfoId, insu.getHourlyRate(), insu.getDailyRate(), insu.getWeeklyRate());
+        return ans;
     }
 }

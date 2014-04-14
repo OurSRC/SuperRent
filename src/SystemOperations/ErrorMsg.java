@@ -16,6 +16,7 @@ public class ErrorMsg {
     static public final int ERROR_DATABASE_LOGIC_ERROR = -3;
     static public final int ERROR_NOT_SUPPORT_YET = -4;
     static public final int ERROR_INVOKE_MISTAKE = -5;
+    static public final int ERROR_PARAMETER_ERROR = -6;
     static public final int ERROR_RECORD_DUPLICATE = -100;
     static public final int ERROR_WRONG_PASSWORD = -101;
     static public final int ERROR_USERNAME_ALREADY_EXIT = -102;
