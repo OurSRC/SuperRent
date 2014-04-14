@@ -7,6 +7,7 @@
 package UserInterface.PeopleManagement.FXMLController;
 
 import UserInterface.Operations.FXMLController.OperationsFXMLController;
+import entity.Staff;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,7 +23,8 @@ public class PPLManagementNavigator {
     public static final String AddAUser = "/UserInterface/PeopleManagement/FXML/AddUserFXML.fxml";
     public static final String UserProfile = "/UserInterface/PeopleManagement/FXML/UserProfileRemoveFXML.fxml";
     public static final String UserSearch = "/UserInterface/PeopleManagement/FXML/UserSearchFXML.fxml";
-
+    
+    public static Staff modifyStaff;
     public static void setMainController(PeopleManagementFXMLController mainController) {
         PPLManagementNavigator.mainController = mainController;
     }
