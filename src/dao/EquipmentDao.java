@@ -48,4 +48,8 @@ public class EquipmentDao extends AbstractDao<Equipment>{
     protected Equipment getInstance() {
         return new Equipment();
     }
+    
+    public int countEquipment(Equipment equipment){
+        return 0;
+    }
 }

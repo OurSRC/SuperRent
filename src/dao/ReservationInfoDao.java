@@ -50,6 +50,10 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return new ReservationInfo();
     }
     
+    public ReservationInfo makeReservationInfo(ReservationInfo reservationInfo){
+        return null;
+    }
+    
     public ReservationInfo findByReservationNo(String reservatioNo) throws DaoException {
         String cond = "ReservationNo=" + SqlBuilder.wrapStr(reservatioNo);
         return findOne(cond);

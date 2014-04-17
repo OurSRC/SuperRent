@@ -109,7 +109,7 @@ public class VehicleCtrl {
         return getList;
     }
 
-    public ArrayList<String> getVehicleAvailability(VehicleClass.TYPE type, Date pickUpTime, Date returnTime, Branch branch) {
+    public ArrayList<String> getAvailableVehicleClasses(VehicleClass.TYPE type, Date pickUpTime, Date returnTime, Branch branch) {
         ArrayList<String> ans = new ArrayList<String>();
         ArrayList<String> list = getSubVehicleType(type);
         for(String vClass : list){
@@ -131,6 +131,7 @@ public class VehicleCtrl {
                 return false;
         } catch (DaoException ex) {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
         return false;
     }

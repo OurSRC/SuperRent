@@ -3,9 +3,13 @@ package ControlObjects;
 import SystemOperations.ErrorMsg;
 import VehicleManagement.Equipment;
 import dao.DaoException;
+import dao.EquipmentDao;
+import dao.ReserveEquipmentDao;
 import dao.SupportEquipmentDao;
+import entity.Branch;
 import entity.SupportEquipment;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -73,5 +77,23 @@ public class EquipmentCtrl {
 
     public ArrayList<String> getEquipmentType() {
         return null;
+    }
+    
+    public boolean checkEquipmentAvailability(String EquipmentType, Date pickUpTime, Date returnTime, Branch branch) {
+        EquipmentDao eqDAO = new EquipmentDao();
+        ReserveEquipmentDao reDAO = new ReserveEquipmentDao();
+        int have = 0;
+        int rent = 0;
+        try {
+            have = eqDAO.countEquipment(new entity.Equipment(EquipmentType, entity.Equipment.STATUS.AVAILABLE, null, null, null, branch.getBranchID()));
+            rent = reDAO.findReservationBetween(EquipmentType, pickUpTime, returnTime, branch).size();
+        } catch (DaoException ex) {
+            Logger.getLogger(EquipmentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        if(have>rent)
+            return true;
+        else
+            return false;
     }
 }

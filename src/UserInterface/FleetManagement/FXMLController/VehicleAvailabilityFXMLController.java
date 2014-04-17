@@ -101,7 +101,7 @@ public class VehicleAvailabilityFXMLController implements Initializable {
                 }
 
                 VehicleCtrl vehicleControl = new VehicleCtrl();
-                ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability(type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch());
+                ArrayList<String> AvailableVehicleTypes = vehicleControl.getAvailableVehicleClasses(type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch());
 
                 ArrayList<VehicleClass> VehicleClassArray = new ArrayList();
                 System.out.println(AvailableVehicleTypes.size() + " Size of the ARraylist");
