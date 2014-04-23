@@ -148,7 +148,7 @@ public class UserSearchFXMLController implements Initializable {
         System.out.println(staffArrayList.toString());
         ObservableList<Staff> staffObservableList = FXCollections.observableArrayList(staffArrayList);
         StaffSearchTable.setItems(staffObservableList);
-        FirstNameCol.setCellValueFactory(new PropertyValueFactory("firstName"));
+        FirstNameCol.setCellValueFactory(new PropertyValueFactory("fistName"));
         LastNameCol.setCellValueFactory(new PropertyValueFactory("lastName"));
         UserIDCol.setCellValueFactory(new PropertyValueFactory("username"));
         BranchCol.setCellValueFactory(new PropertyValueFactory("branchId"));

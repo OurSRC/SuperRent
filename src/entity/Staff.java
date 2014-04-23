@@ -205,5 +205,10 @@ public class Staff extends User {
             this.staffType = TYPE.valueOf(staffType);
         }
     }
+    
+    public String getStaffType(String staffType)
+    {
+        return this.staffType.toString();
+    }
 
 }
