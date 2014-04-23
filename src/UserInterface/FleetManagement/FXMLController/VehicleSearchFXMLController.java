@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.FleetManagement.FXMLController;
 
 import ControlObjects.VehicleCtrl;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
+import SystemOperations.ErrorMsg;
 import entity.Vehicle;
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +35,7 @@ import javafx.scene.text.Font;
  * @author Vyas
  */
 public class VehicleSearchFXMLController implements Initializable {
-    
+
     @FXML
     private Font x1;
     @FXML
@@ -65,61 +67,52 @@ public class VehicleSearchFXMLController implements Initializable {
     @FXML
     private ComboBox VehicleClassCB;
 
-    
     /* Variables in the Class */
-    
     public String SearchVehicleClass;
     public String SearchPlateNumber;
     public String SearchVehicleAge;
     public String SearchStatus;
     public String VehicleAgeYears;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list =  FXCollections.observableArrayList(vehicleControl.getCarType());
+        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
         VehicleClassCB.getItems().clear();
         VehicleClassCB.setItems(list);
-    }    
+    }
 
     @FXML
     private void SearchButtonAction(ActionEvent event) {
-      
-        if(ValidateMandatoryFields())
-        {
-                        SearchVehicleClass = VehicleClassCB.getSelectionModel().getSelectedItem().toString();
 
-        if(!VehicleAgeTF.getText().isEmpty())
-        {
-            SearchVehicleAge = VehicleAgeTF.getText();
-            System.out.println("Vehicle Age : " + SearchVehicleAge);
-        }else
-        {
-            SearchVehicleAge = null;
-        }
-        
-        if(!PlateNumberTF.getText().isEmpty())
-        {
-            SearchPlateNumber = PlateNumberTF.getText();
-            System.out.println("Vehicle Plate Number : " + SearchPlateNumber);
-        }else
-        {
-            SearchPlateNumber = null;
-        }
-        
-        if(StatusCB.valueProperty().isNotNull().getValue())
-        {
-            SearchStatus = StatusCB.getValue().toString();
-            System.out.println("Vehicle Status : " + SearchVehicleClass);
-        }else
-        {
-            SearchStatus = null;
-        }
-        populateSearchTable();
-        }else
-        {
+        if (ValidateMandatoryFields()) {
+            SearchVehicleClass = VehicleClassCB.getSelectionModel().getSelectedItem().toString();
+
+            if (!VehicleAgeTF.getText().isEmpty()) {
+                SearchVehicleAge = VehicleAgeTF.getText();
+                System.out.println("Vehicle Age : " + SearchVehicleAge);
+            } else {
+                SearchVehicleAge = null;
+            }
+
+            if (!PlateNumberTF.getText().isEmpty()) {
+                SearchPlateNumber = PlateNumberTF.getText();
+                System.out.println("Vehicle Plate Number : " + SearchPlateNumber);
+            } else {
+                SearchPlateNumber = null;
+            }
+
+            if (StatusCB.valueProperty().isNotNull().getValue()) {
+                SearchStatus = StatusCB.getValue().toString();
+                System.out.println("Vehicle Status : " + SearchVehicleClass);
+            } else {
+                SearchStatus = null;
+            }
+            populateSearchTable();
+        } else {
             System.out.println("Please enter all the Mandatory Fields");
         }
     }
@@ -127,7 +120,7 @@ public class VehicleSearchFXMLController implements Initializable {
     @FXML
     private void VehicleTypeTruckRBAction(ActionEvent event) {
         VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list =  FXCollections.observableArrayList(vehicleControl.getTruckType());
+        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getTruckType());
         VehicleClassCB.getItems().clear();
         VehicleClassCB.setItems(list);
     }
@@ -135,7 +128,7 @@ public class VehicleSearchFXMLController implements Initializable {
     @FXML
     private void VehicleTypeCarRBAction(ActionEvent event) {
         VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list =  FXCollections.observableArrayList(vehicleControl.getCarType());
+        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
         VehicleClassCB.getItems().clear();
         VehicleClassCB.setItems(list);
     }
@@ -147,54 +140,81 @@ public class VehicleSearchFXMLController implements Initializable {
 
     @FXML
     private void VehicleClassCBAction(ActionEvent event) {
-    
+
     }
 
     @FXML
     private void ViewVehicleInformationButton(ActionEvent event) throws IOException {
-        VehicleNavigator.loadVista(VehicleNavigator.ADDVEHICLE); 
+        VehicleNavigator.loadVista(VehicleNavigator.ADDVEHICLE);
     }
-    
+
     @FXML
-    private void AddVehicleButtonAction(ActionEvent event) throws IOException{
-            VehicleNavigator.loadVista(VehicleNavigator.ADDVEHICLE); 
+    private void AddVehicleButtonAction(ActionEvent event) throws IOException {
+        VehicleNavigator.loadVista(VehicleNavigator.ADDVEHICLE);
     }
-    
+
     @FXML
-    private void ModifyVehicleButtonAction(ActionEvent event) throws IOException{
-        if(!VehicleSearchTable.getSelectionModel().isEmpty())
-        {
+    private void ModifyVehicleButtonAction(ActionEvent event) throws IOException {
+        if (!VehicleSearchTable.getSelectionModel().isEmpty()) {
             VehicleNavigator.Modifyvehicle = (Vehicle) VehicleSearchTable.getSelectionModel().getSelectedItem();
-            VehicleNavigator.loadVista(VehicleNavigator.MODIFYVEHICLE); 
-        }
-        else
-        {
+            VehicleNavigator.loadVista(VehicleNavigator.MODIFYVEHICLE);
+        } else {
             System.out.println("No Items Selected");
         }
-    }  
-    
-    public void populateSearchTable(){
-        Vehicle newVehicle = new Vehicle(SearchPlateNumber,null,null,0,1,null,null,null,SearchVehicleClass,0);
-        VehicleSearchTable.getItems().clear(); 
+    }
+
+    @FXML
+    private void SellVehicleButtonAction(ActionEvent event) throws IOException {
+        if (!VehicleSearchTable.getSelectionModel().isEmpty()) {
+            Vehicle SellVehicle = (Vehicle) VehicleSearchTable.getSelectionModel().getSelectedItem();
+            if (SellVehicle.getStatus().toString().equals("FORSALE")) {
+                SellVehicle.setSellStatus("SOLD");
+                VehicleCtrl newVehicleCtrl = new VehicleCtrl();
+                if (newVehicleCtrl.updateVehicle(SellVehicle)) {
+                    System.out.println("vehicle Successfully Sold");
+                    DialogFX dialog = new DialogFX(Type.INFO);
+                    dialog.setTitleText("Success");
+                    dialog.setMessage("vehicle Successfully Sold");
+                    dialog.showDialog();
+                } else {
+                    System.out.println("Vehicle selling Failed. Please Contact System Administrator");
+                }
+            } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("Not a valid Car for Selling");
+                dialog.showDialog();
+                System.out.println("Not a valid Car for Selling");
+            }
+        } else {
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage("No Vehicle Selected");
+            dialog.showDialog();
+            System.out.println("No Vehicle Selected");
+        }
+    }
+
+    public void populateSearchTable() {
+        Vehicle newVehicle = new Vehicle(SearchPlateNumber, null, null, 0, 1, null, null, null, SearchVehicleClass, 0);
+        VehicleSearchTable.getItems().clear();
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-        ArrayList<Vehicle> vehicleArray = newVehicleCtrl.searchVehicle(newVehicle); /* Get the Arraylist from the Control Object */       
-        ObservableList<Vehicle> slist =  FXCollections.observableArrayList(vehicleArray);
+        ArrayList<Vehicle> vehicleArray = newVehicleCtrl.searchVehicle(newVehicle); /* Get the Arraylist from the Control Object */
+
+        ObservableList<Vehicle> slist = FXCollections.observableArrayList(vehicleArray);
         VehicleSearchTable.setItems(slist);
         System.out.println("I am here and it is working");
         PlateNumberColumn.setCellValueFactory(new PropertyValueFactory("plateNo"));
-        ModelColumn.setCellValueFactory( new PropertyValueFactory("mode"));
-        VehicleClassColoumn.setCellValueFactory( new PropertyValueFactory("className"));
-        ManufacturingYearColumn.setCellValueFactory( new PropertyValueFactory("manufactureDate"));
-        StatusColumn.setCellValueFactory( new PropertyValueFactory("status")); 
+        ModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
+        VehicleClassColoumn.setCellValueFactory(new PropertyValueFactory("className"));
+        ManufacturingYearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
+        StatusColumn.setCellValueFactory(new PropertyValueFactory("status"));
     }
-    
-    public boolean ValidateMandatoryFields()
-    {
-        if(VehicleClassCB.valueProperty().isNotNull().getValue())
-        {
+
+    public boolean ValidateMandatoryFields() {
+        if (VehicleClassCB.valueProperty().isNotNull().getValue()) {
             return true;
-        }else
-        {
+        } else {
             return false;
         }
     }

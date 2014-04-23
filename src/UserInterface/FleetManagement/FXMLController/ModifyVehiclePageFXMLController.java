@@ -129,6 +129,12 @@ public class ModifyVehiclePageFXMLController implements Initializable {
     @FXML
     private void BackToSearchButtonAction(ActionEvent event) {
     }
+    
+    @FXML
+    private void SellVehicleButtonAction(ActionEvent event)
+    {
+        
+    }
 
     public boolean ValidateMandatoryField() {
         if (!PlateNumberTF.getText().equals("")
