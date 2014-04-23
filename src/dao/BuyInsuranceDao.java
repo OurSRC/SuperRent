@@ -36,6 +36,7 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
             return null;
         
         BuyInsurance ans = new BuyInsurance(insuranceName, reservationInfoId, insu.getHourlyRate(), insu.getDailyRate(), insu.getWeeklyRate());
+        add(ans);
         return ans;
     }
 }
