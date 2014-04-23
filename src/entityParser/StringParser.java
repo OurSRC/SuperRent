@@ -41,4 +41,10 @@ public class StringParser extends AttributeParser {
         return "'" + obj + "'";
     }
 
+    @Override
+    protected void setAttrByValEx(Object entity, Object value) throws NoSuchMethodException, 
+            IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

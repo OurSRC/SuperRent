@@ -43,4 +43,9 @@ public class EnumParser extends AttributeParser {
         super(colName, attrName);
     }
 
+    @Override
+    protected void setAttrByValEx(Object entity, Object value) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

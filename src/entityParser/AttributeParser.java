@@ -78,11 +78,23 @@ public abstract class AttributeParser {
         return str;
     }
     
+    public void setAttrByVal(Object entity, Object value) {
+        try {
+            setAttrByValEx(entity, value);
+        } catch (IllegalAccessException | IllegalArgumentException | NoSuchMethodException | InvocationTargetException ex) {
+            Logger.getLogger(AttributeParser.class.getName()).log(Level.SEVERE, null, ex);
+            //System.exit(1);
+        }
+    }
+    
     
     protected abstract void setAttrEx(ResultSet rs, Object entity) throws NoSuchMethodException, IllegalAccessException, 
             IllegalArgumentException, InvocationTargetException;
     
     protected abstract String wrapAttrEx(Object entity) throws NoSuchMethodException, IllegalAccessException, 
+            IllegalArgumentException, InvocationTargetException;
+    
+    protected abstract void setAttrByValEx(Object entity, Object value) throws NoSuchMethodException, IllegalAccessException, 
             IllegalArgumentException, InvocationTargetException;
 
     /**

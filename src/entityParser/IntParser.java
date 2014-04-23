@@ -32,4 +32,10 @@ public class IntParser extends AttributeParser {
         super(colName, attrName);
     }
 
+    @Override
+    protected void setAttrByValEx(Object entity, Object value) throws NoSuchMethodException, IllegalAccessException, 
+            IllegalArgumentException, InvocationTargetException{
+        entity.getClass().getMethod("set" + getAttrName(), int.class).invoke(entity, value);
+    }
+
 }
