@@ -171,10 +171,27 @@ public class ReservationInfoDaoTest {
         returnT = ft.parse("2014-04-16 12:00:00");
         rInfoList = riDao.findReservationBetween(vehicleClassName, pickupT, returnT, b);
         assertEquals(rInfoList.size(), 3);
+    }
+    
+    @Test
+    public void testMakeReservationInfo() throws ParseException, DaoException {
+        ReservationInfoDao riDao = new ReservationInfoDao();
+        SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+        Date pickupT;
+        Date returnT;
+        ReservationInfo rinfo;
         
         
+        pickupT = ft.parse("2014-04-10 14:00:00");
+        returnT = ft.parse("2014-04-13 15:00:00");
+        rinfo = new ReservationInfo(branchId, new Date(), pickupT, 
+                returnT, customerId, staffId, vehicleClassName, 10, 10, 10,
+                null, null);
+        rinfo = riDao.makeReservationInfo(rinfo);
+        System.out.println(rinfo.getReservationInfoId());
         
-
+        //rinfo = riDao.findByInstance(rinfo).get(0);
+        riDao.delete(rinfo);
     }
     
 }

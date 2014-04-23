@@ -9,6 +9,8 @@ import dbconn.DbConn;
 import dbconn.SqlBuilder;
 import entity.User;
 import entityParser.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,13 +71,19 @@ public abstract class AbstractDao<T> {
                 .values(EntityParser.wrapEntity(entity, ap_no_pk))
                 .toString();
 
-        System.out.println(sql);
+        System.out.println("SQL:" + sql);
+        
 
         try {
+            
             Statement stmt = DbConn.getStmt();
-            System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
             ans = true;
+            
+            /*
+            Connection conn = DbConn.getConn();
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    */
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "add()");
@@ -264,6 +272,35 @@ public abstract class AbstractDao<T> {
         }
         
         return result;
+    }
+    
+    protected int getLastAutoIncrementId() throws DaoException {
+        String tb_name = getTbName();
+        SqlBuilder qb = new SqlBuilder();
+        String sql = qb
+                .select("last_insert_id() as last_id")
+                .from(tb_name)
+                .toString();
+        
+        System.out.println("******SQL AI: " + sql);
+        String last_id;
+        try {
+            Statement stmt = DbConn.getStmt();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                last_id = rs.getString("last_id");
+            } else {
+                throw new DaoException(tb_name, "getLastAutoIncrementId() fail");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DaoException(tb_name, "getLastAutoIncrementId()");
+        }
+        
+        return Integer.parseInt(last_id);
+        
     }
 
     private String getTbName() {

@@ -137,6 +137,9 @@ public class SqlBuilder {
     
     public String toString() {
         if (select != null) {
+            if (where == null) {
+                return select + " " + from + ";";
+            }
             return select + " " + from + " " + where + ";";
         } else if (update != null) {
             return update + " " + set + " " + where + ";";

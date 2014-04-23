@@ -24,10 +24,6 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
     protected static final String tb_name = "reserve_equipment";
 
     protected static final AttributeParser ap[] = {
-        //        new IntParser("ReservationInfoId", "reservationInfoId"),
-        //        new StringParser("EquipmentType", "equipmentType"),
-        //        new IntParser("eHourlyRate", "eHourlyRate"),
-        //        new IntParser("eDailyRate", "eDailyRate")
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new StringParser("EquipmentType", "EquipmentType"),
         new IntParser("eHourlyRate", "EHourlyRate"),

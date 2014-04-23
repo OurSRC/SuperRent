@@ -50,8 +50,11 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return new ReservationInfo();
     }
     
-    public ReservationInfo makeReservationInfo(ReservationInfo reservationInfo){
-        return null;
+    public ReservationInfo makeReservationInfo(ReservationInfo reservationInfo) throws DaoException{
+        add(reservationInfo);
+        int id = getLastAutoIncrementId();
+        reservationInfo.setReservationInfoId(id);
+        return reservationInfo;
     }
     
     public ReservationInfo findByReservationNo(String reservatioNo) throws DaoException {
