@@ -190,6 +190,7 @@ public class VehicleCtrl {
         return ans;
     }
 
+   
     public ArrayList<String> getSubVehicleType(VehicleClass.TYPE type) {
         VehicleClassDao classDAO = new VehicleClassDao();
         ArrayList<VehicleClass> classList = new ArrayList<VehicleClass>();
