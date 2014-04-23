@@ -5,12 +5,15 @@
  */
 package dao;
 
+import entity.Branch;
 import entity.Equipment;
 import entity.EquipmentType;
 import entity.ReserveEquipment;
 import entityParser.AttributeParser;
 import entityParser.IntParser;
 import entityParser.StringParser;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -52,4 +55,8 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
         return ans;
     }
 
+    public ArrayList<ReserveEquipment> findReservationBetween(String equipmentType, Date pickUpTime, 
+            Date returnTime, Branch branch) throws DaoException{
+        return null;
+    }
 }

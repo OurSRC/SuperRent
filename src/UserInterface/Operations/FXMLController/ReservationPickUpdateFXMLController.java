@@ -113,7 +113,7 @@ public class ReservationPickUpdateFXMLController implements Initializable {
                         LocalDate newDate = ReturnDate.getValue();
                         AvailableVehicleTypeCB.setDisable(false);
                         VehicleCtrl vehicleControl = new VehicleCtrl();
-                        //ArrayList<String> AvailableVehicleTypes = vehicleControl.getVehicleAvailability(toString, 123,456);
+                        //ArrayList<String> AvailableVehicleTypes = vehicleControl.getAvailableVehicleClasses(toString, 123,456);
                        // ObservableList<String> list =  FXCollections.observableArrayList(AvailableVehicleTypes);
                         AvailableVehicleTypeCB.getItems().clear();
                        // AvailableVehicleTypeCB.setItems(list);

@@ -6,11 +6,13 @@
 package ControlObjects;
 
 import SystemOperations.ErrorMsg;
+import dao.BranchDao;
 import dao.BuyInsuranceDao;
 import dao.DaoException;
 import dao.ReserveEquipmentDao;
 import dao.SupportEquipmentDao;
 import dao.VehicleClassDao;
+import entity.Branch;
 import entity.BuyInsurance;
 import entity.ReservationInfo;
 import entity.ReserveEquipment;
@@ -72,8 +74,31 @@ public final class Reservation {
         return reserveInsurance;
     }
 
+    public void setReserveInfo(ReservationInfo reserveInfo) {
+        this.reserveInfo = reserveInfo;
+    }
+
+    public void setReserveEquipment(ArrayList<ReserveEquipment> reserveEquipment) {
+        this.reserveEquipment = reserveEquipment;
+    }
+
+    public void setReserveInsurance(ArrayList<BuyInsurance> reserveInsurance) {
+        this.reserveInsurance = reserveInsurance;
+    }
+
     public int getBranchId() {
         return reserveInfo.getBranchId();
+    }
+    
+    public Branch matchBranch(){
+        BranchDao brDAO = new BranchDao();
+        Branch b = null;
+        try {
+            b = brDAO.findById(reserveInfo.getBranchId());
+        } catch (DaoException ex) {
+            Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return b;
     }
 
     public void setBranchId(int branchId) {
