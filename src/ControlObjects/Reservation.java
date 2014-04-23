@@ -89,8 +89,8 @@ public final class Reservation {
     public int getBranchId() {
         return reserveInfo.getBranchId();
     }
-    
-    public Branch matchBranch(){
+
+    public Branch matchBranch() {
         BranchDao brDAO = new BranchDao();
         Branch b = null;
         try {
@@ -198,6 +198,9 @@ public final class Reservation {
             ErrorMsg.setLastError(ErrorMsg.ERROR_INVOKE_MISTAKE);
             return false;
         }
+        if (equipmentType == null) {
+            return false;
+        }
 
         this.reserveEquipment = new ArrayList();
         for (String str : equipmentType) {
@@ -207,8 +210,9 @@ public final class Reservation {
                 String vc = reserveInfo.getVehicleClass();
                 if (seDAO.matchVehicleClassAndEquipmentType(vc, str)) {
                     ReserveEquipment r = reDAO.makeReserveEquipment(this.reserveInfo.getReservationInfoId(), str);
-                    if(r!=null)
-                        this.reserveEquipment.add( r );
+                    if (r != null) {
+                        this.reserveEquipment.add(r);
+                    }
                 }
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
@@ -225,14 +229,18 @@ public final class Reservation {
             ErrorMsg.setLastError(ErrorMsg.ERROR_INVOKE_MISTAKE);
             return false;
         }
+        if (insurance == null) {
+            return false;
+        }
 
         this.reserveInsurance = new ArrayList<BuyInsurance>();
-        for( String str : insurance ) {
+        for (String str : insurance) {
             BuyInsuranceDao binDAO = new BuyInsuranceDao();
             try {
                 BuyInsurance i = binDAO.makeBuyInsurance(this.reserveInfo.getReservationInfoId(), str);
-                if(i!=null)
-                    this.reserveInsurance.add( i );
+                if (i != null) {
+                    this.reserveInsurance.add(i);
+                }
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
                 ErrorMsg.setLastError(ErrorMsg.ERROR_PARAMETER_ERROR);

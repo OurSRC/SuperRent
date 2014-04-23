@@ -45,6 +45,7 @@ public class ReserveCtrlTest {
         Reservation reserve = new Reservation(BranchCtrl.getDefaultBranch().getBranchID(), 
                 new Date(2014-1900, 4-1, 11, 8, 0, 0), new Date(2014-1900, 4-1, 12, 8, 0, 0), customer.getCustomerId(), staff.getStaffId(), 
                 "COMPACT", equipments, insurances);
+                //"COMPACT", null, null);
         sReserve = reserve;
     }
     
