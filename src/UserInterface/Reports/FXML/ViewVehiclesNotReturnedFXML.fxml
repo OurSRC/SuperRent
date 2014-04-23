@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ViewVehiclesNotReturnedFXMLController">
+  <children>
+    <Label layoutX="21.0" layoutY="14.0" text="">
+      <font>
+        <Font size="14.0" fx:id="x1" />
+      </font>
+    </Label>
+    <TableView fx:id="NotReturnedTable" layoutX="14.0" layoutY="63.0" prefHeight="310.0" prefWidth="627.0">
+      <columns>
+        <TableColumn fx:id="ContractNo" maxWidth="5000.0" minWidth="10.0" prefWidth="89.0" resizable="false" text="Contract #" />
+        <TableColumn fx:id="VehicleClass" maxWidth="5000.0" minWidth="10.0" prefWidth="99.0" resizable="false" text="Vehicle Class" />
+        <TableColumn fx:id="VehicleNo" maxWidth="5000.0" minWidth="10.0" prefWidth="83.0" resizable="false" text="Vehicle No" />
+        <TableColumn fx:id="ReturnDate" maxWidth="5000.0" minWidth="10.0" prefWidth="89.0" resizable="false" text="Return Date" />
+        <TableColumn fx:id="ReturnTime" maxWidth="5000.0" minWidth="10.0" prefWidth="78.0" text="Return Time" />
+        <TableColumn fx:id="CustomerID" prefWidth="75.0" text="Customer ID" />
+        <TableColumn fx:id="CustomerPhone" maxWidth="5000.0" minWidth="10.0" prefWidth="116.0" text="Customer Ph#" />
+      </columns>
+    </TableView>
+    <Label font="$x1" layoutX="16.0" layoutY="16.0" text="Vehicles Not Returned" />
+    <Button fx:id="PrintPDFButton" layoutX="588.0" layoutY="411.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
+    <CheckBox fx:id="EmailCHB" layoutX="524.0" layoutY="414.0" mnemonicParsing="false" text="Email" />
+  </children>
+</AnchorPane>

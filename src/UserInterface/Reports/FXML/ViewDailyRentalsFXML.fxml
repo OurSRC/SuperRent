@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ViewDailyRentalsFXMLController">
+  <children>
+    <Label layoutX="21.0" layoutY="14.0" text="">
+      <font>
+        <Font size="14.0" fx:id="x1" />
+      </font>
+    </Label>
+    <TableView fx:id="DailyRentalsTable" layoutX="111.0" layoutY="93.0" prefHeight="257.0" prefWidth="469.0">
+      <columns>
+        <TableColumn fx:id="VehicleCategory" maxWidth="5000.0" minWidth="10.0" prefWidth="158.0" resizable="false" text="Vehicle Category" />
+        <TableColumn fx:id="VehicleType" maxWidth="5000.0" minWidth="10.0" prefWidth="187.0" resizable="false" text="Vehicle Type" />
+        <TableColumn fx:id="NoOfRentals" maxWidth="5000.0" minWidth="10.0" prefWidth="126.0" resizable="false" text="No of Rentals" />
+      </columns>
+    </TableView>
+    <Label font="$x1" layoutX="16.0" layoutY="16.0" text="Total Rentals for " />
+    <Label id="DateLabel" fx:id="PrintDateLabel" layoutX="125.0" layoutY="18.0" />
+    <Label id="DateLBL" fx:id="DateLabel" layoutX="303.0" layoutY="60.0" text="Date" />
+    <Button fx:id="SearchButton" layoutX="521.0" layoutY="56.0" mnemonicParsing="false" onAction="#SearchDailyRentalsAction" text="Search" />
+    <Button fx:id="PrintPDFButton" layoutX="509.0" layoutY="417.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
+    <Label id="DateLBL" fx:id="TotalRentalsLabel" layoutX="372.0" layoutY="368.0" text="Total Rentals" />
+    <TextField fx:id="TotalRentalsTF" layoutX="455.0" layoutY="365.0" prefWidth="125.0" />
+    <CheckBox fx:id="EmailCHB" layoutX="447.0" layoutY="420.0" mnemonicParsing="false" text="Email" />
+    <DatePicker fx:id="SearchDateDP" layoutX="343.0" layoutY="56.0" onAction="#SearchDateAction" />
+  </children>
+</AnchorPane>

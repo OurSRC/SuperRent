@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ReportsMainPageFXMLController">
+  <children>
+    <Button id="Rbtn" fx:id="ViewDailyRentalsButton" layoutX="15.0" layoutY="51.0" mnemonicParsing="false" onAction="#ViewDailyRentalsAction" prefWidth="179.0" text="Rentals" />
+    <Button fx:id="ViewAvailableVehiclesButton" layoutX="15.0" layoutY="159.0" mnemonicParsing="false" onAction="#ViewAvailableVehiclesAction" prefWidth="179.0" text="Available Vehicles" />
+    <Button fx:id="ViewDailyReturnsButton" layoutX="15.0" layoutY="83.0" mnemonicParsing="false" onAction="#ViewDailyReturnsAction" prefWidth="179.0" text="Returns" />
+    <Separator layoutX="14.0" layoutY="40.0" prefWidth="179.0" />
+    <Separator layoutX="15.0" layoutY="14.0" prefWidth="179.0" />
+    <Label layoutX="68.0" layoutY="19.0" text="Daily Reports">
+      <font>
+        <Font name="System Bold" size="12.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Separator layoutX="15.0" layoutY="147.0" prefWidth="179.0" />
+    <Separator layoutX="16.0" layoutY="121.0" prefWidth="179.0" />
+    <Label font="$x1" layoutX="63.0" layoutY="126.0" text="Other Reports" />
+    <Button fx:id="ViewVehiclesForSaleButton" layoutX="16.0" layoutY="255.0" mnemonicParsing="false" onAction="#ViewVehiclesforSaleAction" prefWidth="179.0" text="Vehicles for Sale" />
+    <Button fx:id="ViewVehiclesNotReturnedButton" layoutX="16.0" layoutY="223.0" mnemonicParsing="false" onAction="#ViewNotReturnedAction" prefWidth="179.0" text=" Vehicles not Returned" />
+    <Button fx:id="ViewUnrentedReservationsButton" layoutX="16.0" layoutY="190.0" mnemonicParsing="false" onAction="#ViewNotRentedAction" prefWidth="177.0" text="Unrented Reservations" />
+    <StackPane fx:id="ReportsManagementStackPane" layoutX="212.0" layoutY="15.0" prefHeight="466.0" prefWidth="690.0" />
+    <Separator layoutX="206.0" layoutY="14.0" orientation="VERTICAL" prefHeight="451.0" />
+    <Button fx:id="ViewTransactionsButton" layoutX="18.0" layoutY="405.0" mnemonicParsing="false" onAction="#ViewTransactionsAction" prefWidth="177.0" text="View Transactions" />
+    <Button fx:id="ViewRentedVehiclesButton" layoutX="19.0" layoutY="308.0" mnemonicParsing="false" onAction="#ViewRentedAction" prefWidth="177.0" text="Rented Vehicles" />
+    <Button fx:id="ViewReturnedVehiclesButton" layoutX="18.0" layoutY="339.0" mnemonicParsing="false" onAction="#ViewReturnedAction" prefWidth="177.0" text="Returned Vehicles" />
+    <Separator layoutX="18.0" layoutY="291.0" prefWidth="178.9998779296875" />
+    <Button fx:id="ViewVehiclesListButton" layoutX="17.0" layoutY="374.0" mnemonicParsing="false" onAction="#ViewVehiclesByYearAction" prefWidth="177.0" text=" Vehicles List" />
+  </children>
+</AnchorPane>
