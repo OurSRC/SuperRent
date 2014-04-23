@@ -4,6 +4,7 @@ import SystemOperations.ErrorMsg;
 import VehicleManagement.Equipment;
 import dao.DaoException;
 import dao.EquipmentDao;
+import dao.ReservationInfoDao;
 import dao.ReserveEquipmentDao;
 import dao.SupportEquipmentDao;
 import entity.Branch;
@@ -81,12 +82,12 @@ public class EquipmentCtrl {
     
     public boolean checkEquipmentAvailability(String EquipmentType, Date pickUpTime, Date returnTime, Branch branch) {
         EquipmentDao eqDAO = new EquipmentDao();
-        ReserveEquipmentDao reDAO = new ReserveEquipmentDao();
+        ReservationInfoDao rInfoDao = new ReservationInfoDao();
         int have = 0;
         int rent = 0;
         try {
             have = eqDAO.countEquipment(new entity.Equipment(EquipmentType, entity.Equipment.STATUS.AVAILABLE, null, null, null, branch.getBranchID()));
-            rent = reDAO.findReservationBetween(EquipmentType, pickUpTime, returnTime, branch).size();
+            rent = rInfoDao.findReservationBetweenUsingEquipmentType(EquipmentType, pickUpTime, returnTime, branch).size();
         } catch (DaoException ex) {
             Logger.getLogger(EquipmentCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);

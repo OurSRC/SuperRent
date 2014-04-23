@@ -50,9 +50,4 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
         ans.seteDailyRate( eqt.getDailyRate() );
         return ans;
     }
-
-    public ArrayList<ReserveEquipment> findReservationBetween(String equipmentType, Date pickUpTime, 
-            Date returnTime, Branch branch) throws DaoException{
-        return null;
-    }
 }
