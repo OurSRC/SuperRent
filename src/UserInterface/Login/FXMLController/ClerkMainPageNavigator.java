@@ -25,6 +25,7 @@ public class ClerkMainPageNavigator {
         public static final String FLEET_MANAGEMENT = "/UserInterface/FleetManagement/FXML/FleetManagementMainPageFXML.fxml";
         public static final String USER_MANAGEMENT = "/UserInterface/PeopleManagement/FXML/PeopleManagementFXML.fxml";
         public static String CurrentUserName ;
+        public static boolean staff;
 
     
     public static void setMainController(FXMLClerkMainPageController mainControlle) {

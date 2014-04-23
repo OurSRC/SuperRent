@@ -154,6 +154,7 @@ public class FXMLClerkMainPageController implements Initializable {
         UserNameLabel.setText(userName);
         username= userName;
         ClerkMainPageNavigator.CurrentUserName=userName;
+        ClerkMainPageNavigator.staff=true;
         StaffCtrl StaffControl = new StaffCtrl();
         NewStaff = StaffControl.getStaffByUsername(username);
         System.out.println(NewStaff.getStaffType() + "" + NewStaff.getStaffId());

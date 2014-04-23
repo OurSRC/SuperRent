@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.BranchCtrl;
 import ControlObjects.FinanceCtrl;
 import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
+import ControlObjects.StaffCtrl;
+import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import entity.Staff;
 import finance.Price;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +30,7 @@ import javafx.scene.text.Font;
  * @author Vyas
  */
 public class ReservationSummaryFXMLController implements Initializable {
+
     @FXML
     private Font x1;
     @FXML
@@ -57,34 +61,36 @@ public class ReservationSummaryFXMLController implements Initializable {
         ReturnDateTF.setText(ReservationNavigator.newReserve.getReturnTime().toString());
         System.out.println("Outside Additional Equipments");
 
-        if(ReservationNavigator.newReserve.getEquipmentType().size()!=0)
-        {
+        if (ReservationNavigator.newReserve.getEquipmentType().size() != 0) {
             System.out.println("Inside Additional Equipments");
-            ObservableList<String> items =FXCollections.observableArrayList (ReservationNavigator.newReserve.getEquipmentType());
+            ObservableList<String> items = FXCollections.observableArrayList(ReservationNavigator.newReserve.getEquipmentType());
             AdditionalEquipmentList.setItems(items);
         }
-        
-        if(!ReservationNavigator.newReserve.getInsurance().isEmpty())
-        {
-            ObservableList<String> items =FXCollections.observableArrayList (ReservationNavigator.newReserve.getInsurance());
+
+        if (!ReservationNavigator.newReserve.getInsurance().isEmpty()) {
+            ObservableList<String> items = FXCollections.observableArrayList(ReservationNavigator.newReserve.getInsurance());
             InsuranceList.setItems(items);
         }
-        
+
         FinanceCtrl newFinanceCtrl = new FinanceCtrl();
         int sample = newFinanceCtrl.estimateReservationCost(ReservationNavigator.newReserve);
         EstimatedCostTF.setText(Price.toText(sample));
-   }    
+    }
 
     @FXML
     private void ConfirmButtonAction(ActionEvent event) {
-        
+
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
+        ReservationNavigator.newReserve.setBranchId(BranchCtrl.getDefaultBranch().getBranchID());
+        if (ClerkMainPageNavigator.staff) {
+            StaffCtrl staffCtrl = new StaffCtrl();
+            Staff staff = staffCtrl.getStaffByUsername(ClerkMainPageNavigator.CurrentUserName);
+            ReservationNavigator.newReserve.setStaffId(staff.getStaffId());
+        }
         Reservation newReservation = newReserveCtrl.createReserve(ReservationNavigator.newReserve);
-        if(newReservation==null)
-        {
-            
-        }else
-        {
+        if (newReservation == null) {
+
+        } else {
             System.out.println(newReservation.getReservationNo());
         }
     }
@@ -92,5 +98,5 @@ public class ReservationSummaryFXMLController implements Initializable {
     @FXML
     private void AbortButtonAction(ActionEvent event) {
     }
-    
+
 }
