@@ -9,7 +9,10 @@ import ControlObjects.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ValidateFields;
+import UserInterface.Operations.FXMLController.OperationsFXMLController;
+import UserInterface.Operations.FXMLController.ReservationNavigator;
 import entity.Customer;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -91,8 +94,8 @@ public class CreateCustomerFXMLController implements Initializable {
     }
 
     @FXML
-    private void AbortButtonAction(ActionEvent event) {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
+    private void AbortButtonAction(ActionEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();   
     }
 
     public boolean validateMandatory() {

@@ -138,7 +138,7 @@ public class CustomerMainPageFXMLController implements Initializable {
         Scene scene = new Scene(newCustomerPane);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        stage.showAndWait();
 
     }
 
