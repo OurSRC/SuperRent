@@ -11,10 +11,21 @@ package entity;
  * @author Jingchuan Chen
  */
 public class ReserveEquipment {
+
     private int reservationInfoId;
     private String equipmentType;
     private int eHourlyRate;
     private int eDailyRate;
+
+    public ReserveEquipment() {
+    }
+
+    public ReserveEquipment(int reservationInfoId, String equipmentType, int eHourlyRate, int eDailyRate) {
+        this.reservationInfoId = reservationInfoId;
+        this.equipmentType = equipmentType;
+        this.eHourlyRate = eHourlyRate;
+        this.eDailyRate = eDailyRate;
+    }
 
     /**
      * @return the reservationInfoId
