@@ -69,7 +69,7 @@ public class FXMLClerkMainPageController implements Initializable {
     @FXML
     public void ReportsAction(ActionEvent event) throws IOException
     {
-         ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.REPORTS);
+        ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.REPORTS);
     }
     
    

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ViewUnrentedReservationsFXMLController">
+  <children>
+    <Label layoutX="21.0" layoutY="14.0" text="">
+      <font>
+        <Font size="14.0" fx:id="x1" />
+      </font>
+    </Label>
+    <TableView fx:id="UnrentedTable" layoutX="17.0" layoutY="63.0" prefHeight="310.0" prefWidth="627.0">
+      <columns>
+        <TableColumn fx:id="Reservationno" maxWidth="5000.0" minWidth="10.0" prefWidth="89.0" resizable="false" text="Reservation #" />
+        <TableColumn fx:id="VehicleType" maxWidth="5000.0" minWidth="10.0" prefWidth="118.0" resizable="false" text="Vehicle Type" />
+        <TableColumn fx:id="Price" maxWidth="5000.0" minWidth="10.0" prefWidth="103.0" resizable="false" text="Estimated Price" />
+        <TableColumn fx:id="PickupDate" maxWidth="5000.0" minWidth="10.0" prefWidth="75.0" text="Pickup Date" />
+        <TableColumn fx:id="ReturnDate" prefWidth="75.0" text="Return Date" />
+        <TableColumn fx:id="CusID" prefWidth="75.0" text="Customer ID" />
+        <TableColumn fx:id="CusPhone" maxWidth="5000.0" minWidth="10.0" prefWidth="90.0" text="Customer Ph#" />
+      </columns>
+    </TableView>
+    <Label font="$x1" layoutX="16.0" layoutY="16.0" text="Unrented Reservations" />
+    <Button fx:id="PrintPDFButton" layoutX="588.0" layoutY="411.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
+    <CheckBox fx:id="EmailCHB" layoutX="527.0" layoutY="413.0" mnemonicParsing="false" text="Email" />
+  </children>
+</AnchorPane>
