@@ -27,4 +27,12 @@ public class DbConn {
 
         return conn.createStatement();
     }
+    
+    public static Connection getConn() throws SQLException {
+        if (conn == null) {
+            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        }
+
+        return conn;
+    }
 }

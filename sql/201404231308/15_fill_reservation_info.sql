@@ -1,0 +1,11 @@
+INSERT INTO `super_rent`.`reservation_info` VALUES (1, 1, '2014-4-1 22:04:00', 50, '2014-5-2 09:05:00', '2014-5-3 09:05:00', 4, 2, 'ECONOMY', 50, 10, 200, '100001', 'PENDING');
+INSERT INTO `super_rent`.`reservation_info` VALUES (2, 1, '2014-3-5 10:40:00', 210, '2014-3-10 10:41:00', '2014-3-17 10:42:00', 5, 4, 'COMPACT', 55, 11, 210, '100002', 'RENTED');
+INSERT INTO `super_rent`.`reservation_info` VALUES (3, 1, '2014-1-2 22:59:00', 1440, '2014-2-1 10:59:00', '2014-3-1 10:59:00', 1, 7, 'FOOT24', 80, 17, 240, '100003', 'RENTED');
+INSERT INTO `super_rent`.`reservation_info` VALUES (4, 1, '2014-3-1 22:04:00', NULL, '2014-4-18 09:05:00', '2014-4-23 09:05:00', 6, 7, 'ECONOMY', 50, 10, 200, '100004', 'RENTED');
+INSERT INTO `super_rent`.`reservation_info` VALUES (5, 1, '2014-2-5 10:40:00', NULL, '2014-4-10 10:41:00', '2014-4-22 10:42:00', 7, 8, 'ECONOMY', 50, 10, 200, '100005', 'RENTED');
+INSERT INTO `super_rent`.`reservation_info` VALUES (6, 1, '2014-1-12 22:59:00', NULL, '2014-4-26 10:59:00', '2014-4-28 10:59:00', 8, 9, 'ECONOMY', 50, 10, 200, '100006', 'PENDING');
+INSERT INTO `super_rent`.`reservation_info` VALUES (7, 1, '2014-3-21 22:04:00', NULL, '2014-6-2 09:05:00', '2014-6-3 09:05:00', 9, 2, 'PREMIUM', 75, 15, 250, '100007', 'PENDING');
+INSERT INTO `super_rent`.`reservation_info` VALUES (8, 1, '2014-3-25 10:40:00', NULL, '2014-4-28 10:41:00', '2014-4-29 10:42:00', 10, 4, 'STANDARD', 65, 13, 230, '100008', 'PENDING');
+INSERT INTO `super_rent`.`reservation_info` VALUES (9, 1, '2014-1-22 22:59:00', NULL, '2014-4-1 10:59:00', '2014-5-1 10:59:00', 9, 8, 'SUV', 90, 18, 270, '100009', 'RENTED');
+INSERT INTO `super_rent`.`reservation_info` VALUES (10, 1, '2014-3-22 22:59:00', NULL, '2014-5-8 10:59:00', '2014-5-11 10:59:00', 10, 9, 'VAN', 100, 20, 280, '100010', 'CANCELED');
+INSERT INTO `super_rent`.`reservation_info` VALUES (11, 1, '2014-2-22 22:59:25', NULL, '2014-3-18 10:59:40', '2014-3-21 10:59:59', 6, 9, 'VAN', 100, 20, 280, '100010', 'RENTED');

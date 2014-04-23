@@ -50,13 +50,28 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return new ReservationInfo();
     }
     
-    public ReservationInfo makeReservationInfo(ReservationInfo reservationInfo){
-        return null;
+    public ReservationInfo makeReservationInfo(ReservationInfo reservationInfo) throws DaoException{
+        add(reservationInfo);
+        int id = getLastAutoIncrementId();
+        reservationInfo.setReservationInfoId(id);
+        return reservationInfo;
     }
     
     public ReservationInfo findByReservationNo(String reservatioNo) throws DaoException {
         String cond = "ReservationNo=" + SqlBuilder.wrapStr(reservatioNo);
         return findOne(cond);
+    }
+    
+    public ArrayList<ReservationInfo> findReservationBetween(Date pickUpTime, 
+            Date returnTime, Branch branch) throws DaoException{
+        
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("PickUpTime <" + SqlBuilder.wrapDatetime(returnTime));
+        qb.cond("ReturnTime > " + SqlBuilder.wrapDatetime(pickUpTime));
+        qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        String cond = qb.toString();
+        
+        return find(cond);
     }
     
     public ArrayList<ReservationInfo> findReservationBetween(String vehicleClass, Date pickUpTime, 
@@ -67,9 +82,36 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         qb.cond("ReturnTime > " + SqlBuilder.wrapDatetime(pickUpTime));
         qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
         qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
-        qb.cond("ReservationStatus=" + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
+        qb.cond("ReservationStatus<>" + SqlBuilder.wrapInt(ReservationInfo.STATUS.CANCELED.getValue()));
         String cond = qb.toString();
         
         return find(cond);
     }
+    
+    public ArrayList<ReservationInfo> findReservationBetweenUsingEquipmentType (String equipmentType, 
+            Date pickUpTime, Date returnTime, Branch branch) throws DaoException{
+        
+        SqlBuilder subQue = new SqlBuilder();
+        String subQueueStr;
+        
+        subQueueStr = subQue
+                .select("ReservationInfoId")
+                .from(ReserveEquipmentDao.tb_name)
+                .where("EquipmentType=" + SqlBuilder.wrapStr(equipmentType))
+                .toString();
+        
+        subQueueStr = "(" + subQueueStr + ")";
+        
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("PickUpTime <" + SqlBuilder.wrapDatetime(returnTime));
+        qb.cond("ReturnTime > " + SqlBuilder.wrapDatetime(pickUpTime));
+        qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        qb.cond("ReservationStatus<>" + SqlBuilder.wrapInt(ReservationInfo.STATUS.CANCELED.getValue()));
+        qb.cond("ReservationInfoId IN " + subQueueStr);
+        
+        String cond = qb.toString();
+        
+        return find(cond);
+    }
+    
 }

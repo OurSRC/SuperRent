@@ -25,7 +25,7 @@ public class EquipmentDao extends AbstractDao<Equipment>{
         new StringParser("Manufactor", "Manufactor"),
         new DateParser("ManufactureDate", "ManufactorDate"),
         new StringParser("Mode", "Mode"),
-        new IntParser("BranchID", "BranchId"),
+        new IntParser("BranchId", "BranchId"),
     };
     protected static final int[] pkIndex = {0};
     protected static final boolean pkIsAutoGen = true;
@@ -49,7 +49,12 @@ public class EquipmentDao extends AbstractDao<Equipment>{
         return new Equipment();
     }
     
-    public int countEquipment(Equipment equipment){
-        return 0;
+    public int countEquipment(Equipment equipment) throws DaoException{
+        String cond;
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("BranchId=" + SqlBuilder.wrapInt(equipment.getBranchId()));
+        qb.cond("EquipmentType=" + SqlBuilder.wrapStr(equipment.getEquipmentType()));
+        cond = qb.toString();
+        return count(cond);
     }
 }
