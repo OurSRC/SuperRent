@@ -17,6 +17,9 @@ import java.util.logging.Logger;
 public class ReserveCtrl {
 
     public Reservation createReserve(Reservation reserve) {
+        if(reserve==null )
+            return null;
+        
         VehicleCtrl vehicleCtrl = new VehicleCtrl();
         EquipmentCtrl equipCtrl = new EquipmentCtrl();
         Branch branch = reserve.matchBranch();
