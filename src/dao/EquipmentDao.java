@@ -50,10 +50,14 @@ public class EquipmentDao extends AbstractDao<Equipment>{
     }
     
     public int countEquipment(Equipment equipment) throws DaoException{
+        return countEquipment(equipment.getBranchId(), equipment.getEquipmentType());
+    }
+    
+    public int countEquipment(int branchId, String equipmentType) throws DaoException {
         String cond;
         SqlBuilder qb = new SqlBuilder();
-        qb.cond("BranchId=" + SqlBuilder.wrapInt(equipment.getBranchId()));
-        qb.cond("EquipmentType=" + SqlBuilder.wrapStr(equipment.getEquipmentType()));
+        qb.cond("BranchId=" + SqlBuilder.wrapInt(branchId));
+        qb.cond("EquipmentType=" + SqlBuilder.wrapStr(equipmentType));
         cond = qb.toString();
         return count(cond);
     }

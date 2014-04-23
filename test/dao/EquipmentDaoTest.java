@@ -86,5 +86,5 @@ public class EquipmentDaoTest {
             eDao.delete(equipment);
         }
     }
-
+    
 }

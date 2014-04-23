@@ -204,8 +204,11 @@ public final class Reservation {
             ReserveEquipmentDao reDAO = new ReserveEquipmentDao();
             SupportEquipmentDao seDAO = new SupportEquipmentDao();
             try {
-                if (seDAO.matchVehicleClassAndEquipmentType(reserveInfo.getVehicleClass(), str)) {
-                    this.reserveEquipment.add( reDAO.makeReserveEquipment(this.reserveInfo.getReservationInfoId(), str) );
+                String vc = reserveInfo.getVehicleClass();
+                if (seDAO.matchVehicleClassAndEquipmentType(vc, str)) {
+                    ReserveEquipment r = reDAO.makeReserveEquipment(this.reserveInfo.getReservationInfoId(), str);
+                    if(r!=null)
+                        this.reserveEquipment.add( r );
                 }
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
@@ -227,7 +230,9 @@ public final class Reservation {
         for( String str : insurance ) {
             BuyInsuranceDao binDAO = new BuyInsuranceDao();
             try {
-                this.reserveInsurance.add( binDAO.makeBuyInsurance(this.reserveInfo.getReservationInfoId(), str) );
+                BuyInsurance i = binDAO.makeBuyInsurance(this.reserveInfo.getReservationInfoId(), str);
+                if(i!=null)
+                    this.reserveInsurance.add( i );
             } catch (DaoException ex) {
                 Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
                 ErrorMsg.setLastError(ErrorMsg.ERROR_PARAMETER_ERROR);

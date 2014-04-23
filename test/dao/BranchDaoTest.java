@@ -64,8 +64,9 @@ public class BranchDaoTest {
         
         boolean suc;
         suc = dao.add(entity);
-        Branch found = dao.findByName("testBranch");
-        suc = dao.delete(found);
+        suc = dao.delete(entity);
+        //Branch found = dao.findByName("testBranch");
+        //suc = dao.delete(found);
         Branch found2 = dao.findByName("testBranch");
         assertEquals(found2, null);
         assertTrue(suc);

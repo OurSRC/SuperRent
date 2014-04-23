@@ -72,18 +72,24 @@ public abstract class AbstractDao<T> {
                 .toString();
 
         System.out.println("SQL:" + sql);
-        
 
         try {
-            
-            Statement stmt = DbConn.getStmt();
-            stmt.executeUpdate(sql);
-            ans = true;
-            
             /*
+             Statement stmt = DbConn.getStmt();
+             stmt.executeUpdate(sql);
+             ans = true;
+             */
+
             Connection conn = DbConn.getConn();
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                    */
+            pstmt.executeUpdate();
+            ResultSet keys = pstmt.getGeneratedKeys();
+            keys.next();
+            int key = keys.getInt(1);
+            ap[pk].setAttrByVal(entity, key);
+            
+            ans = true;
+            
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "add()");
@@ -103,7 +109,7 @@ public abstract class AbstractDao<T> {
 
         SqlBuilder qb = new SqlBuilder();
         qb.deleteFrom(tb_name);
-        
+
         for (int i : pk) {
             qb.where(ap[i].getColName() + "=" + ap[i].wrapAttr(entity));
         }
@@ -197,8 +203,7 @@ public abstract class AbstractDao<T> {
         ArrayList<T> result = new ArrayList<>();
 
         SqlBuilder qb = new SqlBuilder();
-        
-        
+
         String sql = qb
                 .select("*")
                 .from(tb_name)
@@ -223,39 +228,39 @@ public abstract class AbstractDao<T> {
 
         return result;
     }
-    
+
     public ArrayList<T> findByInstance(T value) throws DaoException {
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
-        
+
         SqlBuilder qb = new SqlBuilder();
-        
+
         for (AttributeParser attr : ap) {
             String str = attr.wrapAttr(value);
             if (!(str.equalsIgnoreCase("null") || (str.equals("0") && attr.getClass().equals(IntParser.class)))) {
                 qb.cond(attr.getColName() + "=" + str);
             }
         }
-        
+
         String sql = qb.toString();
         return find(sql);
     }
-    
+
     public ArrayList<T> all() throws DaoException {
         return find("true");
     }
-    
+
     protected int count(String cond) throws DaoException {
         String tb_name = getTbName();
         int result;
-        
+
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("COUNT(*)")
                 .from(tb_name)
                 .where(cond)
                 .toString();
-        
+
         try {
             Statement stmt = DbConn.getStmt();
             ResultSet rs = stmt.executeQuery(sql);
@@ -270,10 +275,10 @@ public abstract class AbstractDao<T> {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "find()");
         }
-        
+
         return result;
     }
-    
+
     protected int getLastAutoIncrementId() throws DaoException {
         String tb_name = getTbName();
         SqlBuilder qb = new SqlBuilder();
@@ -281,7 +286,7 @@ public abstract class AbstractDao<T> {
                 .select("last_insert_id() as last_id")
                 .from(tb_name)
                 .toString();
-        
+
         System.out.println("******SQL AI: " + sql);
         String last_id;
         try {
@@ -298,9 +303,9 @@ public abstract class AbstractDao<T> {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "getLastAutoIncrementId()");
         }
-        
+
         return Integer.parseInt(last_id);
-        
+
     }
 
     private String getTbName() {
