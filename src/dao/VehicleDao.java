@@ -20,7 +20,7 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         new IntParser("VehicleNo", "VehicleNo"),
         new StringParser("PlateNo", "PlateNo"),
         new DateParser("ManufactureDate", "ManufactureDate"),
-        new StringParser("Mode", "Mode"),
+        new StringParser("Model", "Mode"),
         new IntParser("Odometer", "Odometer"),
         new IntParser("BranchID", "BranchId"),
         new EnumParser("Status", "Status"),

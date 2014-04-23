@@ -24,7 +24,7 @@ public class EquipmentDao extends AbstractDao<Equipment>{
         new EnumParser("Status", "Status"),
         new StringParser("Manufactor", "Manufactor"),
         new DateParser("ManufactureDate", "ManufactorDate"),
-        new StringParser("Mode", "Mode"),
+        new StringParser("Model", "Mode"),
         new IntParser("BranchId", "BranchId"),
     };
     protected static final int[] pkIndex = {0};
