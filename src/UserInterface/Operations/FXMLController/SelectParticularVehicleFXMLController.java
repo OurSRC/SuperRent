@@ -8,6 +8,8 @@ package UserInterface.Operations.FXMLController;
 
 import ControlObjects.VehicleCtrl;
 import Operations.Reserve;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import entity.Vehicle;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -32,13 +35,15 @@ public class SelectParticularVehicleFXMLController implements Initializable {
     @FXML
     private TableView VehicleTable;
     @FXML
-    private TableColumn<?, ?> VehicleClassColumn;
+    private TextField VehicleTypeSelected;
     @FXML
-    private TableColumn<?, ?> PlateColumn;
+    private TableColumn VehicleClassColumn;
     @FXML
-    private TableColumn<?, ?> VehicleModelColumn;
+    private TableColumn PlateColumn;
     @FXML
-    private TableColumn<?, ?> OdometerColumn;
+    private TableColumn VehicleModelColumn;
+    @FXML
+    private TableColumn OdometerColumn;
     @FXML
     private Button BackButton;
 
@@ -51,13 +56,19 @@ public class SelectParticularVehicleFXMLController implements Initializable {
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
         Vehicle newVehicle = new Vehicle();
         newVehicle.setClassName("COMPACT");
+        newVehicle.setRentStatus("IDLE");
+        newVehicle.setStatus("FORRENT");
+        VehicleTypeSelected.setText(newVehicle.getClassName());
         
         ArrayList<Vehicle> newArray = newVehicleCtrl.searchVehicle(newVehicle);
         ObservableList<Vehicle> slist = FXCollections.observableArrayList(newArray);
         VehicleTable.setItems(slist);
         System.out.println("Hello buddy");
         
-        VehicleModelColumn.setCellValueFactory(new PropertyValueFactory("model"));
+        VehicleModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
+        PlateColumn.setCellValueFactory(new PropertyValueFactory("plateNo"));
+        OdometerColumn.setCellValueFactory(new PropertyValueFactory("odometer"));
+        VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("className"));
 
     }    
 
@@ -67,6 +78,18 @@ public class SelectParticularVehicleFXMLController implements Initializable {
 
     @FXML
     private void NextButtonAction(ActionEvent event) {
+        
+        if (!VehicleTable.getSelectionModel().isEmpty()) {
+            Vehicle rentVehicle = (Vehicle) VehicleTable.getSelectionModel().getSelectedItem();
+            RentNavigator.RentVehicle = rentVehicle;
+            
+        } else {
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage("Please select a vehicle to Proceed");
+            dialog.showDialog();
+            System.out.println("No Vehicle Selected");
+        }
     }
 
     @FXML

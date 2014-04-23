@@ -9,6 +9,7 @@ package UserInterface.Operations.FXMLController;
 import Operations.Rent;
 import Operations.Reserve;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import entity.Vehicle;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,7 +30,7 @@ public class RentNavigator {
         public static Rent newRent;
         public static String ReservationNumber;
         public static Reserve newReserve;
-
+        public static Vehicle RentVehicle;
 
 
         public static void setMainController(OperationsFXMLController mainController) {
