@@ -54,6 +54,6 @@
             </FXCollections>
           </items>
         </ComboBox>
-</children></Pane>
+</children></Pane><Button layoutX="361.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Cancel Reservation" />
   </children>
 </AnchorPane>

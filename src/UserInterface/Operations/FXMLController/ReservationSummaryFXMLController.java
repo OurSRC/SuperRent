@@ -7,6 +7,8 @@
 package UserInterface.Operations.FXMLController;
 
 import ControlObjects.FinanceCtrl;
+import ControlObjects.Reservation;
+import ControlObjects.ReserveCtrl;
 import finance.Price;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -75,6 +77,16 @@ public class ReservationSummaryFXMLController implements Initializable {
 
     @FXML
     private void ConfirmButtonAction(ActionEvent event) {
+        
+        ReserveCtrl newReserveCtrl = new ReserveCtrl();
+        Reservation newReservation = newReserveCtrl.createReserve(ReservationNavigator.newReserve);
+        if(newReservation==null)
+        {
+            
+        }else
+        {
+            System.out.println(newReservation.getReservationNo());
+        }
     }
 
     @FXML

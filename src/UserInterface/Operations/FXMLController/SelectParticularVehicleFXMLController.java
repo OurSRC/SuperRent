@@ -77,11 +77,12 @@ public class SelectParticularVehicleFXMLController implements Initializable {
     }
 
     @FXML
-    private void NextButtonAction(ActionEvent event) {
+    private void NextButtonAction(ActionEvent event) throws IOException {
         
         if (!VehicleTable.getSelectionModel().isEmpty()) {
             Vehicle rentVehicle = (Vehicle) VehicleTable.getSelectionModel().getSelectedItem();
             RentNavigator.RentVehicle = rentVehicle;
+            RentNavigator.loadVista(RentNavigator.RentDetailsPage);
             
         } else {
             DialogFX dialog = new DialogFX(Type.ERROR);
