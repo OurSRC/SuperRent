@@ -48,6 +48,8 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
         ans.setEquipmentType(equipmentType);
         ans.seteHourlyRate( eqt.getHourlyRate() );
         ans.seteDailyRate( eqt.getDailyRate() );
+        
+        add(ans);
         return ans;
     }
 }

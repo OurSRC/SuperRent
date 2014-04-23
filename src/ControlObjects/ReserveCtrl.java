@@ -20,6 +20,9 @@ public class ReserveCtrl {
         if(reserve==null )
             return null;
         
+        if(reserve.getReserveTime()==null)
+            reserve.setReserveTime(new Date());
+        
         VehicleCtrl vehicleCtrl = new VehicleCtrl();
         EquipmentCtrl equipCtrl = new EquipmentCtrl();
         Branch branch = reserve.matchBranch();
