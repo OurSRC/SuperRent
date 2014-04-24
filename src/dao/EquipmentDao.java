@@ -12,7 +12,9 @@ import entityParser.*;
 import java.util.ArrayList;
 
 /**
- *
+ * <p>
+ *  This class provides basic access methods, for example, find, insert, update, delete
+ *  for equipment entity.</p>
  * @author Xi Yang
  */
 public class EquipmentDao extends AbstractDao<Equipment>{
@@ -31,7 +33,7 @@ public class EquipmentDao extends AbstractDao<Equipment>{
     protected static final boolean pkIsAutoGen = true;
     
     /**
-     * 
+     * This method find a {@link Equipment} with given {@code id}
      * @param id id of Equipment
      * @return Equipment with id, null if non found
      * @throws DaoException 
@@ -39,7 +41,12 @@ public class EquipmentDao extends AbstractDao<Equipment>{
     public Equipment findEquipmentById(int id) throws DaoException{
         return findOne("EquipmentId ="+ SqlBuilder.wrapInt(id));
     }
-
+    /**
+     * This method find a {@link Equipment} with given {@code equipmentType}
+     * @param equipmentType equipmentType of Equipment
+     * @return Equipment with equipmentType, null if non found
+     * @throws DaoException 
+     */  
     public ArrayList<Equipment> findEquipmentByType(String equipmentType) throws DaoException{
         return find("EquipmentType ="+ SqlBuilder.wrapStr(equipmentType));
     }
