@@ -3,7 +3,7 @@ INSERT INTO `super_rent`.`vehicle` VALUES (2, 'BG1034', '1998-5-1', 'Renault Lag
 INSERT INTO `super_rent`.`vehicle` VALUES (3, 'DS1112', '1999-5-1', 'Renault Laguna', 74502, 1, 'FORRENT', 'RENTED', 'ECONOMY', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (4, 'BG1035', '2000-5-1', 'Renault Laguna', 81049, 1, 'FORRENT', 'RENTED', 'ECONOMY', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (5, 'DS1113', '2006-5-1', 'Ford Fiesta', 99993, 1, 'FORRENT', 'RENTED', 'ECONOMY', NULL, NULL);
-INSERT INTO `super_rent`.`vehicle` VALUES (6, 'BG1036', '2007-5-1', 'Honda Fit', 100970, 1, 'FORRENT', 'IDLE', 'ECONOMY', 15304, 'FORSALE');
+INSERT INTO `super_rent`.`vehicle` VALUES (6, 'BG1036', '2007-5-1', 'Honda Fit', 100970, 1, 'FORRENT', 'IDLE', 'ECONOMY', 1530400, 'FORSALE');
 INSERT INTO `super_rent`.`vehicle` VALUES (7, 'DS1114', '2008-5-1', 'Honda Fit', 101344, 1, 'FORRENT', 'IDLE', 'ECONOMY', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (8, 'BG1037', '2009-5-1', 'Toyota Yaris', 101481, 1, 'FORRENT', 'IDLE', 'ECONOMY', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (9, 'DS1115', '2010-5-1', 'Toyota Yaris', 100867, 1, 'FORSALE', 'IDLE', 'ECONOMY', NULL, NULL);
@@ -13,7 +13,7 @@ INSERT INTO `super_rent`.`vehicle` VALUES (12, 'BG1039', '2006-5-1', 'Ford Escor
 INSERT INTO `super_rent`.`vehicle` VALUES (13, 'DS1117', '2008-5-1', 'Ford Escort', 61446, 1, 'FORRENT', 'IDLE', 'COMPACT', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (14, 'BG1040', '2009-5-1', 'Mercedes A-Class', 67449, 1, 'FORSALE', 'IDLE', 'COMPACT', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (15, 'DS1118', '2010-5-1', 'Mercedes A-Class', 74502, 1, 'FORRENT', 'IDLE', 'COMPACT', NULL, NULL);
-INSERT INTO `super_rent`.`vehicle` VALUES (16, 'BG1041', '1999-5-1', 'Mercedes A-Class', 81049, 1, 'FORRENT', 'UNAVAILABLE', 'COMPACT', 23788, 'FORSALE');
+INSERT INTO `super_rent`.`vehicle` VALUES (16, 'BG1041', '1999-5-1', 'Mercedes A-Class', 81049, 1, 'FORRENT', 'UNAVAILABLE', 'COMPACT', 2378800, 'FORSALE');
 INSERT INTO `super_rent`.`vehicle` VALUES (17, 'DS1119', '2000-5-1', 'Ford Expedition', 86589, 1, 'FORRENT', 'IDLE', 'FULLSIZE', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (18, 'BG1042', '2013-5-1', 'Nissan Armada', 91066, 1, 'FORRENT', 'IDLE', 'FULLSIZE', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (19, 'DS1120', '1977-5-1', 'BMW 7', 94295, 1, 'FORRENT', 'IDLE', 'LUXURY', NULL, NULL);
@@ -39,7 +39,7 @@ INSERT INTO `super_rent`.`vehicle` VALUES (38, 'CBN129', '2006-5-1', 'Chevrolet 
 INSERT INTO `super_rent`.`vehicle` VALUES (39, 'EBC540', '2007-5-1', 'Ford F-250 Super Chief', 44933, 1, 'FORRENT', 'RENTED', 'FOOT24', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (40, 'CBN130', '2008-5-1', 'Ford Econoline', 42080, 1, 'FORRENT', 'IDLE', 'BOXTRUCKS', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (41, 'EBC541', '2009-5-1', 'Ford Econoline', 39226, 1, 'FORRENT', 'IDLE', 'BOXTRUCKS', NULL, NULL);
-INSERT INTO `super_rent`.`vehicle` VALUES (42, 'CBN131', '2010-5-1', 'Mercedes-Benz Sprinter', 36373, 1, 'FORRENT', 'IDLE', 'BOXTRUCKS', 33518, 'SOLD');
+INSERT INTO `super_rent`.`vehicle` VALUES (42, 'CBN131', '2010-5-1', 'Mercedes-Benz Sprinter', 36373, 1, 'FORRENT', 'IDLE', 'BOXTRUCKS', 3351800, 'SOLD');
 INSERT INTO `super_rent`.`vehicle` VALUES (43, 'EBC542', '1999-5-1', 'Chevrolet CMV', 33519, 1, 'FORRENT', 'IDLE', 'CARGOVAN', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (44, 'CBN132', '2000-5-1', 'Chevrolet CMV', 30665, 1, 'FORSALE', 'UNAVAILABLE', 'CARGOVAN', NULL, NULL);
 INSERT INTO `super_rent`.`vehicle` VALUES (45, 'EBC543', '2013-5-1', 'Chevrolet  Astro', 27812, 1, 'FORRENT', 'UNAVAILABLE', 'CARGOVAN', NULL, NULL);

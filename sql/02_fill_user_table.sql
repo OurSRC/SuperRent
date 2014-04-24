@@ -1,54 +1,14 @@
-INSERT INTO `super_rent`.`user`
-(`Username`,
-`Password`,
-`Type`
-)
-VALUES
-("clerk",
-"clerk",
-"STAFF"
-);
-
-INSERT INTO `super_rent`.`user`
-(`Username`,
-`Password`,
-`Type`
-)
-VALUES
-("manager",
-"manager",
-"STAFF"
-);
-
-INSERT INTO `super_rent`.`user`
-(`Username`,
-`Password`,
-`Type`
-)
-VALUES
-("admin",
-"admin",
-"STAFF"
-);
-
-INSERT INTO `super_rent`.`user`
-(`Username`,
-`Password`,
-`Type`
-)
-VALUES
-("customer",
-"customer",
-"CUSTOMER"
-);
-
-INSERT INTO `super_rent`.`user`
-(`Username`,
-`Password`,
-`Type`
-)
-VALUES
-("clubmember",
-"clubmember",
-"CUSTOMER"
-);
+INSERT INTO `super_rent`.`user` VALUES ('admin', 'admin', 'STAFF');
+INSERT INTO `super_rent`.`user` VALUES ('clerk', 'clerk', 'STAFF');
+INSERT INTO `super_rent`.`user` VALUES ('clerk2', 'clerk2', 'STAFF');
+INSERT INTO `super_rent`.`user` VALUES ('clerk3', 'clerk3', 'STAFF');
+INSERT INTO `super_rent`.`user` VALUES ('clubmember', 'clubmember', 'CUSTOMER');
+INSERT INTO `super_rent`.`user` VALUES ('customer', 'customer', 'CUSTOMER');
+INSERT INTO `super_rent`.`user` VALUES ('customer2', 'customer2', 'CUSTOMER');
+INSERT INTO `super_rent`.`user` VALUES ('customer3', 'customer3', 'CUSTOMER');
+INSERT INTO `super_rent`.`user` VALUES ('customer4', 'customer4', 'CUSTOMER');
+INSERT INTO `super_rent`.`user` VALUES ('customer5', 'customer5', 'CUSTOMER');
+INSERT INTO `super_rent`.`user` VALUES ('customer6', 'customer6', 'CUSTOMER');
+INSERT INTO `super_rent`.`user` VALUES ('jakezhang', 'jakezhang', 'CUSTOMER');
+INSERT INTO `super_rent`.`user` VALUES ('manager', 'manager', 'STAFF');
+INSERT INTO `super_rent`.`user` VALUES ('manager2', 'manager2', 'STAFF');
