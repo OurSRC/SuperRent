@@ -11,6 +11,7 @@ import entity.Customer;
 import entity.User;
 
 import entityParser.*;
+import java.sql.Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -201,6 +202,8 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
      */
     @Override
     public boolean update(Customer customer) throws DaoException {
+        Connection conn = null;
+        
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         boolean added = false;
@@ -217,6 +220,10 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             if (customer_db == null) {
                 throw new DaoException(tb_name, "update() existing record not found");
             }
+            
+            conn = DbConn.getConn();
+            conn.setAutoCommit(false);
+            
             if (customer_db.getUsername() != null
                     && customer_db.getUsername().equals(customer.getUsername())) { // username is not changed
                 udao.update(customer);
@@ -235,6 +242,8 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             Statement stmt = DbConn.getStmt();
             System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
+            
+            conn.commit();
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             if (added) {
@@ -245,6 +254,14 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 udao.update(customer_db);
             }
             throw new DaoException(tb_name, "update()");
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.setAutoCommit(true);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         return true;
@@ -252,6 +269,8 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
 
     @Override
     public boolean add(Customer customer) throws DaoException {
+        Connection conn = null;
+        
         boolean add_user = false;
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
@@ -264,6 +283,9 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
 
         String sql = qb.toString();
         try {
+            conn = DbConn.getConn();
+            conn.setAutoCommit(false);
+            
             if (customer.getUsername() != null) {
                 udao.add(customer);
                 add_user = true;    // insert user success
@@ -271,18 +293,30 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             Statement stmt = DbConn.getStmt();
             System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
+            
+            conn.commit();
         } catch (SQLException ex) {
             if (add_user) {     // insert user success but insert customer failed
                 udao.delete(customer.getUsername());
             }
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "add()");
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.setAutoCommit(true);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
         return true;
     }
 
     @Override
     public boolean delete(Integer customerID) throws DaoException {
+        Connection conn = null;
 
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
@@ -290,6 +324,9 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 .where("CustomerID=" + SqlBuilder.wrapInt(customerID))
                 .toString();
         try {
+            conn = DbConn.getConn();
+            conn.setAutoCommit(false);
+            
             Customer cust = find(customerID);
             if (cust == null) {     // record not in table
                 return true;
@@ -302,9 +339,19 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 UserDao udao = new UserDao();
                 udao.delete(cust.getUsername());
             }
+            
+            conn.commit();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "delete()");
+        }  finally {
+            try {
+                if (conn != null) {
+                    conn.setAutoCommit(true);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         return true;

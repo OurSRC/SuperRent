@@ -8,6 +8,8 @@ package UserInterface.PeopleManagement.FXMLController;
 
 import ControlObjects.StaffCtrl;
 import SystemOperations.DialogFX;
+import dao.DaoException;
+import dao.UserDao;
 import entity.Staff;
 import java.io.IOException;
 import java.net.URL;
@@ -178,9 +180,12 @@ public class UserSearchFXMLController implements Initializable {
     }
 
     @FXML
-    private void ModifyButtonAction(ActionEvent event)throws IOException {
+    private void ModifyButtonAction(ActionEvent event)throws IOException, DaoException {
+        UserDao findUser = new UserDao();
         if(!StaffSearchTable.getSelectionModel().isEmpty()){
             PPLManagementNavigator.modifyStaff = (Staff) StaffSearchTable.getSelectionModel().getSelectedItem();
+            /*Staff selectedStaff = (Staff) StaffSearchTable.getSelectionModel().getSelectedItem();
+            PPLManagementNavigator.modifyStaff = findUser.find(selectedStaff.getUsername()) ;*/
             PPLManagementNavigator.loadVista(PPLManagementNavigator.UserProfile);
         }
         

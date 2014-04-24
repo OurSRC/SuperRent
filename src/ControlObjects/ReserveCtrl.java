@@ -94,7 +94,7 @@ public class ReserveCtrl {
         }
     }
 
-    public boolean updateReserve(Reservation reserve) {	//modify & cancel
+    public boolean updateReserve(Reservation reserve) throws DaoException {	//modify & cancel
         ArrayList<ReserveEquipment> eqList = null;
         ArrayList<BuyInsurance> inList = null;
 

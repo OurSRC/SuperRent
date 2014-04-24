@@ -20,7 +20,6 @@
         <Font size="12.0" fx:id="x1" />
       </font>
     </Label>
-    <Button layoutX="466.0" layoutY="136.0" mnemonicParsing="false" onAction="#SearchButtonAction" prefWidth="105.0" text="Search" />
     <Label font="$x1" layoutX="306.0" layoutY="108.0" text="Role" />
     <Label font="$x1" layoutX="33.0" layoutY="52.0" text="First Name" />
     <Label font="$x1" layoutX="305.0" layoutY="53.0" text="Last Name" />
@@ -35,6 +34,8 @@
     </TableView>
     <TextField fx:id="FirstNameTF" layoutX="137.0" layoutY="49.0" prefWidth="159.0" />
     <TextField fx:id="LastNameTF" layoutX="412.0" layoutY="49.0" prefWidth="159.0" />
+    <TextField fx:id="PhoneNumberTF" layoutX="137.0" layoutY="77.0" prefWidth="159.0" />
+    <TextField fx:id="UsernameTF" layoutX="412.0" layoutY="77.0" prefWidth="159.0" />
     <ComboBox fx:id="BranchCB" layoutX="137.0" layoutY="104.0" onAction="#BranchCBAction" prefHeight="21.0" prefWidth="159.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
@@ -51,10 +52,9 @@
         </FXCollections>
       </items>
     </ComboBox>
+    <Button alignment="CENTER" layoutX="466.0" layoutY="136.0" mnemonicParsing="false" onAction="#SearchButtonAction" prefWidth="105.0" text="Search" />
     <Label font="$x1" layoutX="33.0" layoutY="80.0" text="Phone Number" />
-    <TextField fx:id="PhoneNumberTF" layoutX="137.0" layoutY="77.0" prefWidth="159.0" />
     <Label font="$x1" layoutX="305.0" layoutY="81.0" text="Username" />
-    <TextField fx:id="UsernameTF" layoutX="412.0" layoutY="77.0" prefWidth="159.0" />
-    <Button layoutX="466.0" layoutY="368.0" mnemonicParsing="false" onAction="#ModifyButtonAction" prefWidth="105.0" text="Modify" />
+    <Button alignment="CENTER" layoutX="466.0" layoutY="368.0" mnemonicParsing="false" onAction="#ModifyButtonAction" prefWidth="105.0" text="Modify" />
   </children>
 </AnchorPane>
