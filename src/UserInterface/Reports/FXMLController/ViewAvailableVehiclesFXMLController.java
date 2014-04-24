@@ -6,8 +6,16 @@
 
 package UserInterface.Reports.FXMLController;
 
+import ControlObjects.BranchCtrl;
 import ControlObjects.VehicleCtrl;
+import SystemOperations.DateClass;
+import SystemOperations.DialogFX;
+import entity.VehicleClass;
 import java.net.URL;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,9 +27,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 
 /**
@@ -34,22 +42,6 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
     @FXML
     private Label VehicleCategoryLabel;
     @FXML
-    private TableView VehiclesAvailableTable;
-    @FXML
-    private TableColumn VehicleNo;
-    @FXML
-    private TableColumn VehicleType;
-    @FXML
-    private TableColumn Model;
-    @FXML
-    private TableColumn Year;
-    @FXML
-    private TableColumn Odometer;
-    @FXML
-    private TableColumn RateDay;
-    @FXML
-    private TableColumn RateWeek;
-    @FXML
     private Button SearchButton;
     @FXML
     private Label PickUpDateLabel;
@@ -60,21 +52,32 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
     @FXML
     private CheckBox EmailCHB;
     @FXML
-    private Label VehicleTypeLabel;
-    @FXML
-    private RadioButton VehicleTypeCarRB;
-    @FXML
-    private RadioButton VehicleTypeTruckRB;
-    @FXML
-    private ComboBox VehicleClassCB;
-    @FXML
     private DatePicker PickUpDateDP;
     @FXML
     private DatePicker ReturnDateDP;
-    private String vehicleType;
-    private String vehicleClass;
-    public String PickUpDateValue;
-    public String ReturnUpDateValue;
+    @FXML
+    private ComboBox TypeOfVehicle;
+    @FXML
+    private TableView AvailableVehiclesTable;
+    @FXML
+    private TableColumn VehicleTypeColumn;
+    @FXML
+    private TableColumn VehicleClassColumn;
+    @FXML
+    private TableColumn HourlyRateColumn;
+    @FXML
+    private TableColumn DailyRateColumn;
+    @FXML
+    private TableColumn WeeklyRateColumn;
+    @FXML
+    private ComboBox DateFromTime;
+    @FXML
+    private ComboBox DateToTime;
+    
+    /* Variables to store */
+    public Date PickUpDate;
+    public Date ReturnDate;
+    public String vehicleType;
 
     /**
      * Initializes the controller class.
@@ -82,20 +85,81 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       SearchButton.setDisable(true);
-       vehicleType = "CAR";
-        VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
-        VehicleClassCB.getItems().clear();
-        VehicleClassCB.setItems(list);
     }    
 
     @FXML
-    private void ViewAvailableVehiclesAction(ActionEvent event) {
-        PickUpDateValue=(PickUpDateDP.getValue().toString());
-        System.out.println(PickUpDateValue);
-        ReturnUpDateValue=(ReturnDateDP.getValue().toString());
-        System.out.println(ReturnUpDateValue);
+    private void ViewAvailableVehiclesAction(ActionEvent event) throws ParseException {
+        if (ValidateInput()) {
+            LocalDate DateFrom = PickUpDateDP.getValue();
+            String FromTime = DateFromTime.getValue().toString();
+            PickUpDate = DateClass.getDateTimeObject(DateFrom, FromTime);
+
+            LocalDate ToDate = ReturnDateDP.getValue();
+            String ToTime = DateToTime.getValue().toString();
+            ReturnDate = DateClass.getDateTimeObject(ToDate, ToTime);
+
+            vehicleType = TypeOfVehicle.getValue().toString();
+            System.out.println("Passing Parameters from VehicleAvailabilityFXMLController to Vehicle Control");
+            System.out.println("Vehicle Type : " + vehicleType);
+            System.out.println("PickUpDate : " + PickUpDate.toString());
+            System.out.println("ReturnDate : " + ReturnDate.toString());
+            System.out.println("Return Type : ArrayList<VehicleClass>");
+
+            if (ReturnDate.after(PickUpDate) && PickUpDate.compareTo(ReturnDate) != 0) {
+                VehicleClass.TYPE type;
+                if (vehicleType.compareTo("Car") == 0) {
+                    type = VehicleClass.TYPE.Car;
+                } else {
+                    type = VehicleClass.TYPE.Truck;
+                }
+
+                VehicleCtrl vehicleControl = new VehicleCtrl();
+                ArrayList<String> AvailableVehicleTypes = vehicleControl.getAvailableVehicleClasses(type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch());
+
+                ArrayList<VehicleClass> VehicleClassArray = new ArrayList();
+                System.out.println(AvailableVehicleTypes.size() + " Size of the Arraylist");
+                for (int i = 0; i < AvailableVehicleTypes.size(); i++) {
+                    VehicleClassArray.add(vehicleControl.findVehicleClass(AvailableVehicleTypes.get(i)));
+                }
+                ObservableList<VehicleClass> list = FXCollections.observableArrayList(VehicleClassArray);
+                AvailableVehiclesTable.getItems().clear(); 
+                AvailableVehiclesTable.setItems(list);
+
+                VehicleTypeColumn.setCellValueFactory(new PropertyValueFactory("vehicleType"));
+                VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("className"));
+                HourlyRateColumn.setCellValueFactory(new PropertyValueFactory("hourlyPrice"));
+                WeeklyRateColumn.setCellValueFactory(new PropertyValueFactory("weeklyPrice"));
+                DailyRateColumn.setCellValueFactory(new PropertyValueFactory("dailyPrice"));
+
+            } else {
+                System.out.println("Invalid Dates ");
+                DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("Invalid Dates Entered");
+                dialog.showDialog();
+            }
+        } else {
+            System.out.println("Please enter the Mandatory Fields");
+            DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage("Please enter all the Mandatory Values");
+            dialog.showDialog();
+        }
+        
+        System.out.println("I am inside this");
+    }
+    
+     public boolean ValidateInput() {
+        if (PickUpDateDP.valueProperty().isNotNull().getValue()
+                && ReturnDateDP.valueProperty().isNotNull().getValue()
+                && TypeOfVehicle.valueProperty().isNotNull().getValue()
+                && DateFromTime.valueProperty().isNotNull().getValue()
+                && DateToTime.valueProperty().isNotNull().getValue()) 
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @FXML
@@ -103,28 +167,7 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
     }
 
     @FXML
-    private void VehicleTypeCarRBAction(ActionEvent event) {
-        vehicleType = "CAR";
-        VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
-        VehicleClassCB.getItems().clear();
-        VehicleClassCB.setItems(list);
-        
-        
-    }
-
-    @FXML
-    private void VehicleTypeTruckRBAction(ActionEvent event) {
-        vehicleType = "TRUCK";
-        VehicleCtrl vehicleControl = new VehicleCtrl();
-        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getTruckType());
-        VehicleClassCB.getItems().clear();
-        VehicleClassCB.setItems(list);
-    }
-
-    @FXML
     private void PickUpDateAction(ActionEvent event) {
-        SearchButton.setDisable(false);
     }
 
     @FXML

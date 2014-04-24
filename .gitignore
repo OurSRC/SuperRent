@@ -45,4 +45,11 @@ Thumbs.db
 build/
 dist/
 nbproject/private/
-/nbproject/
+nbproject/
+nbproject/*
+nbproject/UPDATED.TXT
+nbproject/build-impl.xml
+nbproject/genfiles.properties
+nbproject/jfx-impl.xml
+nbproject/project.properties
+nbproject/project.xml
