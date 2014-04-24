@@ -203,8 +203,9 @@ public class ReserveCtrl {
         return list;
     }
 
-    public ArrayList<ReservationInfo> searchReserveForRent(Date FromReserveTime, Date ToReserveTime, Branch branch, String ReservationNo) {
+    public ArrayList<Reservation> searchReserveForRent(Date FromReserveTime, Date ToReserveTime, Branch branch, String ReservationNo) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
+        ArrayList<Reservation> list = new ArrayList<>();
         ArrayList<ReservationInfo> resInfList = null;
         try {
             resInfList = resInfDAO.findReservationUsingReserveTime(FromReserveTime, ToReserveTime, branch, ReservationNo);
@@ -212,7 +213,9 @@ public class ReserveCtrl {
             Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
-
-        return resInfList;
+        for (ReservationInfo a : resInfList) {
+            list.add(getCompleteReservation(a));
+        }
+        return list;
     }
 }

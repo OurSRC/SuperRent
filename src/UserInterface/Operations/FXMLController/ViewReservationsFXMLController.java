@@ -92,8 +92,8 @@ public class ViewReservationsFXMLController implements Initializable {
         
         String reservatioNo = ReservationNo.getText();
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
-        ArrayList<ReservationInfo> newArray = newReserveCtrl.searchReserveForRent(reserveFromDate,reserveToDate,BranchCtrl.getDefaultBranch(),reservatioNo);
-        ObservableList<ReservationInfo> slist = FXCollections.observableArrayList(newArray);
+        ArrayList<Reservation> newArray = newReserveCtrl.searchReserveForRent(reserveFromDate,reserveToDate,BranchCtrl.getDefaultBranch(),reservatioNo);
+        ObservableList<Reservation> slist = FXCollections.observableArrayList(newArray);
         ReservationTable.setItems(slist);
         System.out.println("I am here and it is working");
         ReservationNumber.setCellValueFactory(new PropertyValueFactory("reservationNo"));
