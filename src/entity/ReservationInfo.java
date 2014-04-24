@@ -5,6 +5,7 @@
  */
 package entity;
 
+import finance.Price;
 import java.util.Date;
 
 /**
@@ -260,6 +261,11 @@ public class ReservationInfo {
         } else {
             this.reservationStatus = STATUS.valueOf(reservationStatus);
         }
+    }
+    
+    public String getPrice()
+    {
+        return Price.toText(this.estimatePrice);
     }
 
 }

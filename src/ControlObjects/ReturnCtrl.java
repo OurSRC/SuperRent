@@ -1,9 +1,10 @@
 package ControlObjects;
 
+import entity.Rent;
+import entity.Return;
 import java.util.ArrayList;
 
-import Operations.Rent;
-import Operations.Return;
+
 
 public class ReturnCtrl {
 	public Return createReturn(Return returnInfo){

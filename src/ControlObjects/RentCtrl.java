@@ -1,9 +1,9 @@
 package ControlObjects;
 
+import entity.Rent;
 import java.util.ArrayList;
 
-import Operations.Rent;
-import Operations.Reserve;
+
 
 public class RentCtrl {
 	public Rent createRent(Rent rent){
@@ -24,7 +24,7 @@ public class RentCtrl {
 	public Rent getRent(String contractNumber){
 		return null;
 	}
-	public Rent getRent(Reserve reserve){
+	public Rent getRent(Reservation reserve){
 		return null;
 	}
 }

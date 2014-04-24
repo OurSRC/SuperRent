@@ -7,7 +7,6 @@
 package UserInterface.Operations.FXMLController;
 
 import ControlObjects.Reservation;
-import Operations.Reserve;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import UserInterface.Login.FXMLController.FXMLCustomerMainPageController;
 import entity.ReservationInfo;

@@ -6,9 +6,9 @@
 
 package UserInterface.Operations.FXMLController;
 
-import Operations.Rent;
-import Operations.Reserve;
+
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import entity.Rent;
 import entity.Vehicle;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +29,6 @@ public class RentNavigator {
         /* Common Variables to facilitate navigations */
         public static Rent newRent;
         public static String ReservationNumber;
-        public static Reserve newReserve;
         public static Vehicle RentVehicle;
 
 

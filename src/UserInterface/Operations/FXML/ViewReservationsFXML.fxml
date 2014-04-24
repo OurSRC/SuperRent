@@ -10,8 +10,8 @@
         <Button fx:id="ViewReservationButton" layoutX="513.0" layoutY="403.0" mnemonicParsing="false" onAction="#ViewReservationButtonAction" prefHeight="25.0" prefWidth="132.0" text="View Reservation" />
     <TableView fx:id="ReservationTable" layoutX="1.0" layoutY="173.0" prefHeight="204.0" prefWidth="680.0">
       <columns>
-        <TableColumn fx:id="ReservationNumber" minWidth="0.0" prefWidth="114.0" text="Reservation #" />
-        <TableColumn fx:id="Type" editable="false" prefWidth="207.0" sortable="false" text="Customer Phone" /><TableColumn fx:id="PickUpDate" editable="false" prefWidth="125.0" sortable="false" text="Pick Up Date" /><TableColumn editable="false" prefWidth="143.0" sortable="false" text="Return Date" /><TableColumn editable="false" prefWidth="90.0" sortable="false" text="Cost" />
+        <TableColumn fx:id="ReservationNumber" minWidth="0.0" prefWidth="114.0" text="Reservation #" /><TableColumn fx:id="VehicleClass" prefWidth="113.0" text="Vehicle Class" />
+        <TableColumn fx:id="CustomerPhone" editable="false" prefWidth="127.0" sortable="false" text="Customer Phone" /><TableColumn fx:id="PickUpDate" editable="false" prefWidth="128.0" sortable="false" text="Pick Up Date" /><TableColumn fx:id="ReturnDate" editable="false" prefWidth="131.0" sortable="false" text="Return Date" /><TableColumn fx:id="EstimatedCost" editable="false" prefWidth="65.0" sortable="false" text="Cost" />
       </columns>
     </TableView><Pane layoutX="1.0" prefHeight="173.0" prefWidth="681.0">
 <children>
@@ -19,9 +19,9 @@
     <Label layoutX="380.0" layoutY="40.0" text="Date To " />
     <Label layoutX="14.0" layoutY="83.0" text="Reservation #" />
     <Button fx:id="DisplayReservationsButton" layoutX="532.0" layoutY="118.0" mnemonicParsing="false" onAction="#DisplayReservationsButtonAction" prefHeight="25.0" prefWidth="132.0" text="Display Reservations" />
-    <TextField layoutX="109.0" layoutY="79.0" prefHeight="25.0" prefWidth="123.0" />
-    <DatePicker layoutX="109.0" layoutY="36.0" prefHeight="25.0" prefWidth="123.0" />
-    <DatePicker layoutX="432.0" layoutY="36.0" prefHeight="25.0" prefWidth="123.0" />
+    <TextField fx:id="ReservationNo" layoutX="109.0" layoutY="79.0" prefHeight="25.0" prefWidth="123.0" />
+    <DatePicker fx:id="ReserveFromTime" layoutX="109.0" layoutY="36.0" prefHeight="25.0" prefWidth="123.0" />
+    <DatePicker fx:id="ReserveToTime" layoutX="432.0" layoutY="36.0" prefHeight="25.0" prefWidth="123.0" />
     <ComboBox fx:id="TimeComboBox1" layoutX="239.0" layoutY="36.0" prefHeight="25.0" prefWidth="87.0">
         <items>
             <FXCollections fx:factory="observableArrayList">

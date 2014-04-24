@@ -6,9 +6,9 @@
 
 package UserInterface.Operations.FXMLController;
 
-import Operations.Rent;
-import Operations.Reserve;
+
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import entity.Rent;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

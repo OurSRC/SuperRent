@@ -137,4 +137,17 @@ public class ReserveCtrl {
         }
         return list;
     }
+    
+        public ArrayList<ReservationInfo> searchReserveForRent(Date FromReserveTime, Date ToReserveTime, Branch branch , String ReservationNo) {
+        ReservationInfoDao resInfDAO = new ReservationInfoDao();
+        ArrayList<ReservationInfo> resInfList = null;
+        try {
+            resInfList = resInfDAO.findReservationUsingReserveTime(FromReserveTime, ToReserveTime, branch,ReservationNo);
+        } catch (DaoException ex) {
+            Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
+        
+        return resInfList;
+    }
 }
