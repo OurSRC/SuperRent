@@ -142,11 +142,6 @@ public class VehicleDaoTest {
     }
 
 
-        @Test
-      public void testFindByVehicleNo() throws DaoException {
-        VehicleDao dao = new VehicleDao();
-        Vehicle expected = dao.findByVehicleNo(23);
-        assertEquals(expected.getVehicleNo(), 23);
-    }
+  
 
 }
