@@ -51,15 +51,32 @@ public class EquipmentDao extends AbstractDao<Equipment>{
         return find("EquipmentType ="+ SqlBuilder.wrapStr(equipmentType));
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Equipment getInstance() {
         return new Equipment();
     }
     
+    /**
+     *
+     * @param equipment
+     * @return
+     * @throws DaoException
+     */
     public int countEquipment(Equipment equipment) throws DaoException{
         return countEquipment(equipment.getBranchId(), equipment.getEquipmentType());
     }
     
+    /**
+     *
+     * @param branchId
+     * @param equipmentType
+     * @return
+     * @throws DaoException
+     */
     public int countEquipment(int branchId, String equipmentType) throws DaoException {
         String cond;
         SqlBuilder qb = new SqlBuilder();
