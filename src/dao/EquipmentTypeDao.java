@@ -12,7 +12,9 @@ import entityParser.*;
 import java.util.ArrayList;
 
 /**
- *
+ * <p>
+ *  This class provides basic access methods, for example, find
+ *  for equipmentType entity.</p>
  * @author Xi Yang
  */
 
@@ -30,9 +32,26 @@ public class EquipmentTypeDao extends AbstractDao<EquipmentType>{
     
     protected static final boolean pkIsAutoGen = false;
     
+    /**
+     * This method find a {@link EquipmentType} with given {@code typeName}
+     * @param typeName typeName of Equipment
+     * @return Equipment with id, null if non found
+     * @throws DaoException 
+     */
+    /**
+     *
+     * @param typeName
+     * @return
+     * @throws DaoException
+     */
     public EquipmentType findEquipmentTypeByTypename(String typeName) throws DaoException{
         return findOne("TypeName="+SqlBuilder.wrapStr(typeName));
     }
+
+    /**
+     *
+     * @return
+     */
     @Override
     protected EquipmentType getInstance() {
         return new EquipmentType();
