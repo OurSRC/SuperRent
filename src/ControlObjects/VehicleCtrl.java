@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class VehicleCtrl {
 
     public Vehicle createVehicle(Vehicle vehicle) {
@@ -95,7 +96,19 @@ public class VehicleCtrl {
         }
         return null;
     }
-
+    
+    public Vehicle getVehicleByMode(int VehicleNo,String Mode,java.util.Date manufactureDate,int Odometer,int price){
+        VehicleDao vehicleDAO = new VehicleDao();
+        ArrayList<Vehicle> theVehicle = null;
+        try {
+            theVehicle = vehicleDAO.findByVehicleModel( VehicleNo, Mode, manufactureDate, Odometer, price);
+        } catch (DaoException ex) {
+            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return null;
+    }
+    
     public ArrayList<Vehicle> searchVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
         ArrayList<Vehicle> getList = null;
