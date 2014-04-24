@@ -88,6 +88,17 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return find(cond);
     }
     
+    public ArrayList<ReservationInfo> findReservationTimeBetween(Date early_bound, Date late_bound, Branch branch) throws DaoException{
+        
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("ReserveTime <" + SqlBuilder.wrapDatetime(late_bound));
+        qb.cond("ReserveTime > " + SqlBuilder.wrapDatetime(early_bound));
+        qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        String cond = qb.toString();
+        
+        return find(cond);
+    }
+    
     public ArrayList<ReservationInfo> findReservationBetweenUsingEquipmentType (String equipmentType, 
             Date pickUpTime, Date returnTime, Branch branch) throws DaoException{
         

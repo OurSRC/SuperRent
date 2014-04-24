@@ -61,6 +61,17 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return findOne("VehicleNo=" + SqlBuilder.wrapInt(vehicleNo));
     }
     
+    public ArrayList<Vehicle> findByVehicleModel(int VehicleNo,String Mode,java.util.Date manufactureDate,int Odometer,int price) throws DaoException{
+        String cond;
+        cond="VehicleNo="+SqlBuilder.wrapInt(VehicleNo);
+        cond+="AND Model="+SqlBuilder.wrapStr(Mode);
+        cond+="AND ManufactureDate="+SqlBuilder.wrapDate(manufactureDate);
+        cond+="AND Odometer"+SqlBuilder.wrapInt(Odometer);
+        cond+="AND SalePrice"+SqlBuilder.wrapInt(price);
+        return find(cond);
+    }
+            
+            
     public int countVehicle(Vehicle v){ //include int branchId
         ArrayList<Vehicle> list = null;
         try {

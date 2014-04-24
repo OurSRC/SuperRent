@@ -108,8 +108,8 @@ public class VehicleDaoTest {
         VehicleDao dao = new VehicleDao();
         ArrayList<Vehicle> result;
         result = dao.findAvailableForRent();
-        assertEquals(result.size(), 2);
-        Vehicle entity = result.get(0);
+        assertEquals(result.size(), 2); // current vehicle number for rent in the DB
+        Vehicle entity = result.get(0); // the last one or two tupple in DB b/c it is inserted lastly
         if (entity.getPlateNo().equals("357-ADF") || entity.getPlateNo().equals("357-ADG")) {
         } else {
             fail("not found");
@@ -142,5 +142,11 @@ public class VehicleDaoTest {
     }
 
 
-    
+        @Test
+      public void testFindByVehicleNo() throws DaoException {
+        VehicleDao dao = new VehicleDao();
+        Vehicle expected = dao.findByVehicleNo(23);
+        assertEquals(expected.getVehicleNo(), 23);
+    }
+
 }

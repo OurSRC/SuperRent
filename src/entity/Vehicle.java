@@ -85,7 +85,7 @@ public class Vehicle {
         this.manufactureDate = mDate;
         this.mode = mode;
         this.odometer = odometer;
-        this.mode = mode;
+        //his.mode = mode;
         this.branchId = branchId;
         this.status = status;
         this.rentStatus = rentstatus;
