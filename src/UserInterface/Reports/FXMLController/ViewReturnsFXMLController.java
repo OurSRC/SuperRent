@@ -6,6 +6,7 @@
 
 package UserInterface.Reports.FXMLController;
 
+import SystemOperations.DialogFX;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -25,26 +26,25 @@ import javafx.scene.text.Font;
  * @author Ashanthi Perera
  */
 public class ViewReturnsFXMLController implements Initializable {
+   
     @FXML
-    private Font x1;
+    private TableView ReturnsTable;
     @FXML
-    private TableView<?> ReturnsTable;
+    private TableColumn ContractNo;
     @FXML
-    private TableColumn<?, ?> ContractNo;
+    private TableColumn VehicleNo;
     @FXML
-    private TableColumn<?, ?> VehicleNo;
+    private TableColumn VehicleType;
     @FXML
-    private TableColumn<?, ?> VehicleType;
+    private TableColumn Price;
     @FXML
-    private TableColumn<?, ?> Price;
+    private TableColumn ReturnDate;
     @FXML
-    private TableColumn<?, ?> ReturnDate;
+    private TableColumn ReturnTime;
     @FXML
-    private TableColumn<?, ?> ReturnTime;
+    private TableColumn Odometer;
     @FXML
-    private TableColumn<?, ?> Odometer;
-    @FXML
-    private TableColumn<?, ?> FuelLevel;
+    private TableColumn FuelLevel;
     @FXML
     private Button PrintPDFButton;
     @FXML
@@ -61,6 +61,9 @@ public class ViewReturnsFXMLController implements Initializable {
     private DatePicker ToDateDP;
     @FXML
     private DatePicker FromDateDP;
+    
+    String fromDate;
+    String toDate;
 
     /**
      * Initializes the controller class.
@@ -76,6 +79,29 @@ public class ViewReturnsFXMLController implements Initializable {
 
     @FXML
     private void ViewReturnsAction(ActionEvent event) {
+         if (ValidateInput()) {
+              toDate=(ToDateDP.getValue().toString());
+              System.out.println(toDate);
+              fromDate=(FromDateDP.getValue().toString());
+              System.out.println(fromDate);
+                        
+                        
+        }  else {
+            System.out.println("Please enter the Date");
+            DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage("Please enter the Date");
+            dialog.showDialog();
+        }
     }
     
+     public boolean ValidateInput() {
+        if (FromDateDP.valueProperty().isNotNull().getValue()
+                && ToDateDP.valueProperty().isNotNull().getValue())
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -70,6 +70,13 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         cond+="AND SalePrice"+SqlBuilder.wrapInt(price);
         return find(cond);
     }
+    
+    public ArrayList<Vehicle> findVehicleOlderThan(int year, String className) throws DaoException {
+        String cond;
+        cond = "ManufactureDate < " + SqlBuilder.wrapStr(Integer.toString(year) + "-12-31");
+        cond += " AND className = " + SqlBuilder.wrapStr(className);
+        return find(cond);
+    }
             
             
     public int countVehicle(Vehicle v){ //include int branchId

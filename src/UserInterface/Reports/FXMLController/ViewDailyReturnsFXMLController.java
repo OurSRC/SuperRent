@@ -6,6 +6,7 @@
 
 package UserInterface.Reports.FXMLController;
 
+import SystemOperations.DialogFX;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -65,11 +66,30 @@ public class ViewDailyReturnsFXMLController implements Initializable {
 
     @FXML
     private void SearchDailyReturnsAction(ActionEvent event) {
+        if (ValidateInput()) {
               DateValue=(SearchDateDP.getValue().toString());
-        System.out.println(DateValue);
+              System.out.println(DateValue);
                         PrintDateLabel.setText(DateValue);
+                        
+        }  else {
+            System.out.println("Please enter the Date");
+            DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage("Please enter the Date");
+            dialog.showDialog();
+        }
     }
 
+    
+    public boolean ValidateInput() {
+        if (SearchDateDP.valueProperty().isNotNull().getValue())
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     @FXML
     private void PrintPDFAction(ActionEvent event) {
     }
