@@ -5,6 +5,7 @@
  */
 package dao;
 
+import dbconn.SqlBuilder;
 import entity.Branch;
 import entity.Equipment;
 import entity.EquipmentType;
@@ -52,7 +53,9 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
         return ans;
     }
     
-    public ArrayList<ReserveEquipment> findReserveEquipmentByReservationId(int reservationId){
-        return null;
+    public ArrayList<ReserveEquipment> findReserveEquipmentByReservationId(int reservationId) throws DaoException{
+        String cond;
+        cond = "ReservationInfoId = " + SqlBuilder.wrapInt(reservationId);
+        return find(cond);
     }
 }

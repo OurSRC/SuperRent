@@ -187,7 +187,8 @@ public class ReservationInfoDaoTest {
         rinfo = new ReservationInfo(branchId, new Date(), pickupT, 
                 returnT, customerId, staffId, vehicleClassName, 10, 10, 10,
                 null, null);
-        rinfo = riDao.makeReservationInfo(rinfo);
+        riDao.add(rinfo);
+        //rinfo = riDao.makeReservationInfo(rinfo);
         System.out.println(rinfo.getReservationInfoId());
         
         //rinfo = riDao.findByInstance(rinfo).get(0);
