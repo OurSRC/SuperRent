@@ -6,6 +6,7 @@
 
 package dao;
 
+import dbconn.SqlBuilder;
 import entity.BuyInsurance;
 import entity.Insurance;
 import entityParser.*;
@@ -43,7 +44,7 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
         return ans;
     }
     
-    public ArrayList<BuyInsurance> findBuyInsuranceByReservationId(int reservationId){
-        return null;
+    public ArrayList<BuyInsurance> findBuyInsuranceByReservationId(int reservationId) throws DaoException{
+        return find("ReservationInfoId = "+ SqlBuilder.wrapInt(reservationId));
     }
 }
