@@ -43,7 +43,7 @@ public class ReserveCtrlTest {
         insurances.add("error_insurance");
         
         Reservation reserve = new Reservation(BranchCtrl.getDefaultBranch().getBranchID(), 
-                new Date(2014-1900, 4-1, 11, 8, 0, 0), new Date(2014-1900, 4-1, 12, 8, 0, 0), customer.getCustomerId(), staff.getStaffId(), 
+                new Date(2014-1900, 4-1, 11, 9, 0, 0), new Date(2014-1900, 4-1, 12, 10, 0, 0), customer.getCustomerId(), staff.getStaffId(), 
                 "COMPACT", equipments, insurances);
                 //"COMPACT", null, null);
         sReserve = reserve;
@@ -73,6 +73,10 @@ public class ReserveCtrlTest {
 
         Reservation result = instance.createReserve(sReserve);
         assertTrue( result!=null );
+        
+        FinanceCtrl financeCtrl = new FinanceCtrl();
+        int cent = financeCtrl.estimateReservationCost(result);
+        assertTrue( cent > 0 );
     }
 
     /**

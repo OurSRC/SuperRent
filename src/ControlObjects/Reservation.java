@@ -143,6 +143,20 @@ public final class Reservation {
 
     public void setVehicleClass(String vehicleClass) {
         this.reserveInfo.setVehicleClass(vehicleClass);
+        
+        VehicleClassDao vcDAO = new VehicleClassDao();
+        VehicleClass vc = null;
+        try {
+            vc = vcDAO.findByName(vehicleClass);
+        } catch (DaoException ex) {
+            Logger.getLogger(Reservation.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_PARAMETER_ERROR);
+            return;
+        }
+        
+        this.reserveInfo.setvHourlyRate(vc.getHourlyRate());
+        this.reserveInfo.setvDailyRate(vc.getDailyRate());
+        this.reserveInfo.setvWeeklyRate(vc.getWeeklyRate());
     }
 
     public int getReservationInfoId() {
@@ -249,6 +263,7 @@ public final class Reservation {
         return true;
     }
 
+    /*
     public String getHourlyPrice() {
         return "123.45";
     }
@@ -272,4 +287,5 @@ public final class Reservation {
     public boolean setWeeklyPrice(String price) {
         return true;
     }
+    */
 }
