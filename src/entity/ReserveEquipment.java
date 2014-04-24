@@ -59,30 +59,28 @@ public class ReserveEquipment {
     /**
      * @return the eHourlyRate
      */
-    public int geteHourlyRate() {
+    public int getEHourlyRate() {
         return eHourlyRate;
     }
 
     /**
      * @param eHourlyRate the eHourlyRate to set
      */
-    public void seteHourlyRate(int eHourlyRate) {
+    public void setEHourlyRate(int eHourlyRate) {
         this.eHourlyRate = eHourlyRate;
     }
 
     /**
      * @return the eDailyRate
      */
-    public int geteDailyRate() {
+    public int getEDailyRate() {
         return eDailyRate;
     }
 
     /**
      * @param eDailyRate the eDailyRate to set
      */
-    public void seteDailyRate(int eDailyRate) {
+    public void setEDailyRate(int eDailyRate) {
         this.eDailyRate = eDailyRate;
     }
-    
-    
 }

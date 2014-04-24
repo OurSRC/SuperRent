@@ -16,7 +16,10 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
     
     protected static final AttributeParser ap[] = {
         new StringParser("InsuranceName", "InsuranceName"),
-        new IntParser("ReservationInfoId", "ReservationInfoId")
+        new IntParser("ReservationInfoId", "ReservationInfoId"),
+        new IntParser("HourlyRate", "HourlyRate"),
+        new IntParser("DailyRate", "DailyRate"),
+        new IntParser("WeeklyRate", "WeeklyRate")
     };
     
     protected static final int[] pkIndex = {0, 1};
@@ -36,7 +39,6 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
             return null;
         
         BuyInsurance ans = new BuyInsurance(insuranceName, reservationInfoId, insu.getHourlyRate(), insu.getDailyRate(), insu.getWeeklyRate());
-        add(ans);
         return ans;
     }
 }

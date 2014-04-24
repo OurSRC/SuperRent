@@ -43,15 +43,20 @@ public class ReserveCtrl {
         BuyInsuranceDao byInDAO = new BuyInsuranceDao();
         ReservationInfo completeInfo = null;
 
+        ReserveEquipmentDao reDAO = new ReserveEquipmentDao();
+        BuyInsuranceDao biDAO = new BuyInsuranceDao();
+
         try {
             completeInfo = reInDAO.makeReservationInfo(reserve.getReserveInfo());
 
             for (ReserveEquipment reEq : reserve.getReserveEquipment()) {
                 ReserveEquipment reEqGet = reEqDAO.makeReserveEquipment(completeInfo.getReservationInfoId(), reEq.getEquipmentType());
+                reDAO.add(reEqGet);
             }
 
             for (BuyInsurance byIn : reserve.getReserveInsurance()) {
                 BuyInsurance byInGet = byInDAO.makeBuyInsurance(completeInfo.getReservationInfoId(), byIn.getInsuranceName());
+                biDAO.add(byInGet);
             }
         } catch (DaoException ex) {
             Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
