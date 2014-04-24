@@ -29,8 +29,7 @@ import javafx.scene.text.Font;
  * @author Ali
  */
 public class AddUserFXMLController implements Initializable {
-    @FXML
-    private Font x1;
+
     @FXML
     private TextField UserNameTF;
     @FXML
@@ -77,7 +76,28 @@ public class AddUserFXMLController implements Initializable {
 
     @FXML
     private void ConfirmButtonAction(ActionEvent event) throws IOException {
-        if (ValidateMandatoryFields()) {
+        if (!ValidateMandatoryFields()) {           
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage(" Pleas enter the Mandatory Fields");
+            dialog.showDialog();
+        } 
+        
+        else if(!ValidatePassword()) {
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage(" Please make sure the password fields match");
+            dialog.showDialog();
+        }
+        
+        else if(!ValidatePhoneNumber()){
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage(" Please enter a valid phone number");
+            dialog.showDialog();
+        }
+            
+        else {
             firstName = FirstNameTF.getText();
             lastName = LastNameTF.getText();
             middleName = MiddleNameTF.getText();
@@ -135,25 +155,16 @@ public class AddUserFXMLController implements Initializable {
             } else {
                     DialogFX dialog = new DialogFX(Type.INFO);
                     dialog.setTitleText("Success");
-                    dialog.setMessage( type.toString() + userName + " is successfully created");
+                    dialog.setMessage( type.toString() + " " + userName + " is successfully created");
                     dialog.showDialog();
                     PPLManagementNavigator.loadVista(PPLManagementNavigator.UserSearch);
             }
         
         }
-        else 
-        {
-            DialogFX dialog = new DialogFX(Type.ERROR);
-            dialog.setTitleText("Error");
-            dialog.setMessage(" Pleas enter the Mandatory Fields");
-            dialog.showDialog();
-        } 
+        
         
     }
 
-    @FXML
-    private void AbortButtonAction(ActionEvent event) {
-    }
 
     @FXML
     private void BranchCBAction(ActionEvent event) {
@@ -168,26 +179,30 @@ public class AddUserFXMLController implements Initializable {
 
     }
     
-    public boolean ValidateMandatoryFields()
+    private boolean ValidatePassword()
     {
-        boolean validPhoneNumber;
-        try{
-            Integer.parseInt(PhoneNumberTF.getText());
-            validPhoneNumber = true;
-        }
-        catch(NumberFormatException e){
-            validPhoneNumber = false;
-        }
+     if (SetPasswordPF.getText().equals(ReenterPasswordPF.getText()))
+     {
+         return true;
+     }
+     return false;
+    }
+    
+    private boolean ValidatePhoneNumber()
+    {
+        
+        return ValidateFields.CheckForNumbersOnly(PhoneNumberTF.getText().trim());
+    }
+    
+    private boolean ValidateMandatoryFields()
+    {
+        
         if (UserNameTF.getText().equals("") || FirstNameTF.getText().equals("") ||
-                LastNameTF.getText().equals("")  || !ValidateFields.CheckForNumbersOnly(PhoneNumberTF.getText()) || EmailTF.getText().equals("") ||
+                LastNameTF.getText().equals("")  || EmailTF.getText().equals("") ||
                 BranchCB.valueProperty().isNull().getValue() || RoleCB.valueProperty().isNull().getValue() ||
-                StatusCB.valueProperty().isNull().getValue() || SetPasswordPF.getText().equals("") 
-                ||!SetPasswordPF.getText().equals(ReenterPasswordPF.getText()))
+                StatusCB.valueProperty().isNull().getValue() || SetPasswordPF.getText().equals(""))
         {
-            System.out.println(UserNameTF.getText() +  " " + FirstNameTF.getText() +  
-                    " " +  LastNameTF.getText() + " " +  " " +  " " +  " " +  " ");
-            System.out.println(SetPasswordPF.getText() + ReenterPasswordPF.getText());
-            System.out.println("returned false, phone neumber: " + validPhoneNumber);
+           
             return false;
         } else {
             System.out.println("returned true");
@@ -195,5 +210,11 @@ public class AddUserFXMLController implements Initializable {
         }
                 
         
+    }
+
+    @FXML
+    private void CancelButtonAction(ActionEvent event) throws IOException {
+        PPLManagementNavigator.clearVista();
+        PPLManagementNavigator.loadVista(PPLManagementNavigator.UserSearch);
     }
 }
