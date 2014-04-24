@@ -26,8 +26,8 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
     protected static final AttributeParser ap[] = {
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new StringParser("EquipmentType", "EquipmentType"),
-        new IntParser("eHourlyRate", "EHourlyRate"),
-        new IntParser("eDailyRate", "EDailyRate")
+        new IntParser("EHourlyRate", "EHourlyRate"),
+        new IntParser("EDailyRate", "EDailyRate")
     };
 
     protected static final int[] pkIndex = {0, 1};
@@ -46,10 +46,9 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
         ReserveEquipment ans = new ReserveEquipment();
         ans.setReservationInfoId(reservationInfoId);
         ans.setEquipmentType(equipmentType);
-        ans.seteHourlyRate( eqt.getHourlyRate() );
-        ans.seteDailyRate( eqt.getDailyRate() );
-        
-        add(ans);
+        ans.setEHourlyRate( eqt.getHourlyRate() );
+        ans.setEDailyRate( eqt.getDailyRate() );
+
         return ans;
     }
 }
