@@ -51,4 +51,8 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
 
         return ans;
     }
+    
+    public ArrayList<ReserveEquipment> findReserveEquipmentByReservationId(int reservationId){
+        return null;
+    }
 }

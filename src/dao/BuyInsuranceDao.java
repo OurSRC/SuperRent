@@ -9,6 +9,7 @@ package dao;
 import entity.BuyInsurance;
 import entity.Insurance;
 import entityParser.*;
+import java.util.ArrayList;
 
 public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
     
@@ -40,5 +41,9 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
         
         BuyInsurance ans = new BuyInsurance(insuranceName, reservationInfoId, insu.getHourlyRate(), insu.getDailyRate(), insu.getWeeklyRate());
         return ans;
+    }
+    
+    public ArrayList<BuyInsurance> findBuyInsuranceByReservationId(int reservationId){
+        return null;
     }
 }
