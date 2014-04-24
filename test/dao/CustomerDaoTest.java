@@ -26,8 +26,8 @@ import org.junit.Test;
  */
 public class CustomerDaoTest {
     
-    private static final String cname1 = "customer1";
-    private static final String cname2 = "customer2";
+    private static final String cname1 = "customer_test1";
+    private static final String cname2 = "customer_test2";
 
     public CustomerDaoTest() {
     }
