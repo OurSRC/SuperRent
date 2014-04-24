@@ -140,9 +140,7 @@ public class VehicleAvailabilityFXMLController implements Initializable {
             ReservationNavigator.newReserve.setPickupTime(PickUpDate);
             ReservationNavigator.newReserve.setReturnTime(ReturnDate);
             ReservationNavigator.newReserve.setVehicleClass(selectedVehicleClass.getClassName());
-            ReservationNavigator.newReserve.setHourlyPrice(selectedVehicleClass.getHourlyPrice());
-            ReservationNavigator.newReserve.setWeeklyPrice(selectedVehicleClass.getWeeklyPrice());
-            ReservationNavigator.newReserve.setDailyPrice(selectedVehicleClass.getDailyPrice());
+
 
             System.out.println("Successfully stored values into Reservation object in ReservationNavigator");
             ReservationNavigator.loadVista(ReservationNavigator.ADDITIONALEQUIPMENTS);

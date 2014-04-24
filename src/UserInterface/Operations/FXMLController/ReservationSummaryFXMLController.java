@@ -11,6 +11,7 @@ import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
 import ControlObjects.StaffCtrl;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import entity.ReservationInfo;
 import entity.Staff;
 import finance.Price;
 import java.net.URL;
@@ -87,6 +88,7 @@ public class ReservationSummaryFXMLController implements Initializable {
             Staff staff = staffCtrl.getStaffByUsername(ClerkMainPageNavigator.CurrentUserName);
             ReservationNavigator.newReserve.setStaffId(staff.getStaffId());
         }
+        ReservationNavigator.newReserve.setReservationStatus(ReservationInfo.STATUS.PENDING);
         Reservation newReservation = newReserveCtrl.createReserve(ReservationNavigator.newReserve);
         if (newReservation == null) {
 

@@ -74,7 +74,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
                 SelectedInsurance.add(a[i].toString());
                 System.out.println(SelectedInsurance.get(i) + "   Value from ArrayList");
             }
-            ReservationNavigator.newReserve.setInsurance(SelectedInsurance);
+          ReservationNavigator.newReserve.setInsurance(SelectedInsurance);
             System.out.println("Insurance is set");
         } else {
             System.out.println("Insurance is not set");
