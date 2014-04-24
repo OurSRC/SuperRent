@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ViewReservationsFXMLController">
   <children>
-        <Button fx:id="ViewReservationButton" layoutX="513.0" layoutY="403.0" mnemonicParsing="false" onAction="#ViewReservationButtonAction" prefHeight="25.0" prefWidth="132.0" text="View Reservation" />
+        <Button fx:id="ViewReservationButton" layoutX="535.0" layoutY="403.0" mnemonicParsing="false" onAction="#ViewReservationButtonAction" prefHeight="25.0" prefWidth="132.0" text="View Reservation" />
     <TableView fx:id="ReservationTable" layoutX="1.0" layoutY="173.0" prefHeight="204.0" prefWidth="680.0">
       <columns>
         <TableColumn fx:id="ReservationNumber" minWidth="0.0" prefWidth="114.0" text="Reservation #" /><TableColumn fx:id="VehicleClass" prefWidth="113.0" text="Vehicle Class" />
@@ -54,6 +54,6 @@
             </FXCollections>
           </items>
         </ComboBox>
-</children></Pane><Button layoutX="361.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Cancel Reservation" />
+</children></Pane><Button layoutX="383.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Cancel Reservation" /><Button layoutX="14.0" layoutY="403.0" mnemonicParsing="false" onAction="#NewReservationButtonAction" prefHeight="25.0" prefWidth="149.0" text="New Reservation" />
   </children>
 </AnchorPane>

@@ -45,6 +45,14 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
 
     @FXML
     private ToggleGroup AdditionalEquipmentTG;
+    @FXML
+    private RadioButton InsuranceRequiredCB;
+    @FXML
+    private ToggleGroup InsuranceTG;
+    @FXML
+    private RadioButton InsuranceNotRequiredCB;
+
+    private boolean insurance_ok;
 
     /**
      * Initializes the controller class.
@@ -55,33 +63,32 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
         //  VehicleClassSelectedTF.setText(ReservationNavigator.SampleSharedVariable);
         VehicleClassSelectedTF.setText(ReservationNavigator.newReserve.getVehicleClass());
         AdditionalEquipmentListView.setDisable(true);
-        ArrayList<String> newInsuranceList = new ArrayList();
-        InsuranceCtrl newInsuranceCtrl = new InsuranceCtrl();
-        newInsuranceList = newInsuranceCtrl.getInsuranceType();
-        InsuranceList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        System.out.println(newInsuranceList.size() + " Size of insurance list");
-        ObservableList<String> items = FXCollections.observableArrayList(newInsuranceList);
-        InsuranceList.setItems(items);
+        InsuranceList.setDisable(true);
 
     }
 
     @FXML
     public void NextButtonAction(ActionEvent event) throws IOException, NoSuchMethodException {
-        if (!InsuranceList.getSelectionModel().getSelectedItems().isEmpty()) {
+        insurance_ok = false;
+        if (InsuranceRequiredCB.isSelected() && !InsuranceList.getSelectionModel().getSelectedItems().isEmpty()) {
             Object[] a = InsuranceList.getSelectionModel().getSelectedItems().toArray();
             ArrayList<String> SelectedInsurance = new ArrayList<>();
             for (int i = 0; i < a.length; i++) {
                 SelectedInsurance.add(a[i].toString());
                 System.out.println(SelectedInsurance.get(i) + "   Value from ArrayList");
             }
-          ReservationNavigator.newReserve.setInsurance(SelectedInsurance);
+            ReservationNavigator.newReserve.setInsurance(SelectedInsurance);
+            insurance_ok = true;
             System.out.println("Insurance is set");
-        } else {
-            System.out.println("Insurance is not set");
+        } else if (InsuranceNotRequiredCB.isSelected()) {
+            insurance_ok = true;
 
+        } else {
+            insurance_ok = false;
+            System.out.println("Insurance is not set");
         }
 
-        if (RequiredCB.isSelected() && !AdditionalEquipmentListView.getSelectionModel().getSelectedItems().isEmpty()) {
+        if (RequiredCB.isSelected() && !AdditionalEquipmentListView.getSelectionModel().getSelectedItems().isEmpty() && insurance_ok) {
             Object[] a = AdditionalEquipmentListView.getSelectionModel().getSelectedItems().toArray();
             ArrayList<String> SelectedEquipments = new ArrayList<>();
             for (int i = 0; i < a.length; i++) {
@@ -91,12 +98,11 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
             ReservationNavigator.newReserve.setEquipmentType(SelectedEquipments);
             ReservationNavigator.clearVista();
             ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
-        } else if(NotRequiredCB.isSelected()){
+        } else if (NotRequiredCB.isSelected()) {
             ReservationNavigator.clearVista();
             ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
-        }else
-        {
-                        System.out.println("Please select an Additional Item");
+        } else {
+            System.out.println("Please select an Additional Item");
 
         }
 
@@ -127,6 +133,26 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
         AdditionalEquipmentListView.getItems().clear();
         AdditionalEquipmentListView.setDisable(true);
 
+    }
+
+    @FXML
+    private void InsuranceRequiredCBAction(ActionEvent event) {
+        InsuranceList.setDisable(false);
+        InsuranceList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        ArrayList<String> newInsuranceList = new ArrayList();
+        InsuranceCtrl newInsuranceCtrl = new InsuranceCtrl();
+        newInsuranceList = newInsuranceCtrl.getInsuranceType();
+        InsuranceList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        System.out.println(newInsuranceList.size() + " Size of insurance list");
+        ObservableList<String> items = FXCollections.observableArrayList(newInsuranceList);
+        InsuranceList.setItems(items);
+    }
+
+    @FXML
+    private void InsuranceNotRequiredCBAction(ActionEvent event) {
+
+        InsuranceList.getItems().clear();
+        InsuranceList.setDisable(true);
     }
 
 }

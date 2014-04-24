@@ -2,7 +2,6 @@
 
 <?import java.lang.*?>
 <?import javafx.collections.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -24,11 +23,11 @@
 </Button>
     <TableView layoutY="163.0" prefHeight="226.0" prefWidth="681.0">
       <columns>
-        <TableColumn prefWidth="103.0" text="Vehicle Type" />
-        <TableColumn prefWidth="117.0" text="Vehicle Class" />
-        <TableColumn fx:id="HourlyRate" prefWidth="114.0" text="Hourly Rate" />
-        <TableColumn fx:id="DailyRate" prefWidth="114.0" text="Daily Rate" />
-        <TableColumn fx:id="WeeklyRate" prefWidth="130.0" text="Weekly Rate" />
+        <TableColumn prefWidth="144.0" text="Vehicle Type" />
+        <TableColumn prefWidth="147.0" text="Vehicle Class" />
+        <TableColumn fx:id="HourlyRate" prefWidth="126.0" text="Hourly Rate" />
+        <TableColumn fx:id="DailyRate" prefWidth="133.0" text="Daily Rate" />
+        <TableColumn fx:id="WeeklyRate" prefWidth="129.0" text="Weekly Rate" />
       </columns>
     </TableView><DatePicker fx:id="DateFromDatePicker" layoutX="121.0" layoutY="36.0" prefHeight="25.0" prefWidth="116.0" /><ComboBox fx:id="DateFromTime" layoutX="245.0" layoutY="36.0" prefHeight="25.0" prefWidth="85.0" /><ComboBox fx:id="DateToTime" layoutX="555.0" layoutY="36.0" prefHeight="25.0" prefWidth="85.0" /><DatePicker fx:id="DateToDatePicker" layoutX="431.0" layoutY="36.0" prefHeight="25.0" prefWidth="116.0" />
   </children>

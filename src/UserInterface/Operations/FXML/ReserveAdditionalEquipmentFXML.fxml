@@ -4,18 +4,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReserveAdditionalEquipmentFXMLController">
+<AnchorPane id="AnchorPane" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" visible="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReserveAdditionalEquipmentFXMLController">
   <children>
     <Label layoutX="39.0" layoutY="30.0" text="Vehicle Type" />
-    <TextField fx:id="VehicleClassSelectedTF" editable="false" layoutX="199.0" layoutY="27.0" prefWidth="187.0" />
+    <TextField fx:id="VehicleClassSelectedTF" editable="false" layoutX="200.0" layoutY="27.0" prefHeight="25.0" prefWidth="216.0" />
     <Label layoutX="39.0" layoutY="223.0" text="Insurance" />
     <Label layoutX="39.0" layoutY="62.0" text="Additional Equipment" />
     <RadioButton fx:id="RequiredCB" layoutX="200.0" layoutY="62.0" mnemonicParsing="false" onAction="#RequiredCBAction" text="Required">
 <toggleGroup>
 <ToggleGroup fx:id="AdditionalEquipmentTG" />
 </toggleGroup></RadioButton>
-    <RadioButton fx:id="NotRequiredCB" layoutX="295.0" layoutY="62.0" mnemonicParsing="false" onAction="#NotRequiredCBAction" selected="true" text="Not Required" toggleGroup="$AdditionalEquipmentTG" />
-    <Button layoutX="461.0" layoutY="349.0" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="106.0" text="Next" />
-    <Button layoutX="27.0" layoutY="349.0" mnemonicParsing="false" onAction="#BackButtonAction" prefHeight="25.0" prefWidth="128.0" text="Back" /><ListView fx:id="AdditionalEquipmentListView" layoutX="195.0" layoutY="90.0" prefHeight="104.0" prefWidth="195.0" /><ListView fx:id="InsuranceList" layoutX="195.0" layoutY="223.0" prefHeight="104.0" prefWidth="195.0" />
+    <RadioButton fx:id="NotRequiredCB" layoutX="318.0" layoutY="62.0" mnemonicParsing="false" onAction="#NotRequiredCBAction" selected="true" text="Not Required" toggleGroup="$AdditionalEquipmentTG" />
+    <Button alignment="CENTER" layoutX="544.0" layoutY="394.0" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="106.0" text="Next" />
+    <Button alignment="CENTER" layoutX="20.0" layoutY="394.0" mnemonicParsing="false" onAction="#BackButtonAction" prefHeight="25.0" prefWidth="106.0" text="Back" /><ListView fx:id="AdditionalEquipmentListView" layoutX="200.0" layoutY="91.0" prefHeight="104.0" prefWidth="216.0" /><ListView fx:id="InsuranceList" layoutX="197.0" layoutY="252.0" prefHeight="104.0" prefWidth="216.0" /><RadioButton fx:id="InsuranceRequiredCB" layoutX="197.0439453125" layoutY="223.0" mnemonicParsing="false" onAction="#InsuranceRequiredCBAction" text="Required">
+<toggleGroup>
+<ToggleGroup fx:id="InsuranceTG" />
+</toggleGroup></RadioButton><RadioButton fx:id="InsuranceNotRequiredCB" layoutX="321.0" layoutY="223.0" mnemonicParsing="false" onAction="#InsuranceNotRequiredCBAction" selected="true" text="Not Required" toggleGroup="$InsuranceTG" />
   </children>
 </AnchorPane>

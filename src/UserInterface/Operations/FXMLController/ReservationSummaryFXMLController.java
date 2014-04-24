@@ -10,6 +10,8 @@ import ControlObjects.FinanceCtrl;
 import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
 import ControlObjects.StaffCtrl;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import entity.ReservationInfo;
 import entity.Staff;
@@ -87,10 +89,20 @@ public class ReservationSummaryFXMLController implements Initializable {
             StaffCtrl staffCtrl = new StaffCtrl();
             Staff staff = staffCtrl.getStaffByUsername(ClerkMainPageNavigator.CurrentUserName);
             ReservationNavigator.newReserve.setStaffId(staff.getStaffId());
+        } else {
+            /* Staff ID zero means the reservation is made by the customer */
+            ReservationNavigator.newReserve.setStaffId(0);
         }
+        
+        /* Setting the */
         ReservationNavigator.newReserve.setReservationStatus(ReservationInfo.STATUS.PENDING);
         Reservation newReservation = newReserveCtrl.createReserve(ReservationNavigator.newReserve);
         if (newReservation == null) {
+            System.out.println("Please enter the Mandatory Fields");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage("Reservation Creation Failed . Please Contact Branch ");
+            dialog.showDialog();
 
         } else {
             System.out.println(newReservation.getReservationNo());
