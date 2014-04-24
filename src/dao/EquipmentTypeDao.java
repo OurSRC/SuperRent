@@ -38,12 +38,6 @@ public class EquipmentTypeDao extends AbstractDao<EquipmentType>{
      * @return Equipment with id, null if non found
      * @throws DaoException 
      */
-    /**
-     *
-     * @param typeName
-     * @return
-     * @throws DaoException
-     */
     public EquipmentType findEquipmentTypeByTypename(String typeName) throws DaoException{
         return findOne("TypeName="+SqlBuilder.wrapStr(typeName));
     }
