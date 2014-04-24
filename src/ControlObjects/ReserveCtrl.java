@@ -17,12 +17,14 @@ import java.util.logging.Logger;
 public class ReserveCtrl {
 
     public Reservation createReserve(Reservation reserve) {
-        if(reserve==null )
+        if (reserve == null) {
             return null;
-        
-        if(reserve.getReserveTime()==null)
+        }
+
+        if (reserve.getReserveTime() == null) {
             reserve.setReserveTime(new Date());
-        
+        }
+
         VehicleCtrl vehicleCtrl = new VehicleCtrl();
         EquipmentCtrl equipCtrl = new EquipmentCtrl();
         Branch branch = reserve.matchBranch();
@@ -63,13 +65,75 @@ public class ReserveCtrl {
             ErrorMsg.setLastError(ErrorMsg.ERROR_DATA_OCCUPIED);
             return null;
         }
-        
+
         reserve.setReserveInfo(completeInfo);
 
         return reserve;
     }
 
+    public String createReservationNumber(Reservation reserve) {
+        int id = reserve.getReservationInfoId();
+        if (id > 0) {
+            String rNo;
+            rNo = reserve.getReserveInfo().getReservationNo();
+            if (rNo == null) {
+                rNo = "R" + id + reserve.getBranchId() + reserve.getCustomerId();
+                reserve.getReserveInfo().setReservationNo(rNo);
+                ReservationInfoDao resInfDAO = new ReservationInfoDao();
+                try {
+                    resInfDAO.update(reserve.getReserveInfo());
+                } catch (DaoException ex) {
+                    Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                    ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+                    return null;
+                }
+            }
+            return rNo;
+        } else {
+            return null;
+        }
+    }
+
     public boolean updateReserve(Reservation reserve) {	//modify & cancel
+        ArrayList<ReserveEquipment> eqList = null;
+        ArrayList<BuyInsurance> inList = null;
+
+        ReservationInfoDao resInfDAO = new ReservationInfoDao();
+        ReserveEquipmentDao resEqmDAO = new ReserveEquipmentDao();
+        BuyInsuranceDao buyInsDAO = new BuyInsuranceDao();
+
+        //clear all previous equipment & insurance
+        eqList = resEqmDAO.findReserveEquipmentByReservationId(reserve.getReservationInfoId());
+        inList = buyInsDAO.findBuyInsuranceByReservationId(reserve.getReservationInfoId());
+        try {
+            for (ReserveEquipment re : eqList) {
+                resEqmDAO.delete(re);
+            }
+            for (BuyInsurance in : inList) {
+                buyInsDAO.delete(in);
+            }
+        } catch (DaoException ex) {
+            Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_DATABASE_LOGIC_ERROR);
+            return  false;
+        }
+        
+        eqList = reserve.getReserveEquipment();
+        inList = reserve.getReserveInsurance();
+
+        try {
+            resInfDAO.update(reserve.getReserveInfo());
+            for (ReserveEquipment re : eqList) {
+                resEqmDAO.add(re);
+            }
+            for (BuyInsurance in : inList) {
+                buyInsDAO.add(in);
+            }
+        } catch (DaoException ex) {
+            Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+            return false;
+        }
         return true;
     }
 
@@ -80,29 +144,30 @@ public class ReserveCtrl {
     public Reservation getReserve(int reserveId) {
         return null;
     }
-    
-    private Reservation getCompleteReservation(ReservationInfo reserveInfo){
-        if( reserveInfo!=null && reserveInfo.getReservationInfoId()!=0 ){
+
+    private Reservation getCompleteReservation(ReservationInfo reserveInfo) {
+        if (reserveInfo != null && reserveInfo.getReservationInfoId() != 0) {
             ReserveEquipmentDao resEqmDAO = new ReserveEquipmentDao();
             BuyInsuranceDao resInqDAO = new BuyInsuranceDao();
             ArrayList<ReserveEquipment> reserveEqmt = null;
             try {
-                reserveEqmt = resEqmDAO.findByInstance(new ReserveEquipment( reserveInfo.getReservationInfoId(), null, 0, 0 ));
+                reserveEqmt = resEqmDAO.findByInstance(new ReserveEquipment(reserveInfo.getReservationInfoId(), null, 0, 0));
             } catch (DaoException ex) {
                 Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
                 ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
             }
             ArrayList<BuyInsurance> reserveInsn = null;
             try {
-                reserveInsn = resInqDAO.findByInstance( new BuyInsurance(null, reserveInfo.getReservationInfoId(), 0, 0, 0) );
+                reserveInsn = resInqDAO.findByInstance(new BuyInsurance(null, reserveInfo.getReservationInfoId(), 0, 0, 0));
             } catch (DaoException ex) {
                 Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
                 ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
             }
             Reservation reservation = new Reservation(reserveInfo, reserveEqmt, reserveInsn);
             return reservation;
-        }else
+        } else {
             return null;
+        }
     }
 
     public Reservation getReserve(String ReservationNumber) {
@@ -115,13 +180,13 @@ public class ReserveCtrl {
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
         return getCompleteReservation(reserveInfo);
-  }
+    }
 
     public ArrayList<Reservation> searchReserve(Reservation reserve) {
         ArrayList<Reservation> sample = new ArrayList<>();
         return sample;
     }
-    
+
     public ArrayList<Reservation> searchReserveBetween(Date pickUpTime, Date returnTime, Branch branch) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
@@ -132,22 +197,22 @@ public class ReserveCtrl {
             Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
-        for(ReservationInfo a : resInfList){
-            list.add( getCompleteReservation(a) );
+        for (ReservationInfo a : resInfList) {
+            list.add(getCompleteReservation(a));
         }
         return list;
     }
-    
-        public ArrayList<ReservationInfo> searchReserveForRent(Date FromReserveTime, Date ToReserveTime, Branch branch , String ReservationNo) {
+
+    public ArrayList<ReservationInfo> searchReserveForRent(Date FromReserveTime, Date ToReserveTime, Branch branch, String ReservationNo) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<ReservationInfo> resInfList = null;
         try {
-            resInfList = resInfDAO.findReservationUsingReserveTime(FromReserveTime, ToReserveTime, branch,ReservationNo);
+            resInfList = resInfDAO.findReservationUsingReserveTime(FromReserveTime, ToReserveTime, branch, ReservationNo);
         } catch (DaoException ex) {
             Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
-        
+
         return resInfList;
     }
 }
