@@ -128,6 +128,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
                 .select("ReservationInfoId")
                 .from(ReserveEquipmentDao.tb_name)
                 .where("EquipmentType=" + SqlBuilder.wrapStr(equipmentType))
+                .isSubQueue()
                 .toString();
 
         subQueueStr = "(" + subQueueStr + ")";
