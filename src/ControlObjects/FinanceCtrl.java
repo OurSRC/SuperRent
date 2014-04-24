@@ -18,7 +18,7 @@ public class FinanceCtrl {
         if( tg.cWeeks==0 ){
             ArrayList<ReserveEquipment> reserveEquipment = reserve.getReserveEquipment();
             for(ReserveEquipment anEquip: reserveEquipment){
-                equip += tg.cDays * anEquip.geteDailyRate() + tg.cHours * anEquip.geteHourlyRate();
+                equip += tg.cDays * anEquip.getEDailyRate() + tg.cHours * anEquip.getEHourlyRate();
             }
         }
         int insurance = 0;
