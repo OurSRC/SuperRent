@@ -7,7 +7,13 @@
 package UserInterface.Reports.FXMLController;
 
 import ControlObjects.VehicleCtrl;
+import dao.DaoException;
+import dao.VehicleDao;
+import entity.Vehicle;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +28,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 
 /**
@@ -30,22 +37,21 @@ import javafx.scene.text.Font;
  * @author Ashanthi Perera
  */
 public class ViewVehiclesforSaleFXMLController implements Initializable {
-    @FXML
-    private Font x1;
+
     @FXML
     private TableView VehiclesforSaleTable;
     @FXML
-    private TableColumn VehicleNo;
+    private TableColumn VehicleNoColumn;
     @FXML
-    private TableColumn VehicleType;
+    private TableColumn VehicleClassColumn;
     @FXML
-    private TableColumn Model;
+    private TableColumn ModelColumn;
     @FXML
-    private TableColumn Year;
+    private TableColumn YearColumn;
     @FXML
-    private TableColumn Odometer;
+    private TableColumn OdometerColumn;
     @FXML
-    private TableColumn SalePrice;
+    private TableColumn SalePriceColumn;
     @FXML
     private Label VehicleCategoryLabel;
     @FXML
@@ -56,10 +62,10 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
     private TextField VehicleModelTF;
     @FXML
     private Button PrintPDFButton;
-    @FXML
-    private Label VehicleYearLabel;
-    @FXML
-    private TextField VehicleYearTF;
+    //@FXML
+    //private Label VehicleYearLabel;
+   //@FXML
+    //private TextField VehicleYearTF;
     @FXML
     private CheckBox EmailCHB;
     @FXML
@@ -72,6 +78,8 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
     private RadioButton VehicleTypeCarRB;
     private String vehicleType;
     private String vehicleClass;
+    private String vehicleModel;
+   // private String manufactureyear;
 
     /**
      * Initializes the controller class.
@@ -88,8 +96,35 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
 
     @FXML
     private void ViewVehiclesforSaleAction(ActionEvent event) {
+        
+        populateSearchTable();
+        vehicleClass = VehicleClassCB.getSelectionModel().getSelectedItem().toString();
+        vehicleModel=VehicleModelTF.getText(). toString();
+        //manufactureyear=VehicleYearTF.getText().toString();
     }
 
+     public void populateSearchTable()  {
+          
+        
+        Vehicle newVehicle = new Vehicle(null, null, vehicleModel, 0, 1, null, null, null, vehicleClass, 0);
+        
+        VehiclesforSaleTable.getItems().clear();
+       
+        VehicleCtrl newVehicleCtrl = new VehicleCtrl();
+        ArrayList<Vehicle> vehicleArray = newVehicleCtrl.searchVehicle(newVehicle); /* Get the Arraylist from the Control Object */
+
+       ObservableList<Vehicle> slist = FXCollections.observableArrayList(vehicleArray);
+       VehiclesforSaleTable.setItems(slist);
+        System.out.println("I am here and it is working");
+        
+               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("vehicleNo"));
+               VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("className"));
+               ModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
+               YearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
+               OdometerColumn.setCellValueFactory(new PropertyValueFactory("odometer"));
+               SalePriceColumn.setCellValueFactory(new PropertyValueFactory("price"));
+    }
+     
     @FXML
     private void PrintPDFAction(ActionEvent event) {
     }

@@ -6,14 +6,14 @@
 
 package UserInterface.Reports.FXMLController;
 
-import ControlObjects.BranchCtrl;
 import ControlObjects.VehicleCtrl;
 import SystemOperations.DialogFX;
+import dao.DaoException;
+import dao.VehicleDao;
 import entity.Vehicle;
-import entity.VehicleClass;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,9 +24,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 
@@ -42,7 +44,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
     @FXML
     private TableColumn VehicleNoColumn;
     @FXML
-    private TableColumn VehicleTypeColumn;
+    private TableColumn VehicleClassColumn;
     @FXML
     private TableColumn VehicleModelColumn;
     @FXML
@@ -62,14 +64,22 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
     @FXML
     private CheckBox EmailCHB;
     @FXML
-    private ComboBox TypeOfVehicle;
+    private ComboBox VehicleClassCB;
     @FXML
     private Label VehicleTypeLabel;
-    
-    public String vehicleType;
+    @FXML
+    private RadioButton VehicleTypeCarRB;
+    @FXML
+    private ToggleGroup VehicleTypeTG;
+    @FXML
+    private RadioButton VehicleTypeTruckRB;
+    private String vehicleType;
+    private String vehicleClass;
     public String noofyears;
-    public Vehicle vehicle;
-   
+    private int Maxmanufactureyear ;
+    private int currentyear ;
+    private int ageinyears ;
+
 
     /**
      * Initializes the controller class.
@@ -77,62 +87,106 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        vehicleType = "CAR";
+        VehicleCtrl vehicleControl = new VehicleCtrl();
+        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
+        VehicleClassCB.getItems().clear();
+        VehicleClassCB.setItems(list);
     }    
 
     @FXML
-    private void ViewVehiclesListAction(ActionEvent event) throws ParseException{
-        
-        
+    private void ViewVehiclesListAction(ActionEvent event)throws DaoException {
+                populateSearchTable();
         if (ValidateInput()) {
-        vehicleType = TypeOfVehicle.getValue().toString();
-        System.out.println("Vehicle Type : " + vehicleType);
+            
+            
+            
+        if(!VehicleClassCB.getSelectionModel().getSelectedItem().toString().equals(""))
+        {
+               vehicleClass = VehicleClassCB.getSelectionModel().getSelectedItem().toString();
+        }
+        
+        else
+        {
+            vehicleType = null;
+        }
+        
+        System.out.println("Vehicle class : " + vehicleClass);
         noofyears=YearsTF.getText(). toString();
         System.out.println("No Of Years : " + noofyears);
-     
-      /*          
-       VehicleCtrl vehicleControl = new VehicleCtrl();
-       
-       ArrayList<Vehicle> vehicleslist = vehicleControl.searchVehicle(vehicle);
-   
-        ArrayList<Vehicle> VehicleArray = new ArrayList();
-         //System.out.println(vehicleslist.size() + " Size of the Arraylist");
-       //for (int i = 0; i <vehicleslist.size(); i++) {
-            //        VehicleArray.add(vehicleControl.findVehicleClass(vehicleslist.get(i)));
-               }
-       // ObservableList<Vehicle> list = FXCollections.observableArrayList(VehicleArray);
-        
-        VehiclesListTable.getItems().clear(); 
-        VehiclesListTable.setItems(list);
-        
-               VehicleTypeColumn.setCellValueFactory(new PropertyValueFactory("className"));
-               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("vehicleNo"));
-               VehicleModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
-               YearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
-               OdometerColumn.setCellValueFactory(new PropertyValueFactory("odometer"));
-               StatusColumn.setCellValueFactory(new PropertyValueFactory("status"));
-        */
-         }  else {
+        }  else {
             System.out.println("Please enter Fields");
             DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
             dialog.setTitleText("Error");
             dialog.setMessage("Please enter Fields");
             dialog.showDialog();
         }
-
     }
     
-         public boolean ValidateInput() {
-        if ( TypeOfVehicle.valueProperty().isNotNull().getValue()
-             && !YearsTF.getText().equals("")) 
-        {
-            return true;
-        } else {
-            return false;
-        }
+     public void populateSearchTable() throws DaoException {
+         currentyear = Calendar.getInstance().get(Calendar.YEAR);
+         Maxmanufactureyear = currentyear-ageinyears;
+        
+        VehiclesListTable.getItems().clear();
+       
+        VehicleDao newVehicleCtrl = new VehicleDao();
+        ArrayList<Vehicle> vehicleArray = newVehicleCtrl.findVehicleOlderThan(Maxmanufactureyear,vehicleClass); /* Get the Arraylist from the Control Object */
+
+        ObservableList<Vehicle> slist = FXCollections.observableArrayList(vehicleArray);
+       VehiclesListTable.setItems(slist);
+        System.out.println("I am here and it is working");
+        
+               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("vehicleNo"));
+               VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("className"));
+               VehicleModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
+               YearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
+               OdometerColumn.setCellValueFactory(new PropertyValueFactory("odometer"));
+               StatusColumn.setCellValueFactory(new PropertyValueFactory("status"));
     }
+     
+     public boolean ValidateInput() {
+             
+             boolean validated=true; 
+            if ( YearsTF.getText().equals("")) 
+            
+            {
+            validated=false;
+            } 
+        
+            try{
+            ageinyears =Integer.parseInt(YearsTF.getText());
+            
+            }
+            catch(NumberFormatException e){
+                validated=false;
+            }
+            return validated;
+        }
 
     @FXML
     private void PrintPDFAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void VehicleClassCBAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void VehicleTypeCarRBAction(ActionEvent event) {
+        vehicleType = "CAR";
+        VehicleCtrl vehicleControl = new VehicleCtrl();
+        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
+        VehicleClassCB.getItems().clear();
+        VehicleClassCB.setItems(list);
+    }
+
+    @FXML
+    private void VehicleTypeTruckRBAction(ActionEvent event) {
+        vehicleType = "TRUCK";
+        VehicleCtrl vehicleControl = new VehicleCtrl();
+        ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getTruckType());
+        VehicleClassCB.getItems().clear();
+        VehicleClassCB.setItems(list);
     }
     
 }
