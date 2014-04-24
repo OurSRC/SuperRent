@@ -105,7 +105,8 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Customer entity = new Customer();
+                //Customer entity = new Customer();
+                Customer entity = parseCustomer(rs);    //modified by Elitward
                 EntityParser.parseEntity(rs, entity, ap);
                 result.add(entity);
             }

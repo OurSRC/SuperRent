@@ -189,7 +189,8 @@ public class StaffDao implements GenericDao<Staff, Integer> {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Staff entity = new Staff();
+                //Staff entity = new Staff();
+                Staff entity = parseStaff(rs);      //modified by Elitward
                 EntityParser.parseEntity(rs, entity, ap);
                 result.add(entity);
             }
