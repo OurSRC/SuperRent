@@ -122,8 +122,9 @@ public class VehicleCtrl {
         return getList;
     }
     
-    public ArrayList<Vehicle> searchIdleVehicles(String VehivleClassName){
+    public ArrayList<Vehicle> searchIdleVehicles(String VehivleClassName, Branch branch){
         Vehicle vehicle = new Vehicle();
+        vehicle.setBranchId(branch.getBranchID());
         vehicle.setStatus(Vehicle.STATUS.FORRENT);
         vehicle.setRentStatus(Vehicle.RENTSTATUS.IDLE);
         if(VehivleClassName!=null){
