@@ -20,13 +20,12 @@
       </columns>
     </TableView>
     <Label font="$x1" layoutX="16.0" layoutY="16.0" text="Total Rentals for " />
-    <Label id="DateLabel" fx:id="PrintDateLabel" layoutX="125.0" layoutY="18.0" />
+    <Label id="DateLabel" fx:id="PrintDateLabel" layoutX="125.0" layoutY="18.0" prefHeight="17.0" prefWidth="0.0" />
     <Label id="DateLBL" fx:id="DateLabel" layoutX="303.0" layoutY="60.0" text="Date" />
     <Button fx:id="SearchButton" layoutX="521.0" layoutY="56.0" mnemonicParsing="false" onAction="#SearchDailyRentalsAction" text="Search" />
     <Button fx:id="PrintPDFButton" layoutX="509.0" layoutY="417.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
     <Label id="DateLBL" fx:id="TotalRentalsLabel" layoutX="372.0" layoutY="368.0" text="Total Rentals" />
-    <TextField fx:id="TotalRentalsTF" editable="false" layoutX="455.0" layoutY="365.0" prefWidth="125.0" />
     <CheckBox fx:id="EmailCHB" layoutX="447.0" layoutY="420.0" mnemonicParsing="false" text="Email" />
-    <DatePicker fx:id="SearchDateDP" layoutX="343.0" layoutY="56.0" onAction="#SearchDateAction" />
+    <DatePicker fx:id="SearchDateDP" layoutX="343.0" layoutY="56.0" onAction="#SearchDateAction" /><Label fx:id="PrintTotalRentalsLabel" layoutX="470.5048828125" layoutY="368.0" text="no of rentals" />
   </children>
 </AnchorPane>
