@@ -9,6 +9,7 @@ import ControlObjects.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.CustomerNavigator;
+import UserInterface.Operations.FXMLController.ReservationNavigator;
 import entity.Customer;
 import java.io.IOException;
 import java.net.URL;
@@ -60,6 +61,8 @@ public class CustomerMainPageFXMLController implements Initializable {
     private Button RenewClubMemberButton;
     @FXML
     private Button NewCustomerButton;
+    @FXML
+    private Button SearchCustomerButton;
 
     /* Variables to store values */
     public Customer currentCustomer;
@@ -81,10 +84,12 @@ public class CustomerMainPageFXMLController implements Initializable {
         modifyFlag = false;
         if (!CustomerNavigator.CurrentUserName.equals("")) {
             NewCustomerButton.setVisible(false);
+            SearchCustomerButton.setVisible(false);
             CustomerCtrl newCustomerCtrl = new CustomerCtrl();
             currentCustomer = newCustomerCtrl.getCustomerByUsername(CustomerNavigator.CurrentUserName);
             PhoneTF.setText(currentCustomer.getPhone());
             PhoneTF.setEditable(false);
+            LicenseNumberTF.setEditable(false);
             PopulateCustomer();
         }
     }
@@ -197,5 +202,18 @@ public class CustomerMainPageFXMLController implements Initializable {
 
     public void ValidateMandatory() {
 
+    }
+    
+    @FXML
+    private void NextButtonAction(ActionEvent event) throws NoSuchMethodException, IOException
+    {
+        if (!EmailTF.getText().isEmpty()) {
+            ReservationNavigator.newReserve.setCustomerId(currentCustomer.getCustomerId());
+            ReservationNavigator.clearVista();
+            ReservationNavigator.loadVista(ReservationNavigator.ReservationSummary);
+        } else {
+            ReservationNavigator.loadVista(ReservationNavigator.ReservationSummary);
+            System.out.println("Please select a customer");
+        }
     }
 }

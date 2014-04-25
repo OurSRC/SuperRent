@@ -91,7 +91,7 @@ public class ReservationSummaryFXMLController implements Initializable {
             ReservationNavigator.newReserve.setStaffId(staff.getStaffId());
         } else {
             /* Staff ID zero means the reservation is made by the customer */
-            ReservationNavigator.newReserve.setStaffId(0);
+            ReservationNavigator.newReserve.setStaffId((Integer)null); // Errors out here
         }
         
         /* Setting the */

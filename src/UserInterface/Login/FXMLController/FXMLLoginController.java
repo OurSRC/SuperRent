@@ -47,6 +47,7 @@ public class FXMLLoginController {
     public void LoginButtonAction(ActionEvent event) throws IOException {
         CustomerNavigator.CurrentUserName = "";
         ClerkMainPageNavigator.CurrentUserName = "";
+        ClerkMainPageNavigator.staff=false;
         System.out.println("Hello i am here");
         LoginCtrl NewLogin = new LoginCtrl();
 
