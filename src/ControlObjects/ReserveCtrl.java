@@ -212,6 +212,20 @@ public class ReserveCtrl {
         return sample;
     }
 
+    public ArrayList<ReservationInfo> getUnrentedReservations() {
+        ReservationInfo reservationInfo = new ReservationInfo();
+        reservationInfo.setReservationStatus(ReservationInfo.STATUS.PENDING);
+        ReservationInfoDao dao = new ReservationInfoDao();
+        ArrayList<ReservationInfo> list = null;
+        try {
+            list = dao.findByInstance(reservationInfo);
+        } catch (DaoException ex) {
+            Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
+        return list;
+    }
+
     public ArrayList<Reservation> searchReserveBetween(Date pickUpTime, Date returnTime, Branch branch) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
