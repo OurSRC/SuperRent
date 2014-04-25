@@ -41,6 +41,7 @@ public class ReservationNavigator {
         public static Reservation newReserve;
         public static boolean customerFlag;
         public static boolean modifyFlag;
+        public static boolean reservation;
 
         public static void setMainController(Object mainController) {
             

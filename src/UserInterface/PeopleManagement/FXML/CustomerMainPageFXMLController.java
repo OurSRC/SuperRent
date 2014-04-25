@@ -63,6 +63,8 @@ public class CustomerMainPageFXMLController implements Initializable {
     private Button NewCustomerButton;
     @FXML
     private Button SearchCustomerButton;
+    @FXML
+    private Button NextButton;
 
     /* Variables to store values */
     public Customer currentCustomer;
@@ -91,6 +93,10 @@ public class CustomerMainPageFXMLController implements Initializable {
             PhoneTF.setEditable(false);
             LicenseNumberTF.setEditable(false);
             PopulateCustomer();
+        }
+        if(!ReservationNavigator.reservation)
+        {
+            NextButton.setVisible(false);
         }
     }
 

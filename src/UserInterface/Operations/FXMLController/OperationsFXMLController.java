@@ -31,6 +31,7 @@ public class OperationsFXMLController implements Initializable{
     public void CreateReservationAction(ActionEvent event) throws IOException
     {
        MainOperationsStackPane.getChildren().clear();
+       ReservationNavigator.reservation=true;
        ReservationNavigator.newReserve = new Reservation();
        ReservationNavigator.setMainController(this);
        ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
@@ -77,6 +78,7 @@ public class OperationsFXMLController implements Initializable{
     
     public void CustomerButtonAction(ActionEvent event) throws IOException
     {
+        ReservationNavigator.reservation=false;
         MainOperationsStackPane.getChildren().clear();
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/PeopleManagement/FXML/CustomerMainPageFXML.fxml"));
         Pane CustomerInfoPane = (Pane) myLoader.load();

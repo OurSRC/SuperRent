@@ -76,7 +76,7 @@ public class FXMLClerkMainPageController implements Initializable {
     @FXML
     public void HomeButtonAction(ActionEvent event) throws IOException
     {
-        
+        ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.HOME_PAGE);
     }
 
 
@@ -151,6 +151,8 @@ public class FXMLClerkMainPageController implements Initializable {
     
     public void InitializeScreen(String userName)
     {
+                ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.HOME_PAGE);
+
         UserNameLabel.setText(userName);
         username= userName;
         ClerkMainPageNavigator.CurrentUserName=userName;

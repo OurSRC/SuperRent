@@ -106,6 +106,7 @@ public class ReservationSummaryFXMLController implements Initializable {
 
         } else {
             System.out.println(newReservation.getReservationNo());
+            ReservationNavigator.reservation=false;
         }
     }
 
