@@ -7,11 +7,14 @@
 package dao;
 
 import dbconn.SqlBuilder;
+import entity.Rent;
 import entity.Return;
 import entityParser.AttributeParser;
 import entityParser.IntParser;
 import entityParser.DateParser;
 import entityParser.DatetimeParser;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * <p>
@@ -47,5 +50,22 @@ public class ReturnDao extends AbstractDao<Return>{
      */
     public Return findByContractNo(int contractNo) throws DaoException{
         return findOne("ContractNo=" + SqlBuilder.wrapInt(contractNo));
+    }
+    
+    public ArrayList<Return> findBetween(Date startDate, Date endDate, int branchId) throws DaoException {
+        SqlBuilder subQb = new SqlBuilder();
+        String subQueue = subQb.select("rent.ContractNo")
+                .from("reservation_info res").from("rent")
+                .where("res.ReservationInfoId = rent.ReservationInfoId")
+                .where("res.BranchId =" + SqlBuilder.wrapInt(branchId))
+                .isSubQueue().toString();
+        subQueue = "(" + subQueue + ")";
+
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("ReturnTime <" + SqlBuilder.wrapDatetime(endDate));
+        qb.cond("ReturnTime >= " + SqlBuilder.wrapDatetime(startDate));
+        qb.cond("ContractNo IN " + subQueue);
+        
+        return find(qb.toString());
     }
 }

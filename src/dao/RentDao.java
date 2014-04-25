@@ -9,10 +9,12 @@ package dao;
 import dbconn.SqlBuilder;
 import entity.Rent;
 import entityParser.AttributeParser;
-import entityParser.IntParser;
-import entityParser.StringParser;
 import entityParser.DateParser;
 import entityParser.DatetimeParser;
+import entityParser.IntParser;
+import entityParser.StringParser;
+import java.util.ArrayList;
+import java.util.Date;
 /**
  * <p>
  *  This class provides basic access methods, for example, find
@@ -58,5 +60,21 @@ public class RentDao extends AbstractDao<Rent>{
      */
     public Rent findByReservationInfo(int reservationInfoId) throws DaoException {
         return findOne("ReservationInfoId=" + SqlBuilder.wrapInt(reservationInfoId) );
+    }
+    
+    public ArrayList<Rent> findBetween(Date startDate, Date endDate, int branchId) throws DaoException {
+        SqlBuilder subQb = new SqlBuilder();
+        String subQueue = subQb.select("ReservationInfoId")
+                .from("reservation_info")
+                .where("BranchId =" + SqlBuilder.wrapInt(branchId))
+                .isSubQueue().toString();
+        subQueue = "(" + subQueue + ")";
+
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("Time <" + SqlBuilder.wrapDatetime(endDate));
+        qb.cond("Time >= " + SqlBuilder.wrapDatetime(startDate));
+        qb.cond("ReservationInfoId IN " + subQueue);
+        
+        return find(qb.toString());
     }
 }
