@@ -127,7 +127,7 @@ public class VehicleCtrl {
         public ArrayList<Vehicle> searchForSaleVehicles(String VehivleClassName, Branch branch){
         Vehicle vehicle = new Vehicle();
         vehicle.setBranchId(branch.getBranchID());
-        vehicle.setStatus(Vehicle.SELLSTATUS.FORSALE);
+        vehicle.setSellStatus(Vehicle.SELLSTATUS.FORSALE);
         if(VehivleClassName!=null){
             vehicle.setClassName(VehivleClassName);
         }
