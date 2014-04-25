@@ -17,24 +17,23 @@ USE `super_rent`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `branch`
---
-
+-- ----------------------------
+-- Table structure for branch
+-- ----------------------------
 DROP TABLE IF EXISTS `branch`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `branch` (
   `BranchId` int(11) NOT NULL AUTO_INCREMENT,
   `BranchName` varchar(100) NOT NULL,
   `BranchPhone` varchar(15) NOT NULL,
   `BranchAddress` varchar(200) NOT NULL,
+  `FuelPrice` int(11) NOT NULL,
+  `PricePerKM` int(11) NOT NULL,
   PRIMARY KEY (`BranchId`),
   UNIQUE KEY `BranchName_UNIQUE` (`BranchName`),
   UNIQUE KEY `BranchPhone_UNIQUE` (`BranchPhone`),
   UNIQUE KEY `BranchAddress_UNIQUE` (`BranchAddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 
 --
 -- Table structure for table `buy_insurance`
@@ -283,12 +282,9 @@ CREATE TABLE `reserve_equipment` (
 --
 
 DROP TABLE IF EXISTS `return_record`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `return_record` (
   `ContractNo` int(11) NOT NULL,
   `ReturnTime` datetime NOT NULL,
-  `Price` int(11) NOT NULL,
   `FuelLevel` int(11) NOT NULL,
   `Odometer` int(11) NOT NULL,
   `StaffId` int(11) NOT NULL,
@@ -298,9 +294,10 @@ CREATE TABLE `return_record` (
   KEY `return_staff_fk_idx` (`StaffId`),
   KEY `return_payment_idx` (`PaymentId`),
   CONSTRAINT `rent_return_fk` FOREIGN KEY (`ContractNo`) REFERENCES `rent` (`ContractNo`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `return_staff_fk` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `return_payment` FOREIGN KEY (`PaymentId`) REFERENCES `payment` (`PaymentId`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `return_payment` FOREIGN KEY (`PaymentId`) REFERENCES `payment` (`PaymentId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `return_staff_fk` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class BranchCtrl {
     
-    private static Branch defaultBranch = new Branch("Default Branch", "911", "nowhere");
+    private static Branch defaultBranch = new Branch("Default Branch", "911", "nowhere", 130, 18);
     
     public static Branch getDefaultBranch(){
         BranchDao bDAO = new BranchDao();

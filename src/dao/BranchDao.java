@@ -26,7 +26,9 @@ public class BranchDao extends AbstractDao<Branch> {
         new IntParser("BranchId", "BranchID"),
         new StringParser("BranchName", "BranchName"),
         new StringParser("BranchPhone", "BranchPhone"),
-        new StringParser("BranchAddress", "BranchAddress")
+        new StringParser("BranchAddress", "BranchAddress"),
+        new IntParser("FuelPrice", "FuelPrice"),
+        new IntParser("PricePerKM", "PricePerKM")
     };
 
     protected static final int[] pkIndex = {0};

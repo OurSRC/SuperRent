@@ -49,7 +49,7 @@ public class ReturnDaoTest {
 
     @BeforeClass
     public static void setUpClass() throws DaoException {
-        Branch b = new Branch(branchName, "test rent phone", "test rent address");
+        Branch b = new Branch(branchName, "test rent phone", "test rent address", 18, 130);
         BranchDao bdao = new BranchDao();
         bdao.add(b);
         b = bdao.findByName(branchName);
@@ -150,7 +150,7 @@ public class ReturnDaoTest {
     @Before
     public void setUp() throws DaoException {
         ReturnDao rtnDao = new ReturnDao();
-        Return rtn = new Return(contractNo, new Date(), 100, 100, 100, staffId, paymentId);
+        Return rtn = new Return(contractNo, new Date(), 100, 100, staffId, paymentId);
         rtnDao.add(rtn);
     }
 

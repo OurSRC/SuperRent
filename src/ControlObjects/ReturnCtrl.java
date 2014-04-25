@@ -4,6 +4,9 @@ import SystemOperations.ErrorMsg;
 import dao.DaoException;
 import dao.ReturnDao;
 import entity.Return;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -24,7 +27,7 @@ public class ReturnCtrl {
     }
     
     public Return createReturn(int ContractNum, int Fuel, int Odometer, int StaffId, int PaymentId){
-        Return rtn = new Return(ContractNum, new Date(), 0, Fuel, Odometer, StaffId, PaymentId);
+        Return rtn = new Return(ContractNum, new Date(), Fuel, Odometer, StaffId, PaymentId);
         return createReturn(rtn);
     }
 
@@ -78,5 +81,28 @@ public class ReturnCtrl {
         Return rtn = new Return();
         rtn.setPaymentId(paymentId);
         return searchFirstReturn(rtn);
+    }
+    
+        public ArrayList<Return> getRerurnsByDate(Date d, int branchId) {
+        ReturnDao returnDao  = new ReturnDao();
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat expectedFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        String dateStr = inputFormat.format(d);
+        Date start;
+        Date end;
+
+        try {
+            start = expectedFormat.parse(dateStr + " 00:00:00");
+            end = expectedFormat.parse(dateStr + " 00:00:00");
+            end.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
+            return returnDao.findBetween(start, end, branchId);
+        } catch (ParseException ex) {
+            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DaoException ex) {
+            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return null;
     }
 }

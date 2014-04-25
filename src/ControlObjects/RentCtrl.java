@@ -4,6 +4,9 @@ import SystemOperations.ErrorMsg;
 import dao.DaoException;
 import dao.RentDao;
 import entity.Rent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -92,4 +95,22 @@ public class RentCtrl {
         rent.setVehicleNo(vehicleNo);
         return searchFirstRent(rent);
     }
+    
+    public ArrayList<Rent> getRentsByDate(Date d, int branchId) {
+        return getRentByDates(d, d, branchId);
+    }
+    
+    public ArrayList<Rent> getRentByDates(Date start, Date end, int branchId) {
+        RentDao rentDao  = new RentDao();
+        
+        try {
+            return rentDao.findBetween(start, end, branchId);
+        } catch (DaoException ex) {
+            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
+        
+        return null;
+    }
+    
 }

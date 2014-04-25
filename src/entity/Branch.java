@@ -15,14 +15,18 @@ public class Branch {
     private String branchName;
     private String branchPhone;
     private String branchAddress;
+    private int fuelPrice;
+    private int pricePerKM;
 
     public Branch() {
     }
 
-    public Branch(String BranchName, String BranchPhone, String BranchAddress) {
-        this.branchName = BranchName;
-        this.branchPhone = BranchPhone;
-        this.branchAddress = BranchAddress;
+    public Branch(String branchName, String branchPhone, String branchAddress, int fuelPrice, int pricePerKM) {
+        this.branchName = branchName;
+        this.branchPhone = branchPhone;
+        this.branchAddress = branchAddress;
+        this.fuelPrice = fuelPrice;
+        this.pricePerKM = pricePerKM;
     }
 
     /**
@@ -79,5 +83,33 @@ public class Branch {
      */
     public void setBranchAddress(String branchAddress) {
         this.branchAddress = branchAddress;
+    }
+
+    /**
+     * @return the fuelPrice
+     */
+    public int getFuelPrice() {
+        return fuelPrice;
+    }
+
+    /**
+     * @param fuelPrice the fuelPrice to set
+     */
+    public void setFuelPrice(int fuelPrice) {
+        this.fuelPrice = fuelPrice;
+    }
+
+    /**
+     * @return the pricePerKM
+     */
+    public int getPricePerKM() {
+        return pricePerKM;
+    }
+
+    /**
+     * @param pricePerKM the pricePerKM to set
+     */
+    public void setPricePerKM(int pricePerKM) {
+        this.pricePerKM = pricePerKM;
     }
 }

@@ -42,7 +42,7 @@ public class ReservationInfoDaoTest {
     
     @BeforeClass
     public static void setUpClass() throws DaoException {
-        Branch b = new Branch("bname_test res", "test res phone", "test res address");
+        Branch b = new Branch("bname_test res", "test res phone", "test res address", 18, 130);
         BranchDao bdao = new BranchDao();
         bdao.add(b);
         b = bdao.findByName("bname_test res");

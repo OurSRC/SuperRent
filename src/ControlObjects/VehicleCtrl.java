@@ -82,7 +82,7 @@ public class VehicleCtrl {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        return null;
+        return theVehicle;
     }
 
     public Vehicle getVehicleByPlateNo(String plateNo) {
@@ -94,7 +94,7 @@ public class VehicleCtrl {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        return null;
+        return theVehicle;
     }
     
    

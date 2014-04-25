@@ -46,7 +46,7 @@ public class RentDaoTest {
     @BeforeClass
     public static void setUpClass() throws DaoException {
 
-        Branch b = new Branch("bname_test rent", "test rent phone", "test rent address");
+        Branch b = new Branch("bname_test rent", "test rent phone", "test rent address", 18, 130);
         BranchDao bdao = new BranchDao();
         bdao.add(b);
         b = bdao.findByName("bname_test rent");
