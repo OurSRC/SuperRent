@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.RentCtrl;
+import entity.Rent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,17 +27,19 @@ import javafx.util.Duration;
  * @author Vyas
  */
 public class ReturnMainPageFXMLController implements Initializable {
+
     @FXML
     private StackPane ReturnInnerPane;
     public TextField CustomerNameTF;
     public TextField CustomerPhoneTF;
     public TextField VehicleTypeTF;
     public Label CustomerNumberLabel;
-    public Label  VechicleTypeLabel;
-    public Label  VehicleNumberLabel;
-    public Label  RentStartDateLabel;
-    public Label  RentEndDateLabel;
-    
+    public Label VechicleTypeLabel;
+    public Label VehicleNumberLabel;
+    public Label RentStartDateLabel;
+    public Label RentEndDateLabel;
+    public TextField RentalAgreementTF;
+
     public Pane RentalPane;
     public Pane BottomPane;
     @FXML
@@ -45,64 +48,58 @@ public class ReturnMainPageFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     @FXML
-    public void SearchRentButtonAction(ActionEvent event)
-    {   
-    CustomerNameTF.setVisible(true);
-    CustomerNameTF.setVisible(true);
-    CustomerPhoneTF.setVisible(true);
-    VehicleTypeTF.setVisible(true);
-    CustomerNumberLabel.setVisible(true);
-    VechicleTypeLabel.setVisible(true);
-    VehicleNumberLabel.setVisible(true);
-    RentStartDateLabel.setVisible(true);
-    RentEndDateLabel.setVisible(true);
-    RentalPane.setVisible(true);
-
-       
+    public void SearchRentButtonAction(ActionEvent event) {
+        CustomerNameTF.setVisible(true);
+        CustomerNameTF.setVisible(true);
+        CustomerPhoneTF.setVisible(true);
+        VehicleTypeTF.setVisible(true);
+        CustomerNumberLabel.setVisible(true);
+        VechicleTypeLabel.setVisible(true);
+        VehicleNumberLabel.setVisible(true);
+        RentStartDateLabel.setVisible(true);
+        RentEndDateLabel.setVisible(true);
+        RentalPane.setVisible(true);
+        RentCtrl newRentCtrl = new RentCtrl();
+        Rent searchRent = newRentCtrl.getRentByContractNumber(Integer.parseInt(RentalAgreementTF.getText()));
+        
         /*FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), RentalPane);
-        FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), BottomPane);
-        fadeTransition1.setFromValue(0.0);
-        fadeTransition1.setToValue(1.0);
+         FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), BottomPane);
+         fadeTransition1.setFromValue(0.0);
+         fadeTransition1.setToValue(1.0);
 
-        fadeTransition.setFromValue(0.0);
-        fadeTransition.setToValue(1.0);
-        fadeTransition.play();
-        fadeTransition1.play();*/
-    
+         fadeTransition.setFromValue(0.0);
+         fadeTransition.setToValue(1.0);
+         fadeTransition.play();
+         fadeTransition1.play();*/
         FadeTransitionMethod(RentalPane);
         FadeTransitionMethod(BottomPane);
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         CustomerNameTF.setVisible(false);
-        
-        
-   /* CustomerNameTF.setVisible(false);
-    CustomerPhoneTF.setVisible(false);
-    VehicleTypeTF.setVisible(false);
-    CustomerNumberLabel.setVisible(false);
-    VechicleTypeLabel.setVisible(false);
-    VehicleNumberLabel.setVisible(false);
-    RentStartDateLabel.setVisible(false);
-    RentEndDateLabel.setVisible(false);*/
-    RentalPane.setVisible(false);
-    }  
-    
+
+        /* CustomerNameTF.setVisible(false);
+         CustomerPhoneTF.setVisible(false);
+         VehicleTypeTF.setVisible(false);
+         CustomerNumberLabel.setVisible(false);
+         VechicleTypeLabel.setVisible(false);
+         VehicleNumberLabel.setVisible(false);
+         RentStartDateLabel.setVisible(false);
+         RentEndDateLabel.setVisible(false);*/
+        RentalPane.setVisible(false);
+    }
+
     @FXML
-    private void NextButtonAction(ActionEvent event) throws IOException
-    {
+    private void NextButtonAction(ActionEvent event) throws IOException {
         System.out.println("Button pressed");
         ReturnNavigator.loadVista(ReturnNavigator.ReturnInformationPage);
     }
-    
-    
-    public void FadeTransitionMethod(Node CurrentNode)
-    {
+
+    public void FadeTransitionMethod(Node CurrentNode) {
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), CurrentNode);
         fadeTransition.setFromValue(0.0);
         fadeTransition.setToValue(1.0);
