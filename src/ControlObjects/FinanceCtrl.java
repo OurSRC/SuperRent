@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class FinanceCtrl {
+    
 
     public int estimateReservationCost(Reservation reserve) {
         TimeGroup tg = countTimes(reserve.getReturnTime(), reserve.getPickupTime());
