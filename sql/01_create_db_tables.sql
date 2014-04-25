@@ -33,7 +33,7 @@ CREATE TABLE `branch` (
   UNIQUE KEY `BranchName_UNIQUE` (`BranchName`),
   UNIQUE KEY `BranchPhone_UNIQUE` (`BranchPhone`),
   UNIQUE KEY `BranchAddress_UNIQUE` (`BranchAddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,9 +94,10 @@ CREATE TABLE `customer` (
   `Username` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`CustomerId`),
   UNIQUE KEY `PhoneNo_UNIQUE` (`PhoneNo`),
+  UNIQUE KEY `Username_UNIQUE` (`Username`),
   KEY `Username_fk_idx` (`Username`),
   CONSTRAINT `customer_username_fk` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,9 +118,9 @@ CREATE TABLE `equipment` (
   PRIMARY KEY (`EquipmentId`),
   KEY `equipment_branch_fk_idx` (`BranchId`),
   KEY `equipment_equipmenttype_fk_idx` (`EquipmentType`),
-  CONSTRAINT `equipment_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `equipment_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `equipment_etype_fk` FOREIGN KEY (`EquipmentType`) REFERENCES `equipment_type` (`TypeName`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +172,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`ItemId`),
   KEY `item_payment_fk_idx` (`PaymentId`),
   CONSTRAINT `item_payment_fk` FOREIGN KEY (`PaymentId`) REFERENCES `payment` (`PaymentId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,8 +193,8 @@ CREATE TABLE `payment` (
   KEY `payment_customer_idx` (`CustomerId`),
   KEY `payment_ccard_fk_idx` (`CreditCardNo`),
   CONSTRAINT `payment_ccard_fk` FOREIGN KEY (`CreditCardNo`) REFERENCES `creditcard` (`CreditCardNo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `payment_customer_fk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  CONSTRAINT `payment_customer_fk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +222,7 @@ CREATE TABLE `rent` (
   CONSTRAINT `rent_resinfo_fk` FOREIGN KEY (`ReservationInfoId`) REFERENCES `reservation_info` (`ReservationInfoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `rent_staff` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `rent_vehicle_fk` FOREIGN KEY (`VehicleNo`) REFERENCES `vehicle` (`VehicleNo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +240,7 @@ CREATE TABLE `reservation_info` (
   `PickUpTime` datetime NOT NULL,
   `ReturnTime` datetime NOT NULL,
   `CustomerId` int(11) NOT NULL,
-  `StaffId` int(11) NOT NULL,
+  `StaffId` int(11) DEFAULT NULL,
   `VehicleClass` varchar(45) NOT NULL,
   `VDailyRate` int(11) NOT NULL,
   `VHourlyRate` int(11) NOT NULL,
@@ -251,11 +252,11 @@ CREATE TABLE `reservation_info` (
   KEY `resinfo_customer_idx` (`CustomerId`),
   KEY `resinfo_staff_idx` (`StaffId`),
   KEY `refinfo_vclass_fk_idx` (`VehicleClass`),
-  CONSTRAINT `refinfo_customer_fk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `resinfo_staff_fk` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `refinfo_customer_fk` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `refinfo_vclass_fk` FOREIGN KEY (`VehicleClass`) REFERENCES `vehicle_class` (`ClassName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `resinfo_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `resinfo_staff_fk` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  CONSTRAINT `resinfo_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,11 +322,12 @@ CREATE TABLE `staff` (
   `Username` varchar(45) NOT NULL,
   `BranchID` int(11) NOT NULL,
   PRIMARY KEY (`StaffId`),
+  UNIQUE KEY `Username_UNIQUE` (`Username`),
   KEY `Username_fk_idx` (`Username`),
   KEY `staff_branck_fk_idx` (`BranchID`),
-  CONSTRAINT `staff_branck_fk` FOREIGN KEY (`BranchID`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `staff_branck_fk` FOREIGN KEY (`BranchID`) REFERENCES `branch` (`BranchId`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `staff_username_fk` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -375,7 +377,7 @@ CREATE TABLE `vehicle` (
   `Model` varchar(45) DEFAULT NULL,
   `Odometer` int(11) DEFAULT NULL,
   `BranchId` int(11) NOT NULL,
-  `Status` enum('FORRENT','FORSALE') DEFAULT NULL,
+  `Status` enum('FORRENT','FORSALE') NOT NULL,
   `RentStatus` enum('IDLE','RENTED','UNAVAILABLE') DEFAULT NULL,
   `ClassName` varchar(45) NOT NULL,
   `Price` int(11) DEFAULT NULL,
@@ -384,9 +386,9 @@ CREATE TABLE `vehicle` (
   UNIQUE KEY `PlateNo_UNIQUE` (`PlateNo`),
   KEY `vehicleforrent_branch_fk_idx` (`BranchId`),
   KEY `vehicleforrent_class_fk_idx` (`ClassName`),
-  CONSTRAINT `vehicleforrent_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `vehicleforrent_branch_fk` FOREIGN KEY (`BranchId`) REFERENCES `branch` (`BranchId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `vehicleforrent_class_fk` FOREIGN KEY (`ClassName`) REFERENCES `vehicle_class` (`ClassName`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -416,4 +418,4 @@ CREATE TABLE `vehicle_class` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-13 17:05:37
+-- Dump completed on 2014-04-24 18:47:10
