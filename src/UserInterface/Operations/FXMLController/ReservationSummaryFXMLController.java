@@ -16,6 +16,7 @@ import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import entity.ReservationInfo;
 import entity.Staff;
 import finance.Price;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -81,7 +82,7 @@ public class ReservationSummaryFXMLController implements Initializable {
     }
 
     @FXML
-    private void ConfirmButtonAction(ActionEvent event) {
+    private void ConfirmButtonAction(ActionEvent event) throws IOException {
 
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
         ReservationNavigator.newReserve.setBranchId(BranchCtrl.getDefaultBranch().getBranchID());
@@ -91,9 +92,9 @@ public class ReservationSummaryFXMLController implements Initializable {
             ReservationNavigator.newReserve.setStaffId(staff.getStaffId());
         } else {
             /* Staff ID zero means the reservation is made by the customer */
-            ReservationNavigator.newReserve.setStaffId((Integer)null); // Errors out here
+            ReservationNavigator.newReserve.setStaffId((Integer) null); // Errors out here
         }
-        
+
         /* Setting the */
         ReservationNavigator.newReserve.setReservationStatus(ReservationInfo.STATUS.PENDING);
         Reservation newReservation = newReserveCtrl.createReserve(ReservationNavigator.newReserve);
@@ -106,7 +107,13 @@ public class ReservationSummaryFXMLController implements Initializable {
 
         } else {
             System.out.println(newReservation.getReservationNo());
-            ReservationNavigator.reservation=false;
+
+            DialogFX dialog = new DialogFX(Type.QUESTION);
+            dialog.setTitleText("Success");
+            dialog.setMessage("Reservation Successfully Created. Reservation # : " + newReservation.getReservationNo());
+            dialog.showDialog();
+            ReservationNavigator.reservation = false;
+            ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
         }
     }
 
