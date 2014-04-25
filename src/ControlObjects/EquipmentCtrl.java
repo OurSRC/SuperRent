@@ -1,7 +1,7 @@
 package ControlObjects;
 
 import SystemOperations.ErrorMsg;
-import VehicleManagement.Equipment;
+import entity.Equipment;
 import dao.DaoException;
 import dao.EquipmentDao;
 import dao.ReservationInfoDao;
@@ -17,7 +17,26 @@ import java.util.logging.Logger;
 public class EquipmentCtrl {
 
     public Equipment createEquipment(Equipment equipment) {
-        return null;
+        EquipmentDao equipmentDao = new EquipmentDao();
+        boolean suc = false;
+        try {
+            suc = equipmentDao.add(equipment);
+        } catch (DaoException ex) {
+            Logger.getLogger(EquipmentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        if (suc) {
+            Equipment returnEquipment = null;
+            try {
+                returnEquipment = equipmentDao.findEquipmentById(equipment.getEquipmentId());
+            } catch (DaoException ex) {
+                Logger.getLogger(EquipmentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+            }
+            return returnEquipment;
+        } else {
+            return null;
+        }
     }
 
     public boolean updateEquipment(Equipment equipment) {
@@ -79,7 +98,7 @@ public class EquipmentCtrl {
     public ArrayList<String> getEquipmentType() {
         return null;
     }
-    
+
     public boolean checkEquipmentAvailability(String EquipmentType, Date pickUpTime, Date returnTime, Branch branch) {
         EquipmentDao eqDAO = new EquipmentDao();
         ReservationInfoDao rInfoDao = new ReservationInfoDao();
@@ -92,9 +111,10 @@ public class EquipmentCtrl {
             Logger.getLogger(EquipmentCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        if(have>rent)
+        if (have > rent) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 }

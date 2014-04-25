@@ -20,7 +20,7 @@ public class Equipment {
         UNAVAILABLE;
 
         public int getValue() {
-            return this == AVAILABLE ? 1 : 0;
+            return this == AVAILABLE ? 1 : 2;
         }
     };
     private int equipmentId;
