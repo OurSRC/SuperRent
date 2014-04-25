@@ -5,7 +5,10 @@
  */
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.CustomerCtrl;
 import ControlObjects.RentCtrl;
+import ControlObjects.Reservation;
+import ControlObjects.ReserveCtrl;
 import entity.Rent;
 import java.io.IOException;
 import java.net.URL;
@@ -50,9 +53,7 @@ public class ReturnMainPageFXMLController implements Initializable {
      */
     @FXML
     public void SearchRentButtonAction(ActionEvent event) {
-        CustomerNameTF.setVisible(true);
-        CustomerNameTF.setVisible(true);
-        CustomerPhoneTF.setVisible(true);
+        //CustomerPhoneTF.setVisible(true);
         VehicleTypeTF.setVisible(true);
         CustomerNumberLabel.setVisible(true);
         VechicleTypeLabel.setVisible(true);
@@ -62,6 +63,15 @@ public class ReturnMainPageFXMLController implements Initializable {
         RentalPane.setVisible(true);
         RentCtrl newRentCtrl = new RentCtrl();
         Rent searchRent = newRentCtrl.getRentByContractNumber(Integer.parseInt(RentalAgreementTF.getText()));
+        
+        System.out.println(searchRent.getContractNo());
+        
+        ReserveCtrl newReserveCtrl = new ReserveCtrl();
+        Reservation rentReservation = newReserveCtrl.getReserve(searchRent.getReservationInfold());
+        
+        System.out.println(rentReservation.getVehicleClass());
+        
+        CustomerCtrl newCustomerCtrl = new CustomerCtrl();
         
         /*FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), RentalPane);
          FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), BottomPane);
@@ -80,7 +90,6 @@ public class ReturnMainPageFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        CustomerNameTF.setVisible(false);
 
         /* CustomerNameTF.setVisible(false);
          CustomerPhoneTF.setVisible(false);

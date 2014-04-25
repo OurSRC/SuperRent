@@ -11,29 +11,21 @@
         <Pane prefHeight="423.0" prefWidth="662.0">
           <children>
             <Label layoutX="42.0" layoutY="26.0" text="Rental Agreement" />
-            <Label layoutX="42.0" layoutY="68.0" text="Vehicle Number" />
-            <TextField fx:id="RentalAgreementTF" layoutX="183.0" layoutY="26.0" prefWidth="185.0" />
-            <TextField fx:id="VehiclePlateTF" layoutX="183.0" layoutY="62.0" prefWidth="185.0" />
-            <Button alignment="CENTER" layoutX="461.0" layoutY="63.0" mnemonicParsing="false" onAction="#SearchRentButtonAction" prefWidth="96.0" text="Search Rent " />
-            <Separator layoutX="15.0" layoutY="105.0" prefWidth="633.0" />
-            <Pane fx:id="RentalPane" layoutX="15.0" layoutY="130.0" prefHeight="287.0" prefWidth="613.0">
+            <TextField fx:id="RentalAgreementTF" layoutX="183.0" layoutY="26.0" prefHeight="25.0" prefWidth="138.0" />
+            <Button alignment="CENTER" layoutX="502.0" layoutY="26.0" mnemonicParsing="false" onAction="#SearchRentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Search Rent " />
+            <Separator layoutX="15.0" layoutY="69.0" prefWidth="633.0" />
+            <Pane fx:id="RentalPane" layoutX="15.0" layoutY="76.0" prefHeight="358.0" prefWidth="633.0">
               <children>
-                <Label fx:id="CustomerNameLabel" layoutX="27.0" layoutY="10.0" text="Customer Name">
-                  <labelFor>
-                    <TextField fx:id="CustomerNameTF" editable="false" layoutX="168.0" layoutY="7.0" prefWidth="186.0" />
-                  </labelFor>
-                </Label>
-                <Label fx:id="CustomerNumberLabel" layoutX="27.0" layoutY="45.0" text="Customer Number" />
-                <fx:reference source="CustomerNameTF" />
-                <TextField fx:id="CustomerPhoneTF" editable="false" layoutX="168.0" layoutY="40.0" prefWidth="186.0" />
-                <Label fx:id="VechicleTypeLabel" layoutX="28.0" layoutY="76.0" text="Vehicle Model" />
-                <Label fx:id="VehicleNumberLabel" layoutX="27.0" layoutY="110.0" text="Vechile Number" />
-                <Label fx:id="RentStartDateLabel" layoutX="27.0" layoutY="143.0" text="Rental Start Date" />
-                <TextField fx:id="VehicleTypeTF" editable="false" layoutX="168.0" layoutY="73.0" prefWidth="186.0" />
-                <TextField editable="false" layoutX="168.0" layoutY="107.0" prefWidth="186.0" />
-                <TextField editable="false" layoutX="168.0" layoutY="140.0" prefWidth="186.0" />
-                <Label fx:id="RentEndDateLabel" layoutX="27.0" layoutY="179.0" text="Rental End Date" />
-                <TextField editable="false" layoutX="168.0" layoutY="175.0" prefWidth="186.0" /><Button alignment="CENTER" layoutX="486.0" layoutY="239.0" mnemonicParsing="false" onAction="#NextButtonAction" prefWidth="113.0" text="Proceed to Return" />
+                <Label fx:id="CustomerNumberLabel" layoutX="27.0" layoutY="53.0" text="Customer Number" />
+                <TextField fx:id="CustomerPhoneTF" editable="false" layoutX="168.0" layoutY="49.0" prefHeight="25.0" prefWidth="138.0" />
+                <Label fx:id="VechicleTypeLabel" layoutX="27.0" layoutY="126.0" text="Vehicle Model" />
+                <Label fx:id="VehicleNumberLabel" layoutX="27.0" layoutY="91.0" text="Vechile Number" />
+                <Label fx:id="RentStartDateLabel" layoutX="27.0" layoutY="163.0" text="Rental Start Date" />
+                <TextField fx:id="VehicleTypeTF" editable="false" layoutX="168.0" layoutY="122.0" prefHeight="25.0" prefWidth="138.0" />
+                <TextField editable="false" layoutX="168.0" layoutY="87.0" prefHeight="25.0" prefWidth="138.0" />
+                <TextField editable="false" layoutX="168.0" layoutY="159.0" prefHeight="25.0" prefWidth="138.0" />
+                <Label fx:id="RentEndDateLabel" layoutX="27.0" layoutY="198.0" text="Rental End Date" />
+                <TextField editable="false" layoutX="168.0" layoutY="194.0" prefHeight="25.0" prefWidth="138.0" /><Button alignment="CENTER" layoutX="481.0" layoutY="307.0" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="138.0" text="Proceed to Return" /><TextField layoutX="168.0" layoutY="8.0" prefHeight="25.0" prefWidth="138.0" /><Label layoutX="27.0048828125" layoutY="12.0" text="Reservation Number" />
               </children>
             </Pane>
           </children>
