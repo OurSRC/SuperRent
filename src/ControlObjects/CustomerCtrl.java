@@ -18,13 +18,13 @@ public class CustomerCtrl {
             return withIdInfo;
 
             /*if (suc) {
-                //Locate the customer again to get customerID, which is auto increased by database
-                Customer withIdInfo = customerDAO.findByUsername(customer.getUsername());
-                return withIdInfo;
-            } else {
-                ErrorMsg.setLastError(ErrorMsg.ERROR_DATABASE_LOGIC_ERROR);
-                return null;
-            }*/
+             //Locate the customer again to get customerID, which is auto increased by database
+             Customer withIdInfo = customerDAO.findByUsername(customer.getUsername());
+             return withIdInfo;
+             } else {
+             ErrorMsg.setLastError(ErrorMsg.ERROR_DATABASE_LOGIC_ERROR);
+             return null;
+             }*/
         } catch (DaoException ex) {
             Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
@@ -65,7 +65,7 @@ public class CustomerCtrl {
             Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        return  customer;
+        return customer;
     }
 
     public Customer getCustomerByUsername(String username) {
@@ -77,7 +77,19 @@ public class CustomerCtrl {
             Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        return  customer;
+        return customer;
+    }
+
+    public Customer getCustomerById(int customerId) {
+        CustomerDao customerDAO = new CustomerDao();
+        Customer customer = null;
+        try {
+            customer = customerDAO.findByCustomerId(customerId);
+        } catch (DaoException ex) {
+            Logger.getLogger(CustomerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+        }
+        return customer;
     }
 
     public ArrayList<Customer> searchCustomer(Customer customer) {
