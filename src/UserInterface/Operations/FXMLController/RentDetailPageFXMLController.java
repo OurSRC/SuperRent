@@ -6,9 +6,11 @@
 package UserInterface.Operations.FXMLController;
 
 import ControlObjects.RentCtrl;
+import ControlObjects.ReserveCtrl;
 import ControlObjects.StaffCtrl;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import entity.Rent;
+import entity.ReservationInfo;
 import entity.Staff;
 import java.net.URL;
 import java.util.Date;
@@ -96,6 +98,10 @@ public class RentDetailPageFXMLController implements Initializable {
                 newRent.setStaffId(staff.getStaffId());
                 newRent.setTime(new Date());
                 Rent createdRent = newRentCtrl.createRent(newRent);
+                
+                ReserveCtrl newReserveCtrl = new ReserveCtrl();
+                RentNavigator.selectedReservation.setReservationStatus(ReservationInfo.STATUS.RENTED);
+                newReserveCtrl.updateReserve(RentNavigator.selectedReservation);
 
             } else {
                 System.out.println("Invalid Odometer Reading");
