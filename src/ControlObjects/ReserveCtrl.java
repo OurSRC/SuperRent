@@ -49,6 +49,7 @@ public class ReserveCtrl {
         BuyInsuranceDao biDAO = new BuyInsuranceDao();
 
         try {
+            reserve.getReserveInfo().setReservationStatus(ReservationInfo.STATUS.PENDING);  //set pending status
             completeInfo = reInDAO.makeReservationInfo(reserve.getReserveInfo());
 
             for (ReserveEquipment reEq : reserve.getReserveEquipment()) {
@@ -94,7 +95,7 @@ public class ReserveCtrl {
         }
     }
 
-    public boolean updateReserve(Reservation reserve) throws DaoException {	//modify & cancel
+    public boolean updateReserve(Reservation reserve) {	//modify & cancel
         ArrayList<ReserveEquipment> eqList = null;
         ArrayList<BuyInsurance> inList = null;
 
@@ -102,9 +103,14 @@ public class ReserveCtrl {
         ReserveEquipmentDao resEqmDAO = new ReserveEquipmentDao();
         BuyInsuranceDao buyInsDAO = new BuyInsuranceDao();
 
-        //clear all previous equipment & insurance
-        eqList = resEqmDAO.findReserveEquipmentByReservationId(reserve.getReservationInfoId());
-        inList = buyInsDAO.findBuyInsuranceByReservationId(reserve.getReservationInfoId());
+        try {
+            //clear all previous equipment & insurance
+            eqList = resEqmDAO.findReserveEquipmentByReservationId(reserve.getReservationInfoId());
+            inList = buyInsDAO.findBuyInsuranceByReservationId(reserve.getReservationInfoId());
+        } catch (DaoException ex) {
+            Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
         try {
             for (ReserveEquipment re : eqList) {
                 resEqmDAO.delete(re);
@@ -115,9 +121,9 @@ public class ReserveCtrl {
         } catch (DaoException ex) {
             Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_DATABASE_LOGIC_ERROR);
-            return  false;
+            return false;
         }
-        
+
         eqList = reserve.getReserveEquipment();
         inList = reserve.getReserveInsurance();
 
@@ -137,12 +143,31 @@ public class ReserveCtrl {
         return true;
     }
 
-    public boolean deleteReserve(int reserveId) {
-        return false;
+    public boolean cancelReserve(Reservation reserve) {
+        ReservationInfoDao resInfoDAO = new ReservationInfoDao();
+        ReservationInfo resInfo = reserve.getReserveInfo();
+        resInfo.setReservationStatus(ReservationInfo.STATUS.CANCELED);
+        boolean suc = false;
+        try {
+            suc = resInfoDAO.update(resInfo);
+        } catch (DaoException ex) {
+            Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
+        return suc;
     }
 
     public Reservation getReserve(int reserveId) {
-        return null;
+        ReservationInfoDao resInfDAO = new ReservationInfoDao();
+        ReservationInfo reserveInfo = new ReservationInfo();
+        reserveInfo.setReservationInfoId(reserveId);
+        try {
+            reserveInfo = resInfDAO.findFirstInstance(reserveInfo);
+        } catch (DaoException ex) {
+            Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
+        return getCompleteReservation(reserveInfo);
     }
 
     private Reservation getCompleteReservation(ReservationInfo reserveInfo) {

@@ -246,6 +246,23 @@ public abstract class AbstractDao<T> {
         return find(sql);
     }
 
+    public T findFirstInstance(T value) throws DaoException {
+        String tb_name = getTbName();
+        AttributeParser ap[] = getAP();
+
+        SqlBuilder qb = new SqlBuilder();
+
+        for (AttributeParser attr : ap) {
+            String str = attr.wrapAttr(value);
+            if (!(str.equalsIgnoreCase("null") || (str.equals("0") && attr.getClass().equals(IntParser.class)))) {
+                qb.cond(attr.getColName() + "=" + str);
+            }
+        }
+
+        String sql = qb.toString();
+        return findOne(sql);
+    }
+
     public ArrayList<T> all() throws DaoException {
         return find("true");
     }

@@ -121,6 +121,16 @@ public class VehicleCtrl {
         //ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
         return getList;
     }
+    
+    public ArrayList<Vehicle> searchIdleVehicles(String VehivleClassName){
+        Vehicle vehicle = new Vehicle();
+        vehicle.setStatus(Vehicle.STATUS.FORRENT);
+        vehicle.setRentStatus(Vehicle.RENTSTATUS.IDLE);
+        if(VehivleClassName!=null){
+            vehicle.setClassName(VehivleClassName);
+        }
+        return searchVehicle(vehicle);
+    }
 
     public ArrayList<String> getAvailableVehicleClasses(VehicleClass.TYPE type, Date pickUpTime, Date returnTime, Branch branch) {
         ArrayList<String> ans = new ArrayList<String>();
