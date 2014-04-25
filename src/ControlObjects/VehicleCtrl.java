@@ -97,17 +97,7 @@ public class VehicleCtrl {
         return null;
     }
     
-    public Vehicle getVehicleByMode(int VehicleNo,String Mode,java.util.Date manufactureDate,int Odometer,int price){
-        VehicleDao vehicleDAO = new VehicleDao();
-        ArrayList<Vehicle> theVehicle = null;
-        try {
-            theVehicle = vehicleDAO.findByVehicleModel( VehicleNo, Mode, manufactureDate, Odometer, price);
-        } catch (DaoException ex) {
-            Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
-            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
-        }
-        return null;
-    }
+   
     
     public ArrayList<Vehicle> searchVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
@@ -133,6 +123,17 @@ public class VehicleCtrl {
         return searchVehicle(vehicle);
     }
 
+    
+        public ArrayList<Vehicle> searchForSaleVehicles(String VehivleClassName, Branch branch){
+        Vehicle vehicle = new Vehicle();
+        vehicle.setBranchId(branch.getBranchID());
+        vehicle.setStatus(Vehicle.SELLSTATUS.FORSALE);
+        if(VehivleClassName!=null){
+            vehicle.setClassName(VehivleClassName);
+        }
+        return searchVehicle(vehicle);
+    }
+        
     public ArrayList<String> getAvailableVehicleClasses(VehicleClass.TYPE type, Date pickUpTime, Date returnTime, Branch branch) {
         ArrayList<String> ans = new ArrayList<String>();
         ArrayList<String> list = getSubVehicleType(type);

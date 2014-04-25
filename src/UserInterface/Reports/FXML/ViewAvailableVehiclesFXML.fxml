@@ -38,7 +38,7 @@
 <ComboBox fx:id="DateFromTime" layoutX="260.0" layoutY="59.0" prefHeight="25.0" prefWidth="85.0">
        <items>
             <FXCollections fx:factory="observableArrayList">
-              <String fx:value="09.00 AM" />
+              <String fx:value="09 AM" />
               <String fx:value="10 AM" />
               <String fx:value="11 AM" />
               <String fx:value="12 PM" />
@@ -54,7 +54,7 @@
 <ComboBox fx:id="DateToTime" layoutX="555.0" layoutY="59.0" prefHeight="25.0" prefWidth="85.0">
             <items>
             <FXCollections fx:factory="observableArrayList">
-              <String fx:value="09.00 AM" />
+              <String fx:value="09 AM" />
               <String fx:value="10 AM" />
               <String fx:value="11 AM" />
               <String fx:value="12 PM" />
