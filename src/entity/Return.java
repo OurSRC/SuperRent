@@ -14,7 +14,6 @@ import java.util.Date;
 public class Return {
     private int contractNo;
     private Date returnTime;
-    private int price;
     private int fuelLevel;
     private int odometer;
     private int staffId;
@@ -23,10 +22,9 @@ public class Return {
     public Return() {
     }
 
-    public Return(int contractNo, Date returnTime, int price, int fuelLevel, int odometer, int staffId, int paymentId) {
+    public Return(int contractNo, Date returnTime, int fuelLevel, int odometer, int staffId, int paymentId) {
         this.contractNo = contractNo;
         this.returnTime = returnTime;
-        this.price = price;
         this.fuelLevel = fuelLevel;
         this.odometer = odometer;
         this.staffId = staffId;
@@ -59,20 +57,6 @@ public class Return {
      */
     public void setReturnTime(Date returnTime) {
         this.returnTime = returnTime;
-    }
-
-    /**
-     * @return the price
-     */
-    public int getPrice() {
-        return price;
-    }
-
-    /**
-     * @param price the price to set
-     */
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     /**

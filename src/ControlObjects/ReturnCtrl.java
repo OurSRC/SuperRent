@@ -24,7 +24,7 @@ public class ReturnCtrl {
     }
     
     public Return createReturn(int ContractNum, int Fuel, int Odometer, int StaffId, int PaymentId){
-        Return rtn = new Return(ContractNum, new Date(), 0, Fuel, Odometer, StaffId, PaymentId);
+        Return rtn = new Return(ContractNum, new Date(), Fuel, Odometer, StaffId, PaymentId);
         return createReturn(rtn);
     }
 

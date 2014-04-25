@@ -29,7 +29,6 @@ public class ReturnDao extends AbstractDao<Return>{
     protected static final AttributeParser ap[] = {
         new IntParser("ContractNo", "ContractNo"),
         new DatetimeParser("ReturnTime", "ReturnTime"),
-        new IntParser("Price", "Price"),
         new IntParser("FuelLevel", "FuelLevel"),
         new IntParser("Odometer", "Odometer"),
         new IntParser("StaffId", "StaffId"),
