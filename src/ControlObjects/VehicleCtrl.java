@@ -123,14 +123,12 @@ public class VehicleCtrl {
         return searchVehicle(vehicle);
     }
 
-    
-        public ArrayList<Vehicle> searchForSaleVehicles(String VehivleClassName, Branch branch){
+
+        public ArrayList<Vehicle> searchForSaleVehicles(String VehicleClassName, Branch branch){
         Vehicle vehicle = new Vehicle();
         vehicle.setBranchId(branch.getBranchID());
-        vehicle.setStatus(Vehicle.SELLSTATUS.FORSALE);
-        if(VehivleClassName!=null){
-            vehicle.setClassName(VehivleClassName);
-        }
+        vehicle.setSellStatus(Vehicle.SELLSTATUS.FORSALE);
+        vehicle.setClassName(VehicleClassName);
         return searchVehicle(vehicle);
     }
         
@@ -231,7 +229,7 @@ public class VehicleCtrl {
         }
         return ans;
     }
-    
+
     public ArrayList<String> getCarType() {
         return getSubVehicleType(VehicleClass.TYPE.Car);
     }

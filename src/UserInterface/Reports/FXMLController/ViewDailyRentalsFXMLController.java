@@ -48,7 +48,9 @@ public class ViewDailyRentalsFXMLController implements Initializable {
     @FXML
     private Label TotalRentalsLabel;
     @FXML
-    private TextField TotalRentalsTF;
+    private Label PrintTotalRentalsLabel;
+    //@FXML
+    //private TextField TotalRentalsTF;
     @FXML
     private CheckBox EmailCHB;
     @FXML

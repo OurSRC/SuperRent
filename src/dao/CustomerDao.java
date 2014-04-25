@@ -161,6 +161,18 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         return customer;
     }
 
+    public Customer findByCustomerId(int CustomerId) throws DaoException {
+        Customer customer;
+        SqlBuilder qb = new SqlBuilder();
+        String sql = qb
+                .select("*")
+                .from(tb_name)
+                .where("CustomerId=" + SqlBuilder.wrapInt(CustomerId))
+                .toString();
+        customer = findOne(sql);
+        return customer;
+    }
+
     /**
      * Search customer object by phone number
      *
