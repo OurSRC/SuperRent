@@ -97,26 +97,20 @@ public class RentCtrl {
     }
     
     public ArrayList<Rent> getRentsByDate(Date d, int branchId) {
+        return getRentByDates(d, d, branchId);
+    }
+    
+    public ArrayList<Rent> getRentByDates(Date start, Date end, int branchId) {
         RentDao rentDao  = new RentDao();
-        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat expectedFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         
-        String dateStr = inputFormat.format(d);
-        Date start;
-        Date end;
-
         try {
-            start = expectedFormat.parse(dateStr + " 00:00:00");
-            end = expectedFormat.parse(dateStr + " 00:00:00");
-            end.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
             return rentDao.findBetween(start, end, branchId);
-        } catch (ParseException ex) {
-            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DaoException ex) {
             Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
-            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
         
         return null;
     }
+    
 }
