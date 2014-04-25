@@ -53,7 +53,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         add(reservationInfo);
         int id = getLastAutoIncrementId();
         reservationInfo.setReservationInfoId(id);
-        return reservationInfo;
+      return reservationInfo;
     }
 
     public ReservationInfo findByReservationNo(String reservatioNo) throws DaoException {

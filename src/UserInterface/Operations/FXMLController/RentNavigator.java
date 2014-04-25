@@ -25,7 +25,6 @@ public class RentNavigator {
         public static final String SelectSpecificVehicle = "/UserInterface/Operations/FXML/SelectParticularVehicleFXML.fxml";
         public static final String ReservationSummaryPage = "/UserInterface/Operations/FXML/ViewReservationForRentFXML.fxml";
         public static final String RentDetailsPage = "/UserInterface/Operations/FXML/RentDetailPageFXML.fxml";
-        public static final String RentConfirmPage = "";
         
         /* Common Variables to facilitate navigations */
         public static Rent newRent;

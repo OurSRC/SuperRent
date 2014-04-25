@@ -6,6 +6,7 @@
 
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.BranchCtrl;
 import ControlObjects.VehicleCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
@@ -54,12 +55,12 @@ public class SelectParticularVehicleFXMLController implements Initializable {
         // TODO
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
         Vehicle newVehicle = new Vehicle();
-        newVehicle.setClassName("COMPACT");
-        newVehicle.setRentStatus("IDLE");
-        newVehicle.setStatus("FORRENT");
+        newVehicle.setClassName(RentNavigator.selectedReservation.getVehicleClass());
+        //newVehicle.setRentStatus("IDLE");
+        //newVehicle.setStatus("FORRENT");
         VehicleTypeSelected.setText(newVehicle.getClassName());
         
-        ArrayList<Vehicle> newArray = newVehicleCtrl.searchVehicle(newVehicle);
+        ArrayList<Vehicle> newArray = newVehicleCtrl.searchIdleVehicles(newVehicle.getClassName(),BranchCtrl.getDefaultBranch());
         ObservableList<Vehicle> slist = FXCollections.observableArrayList(newArray);
         VehicleTable.setItems(slist);
         System.out.println("Hello buddy");
