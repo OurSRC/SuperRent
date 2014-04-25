@@ -88,10 +88,10 @@ public class ViewReservationsFXMLController implements Initializable {
         LocalDate ToDate = ReserveToTime.getValue();
         String ToTime = TimeComboBox.getValue().toString();
         Date reserveToDate = DateClass.getDateTimeObject(ToDate, ToTime);
-        
+
         String reservatioNo = ReservationNo.getText();
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
-        ArrayList<Reservation> newArray = newReserveCtrl.searchReserveForRent(reserveFromDate,reserveToDate,BranchCtrl.getDefaultBranch(),reservatioNo);
+        ArrayList<Reservation> newArray = newReserveCtrl.searchReserveForRent(reserveFromDate, reserveToDate, BranchCtrl.getDefaultBranch(), reservatioNo);
         ObservableList<Reservation> slist = FXCollections.observableArrayList(newArray);
         ReservationTable.setItems(slist);
         System.out.println("I am here and it is working");
@@ -112,13 +112,12 @@ public class ViewReservationsFXMLController implements Initializable {
     @FXML
     private void ViewReservationButtonAction(ActionEvent event) throws IOException {
 
-        /* if(!ReservationTable.getSelectionModel().isEmpty())
-         {
-         Reserve rrr = (Reserve) ReservationTable.getSelectionModel().getSelectedItem();
-         //RentNavigator.ReservationNumber = rrr.getReservationNumber();
-         //System.out.println(rrr.getReservationNumber());
-         RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
-         } */
+        if (!ReservationTable.getSelectionModel().isEmpty()) {
+            Reservation selectedReservation = (Reservation) ReservationTable.getSelectionModel().getSelectedItem();
+            RentNavigator.selectedReservation = selectedReservation;
+            //System.out.println(rrr.getReservationNumber());
+            RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
+        }
         RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
 
     }

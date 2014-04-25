@@ -7,6 +7,7 @@
 package UserInterface.Operations.FXMLController;
 
 
+import ControlObjects.Reservation;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import entity.Rent;
 import entity.Vehicle;
@@ -30,6 +31,7 @@ public class RentNavigator {
         public static Rent newRent;
         public static String ReservationNumber;
         public static Vehicle RentVehicle;
+        public static Reservation selectedReservation;
 
 
         public static void setMainController(OperationsFXMLController mainController) {
