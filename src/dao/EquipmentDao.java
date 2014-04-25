@@ -44,7 +44,7 @@ public class EquipmentDao extends AbstractDao<Equipment>{
     /**
      * This method find a {@link Equipment} with given {@code equipmentType}
      * @param equipmentType equipmentType of Equipment
-     * @return Equipment with equipmentType, null if non found
+     * @return array list of equipment with equipmentType, null if non found
      * @throws DaoException 
      */  
     public ArrayList<Equipment> findEquipmentByType(String equipmentType) throws DaoException{

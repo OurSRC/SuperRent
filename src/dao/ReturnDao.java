@@ -51,6 +51,14 @@ public class ReturnDao extends AbstractDao<Return>{
         return findOne("ContractNo=" + SqlBuilder.wrapInt(contractNo));
     }
     
+    /**
+     * This method find a {@link Return} with given {@code startDate,endDate,branchId}
+     * @param startDate start date of the rent
+     * @param endDate end date of the rent
+     * @param branchId id of the branch
+     * @return array list of matched records, null if non found
+     * @throws DaoException
+     */
     public ArrayList<Return> findBetween(Date startDate, Date endDate, int branchId) throws DaoException {
         SqlBuilder subQb = new SqlBuilder();
         String subQueue = subQb.select("rent.ContractNo")

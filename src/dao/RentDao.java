@@ -62,6 +62,14 @@ public class RentDao extends AbstractDao<Rent>{
         return findOne("ReservationInfoId=" + SqlBuilder.wrapInt(reservationInfoId) );
     }
     
+    /**
+     * This method find a {@link Rent} with given {@code startDate,endDate,branchId}
+     * @param startDate start date of the rent
+     * @param endDate end date of the rent
+     * @param branchId id of the branch
+     * @return array list of matched records, null if non found
+     * @throws DaoException
+     */
     public ArrayList<Rent> findBetween(Date startDate, Date endDate, int branchId) throws DaoException {
         SqlBuilder subQb = new SqlBuilder();
         String subQueue = subQb.select("ReservationInfoId")

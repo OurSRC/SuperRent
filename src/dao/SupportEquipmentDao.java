@@ -31,7 +31,7 @@ public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     protected static final boolean pkIsAutoGen = false;
    
     /**
-     * This method find a {@link boolean} with given {@code vehicleClass, equipmentType}
+     * This method find boolean value with given {@code vehicleClass, equipmentType}
      * @param vehicleClass vehicle class of vehicle
      * @param equipmentType type of equipment
      * @return true or false
@@ -50,7 +50,7 @@ public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     /**
      * This method find a {@link SupportEquipment} with given {@code vehicleClass}
      * @param vehicleClass vehicle class of vehicle
-     * @return vehicle class name, null if non found
+     * @return array list of vehicle class names, null if non found
      * @throws DaoException
      */
     public ArrayList<SupportEquipment> findByVehicleClass(String vehicleClass) throws DaoException{
@@ -60,7 +60,7 @@ public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     /**
      * This method find a {@link SupportEquipment} with given {@code equipmentType}
      * @param equipmentType equipment type of equipment
-     * @return equipment type, null if non found
+     * @return array list of equipment types, null if non found
      * @throws DaoException
      */
     public ArrayList<SupportEquipment> findByEquipmentType(String equipmentType) throws DaoException{
