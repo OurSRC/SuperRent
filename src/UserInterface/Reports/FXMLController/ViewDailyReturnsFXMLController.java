@@ -28,13 +28,13 @@ import javafx.scene.text.Font;
 public class ViewDailyReturnsFXMLController implements Initializable {
 
     @FXML
-    private TableColumn VehicleCategory;
+    private TableColumn VehicleCategoryColumn;
     @FXML
-    private TableColumn VehicleType;
+    private TableColumn VehicleTypeColumn;
     @FXML
-    private TableColumn NoOfReturns;
+    private TableColumn NoOfReturnsColumn;
     @FXML
-    private TableColumn Payments;
+    private TableColumn PaymentsColumn;
     @FXML
     private Label DateLabel;
     @FXML
@@ -46,9 +46,9 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     @FXML
     private Label TotalLabel;
     @FXML
-    private TextField TotalReturnsTF;
+    private Label TotalNoOfReturnsLabel ;
     @FXML
-    private TextField TotalPaymentsTF;
+     private Label TotalPaymentsLabel ;
     @FXML
     private CheckBox EmailCHB;
     @FXML

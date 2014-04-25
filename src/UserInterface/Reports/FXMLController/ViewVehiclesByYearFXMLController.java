@@ -96,7 +96,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
 
     @FXML
     private void ViewVehiclesListAction(ActionEvent event)throws DaoException {
-                populateSearchTable();
+               
         if (ValidateInput()) {
             
             
@@ -110,7 +110,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
         {
             vehicleType = null;
         }
-        
+         populateSearchTable();
         System.out.println("Vehicle class : " + vehicleClass);
         noofyears=YearsTF.getText(). toString();
         System.out.println("No Of Years : " + noofyears);
