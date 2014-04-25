@@ -31,7 +31,6 @@ public class RentCtrl {
 
     public boolean updateRent(Rent rent) {
         RentDao rentDAO = new RentDao();
-
         boolean suc = false;
         try {
             suc = rentDAO.update(rent);
@@ -51,14 +50,46 @@ public class RentCtrl {
     }
 
     public ArrayList<Rent> searchRent(Rent rent) {
+        RentDao DAO = new RentDao();
+        ArrayList<Rent> list = null;
+        try {
+            list = DAO.findByInstance(rent);
+        } catch (DaoException ex) {
+            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
+        return list;
+    }
+
+    public Rent searchFirstRent(Rent rent) {
+        RentDao DAO = new RentDao();
+        try {
+            return DAO.findFirstInstance(rent);
+        } catch (DaoException ex) {
+            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
         return null;
     }
 
-    public Rent getRent(String contractNumber) {
-        return null;
+    public Rent getRentByContractNumber(int contractNumber) {
+        Rent rent = new Rent();
+        rent.setContractNo(contractNumber);
+        return searchFirstRent(rent);
     }
 
     public Rent getRent(Reservation reserve) {
-        return null;
+        if (reserve == null) {
+            return null;
+        }
+        Rent rent = new Rent();
+        rent.setReservationInfold(reserve.getReservationInfoId());
+        return searchFirstRent(rent);
+    }
+
+    public Rent getRent(int vehicleNo) {
+        Rent rent = new Rent();
+        rent.setVehicleNo(vehicleNo);
+        return searchFirstRent(rent);
     }
 }
