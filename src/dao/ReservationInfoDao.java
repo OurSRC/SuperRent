@@ -143,5 +143,21 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
 
         return find(cond);
     }
+    
+    public ArrayList<ReservationInfo> searchPending(int BranchId, Date d) throws DaoException {
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
+        if (BranchId != 0) {
+            qb.cond("BranchId = " + SqlBuilder.wrapInt(BranchId));
+        }
+        
+        if (d != null) {
+            qb.cond("DATE(PickUpTime) = " + SqlBuilder.wrapDate(d));
+        }
+        
+        String cond = qb.toString();
+        
+        return find(cond);
+    }
 
 }

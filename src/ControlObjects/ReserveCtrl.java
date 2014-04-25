@@ -257,4 +257,27 @@ public class ReserveCtrl {
         }
         return list;
     }
+    
+    /**
+     * Search pending reservation to be pick up for a branch in a day.
+     * @param BranchId Id for branch to search. Search all branches if this equals to 0.
+     * @param day The date that pending reservations should be pick up. Search all pending if is null.
+     * @return ArrayList of reservation satisfy requirement.
+     */
+    public ArrayList<Reservation> searchPendingReservation(int BranchId, Date day) {
+        ReservationInfoDao resInfDAO = new ReservationInfoDao();
+        ArrayList<Reservation> list = new ArrayList<>();
+        ArrayList<ReservationInfo> resInfList = null;
+        
+        try {
+            resInfList = resInfDAO.searchPending(BranchId, day);
+        } catch (DaoException ex) {
+            Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
+        for (ReservationInfo a : resInfList) {
+            list.add(getCompleteReservation(a));
+        }
+        return list;
+    }
 }
