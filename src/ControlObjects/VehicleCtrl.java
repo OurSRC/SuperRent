@@ -123,6 +123,17 @@ public class VehicleCtrl {
         return searchVehicle(vehicle);
     }
 
+    
+        public ArrayList<Vehicle> searchForSaleVehicles(String VehivleClassName, Branch branch){
+        Vehicle vehicle = new Vehicle();
+        vehicle.setBranchId(branch.getBranchID());
+        vehicle.setStatus(Vehicle.SELLSTATUS.FORSALE);
+        if(VehivleClassName!=null){
+            vehicle.setClassName(VehivleClassName);
+        }
+        return searchVehicle(vehicle);
+    }
+        
     public ArrayList<String> getAvailableVehicleClasses(VehicleClass.TYPE type, Date pickUpTime, Date returnTime, Branch branch) {
         ArrayList<String> ans = new ArrayList<String>();
         ArrayList<String> list = getSubVehicleType(type);
