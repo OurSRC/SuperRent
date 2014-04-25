@@ -89,6 +89,13 @@ public final class Reservation {
     public int getBranchId() {
         return reserveInfo.getBranchId();
     }
+    
+    public String getPrice()
+    {
+        return "100.00";
+    }
+    
+    
 
     public Branch matchBranch() {
         BranchDao brDAO = new BranchDao();

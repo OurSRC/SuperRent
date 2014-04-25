@@ -9,7 +9,6 @@ import ControlObjects.BranchCtrl;
 import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
 import SystemOperations.DateClass;
-import entity.ReservationInfo;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -100,6 +99,7 @@ public class ViewReservationsFXMLController implements Initializable {
         VehicleClass.setCellValueFactory(new PropertyValueFactory("vehicleClass"));
         ReturnDate.setCellValueFactory(new PropertyValueFactory("returnTime"));
         EstimatedCost.setCellValueFactory(new PropertyValueFactory("price"));
+        PickUpDate.setCellValueFactory(new PropertyValueFactory("pickupTime"));
     }
 
     @FXML

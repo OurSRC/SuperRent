@@ -77,14 +77,14 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
             Date ToReserveTime, Branch branch, String ReservationNo) throws DaoException {
 
         SqlBuilder qb = new SqlBuilder();
-      
+
         qb.cond("ReserveTime < " + SqlBuilder.wrapDatetime(ToReserveTime));
         qb.cond("ReserveTime > " + SqlBuilder.wrapDatetime(FromReserveTime));
+        qb.cond("ReservationStatus = 'PENDING'");
         qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
-        if(!ReservationNo.equals(""))
-        {
+        if (!ReservationNo.equals("")) {
             System.out.println("I am here");
-        qb.cond("ReservationNo =" + SqlBuilder.wrapStr(ReservationNo));
+            qb.cond("ReservationNo =" + SqlBuilder.wrapStr(ReservationNo));
         }
 
         String cond = qb.toString();

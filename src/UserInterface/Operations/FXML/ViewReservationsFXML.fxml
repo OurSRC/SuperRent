@@ -54,6 +54,6 @@
             </FXCollections>
           </items>
         </ComboBox>
-</children></Pane><Button layoutX="383.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Cancel Reservation" /><Button layoutX="14.0" layoutY="403.0" mnemonicParsing="false" onAction="#NewReservationButtonAction" prefHeight="25.0" prefWidth="149.0" text="New Reservation" />
+</children></Pane><Button layoutX="383.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Cancel Reservation" /><Button layoutX="14.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="New Reservation" />
   </children>
 </AnchorPane>
