@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
@@ -25,14 +26,38 @@ public class ReturnInformationPageFXMLController implements Initializable {
     private ToggleGroup FuelTG;
     @FXML
     private ToggleGroup DamagedTG;
-    @FXML
-    private Label DamagedLabel;
-    @FXML
-    private Label MissingFuelLabel;
+        private Label DamagedLabel;
+        private Label MissingFuelLabel;
     @FXML
     private TextField MissingFuelTF;
     @FXML
     private TextField DamagedTF;
+    @FXML
+    private RadioButton FuelFull;
+    @FXML
+    private RadioButton FuelNotFull;
+    @FXML
+    private RadioButton DamagedYes;
+    @FXML
+    private RadioButton DamagedNo;
+    @FXML
+    private RadioButton RoadStarYes;
+    @FXML
+    private ToggleGroup RoadStarTG;
+    @FXML
+    private RadioButton RoadStarNo;
+    @FXML
+    private TextField OdometerReadingTF;
+    @FXML
+    private Label RedeemPointsLabel;
+    @FXML
+    private RadioButton RedeemPointsYesRB;
+    @FXML
+    private ToggleGroup RedeemPointsTG;
+    @FXML
+    private RadioButton RedeemPointsNoRB;
+    @FXML
+    private TextField RedeemPointsTF;
 
     /**
      * Initializes the controller class.
@@ -40,31 +65,32 @@ public class ReturnInformationPageFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        DamagedLabel.setOpacity(.5);
-        MissingFuelLabel.setOpacity(.5);
+        //DamagedLabel.setOpacity(.5);
+        //MissingFuelLabel.setOpacity(.5);
         MissingFuelTF.setDisable(true);
         DamagedTF.setDisable(true);
         
     }    
     
+    @FXML
     public void FullFuelRadioAction(ActionEvent event)
     {
-        MissingFuelLabel.setOpacity(.5);
         MissingFuelTF.setDisable(true);
     }
     
+    @FXML
     public void NotFullFuelRadioAction(ActionEvent event)
     {
-        MissingFuelLabel.setOpacity(1);
         MissingFuelTF.setDisable(false);
     }
     
+    @FXML
     public void DamagedRadioAction(ActionEvent event)
     {
-        DamagedLabel.setOpacity(1);
         DamagedTF.setDisable(false);
     }
     
+    @FXML
     public void NoDamagedRadioAction(ActionEvent event)
     {
         DamagedLabel.setOpacity(.5);

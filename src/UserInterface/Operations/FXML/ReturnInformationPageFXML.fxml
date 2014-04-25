@@ -3,27 +3,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReturnInformationPageFXMLController">
-<children><Button alignment="CENTER" layoutX="548.0" layoutY="400.0" mnemonicParsing="false" onAction="#PaymentButtonAction" prefHeight="25.0" prefWidth="91.0" text="Payment" /><Label layoutX="28.0" layoutY="61.0" prefHeight="17.0" prefWidth="97.0" text="Return Date">
-<font>
-<Font name="System Bold" size="12.0" />
-</font></Label><DatePicker layoutX="134.0" layoutY="57.0" prefHeight="25.0" prefWidth="122.0" /><ComboBox layoutX="280.0" layoutY="57.0" prefHeight="25.0" prefWidth="84.0" /><Label layoutX="26.0" layoutY="177.0" text="Damaged">
-<font>
-<Font name="System Bold" size="12.0" />
-</font></Label><Label layoutX="26.0" layoutY="124.0" text="Fuel Status">
-<font>
-<Font name="System Bold" size="12.0" />
-</font></Label><RadioButton layoutX="134.0" layoutY="124.0" mnemonicParsing="false" onAction="#FullFuelRadioAction" selected="true" text="Full">
+<children><Button alignment="CENTER" layoutX="517.0" layoutY="400.0" mnemonicParsing="false" onAction="#PaymentButtonAction" prefHeight="25.0" prefWidth="122.0" text="Payment" /><Label layoutX="36.0" layoutY="86.0" text="Damaged" /><Label layoutX="36.0" layoutY="39.0" text="Fuel Status" /><RadioButton fx:id="FuelFull" layoutX="165.0" layoutY="39.0" mnemonicParsing="false" onAction="#FullFuelRadioAction" selected="true" text="Full">
 <toggleGroup>
 <ToggleGroup fx:id="FuelTG" />
-</toggleGroup></RadioButton><RadioButton layoutX="191.0" layoutY="124.0" mnemonicParsing="false" onAction="#NotFullFuelRadioAction" text="Not Full" toggleGroup="$FuelTG" /><RadioButton layoutX="191.0" layoutY="179.0" mnemonicParsing="false" onAction="#DamagedRadioAction" text="Yes">
+</toggleGroup></RadioButton><RadioButton fx:id="FuelNotFull" layoutX="222.0" layoutY="39.0" mnemonicParsing="false" onAction="#NotFullFuelRadioAction" text="Not Full" toggleGroup="$FuelTG" /><RadioButton fx:id="DamagedYes" layoutX="164.0" layoutY="88.0" mnemonicParsing="false" onAction="#DamagedRadioAction" text="Yes">
 <toggleGroup>
 <ToggleGroup fx:id="DamagedTG" />
-</toggleGroup></RadioButton><RadioButton layoutX="135.0" layoutY="177.0" mnemonicParsing="false" onAction="#NoDamagedRadioAction" selected="true" text="No" toggleGroup="$DamagedTG" /><Label fx:id="DamagedLabel" layoutX="280.0" layoutY="179.0" text="Damage Charges" /><Label fx:id="MissingFuelLabel" layoutX="280.0" layoutY="124.0" text="Missing Fuel" /><TextField fx:id="MissingFuelTF" layoutX="389.0" layoutY="120.0" prefHeight="25.0" prefWidth="122.0" />
-<TextField fx:id="DamagedTF" layoutX="389.0" layoutY="175.0" prefHeight="25.0" prefWidth="122.0" /><Label layoutX="28.0048828125" layoutY="229.0" text="Road Star">
-<font>
-<Font name="System Bold" size="12.0" />
-</font></Label><RadioButton layoutX="135.0439453125" layoutY="229.0" mnemonicParsing="false" text="Yes" /><RadioButton layoutX="191.0" layoutY="229.0" mnemonicParsing="false" text="No" />
+</toggleGroup></RadioButton><RadioButton fx:id="DamagedNo" layoutX="223.0" layoutY="88.0" mnemonicParsing="false" onAction="#NoDamagedRadioAction" selected="true" text="No" toggleGroup="$DamagedTG" /><TextField fx:id="MissingFuelTF" layoutX="316.0" layoutY="35.0" prefHeight="25.0" prefWidth="122.0" promptText="Missing Fuel" />
+<TextField fx:id="DamagedTF" layoutX="316.0" layoutY="82.0" prefHeight="25.0" prefWidth="122.0" promptText="Damage Charges" /><Label layoutX="36.0" layoutY="129.0" text="Road Star" /><RadioButton fx:id="RoadStarYes" layoutX="164.0" layoutY="129.0" mnemonicParsing="false" text="Yes">
+<toggleGroup>
+<ToggleGroup fx:id="RoadStarTG" />
+</toggleGroup></RadioButton><RadioButton fx:id="RoadStarNo" layoutX="223.0" layoutY="129.0" mnemonicParsing="false" selected="true" text="No" toggleGroup="$RoadStarTG" /><Label layoutX="37.0" layoutY="216.0" text="Odometer Reading" /><TextField fx:id="OdometerReadingTF" layoutX="161.0" layoutY="212.0" prefHeight="25.0" prefWidth="97.0" /><Label layoutX="272.0" layoutY="216.0" text="kms" /><Label fx:id="RedeemPointsLabel" layoutX="35.0" layoutY="169.0" text="Redeem Points" /><RadioButton fx:id="RedeemPointsYesRB" layoutX="164.0" layoutY="169.0" mnemonicParsing="false" text="Yes">
+<toggleGroup>
+<ToggleGroup fx:id="RedeemPointsTG" />
+</toggleGroup></RadioButton><RadioButton fx:id="RedeemPointsNoRB" layoutX="224.0" layoutY="169.0" mnemonicParsing="false" text="No" toggleGroup="$RedeemPointsTG" /><TextField fx:id="RedeemPointsTF" layoutX="315.0" layoutY="165.0" prefHeight="25.0" prefWidth="122.0" promptText="Non Member" />
 </children></AnchorPane>

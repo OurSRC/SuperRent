@@ -16,16 +16,14 @@
             <Separator layoutX="15.0" layoutY="69.0" prefWidth="633.0" />
             <Pane fx:id="RentalPane" layoutX="15.0" layoutY="76.0" prefHeight="358.0" prefWidth="633.0">
               <children>
-                <Label fx:id="CustomerNumberLabel" layoutX="27.0" layoutY="53.0" text="Customer Number" />
-                <TextField fx:id="CustomerPhoneTF" editable="false" layoutX="168.0" layoutY="49.0" prefHeight="25.0" prefWidth="138.0" />
-                <Label fx:id="VechicleTypeLabel" layoutX="27.0" layoutY="126.0" text="Vehicle Model" />
-                <Label fx:id="VehicleNumberLabel" layoutX="27.0" layoutY="91.0" text="Vechile Number" />
-                <Label fx:id="RentStartDateLabel" layoutX="27.0" layoutY="163.0" text="Rental Start Date" />
-                <TextField fx:id="VehicleTypeTF" editable="false" layoutX="168.0" layoutY="122.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField editable="false" layoutX="168.0" layoutY="87.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField editable="false" layoutX="168.0" layoutY="159.0" prefHeight="25.0" prefWidth="138.0" />
-                <Label fx:id="RentEndDateLabel" layoutX="27.0" layoutY="198.0" text="Rental End Date" />
-                <TextField editable="false" layoutX="168.0" layoutY="194.0" prefHeight="25.0" prefWidth="138.0" /><Button alignment="CENTER" layoutX="481.0" layoutY="307.0" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="138.0" text="Proceed to Return" /><TextField layoutX="168.0" layoutY="8.0" prefHeight="25.0" prefWidth="138.0" /><Label layoutX="27.0048828125" layoutY="12.0" text="Reservation Number" />
+                <Label fx:id="CustomerNumberLabel" layoutX="342.0" layoutY="12.0" text="Customer Number" />
+                <TextField fx:id="CustomerPhoneTF" editable="false" layoutX="483.0" layoutY="8.0" prefHeight="25.0" prefWidth="138.0" />
+                <Label fx:id="VechicleTypeLabel" layoutX="342.0" layoutY="44.0" text="Vehicle Model" />
+                <Label fx:id="VehicleNumberLabel" layoutX="29.0" layoutY="44.0" text="Vechile Number" />
+                <Label fx:id="RentStartDateLabel" layoutX="29.0" layoutY="77.0" text="Rental Start Date" />
+                <TextField fx:id="VehicleModelTF" editable="false" layoutX="483.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
+                <TextField fx:id="VehiclePlateTF" editable="false" layoutX="169.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
+                <TextField fx:id="RentStartDate" editable="false" layoutX="170.0" layoutY="73.0" prefHeight="25.0" prefWidth="138.0" /><Button alignment="CENTER" layoutX="481.0" layoutY="307.0" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="138.0" text="Proceed to Return" /><TextField fx:id="ReservationNumberTF" layoutX="168.0" layoutY="8.0" prefHeight="25.0" prefWidth="138.0" /><Label layoutX="27.0048828125" layoutY="12.0" text="Reservation Number" /><ListView fx:id="AdditionalEquipmentList" layoutX="36.0" layoutY="147.0" prefHeight="107.0" prefWidth="274.0" /><ListView fx:id="InsuranceList" layoutX="342.0" layoutY="147.0" prefHeight="107.0" prefWidth="274.0" /><Label layoutX="36.0048828125" layoutY="123.5" text="Additional Equipment" /><Label layoutX="342.0048828125" layoutY="123.5" text="Insurance" />
               </children>
             </Pane>
           </children>

@@ -9,16 +9,22 @@ import ControlObjects.CustomerCtrl;
 import ControlObjects.RentCtrl;
 import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
+import ControlObjects.VehicleCtrl;
+import entity.Customer;
 import entity.Rent;
+import entity.Vehicle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -46,20 +52,24 @@ public class ReturnMainPageFXMLController implements Initializable {
     public Pane RentalPane;
     public Pane BottomPane;
     @FXML
-    private Label CustomerNameLabel;
+    private TextField VehicleModelTF;
+    @FXML
+    private TextField VehiclePlateTF;
+    @FXML
+    private TextField RentStartDate;
+    @FXML
+    private TextField ReservationNumberTF;
+    @FXML
+    private ListView AdditionalEquipmentList;
+    @FXML
+    private ListView InsuranceList;
 
     /**
      * Initializes the controller class.
      */
     @FXML
     public void SearchRentButtonAction(ActionEvent event) {
-        //CustomerPhoneTF.setVisible(true);
-        VehicleTypeTF.setVisible(true);
-        CustomerNumberLabel.setVisible(true);
-        VechicleTypeLabel.setVisible(true);
-        VehicleNumberLabel.setVisible(true);
-        RentStartDateLabel.setVisible(true);
-        RentEndDateLabel.setVisible(true);
+
         RentalPane.setVisible(true);
         RentCtrl newRentCtrl = new RentCtrl();
         Rent searchRent = newRentCtrl.getRentByContractNumber(Integer.parseInt(RentalAgreementTF.getText()));
@@ -72,6 +82,31 @@ public class ReturnMainPageFXMLController implements Initializable {
         System.out.println(rentReservation.getVehicleClass());
         
         CustomerCtrl newCustomerCtrl = new CustomerCtrl();
+        Customer rentCustomer = newCustomerCtrl.getCustomerById(rentReservation.getCustomerId());
+        
+        VehicleCtrl newVehicleCtrl = new VehicleCtrl();
+        Vehicle rentedVehicle = newVehicleCtrl.getVehicleByVehicleNo(searchRent.getVehicleNo());
+        
+        ReservationNumberTF.setText(rentReservation.getReservationNo());
+        VehiclePlateTF.setText(rentedVehicle.getPlateNo());
+        RentStartDate.setText(searchRent.getTime().toString());
+        CustomerPhoneTF.setText(rentCustomer.getPhone());
+        VehicleModelTF.setText(rentedVehicle.getMode());
+        
+        if (rentReservation.getEquipmentType().size() != 0) {
+            System.out.println("Inside Additional Equipments");
+            ObservableList<String> items = FXCollections.observableArrayList(rentReservation.getEquipmentType());
+            AdditionalEquipmentList.setItems(items);
+        }
+
+        if (!rentReservation.getInsurance().isEmpty()) {
+            ObservableList<String> items = FXCollections.observableArrayList(rentReservation.getInsurance());
+            InsuranceList.setItems(items);
+        }
+        
+        ReturnNavigator.returnRent  = searchRent;
+        ReturnNavigator.returnReservation = rentReservation;
+        
         
         /*FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), RentalPane);
          FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), BottomPane);

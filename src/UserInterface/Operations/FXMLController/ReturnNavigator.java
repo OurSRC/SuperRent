@@ -7,6 +7,7 @@
 package UserInterface.Operations.FXMLController;
 
 
+import ControlObjects.Reservation;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import entity.Rent;
 import java.io.IOException;
@@ -22,10 +23,12 @@ public class ReturnNavigator {
 
         public static final String ReturnMainPage = "/UserInterface/Operations/FXML/ReturnMainPageFXML.fxml";
         public static final String ReturnInformationPage= "/UserInterface/Operations/FXML/ReturnInformationPageFXML.fxml";
-        public static final String RentConfirmPage = "";
+        public static final String RentPaymentPage = "";
         
         /* Common Variables to facilitate navigations */
         public static Rent returnRent;
+        public static Reservation returnReservation;
+       
 
 
         public static void setMainController(OperationsFXMLController mainController) {

@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane id="loginAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="534.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.Login.FXMLController.FXMLLoginController">
+<AnchorPane id="loginAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLLoginController">
   <children>
     <Pane id="loginPane" layoutX="0.0" layoutY="0.0" prefHeight="342.0" prefWidth="534.0">
       <children>
         <TextField fx:id="UserNameTF" layoutX="170.0" layoutY="80.0" prefHeight="42.9609375" prefWidth="200.0" promptText="Username" text="" />
-        <PasswordField fx:id="PasswordTF" layoutX="170.0" layoutY="144.0"  prefHeight="42.9609375" prefWidth="200.0" promptText="Password" />
+        <PasswordField fx:id="PasswordTF" layoutX="170.0" layoutY="144.0" prefHeight="42.9609375" prefWidth="200.0" promptText="Password" />
         <Button fx:id="Login" layoutX="202.0" layoutY="229.0" mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="23.9609375" prefWidth="131.0" text="Login" />
         <Label id="WarningLabel" fx:id="MissingDetailsMessage" layoutX="198.0" layoutY="200.0" text="Please enter Login Details" textFill="RED" visible="false" />
         <Label id="LoginText" fx:id="InvalidMessage" graphicTextGap="0.0" layoutX="193.0" layoutY="198.0" prefWidth="149.0" text="Invalid Username/Password" textFill="RED" visible="false" />
-        <StackPane layoutX="93.0" layoutY="267.0" prefHeight="70.0" prefWidth="382.0">
-          <children>
-            <Button mnemonicParsing="false" onAction="#nextPane" prefHeight="23.9609375" prefWidth="131.0" text="Forgot Login Details" />
-          </children>
-        </StackPane>
+            <Button layoutX="202.0" layoutY="268.0" mnemonicParsing="false" onAction="#nextPane" prefHeight="23.9609375" prefWidth="131.0" text="Forgot Login Details" />
       </children>
     </Pane>
   </children>
