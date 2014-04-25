@@ -8,10 +8,13 @@ package UserInterface.Operations.FXMLController;
 import ControlObjects.RentCtrl;
 import ControlObjects.ReserveCtrl;
 import ControlObjects.StaffCtrl;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import entity.Rent;
 import entity.ReservationInfo;
 import entity.Staff;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -82,7 +85,7 @@ public class RentDetailPageFXMLController implements Initializable {
     }
 
     @FXML
-    private void GenerateAgreementButtonAction(ActionEvent event) {
+    private void GenerateAgreementButtonAction(ActionEvent event) throws IOException {
         if (ValidateMandatory()) {
             if (ValidateOdometerReading()) {
                 System.out.println("I am inside the validation loop");
@@ -98,10 +101,18 @@ public class RentDetailPageFXMLController implements Initializable {
                 newRent.setStaffId(staff.getStaffId());
                 newRent.setTime(new Date());
                 Rent createdRent = newRentCtrl.createRent(newRent);
-                
-                ReserveCtrl newReserveCtrl = new ReserveCtrl();
-                RentNavigator.selectedReservation.setReservationStatus(ReservationInfo.STATUS.RENTED);
-                newReserveCtrl.updateReserve(RentNavigator.selectedReservation);
+                if (createdRent != null) {
+                    ReserveCtrl newReserveCtrl = new ReserveCtrl();
+                    RentNavigator.selectedReservation.setReservationStatus(ReservationInfo.STATUS.RENTED);
+                    newReserveCtrl.updateReserve(RentNavigator.selectedReservation);
+                    DialogFX dialog = new DialogFX(Type.INFO);
+                    dialog.setTitleText("Success");
+                    dialog.setMessage(" Rent Agreement Created . Agreement # : " + Integer.toString(createdRent.getContractNo()) );
+                    dialog.showDialog();
+                    RentNavigator.loadVista(RentNavigator.ReserveSearchPage);
+                } else {
+                    System.out.println("Rent Creation Failed");
+                }
 
             } else {
                 System.out.println("Invalid Odometer Reading");
@@ -111,12 +122,13 @@ public class RentDetailPageFXMLController implements Initializable {
 
     @FXML
     private void ValidateButtonAction(ActionEvent event) {
-
+        CardValidatedTF.setText("Yes");
         validateFlag = true;
     }
 
     @FXML
     private void ChangeStatus(KeyEvent event) {
+        CardValidatedTF.setText("No");
         validateFlag = false;
     }
 
