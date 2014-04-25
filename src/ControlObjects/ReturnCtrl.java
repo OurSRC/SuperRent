@@ -25,8 +25,8 @@ public class ReturnCtrl {
         }
         return returnInfo;
     }
-    
-    public Return createReturn(int ContractNum, int Fuel, int Odometer, int StaffId, int PaymentId){
+
+    public Return createReturn(int ContractNum, int Fuel, int Odometer, int StaffId, int PaymentId) {
         Return rtn = new Return(ContractNum, new Date(), Fuel, Odometer, StaffId, PaymentId);
         return createReturn(rtn);
     }
@@ -59,8 +59,8 @@ public class ReturnCtrl {
         }
         return list;
     }
-    
-    public Return searchFirstReturn(Return returnInfo){
+
+    public Return searchFirstReturn(Return returnInfo) {
         ReturnDao dao = new ReturnDao();
         try {
             return dao.findFirstInstance(returnInfo);
@@ -82,26 +82,18 @@ public class ReturnCtrl {
         rtn.setPaymentId(paymentId);
         return searchFirstReturn(rtn);
     }
-    
-        public ArrayList<Return> getRerurnsByDate(Date d, int branchId) {
-        ReturnDao returnDao  = new ReturnDao();
-        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat expectedFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
-        String dateStr = inputFormat.format(d);
-        Date start;
-        Date end;
 
+    public ArrayList<Return> getRerurnsByDate(Date d, int branchId) {
+        return getReturnsBetweenDates(d, d, branchId);
+    }
+
+    public ArrayList<Return> getReturnsBetweenDates(Date start, Date end, int branchId) {
+        ReturnDao returnDao = new ReturnDao();
         try {
-            start = expectedFormat.parse(dateStr + " 00:00:00");
-            end = expectedFormat.parse(dateStr + " 00:00:00");
-            end.setTime(start.getTime() + 1 * 24 * 60 * 60 * 1000);
             return returnDao.findBetween(start, end, branchId);
-        } catch (ParseException ex) {
-            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DaoException ex) {
-            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
-            ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
+            Logger.getLogger(ReturnCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
         return null;
     }
