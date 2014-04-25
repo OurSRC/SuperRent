@@ -74,7 +74,7 @@ public class EquipmentDao extends AbstractDao<Equipment>{
      * This method find equipment number with given {@code branchId, equipmentType} 
      * @param branchId branch ID of branch
      * @param equipmentType   equipment type of equipment
-     * @return
+     * @return count of equipments
      * @throws DaoException
      */
     public int countEquipment(int branchId, String equipmentType) throws DaoException {

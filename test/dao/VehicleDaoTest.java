@@ -103,27 +103,7 @@ public class VehicleDaoTest {
         assertEquals(result.getOdometer(), 500);
     }
     
-    @Test
-    public void testFind() throws  DaoException {
-        VehicleDao dao = new VehicleDao();
-        ArrayList<Vehicle> result;
-        result = dao.findAvailableForRent();
-        assertEquals(result.size(), 2); // current vehicle number for rent in the DB
-        Vehicle entity = result.get(0); // the last one or two tupple in DB b/c it is inserted lastly
-        if (entity.getPlateNo().equals("357-ADF") || entity.getPlateNo().equals("357-ADG")) {
-        } else {
-            fail("not found");
-        }
-        
-        result = dao.findAvailableForSale();
-        assertEquals(result.size(), 1);
-        entity = result.get(0);
-        if (!entity.getPlateNo().equals("357-ADH")) {
-            fail("not found");
-        }
-    }
-    
-    @Test
+    //@Test
     public void testFindByVehicle() throws DaoException {
         VehicleDao dao = new VehicleDao();
         Vehicle v = new Vehicle();

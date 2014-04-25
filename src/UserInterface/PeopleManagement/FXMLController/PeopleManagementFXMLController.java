@@ -9,6 +9,8 @@ package UserInterface.PeopleManagement.FXMLController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,12 +33,17 @@ public class PeopleManagementFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-     
-    }    
-
+        try {
+            // TODO
+            PPLManagementNavigator.setMainController(this);
+            PPLManagementNavigator.loadVista(PPLManagementNavigator.UserSearch);
+        } catch (IOException ex) {
+            Logger.getLogger(PeopleManagementFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }   
+    
     @FXML
-    private void RemoveUserButtonAction(ActionEvent event) throws IOException
+    private void EditUserButtonAction(ActionEvent event) throws IOException
     {
         PPLManagementNavigator.setMainController(this);
         PPLManagementNavigator.loadVista(PPLManagementNavigator.UserSearch);
@@ -68,7 +75,6 @@ public class PeopleManagementFXMLController implements Initializable {
     {
         MainPPLManagementStackPane.getChildren().clear();
     }
-    
-    
-    
+
+   
 }

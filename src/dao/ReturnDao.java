@@ -14,7 +14,9 @@ import entityParser.DateParser;
 import entityParser.DatetimeParser;
 
 /**
- *
+ * <p>
+ *  This class provides basic access methods, for example, find
+ *  for rent entity.</p>
  * @author Xi Yang
  */
 public class ReturnDao extends AbstractDao<Return>{
@@ -37,6 +39,12 @@ public class ReturnDao extends AbstractDao<Return>{
     protected Return getInstance() {
         return new Return();
     }
+    /**
+     * This method find a {@link Return} with given {@code contractNo}
+     * @param contractNo contract number of return
+     * @return return with contract number, null if non found
+     * @throws DaoException
+     */
     public Return findByContractNo(int contractNo) throws DaoException{
         return findOne("ContractNo=" + SqlBuilder.wrapInt(contractNo));
     }

@@ -1,4 +1,7 @@
-INSERT INTO `super_rent`.`buy_insurance` VALUES ('DW', 2, 300, 2000, 8000);
-INSERT INTO `super_rent`.`buy_insurance` VALUES ('DW', 3, -4, -3, -2);
-INSERT INTO `super_rent`.`buy_insurance` VALUES ('DW', 8, 300, 2000, 8000);
-INSERT INTO `super_rent`.`buy_insurance` VALUES ('RAP', 3, 100, 500, 2000);
+INSERT INTO `super_rent`.`buy_insurance` VALUES ('Damage Waiver', '2', '-1', '-2', '-10');
+INSERT INTO `super_rent`.`buy_insurance` VALUES ('Damage Waiver', '3', '-1', '-2', '-10');
+INSERT INTO `super_rent`.`buy_insurance` VALUES ('Damage Waiver', '8', '-1', '-2', '-10');
+INSERT INTO `super_rent`.`buy_insurance` VALUES ('Personal Accident Insurance', '5', '200', '700', '2800');
+INSERT INTO `super_rent`.`buy_insurance` VALUES ('Personal Accident Insurance', '8', '200', '700', '2800');
+INSERT INTO `super_rent`.`buy_insurance` VALUES ('Personal Effects Coverage', '6', '200', '700', '2800');
+INSERT INTO `super_rent`.`buy_insurance` VALUES ('Roadside Assistance', '3', '100', '500', '2000');
