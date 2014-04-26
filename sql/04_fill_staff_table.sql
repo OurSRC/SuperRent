@@ -4,3 +4,8 @@ INSERT INTO `super_rent`.`staff` VALUES (5, 'manager2_f', 'manager2_m', 'manager
 INSERT INTO `super_rent`.`staff` VALUES (7, 'manager_f', 'manager_m', 'manager_l', 'manager@scr.com', '123456', 'MANAGER', 'ACTIVE', 'manager', 1);
 INSERT INTO `super_rent`.`staff` VALUES (8, 'clerk2_f', 'clerk2_m', 'clerk2_l', 'clerk2@src.com', '7828866', 'CLERK', 'ACTIVE', 'clerk2', 1);
 INSERT INTO `super_rent`.`staff` VALUES (9, 'clerk3_f', 'clerk3_m', 'clerk3_l', 'clerk3@src.com', '7898896', 'CLERK', 'ACTIVE', 'clerk3', 1);
+INSERT INTO `super_rent`.`staff` VALUES (10, 'clerk4_f', 'clerk4_m', 'clerk4_l', 'clerk4@src.com', '7968926', 'CLERK', 'ACTIVE', 'clerk4', 1);
+INSERT INTO `super_rent`.`staff` VALUES (11, 'clerk5_f', 'clerk5_m', 'clerk5_l', 'clerk5@src.com', '8038956', 'CLERK', 'ACTIVE', 'clerk5', 1);
+INSERT INTO `super_rent`.`staff` VALUES (12, 'clerk6_f', 'clerk6_m', 'clerk6_l', 'clerk6@src.com', '8108986', 'CLERK', 'ACTIVE', 'clerk6', 1);
+INSERT INTO `super_rent`.`staff` VALUES (13, 'clerk7_f', 'clerk7_m', 'clerk7_l', 'clerk7@src.com', '8179016', 'CLERK', 'ACTIVE', 'clerk7', 1);
+INSERT INTO `super_rent`.`staff` VALUES (14, 'clerk8_f', 'clerk8_m', 'clerk8_l', 'clerk8@src.com', '8249046', 'CLERK', 'ACTIVE', 'clerk8', 1);

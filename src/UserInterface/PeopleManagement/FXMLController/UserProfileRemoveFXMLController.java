@@ -128,11 +128,11 @@ public class UserProfileRemoveFXMLController implements Initializable {
             dialog.showDialog();
         } 
         else {
-            firstName = FirstNameTF.getText();
-            lastName = LastNameTF.getText();
-            middleName = MiddleNameTF.getText();
-            email = EmailTF.getText();
-            phone = PhoneNumberTF.getText();
+            firstName = FirstNameTF.getText().trim();
+            lastName = LastNameTF.getText().trim();
+            middleName = MiddleNameTF.getText().trim();
+            email = EmailTF.getText().trim();
+            phone = PhoneNumberTF.getText().trim();
             password = SetNewPasswordPF.getText();
             
             switch(StatusCB.getSelectionModel().getSelectedItem().toString())
@@ -214,7 +214,7 @@ public class UserProfileRemoveFXMLController implements Initializable {
     
     private boolean ValidatePhoneNumber()
     {
-        return ValidateFields.CheckForNumbersOnly(PhoneNumberTF.getText().trim());
+        return ValidateFields.CheckIntegerNumbersOnly(PhoneNumberTF.getText().trim());
     }
     
     private boolean ValidateMandatoryFields()

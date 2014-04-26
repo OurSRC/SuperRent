@@ -98,12 +98,12 @@ public class AddUserFXMLController implements Initializable {
         }
             
         else {
-            firstName = FirstNameTF.getText();
-            lastName = LastNameTF.getText();
-            middleName = MiddleNameTF.getText();
-            email = EmailTF.getText();
-            phone = PhoneNumberTF.getText();
-            userName = UserNameTF.getText();
+            firstName = FirstNameTF.getText().trim();
+            lastName = LastNameTF.getText().trim();
+            middleName = MiddleNameTF.getText().trim();
+            email = EmailTF.getText().trim();
+            phone = PhoneNumberTF.getText().trim();
+            userName = UserNameTF.getText().trim();
             password = SetPasswordPF.getText();
             
             switch(StatusCB.getSelectionModel().getSelectedItem().toString())
@@ -150,7 +150,7 @@ public class AddUserFXMLController implements Initializable {
             if (returnedStaff ==  null){
                 DialogFX dialog = new DialogFX(Type.ERROR);
                 dialog.setTitleText("Error");
-                dialog.setMessage("     " + ErrorMsg.translateError(ErrorMsg.getLastError()) + "    ");
+                dialog.setMessage("Staff creation attempt unsuccessful  ");
                 dialog.showDialog();
             } else {
                     DialogFX dialog = new DialogFX(Type.INFO);
@@ -191,7 +191,7 @@ public class AddUserFXMLController implements Initializable {
     private boolean ValidatePhoneNumber()
     {
         
-        return ValidateFields.CheckForNumbersOnly(PhoneNumberTF.getText().trim());
+        return ValidateFields.CheckIntegerNumbersOnly(PhoneNumberTF.getText().trim());
     }
     
     private boolean ValidateMandatoryFields()
