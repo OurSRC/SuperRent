@@ -14,6 +14,7 @@ import entity.Payment;
 import entity.PaymentItem;
 import entity.Rent;
 import entity.Return;
+import finance.Price;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -170,5 +171,9 @@ public class PaymentCtrl {
     
     public int getTotalAmount(){
         return pay.getAmount();
+    }
+    
+    public String getTotalAmountText(){
+        return Price.toText(getTotalAmount());
     }
 }
