@@ -53,7 +53,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         add(reservationInfo);
         int id = getLastAutoIncrementId();
         reservationInfo.setReservationInfoId(id);
-      return reservationInfo;
+        return reservationInfo;
     }
 
     public ReservationInfo findByReservationNo(String reservatioNo) throws DaoException {
@@ -106,12 +106,14 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return find(cond);
     }
 
-    public ArrayList<ReservationInfo> findReservationTimeBetween(Date early_bound, Date late_bound, Branch branch) throws DaoException {
+    public ArrayList<ReservationInfo> findReservationTimeBetween(Date early_bound, Date late_bound, int branchId) throws DaoException {
 
         SqlBuilder qb = new SqlBuilder();
         qb.cond("ReserveTime <" + SqlBuilder.wrapDatetime(late_bound));
-        qb.cond("ReserveTime > " + SqlBuilder.wrapDatetime(early_bound));
-        qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        qb.cond("ReserveTime => " + SqlBuilder.wrapDatetime(early_bound));
+        if (branchId != 0) {
+            qb.cond("BranchId =" + SqlBuilder.wrapInt(branchId));
+        }
         String cond = qb.toString();
 
         return find(cond);
@@ -143,20 +145,36 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
 
         return find(cond);
     }
-    
-    public ArrayList<ReservationInfo> searchPending(int BranchId, Date d) throws DaoException {
+
+    public ArrayList<ReservationInfo> searchPending(int branchId, Date date) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
-        if (BranchId != 0) {
-            qb.cond("BranchId = " + SqlBuilder.wrapInt(BranchId));
+        if (branchId != 0) {
+            qb.cond("BranchId = " + SqlBuilder.wrapInt(branchId));
         }
-        
-        if (d != null) {
-            qb.cond("DATE(PickUpTime) = " + SqlBuilder.wrapDate(d));
+
+        if (date != null) {
+            qb.cond("DATE(PickUpTime) = " + SqlBuilder.wrapDate(date));
         }
-        
+
         String cond = qb.toString();
-        
+
+        return find(cond);
+    }
+    
+    public ArrayList<ReservationInfo> searchNotReturned(int branchId, Date date) throws DaoException {
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
+        if (branchId != 0) {
+            qb.cond("BranchId = " + SqlBuilder.wrapInt(branchId));
+        }
+
+        if (date != null) {
+            qb.cond("DATE(ReturnTime) = " + SqlBuilder.wrapDate(date));
+        }
+
+        String cond = qb.toString();
+
         return find(cond);
     }
 

@@ -11,8 +11,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
- *
- * @author lenovo
+ * This class provide functionalities to construct SqlQuery
+ * @author Jingchuan Chen
  */
 public class SqlBuilder {
 
