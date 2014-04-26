@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -29,7 +30,7 @@ public class PaymentPageFXMLController implements Initializable {
     @FXML
     private TextField CreditCardNumberTF;
     @FXML
-    private TextField ExpiryDateTF;
+    private DatePicker ExpiryDateTF;
     @FXML
     private TextField CreditCardNameTF;
     @FXML

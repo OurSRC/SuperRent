@@ -126,7 +126,9 @@ public class ModifyVehiclePageFXMLController implements Initializable {
     }
 
     @FXML
-    private void BackToSearchButtonAction(ActionEvent event) {
+    private void BackToSearchButtonAction(ActionEvent event) throws IOException {
+        
+        VehicleNavigator.loadVista(VehicleNavigator.VEHICLEMAINPAGE);
     }
 
     @FXML
