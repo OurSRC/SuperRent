@@ -28,6 +28,7 @@ CREATE TABLE `branch` (
   `BranchAddress` varchar(200) NOT NULL,
   `FuelPrice` int(11) NOT NULL,
   `PricePerKM` int(11) NOT NULL,
+  `ClubMemberFeeRate` int(11) NOT NULL,
   PRIMARY KEY (`BranchId`),
   UNIQUE KEY `BranchName_UNIQUE` (`BranchName`),
   UNIQUE KEY `BranchPhone_UNIQUE` (`BranchPhone`),
@@ -277,10 +278,9 @@ CREATE TABLE `reserve_equipment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `return_record`
---
-
+-- ----------------------------
+-- Table structure for return_record
+-- ----------------------------
 DROP TABLE IF EXISTS `return_record`;
 CREATE TABLE `return_record` (
   `ContractNo` int(11) NOT NULL,
@@ -289,6 +289,7 @@ CREATE TABLE `return_record` (
   `Odometer` int(11) NOT NULL,
   `StaffId` int(11) NOT NULL,
   `PaymentId` int(11) NOT NULL,
+  `DamageCost` int(11) DEFAULT NULL,
   PRIMARY KEY (`ContractNo`),
   UNIQUE KEY `PaymentId_UNIQUE` (`PaymentId`),
   KEY `return_staff_fk_idx` (`StaffId`),
@@ -297,9 +298,6 @@ CREATE TABLE `return_record` (
   CONSTRAINT `return_payment` FOREIGN KEY (`PaymentId`) REFERENCES `payment` (`PaymentId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `return_staff_fk` FOREIGN KEY (`StaffId`) REFERENCES `staff` (`StaffId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Table structure for table `staff`
 --
@@ -354,7 +352,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `Username` varchar(20) NOT NULL,
-  `Password` varchar(20) NOT NULL,
+  `Password` varchar(35) NOT NULL,
   `Type` enum('CUSTOMER','STAFF') NOT NULL,
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
