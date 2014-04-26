@@ -68,10 +68,15 @@ public class ViewReservationsFXMLController implements Initializable {
     private TableColumn<?, ?> ReturnDate;
     @FXML
     private TableColumn<?, ?> EstimatedCost;
+    @FXML
+    private TableColumn CustomerNameColumn;
 
     /**
      * Initializes the controller class.
      */
+    
+    Date reserveFromDate;
+    Date reserveToDate;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // ViewReservationButton.setDisable(true);
@@ -81,13 +86,25 @@ public class ViewReservationsFXMLController implements Initializable {
 
         Reservation sample = new Reservation();
 
+        if(ReserveFromTime.valueProperty().isNotNull().getValue())
+        {
         LocalDate DateFrom = ReserveFromTime.getValue();
         String FromTime = TimeComboBox1.getValue().toString();
-        Date reserveFromDate = DateClass.getDateTimeObject(DateFrom, FromTime);
+        reserveFromDate = DateClass.getDateTimeObject(DateFrom, FromTime);
+        }else
+        {
+            reserveFromDate = null;
+        }
 
+        if(ReserveToTime.valueProperty().isNotNull().getValue())
+        {
         LocalDate ToDate = ReserveToTime.getValue();
         String ToTime = TimeComboBox.getValue().toString();
-        Date reserveToDate = DateClass.getDateTimeObject(ToDate, ToTime);
+        reserveToDate = DateClass.getDateTimeObject(ToDate, ToTime);
+        }else
+        {
+            reserveToDate = null;
+        }
 
         String reservatioNo = ReservationNo.getText();
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
@@ -98,7 +115,8 @@ public class ViewReservationsFXMLController implements Initializable {
         ReservationNumber.setCellValueFactory(new PropertyValueFactory("reservationNo"));
         VehicleClass.setCellValueFactory(new PropertyValueFactory("vehicleClass"));
         ReturnDate.setCellValueFactory(new PropertyValueFactory("returnTime"));
-        EstimatedCost.setCellValueFactory(new PropertyValueFactory("price"));
+        CustomerPhone.setCellValueFactory(new PropertyValueFactory("customerPhone"));
+        CustomerNameColumn.setCellValueFactory(new PropertyValueFactory("customerName"));
         PickUpDate.setCellValueFactory(new PropertyValueFactory("pickupTime"));
     }
 

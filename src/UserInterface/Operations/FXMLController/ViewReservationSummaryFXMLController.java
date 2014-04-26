@@ -6,6 +6,8 @@
 
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.FinanceCtrl;
+import finance.Price;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -70,6 +72,10 @@ public class ViewReservationSummaryFXMLController implements Initializable {
             ObservableList<String> items = FXCollections.observableArrayList(RentNavigator.selectedReservation.getInsurance());
             InsuranceList.setItems(items);
         }
+        
+        FinanceCtrl newFinanceCtrl = new FinanceCtrl();
+        int estimatedPrice = newFinanceCtrl.estimateReservationCost(RentNavigator.selectedReservation);
+        EstimatedCostTF.setText(Price.toText(estimatedPrice));
     }    
     
     @FXML

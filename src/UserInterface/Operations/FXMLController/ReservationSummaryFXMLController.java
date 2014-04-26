@@ -53,6 +53,8 @@ public class ReservationSummaryFXMLController implements Initializable {
     private TextField CreditCardTF;
     @FXML
     private ListView InsuranceList;
+    @FXML
+    private TextField CustomerTF;
 
     /**
      * Initializes the controller class.
@@ -63,6 +65,7 @@ public class ReservationSummaryFXMLController implements Initializable {
         VehicleClassTF.setText(ReservationNavigator.newReserve.getVehicleClass());
         PickUpDateTF.setText(ReservationNavigator.newReserve.getPickupTime().toString());
         ReturnDateTF.setText(ReservationNavigator.newReserve.getReturnTime().toString());
+        CustomerTF.setText(ReservationNavigator.newReserve.getCustomerPhone());
         System.out.println("Outside Additional Equipments");
 
         if (ReservationNavigator.newReserve.getEquipmentType().size() != 0) {
@@ -106,6 +109,7 @@ public class ReservationSummaryFXMLController implements Initializable {
             dialog.showDialog();
 
         } else {
+            String resservationNumber = newReserveCtrl.createReservationNumber(newReservation);
             System.out.println(newReservation.getReservationNo());
 
             DialogFX dialog = new DialogFX(Type.QUESTION);

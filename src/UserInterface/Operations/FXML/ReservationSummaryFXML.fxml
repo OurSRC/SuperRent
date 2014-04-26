@@ -5,30 +5,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReservationSummaryFXMLController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReservationSummaryFXMLController">
   <children>
     <Label layoutX="30.0" layoutY="185.0">
       <font>
         <Font name="System Italic" size="12.0" fx:id="x1" />
       </font>
     </Label>
-    <Label layoutX="280.0" layoutY="19.0" text="Reservation Summary">
-      <font>
-        <Font name="System Bold" size="12.0" />
-      </font>
-    </Label>
-    <Separator layoutX="59.0" layoutY="39.0" prefWidth="556.0" />
-    <Separator layoutX="59.0" layoutY="14.0" prefWidth="556.0" />
-    <Label font="$x1" layoutX="31.0" layoutY="58.0" text="Pick Up Date" />
-    <Label font="$x1" layoutX="391.0" layoutY="60.0" text="Return Date" />
-    <TextField fx:id="PickUpDateTF" layoutX="120.0" layoutY="55.0" prefWidth="159.0" />
-    <TextField fx:id="ReturnDateTF" layoutX="471.0" layoutY="57.0" prefWidth="159.0" />
-    <Label font="$x1" layoutX="31.0" layoutY="91.0" text="Vehicle Class" />
-    <Label font="$x1" layoutX="391.0" layoutY="93.0" text="Vehicle Type" />
-    <TextField fx:id="VehicleClassTF" layoutX="120.0" layoutY="91.0" prefWidth="159.0" />
-    <TextField fx:id="VehicleTypeTF" layoutX="471.0" layoutY="90.0" prefWidth="159.0" />
-    <Label font="$x1" layoutX="33.0" layoutY="138.0" text="Addtional Equipment Selected" />
-    <Button layoutX="513.0" layoutY="403.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Confirm" />
-    <Button layoutX="31.0" layoutY="403.0" mnemonicParsing="false" onAction="#AbortButtonAction" prefWidth="97.0" text="Abort" /><ListView fx:id="AdditionalEquipmentList" layoutX="30.0" layoutY="157.0" prefHeight="95.0" prefWidth="247.0" /><TextField fx:id="EstimatedCostTF" layoutX="120.0" layoutY="280.0" prefHeight="25.0" prefWidth="159.0" /><Label layoutX="31.0048828125" layoutY="283.5" text="Estimated Cost" /><Label layoutX="300.0048828125" layoutY="283.5" text="Note : 20% of the Esitmated Cost will be charged during Reservation" /><TextField fx:id="CreditCardTF" layoutX="120.0" layoutY="322.0" prefHeight="25.0" prefWidth="159.0" /><Label layoutX="32.0048828125" layoutY="326.0" text="Credit Card" /><Label layoutX="391.0" layoutY="137.0" text="Insurance Selected" /><ListView fx:id="InsuranceList" layoutX="391.0" layoutY="158.0" prefHeight="95.0" prefWidth="239.0" />
+    <Label layoutX="13.0" layoutY="48.0" text="Pick Up Date">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="374.0" layoutY="48.0" text="Return Date">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <TextField fx:id="PickUpDateTF" layoutX="120.0" layoutY="45.0" prefHeight="25.0" prefWidth="139.0" />
+    <TextField fx:id="ReturnDateTF" layoutX="461.0" layoutY="45.0" prefHeight="25.0" prefWidth="147.0" />
+    <Label layoutX="13.0" layoutY="88.0" text="Vehicle Class">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <TextField fx:id="VehicleClassTF" layoutX="120.0" layoutY="85.0" prefHeight="25.0" prefWidth="139.0" />
+    <Label layoutX="14.0" layoutY="136.0" text="Addtional Equipment Selected">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Button alignment="CENTER" layoutX="511.0" layoutY="404.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefHeight="15.0" prefWidth="118.0" text="Confirm" />
+    <Button alignment="CENTER" layoutX="20.0" layoutY="404.0" mnemonicParsing="false" onAction="#AbortButtonAction" prefHeight="25.0" prefWidth="118.0" text="Abort" /><ListView fx:id="AdditionalEquipmentList" layoutX="14.0" layoutY="158.0" prefHeight="95.0" prefWidth="245.0" /><TextField fx:id="EstimatedCostTF" layoutX="120.0" layoutY="317.0" prefHeight="25.0" prefWidth="73.0" /><Label layoutX="13.0" layoutY="319.5" text="Estimated Cost">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><Label layoutX="374.0" layoutY="136.0" text="Insurance Selected">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><ListView fx:id="InsuranceList" layoutX="374.0" layoutY="158.0" prefHeight="95.0" prefWidth="245.0" /><Label layoutX="13.0" layoutY="281.0" text="Customer Phone">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><TextField fx:id="CustomerTF" editable="false" layoutX="120.0" layoutY="278.0" prefHeight="25.0" prefWidth="139.0" /><Label layoutX="248.0" layoutY="3.0" text="Reservation Summary">
+<font>
+<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+</font>
+</Label>
   </children>
 </AnchorPane>

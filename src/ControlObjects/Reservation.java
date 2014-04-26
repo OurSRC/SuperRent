@@ -14,6 +14,7 @@ import dao.SupportEquipmentDao;
 import dao.VehicleClassDao;
 import entity.Branch;
 import entity.BuyInsurance;
+import entity.Customer;
 import entity.ReservationInfo;
 import entity.ReserveEquipment;
 import entity.VehicleClass;
@@ -140,6 +141,17 @@ public final class Reservation {
 
     public String getVehicleClass() {
         return reserveInfo.getVehicleClass();
+    }
+    
+    public String getCustomerPhone() {
+        CustomerCtrl newCustomerCtrl = new CustomerCtrl();
+        Customer CurrentCustomer = newCustomerCtrl.getCustomerById(getCustomerId());
+        return CurrentCustomer.getPhone();
+    }
+    public String getCustomerName() {
+        CustomerCtrl newCustomerCtrl = new CustomerCtrl();
+        Customer CurrentCustomer = newCustomerCtrl.getCustomerById(getCustomerId());
+        return CurrentCustomer.getFirstName() + " , " + CurrentCustomer.getLastName();
     }
 
     public void setVehicleClass(String vehicleClass) {

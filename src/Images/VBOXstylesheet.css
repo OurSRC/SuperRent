@@ -1,32 +1,17 @@
-#navigation {
--fx-border-right:1px solid #999;
--fx-padding:10px;
--fx-width:145px;
-}
-#navigation a  {
--fx-display:block;
--fx-background:url(navigation.png);
--fx-height:47px;
--fx-text-indent:-9000px;
+.button {
+  width: 250px;
+  padding: 10px 25px 10px 25px;
+  font-family: Arial;
+  font-size: 16px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #98ba3f;
 }
 
 .button:hover {
-    -fx-background-position:-146px 0px;;
+  background-color: #245191;
 }
-#navigation a.link1:hover {background-position:-146px 0px;}
-#navigation a.link2 {background-position:0px -47px;}
-#navigation a.link2:hover {background-position:-146px -47px;}
-#navigation a.link3 {background-position:0px -94px;}
-#navigation a.link3:hover{background-position:-146px -94px;}
-#navigation a.link4 {background-position:0px -141px;}
-#navigation a.link4:hover {background-position:-146px -141px;}
-#navigation a.link5 {background-position:0px -188px;}
-#navigation a.link5:hover {background-position:-146px -188px;}
-#navigation a.link6 {background-position:0px -235px;}
-#navigation a.link6:hover {background-position:-146px -235px;}
-#navigation a.link7 {background-position:0px -282px;}
-#navigation a.link7:hover {background-position:-146px -282px;}
-#navigation a.link8 {background-position:0px -329px;}
-#navigation a.link8:hover {background-position:-146px -329px;}
-#navigation a.link9 {background-position:0px -375px; height:65px;}
-#navigation a.link9:hover {background-position:-146px -375px;}
+
+.button:active {
+    -fx-font-size:19px;
+}

@@ -13,6 +13,7 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -26,6 +27,7 @@ public class OperationsFXMLController implements Initializable{
     @FXML   
     public StackPane MainOperationsStackPane;
     public TextField VehicleClassSelectedTF;
+    public Button HomeButton;
     
     
     public void CreateReservationAction(ActionEvent event) throws IOException
@@ -106,7 +108,6 @@ public class OperationsFXMLController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }
     
 }
