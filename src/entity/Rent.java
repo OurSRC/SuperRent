@@ -9,7 +9,7 @@ package entity;
 import java.util.Date;
 
 /**
- *
+ * Entity class for rent table.
  * @author Xi Yang
  */
 public class Rent {

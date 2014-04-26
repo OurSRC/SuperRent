@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- *
+ * Entity class for equipment table.
  * @author Jingchuan Chen
  */
 public class Equipment {

@@ -21,7 +21,7 @@ public class DbConn {
     static Connection conn = null;
     
     /**
-     * Return a {@link Statement} of the connection
+     * Return a Statement of the connection
      * @return Statement object.
      * @throws SQLException
      */
@@ -31,6 +31,20 @@ public class DbConn {
         }
 
         return conn.createStatement();
+    }
+    
+    /**
+     * Return a prepared statement which can retrieve auto generated key.
+     * @param sql Sql string to construct prepared statement
+     * @return Generated PreparedStatement
+     * @throws SQLException
+     */
+    public static PreparedStatement getPStmtWithAutoGenKey(String sql) throws SQLException {
+        if (conn == null) {
+            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        }
+        
+        return conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
     }
     
     /**

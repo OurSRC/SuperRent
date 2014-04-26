@@ -11,6 +11,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This class represent a mapping between Date field in entity object and Date field in database.
+ * @author Jingchuan Chen
+ */
 public class DateParser extends AttributeParser {
 
     @Override

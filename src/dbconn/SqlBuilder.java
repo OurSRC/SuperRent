@@ -5,7 +5,6 @@
  */
 package dbconn;
 
-import java.sql.*;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -141,6 +140,11 @@ public class SqlBuilder {
         return this;
     }
 
+    /**
+     * Convert SqlBuilder object to Sql string.
+     * @return
+     */
+    @Override
     public String toString() {
         if (select != null) {
             String str;
@@ -198,7 +202,7 @@ public class SqlBuilder {
         return Integer.toString(i);
     }
 
-    public static String wrapDatetime(java.util.Date d) {
+    public static String wrapDatetime(Date d) {
         if (d == null) {
             return "null";
         }
@@ -207,7 +211,7 @@ public class SqlBuilder {
         return wrapStr(ans);
     }
 
-    public static String wrapDate(java.util.Date d) {
+    public static String wrapDate(Date d) {
         if (d == null) {
             return "null";
         }

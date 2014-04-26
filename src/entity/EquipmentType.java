@@ -9,7 +9,7 @@ package entity;
 import finance.Price;
 
 /**
- *
+ * Entity class for equipment_type table.
  * @author Jingchuan Chen
  */
 public class EquipmentType {

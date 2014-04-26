@@ -7,7 +7,7 @@
 package entity;
 
 /**
- *
+ * Entity class for reserve_equipment table.
  * @author Jingchuan Chen
  */
 public class ReserveEquipment {

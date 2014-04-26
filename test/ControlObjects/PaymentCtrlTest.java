@@ -46,6 +46,8 @@ public class PaymentCtrlTest {
     //
     // @Test
     // public void hello() {}
+    
+    /*
      @Test
      public void hello() {
          int CustomerID = 5;
@@ -59,4 +61,6 @@ public class PaymentCtrlTest {
          int total = paymentCtrl.getTotalAmount();
          Payment p = paymentCtrl.proceed();
      }
+    
+    */
 }

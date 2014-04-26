@@ -75,6 +75,17 @@ public class RentCtrl {
         }
         return null;
     }
+    
+    static public Rent searchRentByReservationInfoId(int reservationInfoId) {
+        RentDao DAO = new RentDao();
+        try {
+            return DAO.findByReservationInfo(reservationInfoId);
+        } catch (DaoException ex) {
+            Logger.getLogger(RentCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+        }
+        return null;
+    }
 
     static public Rent getRentByContractNumber(int contractNumber) {
         Rent rent = new Rent();

@@ -9,7 +9,7 @@ package entity;
 import java.util.Date;
 
 /**
- *
+ * Entity class for payment table.
  * @author Jingchuan Chen
  */
 public class Payment {

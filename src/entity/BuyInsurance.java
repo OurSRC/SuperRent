@@ -6,7 +6,7 @@
 package entity;
 
 /**
- *
+ * Entity for buy_insurance table.
  * @author Jingchuan Chen
  */
 public class BuyInsurance {
@@ -67,29 +67,5 @@ public class BuyInsurance {
     public void setWeeklyRate(int weeklyRate) {
         this.weeklyRate = weeklyRate;
     }
-
-//    public String getHourlyPrice() {
-//        return "123.45";
-//    }
-//
-//    public boolean setHourlyPrice(String price) {
-//        return true;
-//    }
-//
-//    public String getDailyPrice() {
-//        return "123.45";
-//    }
-//
-//    public boolean setDailyPrice(String price) {
-//        return true;
-//    }
-//
-//    public String getWeeklyPrice() {
-//        return "123.45";
-//    }
-//
-//    public boolean setWeeklyPrice(String price) {
-//        return true;
-//    }
 
 }

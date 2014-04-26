@@ -8,6 +8,10 @@ package entityParser;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 
+/**
+ * This class represent a mapping between boolean field in entity object and in database.
+ * @author Jingchuan Chen
+ */
 public class BooleanParser extends AttributeParser {
 
     @Override
@@ -28,6 +32,11 @@ public class BooleanParser extends AttributeParser {
         return obj ? "1" : "0";
     }
 
+    /**
+     * Create a mapping between boolean entity field and database field.
+     * @param colName
+     * @param attrName
+     */
     public BooleanParser(String colName, String attrName) {
         super(colName, attrName);
     }

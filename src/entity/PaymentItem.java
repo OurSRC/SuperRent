@@ -7,7 +7,7 @@
 package entity;
 
 /**
- *
+ * Entity class for item table.
  * @author Jingchuan Chen
  */
 public class PaymentItem {

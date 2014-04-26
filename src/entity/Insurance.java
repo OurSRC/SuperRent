@@ -7,7 +7,7 @@
 package entity;
 
 /**
- *
+ * Entity class for insurance table.
  * @author Jingchuan Chen
  */
 public class Insurance {

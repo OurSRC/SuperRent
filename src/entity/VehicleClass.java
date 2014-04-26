@@ -8,7 +8,7 @@ package entity;
 import finance.Price;
 
 /**
- *
+ * Entity class for vehicle_class table.
  * @author Jingchuan Chen
  */
 public class VehicleClass {

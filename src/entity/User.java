@@ -1,5 +1,9 @@
 package entity;
 
+/**
+ * Entity class for user table.
+ * @author Elitward
+ */
 public class User {
 
     public enum TYPE {

@@ -9,7 +9,7 @@ import finance.Price;
 import java.util.Date;
 
 /**
- *
+ * Entity class for reservation_info table.
  * @author Jingchuan Chen
  */
 public class ReservationInfo {

@@ -7,11 +7,9 @@ package entityParser;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
+ * This class represent a mapping between String field in entity object and Varchar field in database.
  * @author Jingchuan Chen
  */
 public class StringParser extends AttributeParser {

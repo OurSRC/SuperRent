@@ -12,15 +12,15 @@
         <Font size="14.0" fx:id="x1" />
       </font>
     </Label>
-    <TableView fx:id="UnrentedTable" layoutX="17.0" layoutY="63.0" prefHeight="310.0" prefWidth="627.0">
+    <TableView fx:id="UnrentedTable" layoutX="17.0" layoutY="63.0" prefHeight="310.0" prefWidth="627.0" tableMenuButtonVisible="true">
       <columns>
-        <TableColumn fx:id="Reservationno" maxWidth="5000.0" minWidth="10.0" prefWidth="89.0" resizable="false" text="Reservation #" />
-        <TableColumn fx:id="VehicleType" maxWidth="5000.0" minWidth="10.0" prefWidth="118.0" resizable="false" text="Vehicle Type" />
-        <TableColumn fx:id="Price" maxWidth="5000.0" minWidth="10.0" prefWidth="103.0" resizable="false" text="Estimated Price" />
-        <TableColumn fx:id="PickupDate" maxWidth="5000.0" minWidth="10.0" prefWidth="75.0" text="Pickup Date" />
-        <TableColumn fx:id="ReturnDate" prefWidth="75.0" text="Return Date" />
-        <TableColumn fx:id="CusID" prefWidth="75.0" text="Customer ID" />
-        <TableColumn fx:id="CusPhone" maxWidth="5000.0" minWidth="10.0" prefWidth="90.0" text="Customer Ph#" />
+        <TableColumn fx:id="ReservationnoColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="89.0" resizable="false" text="Reservation #" />
+        <TableColumn fx:id="VehicleClassColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="89.0" resizable="false" text="Vehicle Class" />
+        <TableColumn fx:id="PickupDateColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="140.0" resizable="false" text="Pickup Date" />
+        <TableColumn fx:id="ReturnDateColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="140.0" resizable="false" text="Return Date" />
+        <TableColumn fx:id="CustomerNameColumn" prefWidth="155.0" resizable="false" text="Customer Name" />
+        <TableColumn fx:id="CusIDColumn" prefWidth="79.0" resizable="false" text="Customer ID" visible="false" />
+        <TableColumn fx:id="CustomerPhoneColumn" prefWidth="130.0" text="Customer Phone" visible="false" />
       </columns>
     </TableView>
     <Label font="$x1" layoutX="16.0" layoutY="16.0" text="Unrented Reservations" />

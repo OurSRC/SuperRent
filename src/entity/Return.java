@@ -8,7 +8,7 @@ package entity;
 
 import java.util.Date;
 /**
- *
+ * Entity class for return table.
  * @author Xi Yang
  */
 public class Return {
