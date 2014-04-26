@@ -59,6 +59,12 @@ public class PaymentCtrl {
         customerId = CustomerID;
     }
     
+    public boolean useCreditCard(String CreditCardNum, Date Expire, String HolderName){
+        boolean suc = CreditCardCtrl.create(CreditCardNum, Expire, HolderName);
+        pay.setCreditCardNo(CreditCardNum);
+        return suc;
+    }
+    
     public Payment proceed() {
         boolean suc = false;
         int total = 0;
