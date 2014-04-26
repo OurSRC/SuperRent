@@ -113,7 +113,7 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
      public void populateSearchTable()  {
           
         
-        Vehicle newVehicle = new Vehicle(null, null, null, 0, 1, null, null, Vehicle.SELLSTATUS.FORSALE, vehicleClass, 0);
+        Vehicle newVehicle = new Vehicle(null, null, null, 0, 1, Vehicle.STATUS.FORSALE, null, Vehicle.SELLSTATUS.FORSALE, vehicleClass, 0);
         
         VehiclesforSaleTable.getItems().clear();
        
