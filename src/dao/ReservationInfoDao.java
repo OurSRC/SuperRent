@@ -163,14 +163,22 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
     }
     
     public ArrayList<ReservationInfo> searchNotReturned(int branchId, Date date) throws DaoException {
+        SqlBuilder subQb = new SqlBuilder();
+        String subQuery = subQb.select("rent.ReservationInfoId")
+                .from("rent").from("return_record rtn")
+                .where("rent.ContractNo = rtn.ContractNo")
+                .isSubQueue().toString();
+        
+        subQuery = "(" + subQuery + ")";
+        
         SqlBuilder qb = new SqlBuilder();
-        qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
+        qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.RENTED.getValue()));
+        qb.cond("ReservationInfoId IN " + subQuery);
         if (branchId != 0) {
             qb.cond("BranchId = " + SqlBuilder.wrapInt(branchId));
         }
-
         if (date != null) {
-            qb.cond("DATE(ReturnTime) = " + SqlBuilder.wrapDate(date));
+            qb.cond("DATE(ReturnTime) <= " + SqlBuilder.wrapDate(date));
         }
 
         String cond = qb.toString();
