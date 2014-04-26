@@ -93,14 +93,12 @@ public class FinanceCtrl {
             return null;
         }
 
-        RentCtrl rentCtrl = new RentCtrl();
-        ReserveCtrl reserveCtrl = new ReserveCtrl();
         BranchCtrl branchCtrl = new BranchCtrl();
 
         Date returnTime = returnInfo.getReturnTime();
-        Rent rent = rentCtrl.getRentByContractNumber(returnInfo.getContractNo());
+        Rent rent = RentCtrl.getRentByContractNumber(returnInfo.getContractNo());
         Date rentTime = rent.getTime();
-        Reservation reserve = reserveCtrl.getReserve(rent.getReservationInfold());
+        Reservation reserve = ReserveCtrl.getReserve(rent.getReservationInfold());
         TimeGroup tg = countTimes(rentTime, returnTime);
         Branch branch = branchCtrl.getBranchById(reserve.getBranchId());
 
@@ -120,10 +118,10 @@ public class FinanceCtrl {
         int cFuel = returnInfo.getFuelLevel() * branch.getFuelPrice();
         int cDamage = returnInfo.getDamageCost();
         int cDiscount = 0;
-        int cDiscountDays =0;
-        if( usePoint ){
+        int cDiscountDays = 0;
+        if (usePoint) {
             cDiscountDays = calculateMenbershipPointEnoughForDays(reserve);
-            if(cDiscountDays>0){
+            if (cDiscountDays > 0) {
                 cDiscount = -1 * cDiscountDays * reserve.getReserveInfo().getvDailyRate();
             }
         }
@@ -135,7 +133,7 @@ public class FinanceCtrl {
         PaymentItem pMile = new PaymentItem(0, PaymentItem.ITEMTYPE.MILE, "Additional Miles", cMile, 1);
         PaymentItem pFuel = new PaymentItem(0, PaymentItem.ITEMTYPE.FUEL, "Fuel", cFuel, 1);
         PaymentItem pDamage = new PaymentItem(0, PaymentItem.ITEMTYPE.DAMAGE, "Damage", cDamage, 1);
-        PaymentItem pDiscount = new PaymentItem(0, PaymentItem.ITEMTYPE.POINTEXCHANGE, "Discount", cDiscount/cDiscountDays, cDiscountDays);
+        PaymentItem pDiscount = new PaymentItem(0, PaymentItem.ITEMTYPE.POINTEXCHANGE, "Discount", cDiscount / cDiscountDays, cDiscountDays);
 
         if (cRental != 0) {
             list.add(pRental);
@@ -204,38 +202,39 @@ public class FinanceCtrl {
         }
         return time;
     }
-    
-    static public int calculateMembershipPointForOneDay(Reservation reserve){
+
+    static public int calculateMembershipPointForOneDay(Reservation reserve) {
         int perDayPoint;
         VehicleCtrl vCtrl = new VehicleCtrl();
         VehicleClass vc = vCtrl.findVehicleClass(reserve.getVehicleClass());
         VehicleClass lux = vCtrl.findVehicleClass(BOUNDARY_HIGH_CAR);
-        if( vc.getVehicleType()==VehicleClass.TYPE.Car ){
-            if( vc.getDailyRate()>=lux.getDailyRate() )
+        if (vc.getVehicleType() == VehicleClass.TYPE.Car) {
+            if (vc.getDailyRate() >= lux.getDailyRate()) {
                 perDayPoint = EXCHANG_POINT_HIGH;
-            else
+            } else {
                 perDayPoint = EXCHANG_POINT_LOW;
-        }else{
+            }
+        } else {
             perDayPoint = EXCHANG_POINT_HIGH;
         }
         return perDayPoint;
     }
-    
-    public int calculateMenbershipPointEnoughForDays(Reservation reserve){
+
+    public int calculateMenbershipPointEnoughForDays(Reservation reserve) {
         TimeGroup tg = countTimes(reserve.getReturnTime(), reserve.getPickupTime());
-        int resDays = tg.cDays + tg.cWeeks*7;
-        
+        int resDays = tg.cDays + tg.cWeeks * 7;
+
         CustomerCtrl customerCtrl = new CustomerCtrl();
         Customer customer = customerCtrl.getCustomerById(reserve.getCustomerId());
-        
+
         int perDayPoint = calculateMembershipPointForOneDay(reserve);
-        
+
         int point = 0;
-        if(customerCtrl.checkMembershipActive(customer)){
+        if (customerCtrl.checkMembershipActive(customer)) {
             point = customer.getPoint();
         }
-        
-        int total = point/(perDayPoint);
-        return resDays<total ? resDays : total;
+
+        int total = point / (perDayPoint);
+        return resDays < total ? resDays : total;
     }
 }

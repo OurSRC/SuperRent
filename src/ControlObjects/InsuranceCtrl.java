@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ControlObjects;
 
 import SystemOperations.ErrorMsg;
@@ -19,7 +18,8 @@ import java.util.logging.Logger;
  * @author Elitward
  */
 public class InsuranceCtrl {
-    public ArrayList<String> getInsuranceType(){
+
+    public ArrayList<String> getInsuranceType() {
         InsuranceDao dao = new InsuranceDao();
         ArrayList<Insurance> list = new ArrayList<>();
         ArrayList<String> ans = new ArrayList<>();
@@ -29,7 +29,7 @@ public class InsuranceCtrl {
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
             Logger.getLogger(InsuranceCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for(Insurance i : list){
+        for (Insurance i : list) {
             ans.add(i.getName());
         }
         return ans;

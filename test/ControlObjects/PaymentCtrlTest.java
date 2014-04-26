@@ -49,10 +49,12 @@ public class PaymentCtrlTest {
      public void hello() {
          int CustomerID = 5;
          int ContractNo = 2;
-         ReturnCtrl returnCtrl = new ReturnCtrl();
-         Return returnInfo = returnCtrl.getReturnByContractNumber(ContractNo);
+         int BranchID = 1;
+         int Years = 3;
+         Return returnInfo = ReturnCtrl.getReturnByContractNumber(ContractNo);
          PaymentCtrl paymentCtrl = new PaymentCtrl(CustomerID, "Pay Name", "343706449472636");
          paymentCtrl.addForReturn(returnInfo, true);
+         paymentCtrl.addForMembershipFee(Years, BranchID);
          int total = paymentCtrl.getTotalAmount();
          Payment p = paymentCtrl.proceed();
      }
