@@ -17,8 +17,8 @@ public class ValidateFields {
     
     public static boolean CheckForNumbersOnly(String inputString)
     {
-        String regex = "[0-9]+";
-        /*try
+        
+        try
         {
             Double newDouble = Double.parseDouble(inputString);
             return true;
@@ -26,7 +26,13 @@ public class ValidateFields {
         }catch(Exception e)
         {
             return false;
-        }*/
+        }
+        
+    }
+    public static boolean CheckIntegerNumbersOnly(String inputString)
+    {
+        String regex = "[0-9]+";
+        
         return inputString.matches(regex);
     }
     
