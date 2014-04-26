@@ -5,10 +5,12 @@
  */
 package entity;
 
+import finance.Price;
 import java.util.Date;
 
 /**
  * Entity class for vehicle table.
+ *
  * @author Jingchuan Chen
  */
 public class Vehicle {
@@ -270,5 +272,14 @@ public class Vehicle {
      */
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getSellingPrice() {
+        return Price.toText(price);
+    }
+
+    public boolean setSellingPrice(String sellingPrice) {
+        this.price = Price.toCent(sellingPrice);
+        return true;
     }
 }

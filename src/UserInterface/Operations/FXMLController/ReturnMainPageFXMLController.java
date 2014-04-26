@@ -64,6 +64,12 @@ public class ReturnMainPageFXMLController implements Initializable {
     @FXML
     private ListView InsuranceList;
 
+    /* Variables to store the Parameters */
+    private Customer rentCustomer;
+    private Vehicle rentedVehicle;
+    private Reservation rentReservation;
+    private Rent searchRent;
+
     /**
      * Initializes the controller class.
      */
@@ -71,18 +77,18 @@ public class ReturnMainPageFXMLController implements Initializable {
     public void SearchRentButtonAction(ActionEvent event) {
 
         RentCtrl newRentCtrl = new RentCtrl();
-        Rent searchRent = newRentCtrl.getRentByContractNumber(Integer.parseInt(RentalAgreementTF.getText()));
+        searchRent = newRentCtrl.getRentByContractNumber(Integer.parseInt(RentalAgreementTF.getText()));
         if (searchRent != null) {
             RentalPane.setVisible(true);
             System.out.println(searchRent.getContractNo());
             ReserveCtrl newReserveCtrl = new ReserveCtrl();
-            Reservation rentReservation = newReserveCtrl.getReserve(searchRent.getReservationInfold());
+            rentReservation = newReserveCtrl.getReserve(searchRent.getReservationInfold());
             System.out.println(rentReservation.getVehicleClass());
             CustomerCtrl newCustomerCtrl = new CustomerCtrl();
-            Customer rentCustomer = newCustomerCtrl.getCustomerById(rentReservation.getCustomerId());
+            rentCustomer = newCustomerCtrl.getCustomerById(rentReservation.getCustomerId());
 
             VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-            Vehicle rentedVehicle = newVehicleCtrl.getVehicleByVehicleNo(searchRent.getVehicleNo());
+            rentedVehicle = newVehicleCtrl.getVehicleByVehicleNo(searchRent.getVehicleNo());
 
             ReservationNumberTF.setText(rentReservation.getReservationNo());
             VehiclePlateTF.setText(rentedVehicle.getPlateNo());
@@ -100,9 +106,6 @@ public class ReturnMainPageFXMLController implements Initializable {
                 ObservableList<String> items = FXCollections.observableArrayList(rentReservation.getInsurance());
                 InsuranceList.setItems(items);
             }
-
-            ReturnNavigator.returnRent = searchRent;
-            ReturnNavigator.returnReservation = rentReservation;
 
             /*FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), RentalPane);
              FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), BottomPane);
@@ -139,6 +142,10 @@ public class ReturnMainPageFXMLController implements Initializable {
     @FXML
     private void NextButtonAction(ActionEvent event) throws IOException {
         System.out.println("Button pressed");
+        ReturnNavigator.returnRent = searchRent;
+        ReturnNavigator.returnReservation = rentReservation;
+        ReturnNavigator.returnCustomer = rentCustomer;
+        ReturnNavigator.returnVehicle = rentedVehicle;
         ReturnNavigator.loadVista(ReturnNavigator.ReturnInformationPage);
     }
 

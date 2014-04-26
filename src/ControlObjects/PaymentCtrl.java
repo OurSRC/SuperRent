@@ -117,8 +117,11 @@ public class PaymentCtrl {
         Integer sum = 0;
         ArrayList<PaymentItem> list = finCtrl.calulateReturnCost(returnInfo, usePoint, sum);
         if (list != null && list.size() > 0) {
-            pay.setAmount(pay.getAmount()+sum);
+            for(int i =0 ;i < list.size();i++)
+            {
+            pay.setAmount(pay.getAmount()+ list.get(i).getPrice());
             addPayItem(list);
+            }
             return true;
         } else {
             return false;

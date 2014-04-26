@@ -9,7 +9,9 @@ package UserInterface.Operations.FXMLController;
 
 import ControlObjects.Reservation;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import entity.Customer;
 import entity.Rent;
+import entity.Vehicle;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,13 +23,18 @@ import javafx.scene.Node;
 public class ReturnNavigator {
         public static OperationsFXMLController mainController;
 
-        public static final String ReturnMainPage = "/UserInterface/Operations/FXML/ReturnMainPageFXML.fxml";
+        public static final String ReturnMainPage = "/UserInterface/Operations/FXMLController/ReturnMainPageFXML.fxml";
         public static final String ReturnInformationPage= "/UserInterface/Operations/FXML/ReturnInformationPageFXML.fxml";
-        public static final String RentPaymentPage = "";
+        public static final String RentPaymentPage = "/UserInterface/Operations/FXML/PaymentPageFXML.fxml";
         
         /* Common Variables to facilitate navigations */
         public static Rent returnRent;
         public static Reservation returnReservation;
+        public static Customer returnCustomer;
+        public static Vehicle returnVehicle;
+        
+        public static String ActualCost;
+        public static String PaymentMode;
        
 
 

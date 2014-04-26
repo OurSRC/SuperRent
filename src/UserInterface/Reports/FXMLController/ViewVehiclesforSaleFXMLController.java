@@ -113,7 +113,7 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
      public void populateSearchTable()  {
           
         
-        Vehicle newVehicle = new Vehicle(null, null, null, 0, 1, null, null, Vehicle.SELLSTATUS.FORSALE, vehicleClass, 0);
+        Vehicle newVehicle = new Vehicle(null, null, null, 0, 1, Vehicle.STATUS.FORSALE, null, Vehicle.SELLSTATUS.FORSALE, vehicleClass, 0);
         
         VehiclesforSaleTable.getItems().clear();
        
@@ -132,12 +132,12 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
        VehiclesforSaleTable.setItems(slist);
         System.out.println("I am here and it is working");
         
-               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("vehicleNo"));
+               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("plateNo"));
                VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("className"));
                ModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
                YearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
                OdometerColumn.setCellValueFactory(new PropertyValueFactory("odometer"));
-               SalePriceColumn.setCellValueFactory(new PropertyValueFactory("price"));
+               SalePriceColumn.setCellValueFactory(new PropertyValueFactory("sellingPrice"));
     }
      
     @FXML
