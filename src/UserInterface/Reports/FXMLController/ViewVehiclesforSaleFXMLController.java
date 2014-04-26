@@ -132,12 +132,12 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
        VehiclesforSaleTable.setItems(slist);
         System.out.println("I am here and it is working");
         
-               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("vehicleNo"));
+               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("plateNo"));
                VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("className"));
                ModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
                YearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
                OdometerColumn.setCellValueFactory(new PropertyValueFactory("odometer"));
-               SalePriceColumn.setCellValueFactory(new PropertyValueFactory("price"));
+               SalePriceColumn.setCellValueFactory(new PropertyValueFactory("sellingPrice"));
     }
      
     @FXML
