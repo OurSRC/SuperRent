@@ -7,6 +7,7 @@ package dao;
 
 import dbconn.SqlBuilder;
 import entity.Vehicle;
+import entity.VehicleClass;
 import entityParser.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -71,11 +72,24 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return find(cond);
     }
     
-    public ArrayList<Vehicle> findVehicleOlderThan(int year, String className) throws DaoException {
-        String cond;
-        cond = "ManufactureDate < " + SqlBuilder.wrapStr(Integer.toString(year) + "-12-31");
-        cond += " AND className = " + SqlBuilder.wrapStr(className);
-        return find(cond);
+    public ArrayList<Vehicle> findVehicleOlderThan(int year, String className, 
+            VehicleClass.TYPE type) throws DaoException {
+        SqlBuilder qb = new SqlBuilder();
+        
+        if (className != null) {
+            qb.cond("ClassName = " + SqlBuilder.wrapStr(className));
+        } else if (type != null) {
+            SqlBuilder subQb = new SqlBuilder();
+            String subQuery = subQb
+                    .select("ClassName")
+                    .from("vehicle_class")
+                    .where("Type = " + SqlBuilder.wrapInt(type.getValue()))
+                    .isSubQueue().toString();
+            subQuery = "(" + subQuery + ")";
+            qb.cond("ClassName IN " + subQuery);
+        }
+        qb.cond("ManufactureDate < " + SqlBuilder.wrapStr(Integer.toString(year) + "-12-31"));
+        return find(qb.toString());
     }
             
             
