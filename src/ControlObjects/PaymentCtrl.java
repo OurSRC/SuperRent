@@ -119,10 +119,10 @@ public class PaymentCtrl {
         }
     }
 
-    public boolean addForReturn(Return returnInfo, boolean usePoint) {
+    public boolean addForReturn(Return returnInfo, boolean usePoint, boolean roadStar) {
         this.returnInfo = returnInfo;
         FinanceCtrl finCtrl = new FinanceCtrl();
-        ArrayList<PaymentItem> list = finCtrl.calulateReturnCost(returnInfo, usePoint);
+        ArrayList<PaymentItem> list = finCtrl.calulateReturnCost(returnInfo, usePoint, roadStar);
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 pay.setAmount(pay.getAmount() + list.get(i).getPrice()*list.get(i).getPrice());

@@ -87,7 +87,7 @@ public class FinanceCtrl {
         return rental + equip + insurance;
     }
 
-    public ArrayList<PaymentItem> calulateReturnCost(Return returnInfo, boolean usePoint) {
+    public ArrayList<PaymentItem> calulateReturnCost(Return returnInfo, boolean usePoint, boolean  roadStar) {
         ArrayList<PaymentItem> list = null;
         if (returnInfo == null) {
             return null;
@@ -113,6 +113,8 @@ public class FinanceCtrl {
         for (BuyInsurance anInsu : reserveInsurances) {
             cInsurance += insuraceCost(reserve.getReturnTime(), reserve.getPickupTime(), anInsu, reserve.getReserveInfo().getvDailyRate());
         }
+        if(roadStar)
+            cInsurance /= 2;
 
         int cMile = returnInfo.getOdometer() * branch.getPricePerKM();
         int cFuel = returnInfo.getFuelLevel() * branch.getFuelPrice();
