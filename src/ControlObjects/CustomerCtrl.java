@@ -5,6 +5,7 @@ import dao.CustomerDao;
 import dao.DaoException;
 import entity.Customer;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -102,6 +103,15 @@ public class CustomerCtrl {
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
         return list;
+    }
+    
+    public boolean checkMembershipActive(Customer customer){
+        if(customer.getIsClubMember()){
+            if(customer.getMembershipExpiry().compareTo(new Date())>0){
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean payClubMemberFee(Customer customer, int Years) {
