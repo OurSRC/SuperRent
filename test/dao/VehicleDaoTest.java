@@ -39,7 +39,7 @@ public class VehicleDaoTest {
         vdao.add(vc);
         
         BranchDao bdao = new BranchDao();
-        Branch b = new Branch(branchName, "12313", "some addr test vehicle", 18, 130);
+        Branch b = new Branch(branchName, "12313", "some addr test vehicle", 18, 130, 1000);
         bdao.add(b);
         b = bdao.findByName(branchName);
         branchId = b.getBranchID();

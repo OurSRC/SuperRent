@@ -18,17 +18,21 @@ public class Return {
     private int odometer;
     private int staffId;
     private int paymentId;
+    private int damageCost;
 
     public Return() {
     }
 
-    public Return(int contractNo, Date returnTime, int fuelLevel, int odometer, int staffId, int paymentId) {
+    public Return(int contractNo, Date returnTime, int fuelLevel, int odometer, 
+            int staffId, int paymentId, int damageCost) {
         this.contractNo = contractNo;
         this.returnTime = returnTime;
         this.fuelLevel = fuelLevel;
         this.odometer = odometer;
         this.staffId = staffId;
         this.paymentId = paymentId;
+        this.damageCost = damageCost;
+        
     }
 
     /**
@@ -113,6 +117,20 @@ public class Return {
      */
     public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
+    }
+
+    /**
+     * @return the damageCost
+     */
+    public int getDamageCost() {
+        return damageCost;
+    }
+
+    /**
+     * @param damageCost the damageCost to set
+     */
+    public void setDamageCost(int damageCost) {
+        this.damageCost = damageCost;
     }
     
     

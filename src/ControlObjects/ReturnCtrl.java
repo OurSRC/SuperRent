@@ -26,8 +26,8 @@ public class ReturnCtrl {
         return returnInfo;
     }
 
-    public Return createReturn(int ContractNum, int Fuel, int Odometer, int StaffId, int PaymentId) {
-        Return rtn = new Return(ContractNum, new Date(), Fuel, Odometer, StaffId, PaymentId);
+    public Return createReturn(int ContractNum, int Fuel, int Odometer, int StaffId, int PaymentId, int damageCost) {
+        Return rtn = new Return(ContractNum, new Date(), Fuel, Odometer, StaffId, PaymentId, damageCost);
         return createReturn(rtn);
     }
 

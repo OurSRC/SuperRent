@@ -36,7 +36,7 @@ public class EquipmentDaoTest {
 
         branch = null;
         String branchName = "someNassasdll";
-        Branch b = new Branch(branchName, "12313123", "some addr", 18, 130);
+        Branch b = new Branch(branchName, "12313123", "some addr", 18, 130, 1000);
         boolean suc = bdao.add(b);
         if (suc) {
             branch = bdao.findByName(branchName);

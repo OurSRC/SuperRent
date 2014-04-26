@@ -40,7 +40,7 @@ public class BranchDaoTest {
     public void setUp() {
         BranchDao dao = new  BranchDao();
         Branch entity;
-        entity = new Branch("FirstBranch", "123456", "At Paradise", 130, 18);
+        entity = new Branch("FirstBranch", "123456", "At Paradise", 130, 18, 1000);
         boolean suc = false;
         try {
             suc = dao.add(entity);
@@ -60,7 +60,7 @@ public class BranchDaoTest {
     @Test
     public void test1_AddDelete() throws DaoException {
         BranchDao dao = new  BranchDao();
-        Branch entity = new Branch("testBranch", "1234", "At Paradise2", 130, 18);
+        Branch entity = new Branch("testBranch", "1234", "At Paradise2", 130, 18, 1000);
         
         boolean suc;
         suc = dao.add(entity);
@@ -75,7 +75,7 @@ public class BranchDaoTest {
     @Test
     public void test2_Find() throws DaoException {
         BranchDao dao = new  BranchDao();
-        Branch entity = new Branch("FirstBranch", "123456", "At Paradise", 130, 18);
+        Branch entity = new Branch("FirstBranch", "123456", "At Paradise", 130, 18, 1000);
         
         Branch found;
         found = dao.findByAddress(entity.getBranchAddress());
