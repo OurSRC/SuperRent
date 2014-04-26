@@ -9,7 +9,12 @@ import dbconn.SqlBuilder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UserDao implements GenericDao<User, String> {
+/**
+ * <p>
+ * This class provides basic access methods for staff entity</p>
+ * @author Jingchuan Chen
+ */
+public class UserDao {
 
     private static final String tb_name = "user";
     
@@ -22,7 +27,6 @@ public class UserDao implements GenericDao<User, String> {
     public void UserDao() {
     }
 
-    @Override
     public User find(String pk) throws DaoException {
         User user = new User();
         SqlBuilder qb = new SqlBuilder();
@@ -50,7 +54,6 @@ public class UserDao implements GenericDao<User, String> {
         return user;
     }
 
-    @Override
     public boolean update(User value) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         qb.update(tb_name);
@@ -70,7 +73,6 @@ public class UserDao implements GenericDao<User, String> {
         return true;
     }
 
-    @Override
     public boolean add(User value) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         qb.insert(tb_name);
@@ -89,7 +91,6 @@ public class UserDao implements GenericDao<User, String> {
         return true;
     }
 
-    @Override
     public boolean delete(String pk) throws DaoException {
         if (pk == null) {
             return true;

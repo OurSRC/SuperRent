@@ -11,7 +11,11 @@ import entity.VehicleClass;
 import entityParser.*;
 import java.util.ArrayList;
 
-
+/**
+ * <p>
+ * This class provides basic access methods for vehicle class entity</p>
+ * @author Jingchuan Chen
+ */
 public class VehicleClassDao extends AbstractDao<VehicleClass> {
     protected static final String tb_name = "vehicle_class";
     

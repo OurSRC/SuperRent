@@ -12,6 +12,11 @@ import entity.Insurance;
 import entityParser.*;
 import java.util.ArrayList;
 
+/**
+ * <p>
+ *  This class provides basic access method for buy_insurance table.</p>
+ * @author Jingchuan Chen
+ */
 public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
     
     protected static final String tb_name = "buy_insurance";
