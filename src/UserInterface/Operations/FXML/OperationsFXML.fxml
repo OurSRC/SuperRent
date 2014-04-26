@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.OperationsFXMLController">
   <children>
     <StackPane fx:id="MainOperationsStackPane" layoutX="171.0" layoutY="2.0" prefHeight="466.0" prefWidth="690.0" />
-    <Pane layoutX="-5.0" layoutY="-3.0" prefHeight="475.0" prefWidth="177.0">
+    <Pane layoutX="-5.0" prefHeight="478.0" prefWidth="178.0">
       <children>
-        <Button alignment="CENTER_RIGHT" layoutX="7.0" layoutY="37.0" mnemonicParsing="false" onAction="#CreateReservationAction" prefHeight="32.0" prefWidth="164.0" text="Reserve Vehicle" />
-        <Button alignment="CENTER_RIGHT" layoutX="7.0" layoutY="68.0" mnemonicParsing="false" onAction="#RentVehicleAction" prefHeight="32.0" prefWidth="164.0" text="Rent Vehicle" />
-        <Button alignment="CENTER_RIGHT" layoutX="7.0" layoutY="99.0" mnemonicParsing="false" onAction="#ReturnVehicleAction" prefHeight="32.0" prefWidth="164.0" text="Return Vehicle" />
-        <Button alignment="CENTER_RIGHT" layoutX="7.0" layoutY="292.0" mnemonicParsing="false" onAction="#ViewReservationAction" prefHeight="32.0" prefWidth="164.0" text="View Reservation" /><Button alignment="CENTER_RIGHT" layoutX="7.0" layoutY="5.0" mnemonicParsing="false" onAction="#CustomerButtonAction" prefHeight="32.0" prefWidth="164.0" text="Customer Information" />
+        <Button alignment="CENTER_RIGHT" layoutX="28.0" layoutY="43.0" mnemonicParsing="false" onAction="#CreateReservationAction" prefHeight="32.0" prefWidth="143.0" text="Reserve Vehicle" />
+        <Button alignment="CENTER_RIGHT" layoutX="28.0" layoutY="79.0" mnemonicParsing="false" onAction="#RentVehicleAction" prefHeight="32.0" prefWidth="143.0" text="Rent Vehicle" />
+        <Button alignment="CENTER_RIGHT" layoutX="28.0" layoutY="115.0" mnemonicParsing="false" onAction="#ReturnVehicleAction" prefHeight="32.0" prefWidth="143.0" text="Return Vehicle" />
+        <Button alignment="CENTER_RIGHT" layoutX="7.0" layoutY="292.0" mnemonicParsing="false" onAction="#ViewReservationAction" prefHeight="32.0" prefWidth="164.0" text="View Reservation" /><Button alignment="CENTER_RIGHT" layoutX="28.0" layoutY="8.0" mnemonicParsing="false" onAction="#CustomerButtonAction" prefHeight="32.0" prefWidth="143.0" text="Customer Information" />
     <Separator layoutX="171.0" layoutY="5.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="7.0">
 </Separator>
       </children>
