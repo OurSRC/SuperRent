@@ -8,6 +8,7 @@ package ControlObjects;
 
 import entity.Payment;
 import entity.Return;
+import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -52,7 +53,7 @@ public class PaymentCtrlTest {
          int BranchID = 1;
          int Years = 3;
          Return returnInfo = ReturnCtrl.getReturnByContractNumber(ContractNo);
-         PaymentCtrl paymentCtrl = new PaymentCtrl(CustomerID, "Pay Name", "343706449472636");
+         PaymentCtrl paymentCtrl = new PaymentCtrl(CustomerID, "Pay Name", "343706449472636", new Date(), "Tim");
          paymentCtrl.addForReturn(returnInfo, true);
          paymentCtrl.addForMembershipFee(Years, BranchID);
          int total = paymentCtrl.getTotalAmount();

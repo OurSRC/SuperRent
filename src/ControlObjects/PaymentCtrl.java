@@ -44,12 +44,20 @@ public class PaymentCtrl {
         returnInfo = null;
     }
 
-    public PaymentCtrl(int CustomerID, String Title, String CreditCardNum) {
+    public PaymentCtrl(int CustomerID, String Title, String CreditCardNum, Date Expire, String HolderName) {
         this();
         pay = new Payment(CustomerID, Title, 0, CreditCardNum, new Date());
         customerId = CustomerID;
+        
+        boolean suc = CreditCardCtrl.create(CreditCardNum, Expire, HolderName);
     }
 
+    public PaymentCtrl(int CustomerID, String Title) {
+        this();
+        pay = new Payment(CustomerID, Title, 0, null, new Date());
+        customerId = CustomerID;
+    }
+    
     public Payment proceed() {
         boolean suc = false;
         int total = 0;
