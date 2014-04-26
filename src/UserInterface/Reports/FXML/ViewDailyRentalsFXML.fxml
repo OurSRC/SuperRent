@@ -31,7 +31,7 @@
         </TableView>
         <Label layoutX="94.5048828125" layoutY="41.0" text="Branch" />
         <Label id="DateLBL" fx:id="TotalRentalsLabel" layoutX="437.0" layoutY="392.0" text="Total Numberof  Rentals:" />
-        <Label fx:id="totalRentalsForTheDay" layoutX="578.0048828125" layoutY="394.0" />
+        <Label fx:id="totalRentalsForTheDay" layoutX="578.0048828125" layoutY="392.0" />
         <ComboBox fx:id="BranchCB" layoutX="150.0" layoutY="39.0" onAction="#BranchCBAction" prefHeight="21.0" prefWidth="159.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
