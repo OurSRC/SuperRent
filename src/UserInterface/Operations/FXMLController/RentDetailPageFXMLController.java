@@ -80,7 +80,7 @@ public class RentDetailPageFXMLController implements Initializable {
         ManufatureDateTF.setText(RentNavigator.RentVehicle.getManufactureDate().toString());
         oldOdometerReading = RentNavigator.RentVehicle.getOdometer();
         OdometerReadingTF.setText(Integer.toString(oldOdometerReading));
-        ActualCostTF.setText(RentNavigator.selectedReservation.getPrice());
+        //ActualCostTF.setText(RentNavigator.selectedReservation.getPrice());
         validateFlag = false;
     }
 

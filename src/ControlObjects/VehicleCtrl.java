@@ -212,7 +212,6 @@ public class VehicleCtrl {
         ans.addAll(getTruckType());
         return ans;
     }
-
    
     public ArrayList<String> getSubVehicleType(VehicleClass.TYPE type) {
         VehicleClassDao classDAO = new VehicleClassDao();

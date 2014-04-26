@@ -7,7 +7,6 @@ package dao;
 
 import dbconn.DbConn;
 import dbconn.SqlBuilder;
-import entity.User;
 import entityParser.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,16 +14,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <p>This is the abstract class for all data access objects which provides
+ * basic CRUD functionalities. </p>
  * @author Jingchuan Chen
+ * @param <T> Corresponding entity class of the Dao class
  */
 public abstract class AbstractDao<T> {
 
+    /**
+     * This function add an entity into database.
+     * @param entity Entity to be added to database
+     * @return True if add succeed, false otherwise.
+     * @throws DaoException
+     */
     public boolean add(T entity) throws DaoException {
         if (entity == null) {
             return false;
@@ -97,6 +103,12 @@ public abstract class AbstractDao<T> {
         return ans;
     }
 
+    /**
+     * Delete the entity from database. Entity is identified by its primary key.
+     * @param entity Entity object contains primary key to identify record to delete.
+     * @return True if succeed, false otherwise.
+     * @throws DaoException
+     */
     public boolean delete(T entity) throws DaoException {
         if (entity == null) {
             return false;
@@ -120,11 +132,7 @@ public abstract class AbstractDao<T> {
             Statement stmt = DbConn.getStmt();
             System.out.println("SQL:" + sql);
             int ret = stmt.executeUpdate(sql);
-            if (ret == 0) {
-                ans = false;
-            } else {
-                ans = true;
-            }
+            ans = ret != 0;
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "delete()");
@@ -132,6 +140,12 @@ public abstract class AbstractDao<T> {
         return ans;
     }
 
+    /**
+     * Update entity in database. Entity is identified by its key.
+     * @param entity Entity to be updated. 
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean update(T entity) throws DaoException {
         if (entity == null) {
             return false;
@@ -163,6 +177,12 @@ public abstract class AbstractDao<T> {
         return ans;
     }
 
+    /**
+     * Search the first matching record based on condition
+     * @param cond String that specifies condition in SQL where statement.
+     * @return The first entity populated with matched record. null if not found.
+     * @throws DaoException
+     */
     protected T findOne(String cond) throws DaoException {
 
         String tb_name = getTbName();
@@ -195,6 +215,12 @@ public abstract class AbstractDao<T> {
         return entity;
     }
 
+    /**
+     * Search all records that match the condition
+     * @param cond String that specifies condition in SQL where statement.
+     * @return ArrayList of all matching records.
+     * @throws DaoException
+     */
     protected ArrayList<T> find(String cond) throws DaoException {
 
         String tb_name = getTbName();
@@ -229,6 +255,13 @@ public abstract class AbstractDao<T> {
         return result;
     }
 
+    /**
+     * Find all records has same value to populated value in an entity.
+     * Null value and value of 0 for attributes will be ignored
+     * @param value The entity object with fields to search.
+     * @return ArrayList of all matching records.
+     * @throws DaoException
+     */
     public ArrayList<T> findByInstance(T value) throws DaoException {
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
@@ -246,6 +279,13 @@ public abstract class AbstractDao<T> {
         return find(sql);
     }
 
+    /**
+     * Find first record that has same value to populated value in an entity.
+     * Null value and value of 0 for attributes will be ignored
+     * @param value The entity object with fields to search.
+     * @return ArrayList of all matching records.
+     * @throws DaoException
+     */
     public T findFirstInstance(T value) throws DaoException {
         String tb_name = getTbName();
         AttributeParser ap[] = getAP();
@@ -263,10 +303,21 @@ public abstract class AbstractDao<T> {
         return findOne(sql);
     }
 
+    /**
+     * Get all record in table.
+     * @return ArrayList of all records.
+     * @throws DaoException
+     */
     public ArrayList<T> all() throws DaoException {
         return find("true");
     }
 
+    /**
+     * Get the count of records matching condition.
+     * @param cond String that specifies condition in SQL where statement.
+     * @return The count to matching record.
+     * @throws DaoException
+     */
     protected int count(String cond) throws DaoException {
         String tb_name = getTbName();
         int result;
@@ -296,6 +347,11 @@ public abstract class AbstractDao<T> {
         return result;
     }
 
+    /**
+     * Get the last auto increment id for a table.
+     * @return Last auto increment id.
+     * @throws DaoException
+     */
     protected int getLastAutoIncrementId() throws DaoException {
         String tb_name = getTbName();
         SqlBuilder qb = new SqlBuilder();
@@ -369,5 +425,10 @@ public abstract class AbstractDao<T> {
         return ap_no_pk;
     }
 
+    /**
+     * Get an instance of entity class instance. This must be implemented
+     * by subclasses in order to make all functions in this class functional.
+     * @return instance of entity class.
+     */
     protected abstract T getInstance();
 }

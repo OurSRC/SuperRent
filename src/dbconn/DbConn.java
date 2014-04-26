@@ -9,8 +9,8 @@ package dbconn;
 import java.sql.*;
 
 /**
- *
- * @author lenovo
+ * The DbConn class handles database connection. 
+ * @author Jingchuan Chen
  */
 public class DbConn {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -20,6 +20,11 @@ public class DbConn {
     
     static Connection conn = null;
     
+    /**
+     * Return a {@link Statement} of the connection
+     * @return Statement object.
+     * @throws SQLException
+     */
     public static Statement getStmt() throws SQLException {
         if (conn == null) {
             conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -28,6 +33,11 @@ public class DbConn {
         return conn.createStatement();
     }
     
+    /**
+     * Return the connection object of database.
+     * @return Connection object of database
+     * @throws SQLException
+     */
     public static Connection getConn() throws SQLException {
         if (conn == null) {
             conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
