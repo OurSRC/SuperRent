@@ -11,6 +11,7 @@ import SystemOperations.DialogFX;
 import dao.DaoException;
 import dao.VehicleDao;
 import entity.Vehicle;
+import entity.VehicleClass;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -74,6 +75,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
     @FXML
     private RadioButton VehicleTypeTruckRB;
     private String vehicleType;
+    private VehicleClass.TYPE vehicleTypeEnum;
     private String vehicleClass;
     public String noofyears;
     private int Maxmanufactureyear ;
@@ -92,6 +94,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
         VehicleClassCB.getItems().clear();
         VehicleClassCB.setItems(list);
+        vehicleTypeEnum = VehicleClass.TYPE.Car;
     }    
 
     @FXML
@@ -101,24 +104,25 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
             
             
             
-        if(!VehicleClassCB.getSelectionModel().getSelectedItem().toString().equals(""))
+        if(VehicleClassCB.valueProperty().isNull().getValue())
         {
-               vehicleClass = VehicleClassCB.getSelectionModel().getSelectedItem().toString();
+            vehicleClass = null;
+               
         }
         
         else
         {
-            vehicleType = null;
+            vehicleClass = VehicleClassCB.getSelectionModel().getSelectedItem().toString();
         }
          populateSearchTable();
         System.out.println("Vehicle class : " + vehicleClass);
         noofyears=YearsTF.getText(). toString();
         System.out.println("No Of Years : " + noofyears);
         }  else {
-            System.out.println("Please enter Fields");
+            System.out.println("Please Enter the Required Fields");
             DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
             dialog.setTitleText("Error");
-            dialog.setMessage("Please enter Fields");
+            dialog.setMessage("Please Enter Suitable Values in Mandatory Fields");
             dialog.showDialog();
         }
     }
@@ -130,7 +134,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
         VehiclesListTable.getItems().clear();
        
         VehicleDao newVehicleCtrl = new VehicleDao();
-        ArrayList<Vehicle> vehicleArray = newVehicleCtrl.findVehicleOlderThan(Maxmanufactureyear,vehicleClass); /* Get the Arraylist from the Control Object */
+        ArrayList<Vehicle> vehicleArray = newVehicleCtrl.findVehicleOlderThan(Maxmanufactureyear,vehicleClass,vehicleTypeEnum); /* Get the Arraylist from the Control Object */
 
         ObservableList<Vehicle> slist = FXCollections.observableArrayList(vehicleArray);
        VehiclesListTable.setItems(slist);
@@ -155,7 +159,8 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
         
             try{
             ageinyears =Integer.parseInt(YearsTF.getText());
-            
+            if (ageinyears > 50)
+                validated = false;
             }
             catch(NumberFormatException e){
                 validated=false;
@@ -178,6 +183,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getCarType());
         VehicleClassCB.getItems().clear();
         VehicleClassCB.setItems(list);
+        vehicleTypeEnum = VehicleClass.TYPE.Car;
     }
 
     @FXML
@@ -187,6 +193,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList(vehicleControl.getTruckType());
         VehicleClassCB.getItems().clear();
         VehicleClassCB.setItems(list);
+        vehicleTypeEnum = VehicleClass.TYPE.Truck;
     }
     
 }
