@@ -126,39 +126,42 @@ public class FinanceCtrl {
             }
         }
 
-        list = new ArrayList<>();
+        ArrayList<PaymentItem> newlist = new ArrayList<PaymentItem>();
         PaymentItem pRental = new PaymentItem(0, PaymentItem.ITEMTYPE.VEHICLE, "Rental", cRental, 1);
         PaymentItem pEquip = new PaymentItem(0, PaymentItem.ITEMTYPE.EQUIPMENT, "Equipment", cEquip, 1);
         PaymentItem pInsurance = new PaymentItem(0, PaymentItem.ITEMTYPE.INSURANCE, "Insurance", cInsurance, 1);
         PaymentItem pMile = new PaymentItem(0, PaymentItem.ITEMTYPE.MILE, "Additional Miles", cMile, 1);
         PaymentItem pFuel = new PaymentItem(0, PaymentItem.ITEMTYPE.FUEL, "Fuel", cFuel, 1);
         PaymentItem pDamage = new PaymentItem(0, PaymentItem.ITEMTYPE.DAMAGE, "Damage", cDamage, 1);
+        if (usePoint) {
         PaymentItem pDiscount = new PaymentItem(0, PaymentItem.ITEMTYPE.POINTEXCHANGE, "Discount", cDiscount / cDiscountDays, cDiscountDays);
+        if (cDiscount != 0) {
+            newlist.add(pDiscount);
+        }
+        }
 
         if (cRental != 0) {
-            list.add(pRental);
+            newlist.add(pRental);
         }
         if (cEquip != 0) {
-            list.add(pEquip);
+            newlist.add(pEquip);
         }
         if (cInsurance != 0) {
-            list.add(pInsurance);
+            newlist.add(pInsurance);
         }
         if (cMile != 0) {
-            list.add(pMile);
+            newlist.add(pMile);
         }
         if (cFuel != 0) {
-            list.add(pFuel);
+            newlist.add(pFuel);
         }
         if (cDamage != 0) {
-            list.add(pDamage);
+            newlist.add(pDamage);
         }
-        if (cDiscount != 0) {
-            list.add(pDiscount);
-        }
+        
 
         sumOutput = cRental + cEquip + cInsurance + cMile + cFuel + cDamage + cDiscount;
-        return list;
+        return newlist;
     }
 
     public ArrayList<PaymentItem> calulateMembershipCost(int years, int branchId, Integer sumOutput) {
