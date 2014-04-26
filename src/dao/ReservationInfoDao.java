@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *
+ * <p>
+ * This class provides basic access methods, for example, find for reservationInfo
+ * entity.</p>
  * @author Elitward
  */
 public class ReservationInfoDao extends AbstractDao<ReservationInfo> {

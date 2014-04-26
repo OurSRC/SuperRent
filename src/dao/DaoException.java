@@ -7,7 +7,8 @@
 package dao;
 
 /**
- *
+ * <p>
+ * Exception throw by dao objects.</p>
  * @author Jingchuan Chen
  */
 public class DaoException extends Exception{

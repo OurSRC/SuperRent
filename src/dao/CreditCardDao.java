@@ -13,6 +13,11 @@ import dbconn.SqlBuilder;
 
 import entity.CreditCard;
 
+/**
+ * <p>
+ * This class provides basic access method for creditcard table.</p>
+ * @author Jingchuan Chen
+ */
 public class CreditCardDao extends AbstractDao<CreditCard> {
     
     protected static final String tb_name = "creditcard";

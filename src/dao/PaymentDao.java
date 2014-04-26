@@ -12,7 +12,9 @@ import entity.Payment;
 import dbconn.SqlBuilder;
 
 /**
- *
+ * <p>
+ * This class provides basic access methods, for example, find
+ * for payment entity.</p>
  * @author Jingchuan Chen
  */
 public class PaymentDao extends AbstractDao<Payment>{

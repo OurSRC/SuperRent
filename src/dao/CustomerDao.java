@@ -22,10 +22,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <p>
+ * This class provides basic access method for customer table.</p>
  * @author Jingchuan Chen
  */
-public class CustomerDao implements GenericDao<Customer, Integer> {
+public class CustomerDao {
 
     private static final String tb_name = "customer";
 
@@ -50,7 +51,6 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
      * @return Customer object that has the id, or null if customer not exist
      * @throws DaoException
      */
-    @Override
     public Customer find(Integer customerID) throws DaoException {
 
         Customer customer;
@@ -231,7 +231,6 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
      * @return
      * @throws DaoException
      */
-    @Override
     public boolean update(Customer customer) throws DaoException {
         Connection conn = null;
 
@@ -313,7 +312,6 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         return true;
     }
 
-    @Override
     public boolean add(Customer customer) throws DaoException {
         Connection conn = null;
 
@@ -369,7 +367,6 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         return true;
     }
 
-    @Override
     public boolean delete(Integer customerID) throws DaoException {
         Connection conn = null;
 

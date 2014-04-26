@@ -20,10 +20,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <p>
+ * This class provides basic access methods for staff entity</p>
  * @author Jingchuan Chen
  */
-public class StaffDao implements GenericDao<Staff, Integer> {
+public class StaffDao {
 
     private static final String tb_name = "staff";
 
@@ -40,7 +41,6 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         new IntParser("BranchID", "BranchId")
     };
 
-    @Override
     public boolean update(Staff value) throws DaoException {
         Connection conn = null;
         UserDao udao = new UserDao();
@@ -104,7 +104,6 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         return true;
     }
 
-    @Override
     public boolean add(Staff value) throws DaoException {
         Connection conn = null;
         UserDao udao = new UserDao();
@@ -156,7 +155,6 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         return delete(staff.getStaffId());
     }
 
-    @Override
     public boolean delete(Integer pk) throws DaoException {
         Connection conn = null;
 
@@ -307,7 +305,6 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         return staff;
     }
 
-    @Override
     public Staff find(Integer pk) throws DaoException {
         Staff staff = findOne("StaffID=" + SqlBuilder.wrapInt(pk));
         return staff;
