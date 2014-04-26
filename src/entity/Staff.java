@@ -1,5 +1,9 @@
 package entity;
 
+/**
+ * Entity class for staff table.
+ * @author Elitward
+ */
 public class Staff extends User {
 
     /**

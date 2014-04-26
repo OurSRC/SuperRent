@@ -8,12 +8,14 @@ package entityParser;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * This class represent a mapping between Date field in entity object and DateTime field in database.
+ * @author Jingchuan Chen
+ */
 public class DatetimeParser extends AttributeParser {
 
     @Override

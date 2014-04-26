@@ -9,7 +9,7 @@ package entity;
 import java.util.Date;
 
 /**
- *
+ * Entity class for creditcard table.
  * @author Jingchuan Chen
  */
 public class CreditCard {

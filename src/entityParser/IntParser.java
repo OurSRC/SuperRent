@@ -8,6 +8,10 @@ package entityParser;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 
+/**
+ * This class represent a mapping between int field in entity object and int field in database.
+ * @author Jingchuan Chen
+ */
 public class IntParser extends AttributeParser {
 
     @Override

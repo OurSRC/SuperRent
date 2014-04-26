@@ -8,7 +8,7 @@ package entity;
 import java.util.Date;
 
 /**
- *
+ * Entity class for vehicle table.
  * @author Jingchuan Chen
  */
 public class Vehicle {

@@ -37,14 +37,18 @@ public abstract class AttributeParser {
      * This function calls setAttrEx method of subclass, and handle exception.
      * IMPORTANT: for entity object with Enum type, there must have a setter that support String type.
      * Example:
+     * <pre>
+     * {@code
+     * #regular setter for enum
      * public void setType(TYPE type) {
      *   this.Type = type;
      * }
-     *
+     * # setter that support String
      * public void setType(String type) {
      *   this.Type = TYPE.valueOf(type);
      * }
-     * 
+     * }
+     * </pre>
      * @param rs Result set with query result
      * @param entity Entity object to populate from result set
      */
@@ -78,6 +82,11 @@ public abstract class AttributeParser {
         return str;
     }
     
+    /**
+     * Set the corresponding attribute of entity object to value.
+     * @param entity The entity object with field to be set.
+     * @param value Value of the field.
+     */
     public void setAttrByVal(Object entity, Object value) {
         try {
             setAttrByValEx(entity, value);
@@ -86,7 +95,6 @@ public abstract class AttributeParser {
             //System.exit(1);
         }
     }
-    
     
     protected abstract void setAttrEx(ResultSet rs, Object entity) throws NoSuchMethodException, IllegalAccessException, 
             IllegalArgumentException, InvocationTargetException;
@@ -103,26 +111,11 @@ public abstract class AttributeParser {
     public String getColName() {
         return colName;
     }
-
-    /**
-     * @param colName the colName to set
-     */
-    public void setColName(String colName) {
-        this.colName = colName;
-    }
-
+    
     /**
      * @return the attrName
      */
     public String getAttrName() {
         return attrName;
     }
-
-    /**
-     * @param attrName the attrName to set
-     */
-    public void setAttrName(String attrName) {
-        this.attrName = attrName;
-    }
-    
 }

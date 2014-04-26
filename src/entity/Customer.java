@@ -2,6 +2,10 @@ package entity;
 
 import java.util.Date;
 
+/**
+ * Entity class for Customer table
+ * @author Elitward
+ */
 public class Customer extends User {
 
     private int customerId;
@@ -12,8 +16,6 @@ public class Customer extends User {
     private String lastName;
     private String email;
     private String driverLicenseNumber;
-    //public ArrayList<CreditCard> creditCards;
-    //public ArrayList<Payment> paymentHistory;
 
     private boolean isClubMember;
     private int point;				//for club member only

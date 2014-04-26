@@ -8,7 +8,6 @@ package dao;
 import dbconn.DbConn;
 import dbconn.SqlBuilder;
 import entityParser.*;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,8 +50,7 @@ public abstract class AbstractDao<T> {
                 .values(EntityParser.wrapEntity(entity, getAP()))
                 .toString();
 
-        try {
-            Statement stmt = DbConn.getStmt();
+        try (Statement stmt = DbConn.getStmt()) {
             System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
             ans = true;
@@ -79,15 +77,7 @@ public abstract class AbstractDao<T> {
 
         System.out.println("SQL:" + sql);
 
-        try {
-            /*
-             Statement stmt = DbConn.getStmt();
-             stmt.executeUpdate(sql);
-             ans = true;
-             */
-
-            Connection conn = DbConn.getConn();
-            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        try (PreparedStatement pstmt = DbConn.getPStmtWithAutoGenKey(sql)) {
             pstmt.executeUpdate();
             ResultSet keys = pstmt.getGeneratedKeys();
             keys.next();
@@ -128,8 +118,7 @@ public abstract class AbstractDao<T> {
         String sql = qb.toString();
 
         System.out.println(sql);
-        try {
-            Statement stmt = DbConn.getStmt();
+        try (Statement stmt = DbConn.getStmt()) {
             System.out.println("SQL:" + sql);
             int ret = stmt.executeUpdate(sql);
             ans = ret != 0;
@@ -165,8 +154,7 @@ public abstract class AbstractDao<T> {
 
         String sql = qb.toString();
 
-        try {
-            Statement stmt = DbConn.getStmt();
+        try (Statement stmt = DbConn.getStmt()) {
             System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
             ans = true;
@@ -197,8 +185,7 @@ public abstract class AbstractDao<T> {
 
         T entity = getInstance();
 
-        try {
-            Statement stmt = DbConn.getStmt();
+        try (Statement stmt = DbConn.getStmt()) {
             System.out.println("SQL:" + sql);
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -236,8 +223,7 @@ public abstract class AbstractDao<T> {
                 .where(cond)
                 .toString();
 
-        try {
-            Statement stmt = DbConn.getStmt();
+        try (Statement stmt = DbConn.getStmt()) {
             System.out.println("SQL:" + sql);
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -329,8 +315,7 @@ public abstract class AbstractDao<T> {
                 .where(cond)
                 .toString();
 
-        try {
-            Statement stmt = DbConn.getStmt();
+        try (Statement stmt = DbConn.getStmt()) {
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
@@ -362,8 +347,7 @@ public abstract class AbstractDao<T> {
 
         System.out.println("******SQL AI: " + sql);
         String last_id;
-        try {
-            Statement stmt = DbConn.getStmt();
+        try (Statement stmt = DbConn.getStmt()) {
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {

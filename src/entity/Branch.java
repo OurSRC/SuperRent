@@ -7,7 +7,7 @@
 package entity;
 
 /**
- *
+ * Entity class for branch table.
  * @author Jingchuan Chen
  */
 public class Branch {
