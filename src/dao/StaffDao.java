@@ -5,19 +5,11 @@
  */
 package dao;
 
-import dao.UserDao;
-
 import dbconn.DbConn;
 import dbconn.SqlBuilder;
 import entity.Staff;
 import entity.User;
-import entityParser.AttributeParser;
-import entityParser.BooleanParser;
-import entityParser.DateParser;
-import entityParser.EntityParser;
-import entityParser.EnumParser;
-import entityParser.IntParser;
-import entityParser.StringParser;
+import entityParser.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -54,8 +46,8 @@ public class StaffDao implements GenericDao<Staff, Integer> {
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         boolean added = false;
-        boolean updated = false;
-        Staff staff_db = null;
+        Staff staff_db;
+        User user_db;
 
         String sql = qb.update(tb_name)
                 .set(EntityParser.wrapEntityForSet(value, ap))
@@ -63,18 +55,19 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                 .toString();
 
         try {
+            staff_db = find(value.getStaffId());
+            user_db = udao.find(value.getUsername());
+
             conn = DbConn.getConn();
             conn.setAutoCommit(false);
-            
-            staff_db = find(value.getStaffId());
+
             if (staff_db == null) {
                 throw new DaoException(tb_name, "update() existing record not found");
             }
             if (staff_db.getUsername().equals(value.getUsername())) { // username not changed
                 udao.update(value);
-                updated = true;
             } else {                                                  // username changed
-                if (udao.find(value.getUsername()) != null) {  // username exist
+                if (user_db != null) {  // username exist
                     throw new DaoException(tb_name, "update() username exist");
                 }
 
@@ -86,16 +79,17 @@ public class StaffDao implements GenericDao<Staff, Integer> {
             if (added) {
                 udao.delete(staff_db.getUsername());
             }
-            
+
             conn.commit();
         } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex1);
+            }
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-            if (added) {
-                udao.delete(value.getUsername());
-            }
-            if (updated) {
-                udao.update(staff_db);
-            }
             throw new DaoException(tb_name, "update()");
         } finally {
             try {
@@ -113,7 +107,6 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     @Override
     public boolean add(Staff value) throws DaoException {
         Connection conn = null;
-        boolean add_user = false;
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
 
@@ -130,7 +123,6 @@ public class StaffDao implements GenericDao<Staff, Integer> {
             conn.setAutoCommit(false);
 
             udao.add(value);
-            add_user = true;
 
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
@@ -138,8 +130,12 @@ public class StaffDao implements GenericDao<Staff, Integer> {
             conn.commit();
 
         } catch (SQLException ex) {
-            if (add_user) {
-                udao.delete(value.getUsername());
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex1);
             }
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -163,7 +159,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     @Override
     public boolean delete(Integer pk) throws DaoException {
         Connection conn = null;
-        
+
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
@@ -171,16 +167,24 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                 .where("StaffID=" + SqlBuilder.wrapInt(pk))
                 .toString();
         try {
+            Staff staff = find(pk);
+
             conn = DbConn.getConn();
             conn.setAutoCommit(false);
-            
-            Staff staff = find(pk);
+
             Statement stmt = DbConn.getStmt();
             stmt.executeUpdate(sql);
             udao.delete(staff.getUsername());
-            
+
             conn.commit();
         } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex1);
+            }
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } finally {
@@ -219,6 +223,8 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     }
 
     private ArrayList<Staff> find(String cond) throws DaoException {
+        UserDao udao = new UserDao();
+        User tmpu;
         ArrayList<Staff> result = new ArrayList<>();
 
         SqlBuilder qb = new SqlBuilder();
@@ -236,6 +242,11 @@ public class StaffDao implements GenericDao<Staff, Integer> {
                 //Staff entity = new Staff();
                 Staff entity = parseStaff(rs);      //modified by Elitward
                 EntityParser.parseEntity(rs, entity, ap);
+
+                tmpu = udao.find(entity.getUsername());
+                entity.setPassword(tmpu.getPassword());
+                entity.setType(tmpu.getType());
+
                 result.add(entity);
             }
 
@@ -248,6 +259,7 @@ public class StaffDao implements GenericDao<Staff, Integer> {
     }
 
     private Staff findOne(String cond) throws DaoException {
+        UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
@@ -262,6 +274,9 @@ public class StaffDao implements GenericDao<Staff, Integer> {
 
             if (rs.next()) {
                 staff = parseStaff(rs);
+                User u = udao.find(staff.getUsername());
+                staff.setPassword(u.getPassword());
+                staff.setType(u.getType());
             } else {
                 return null;
             }

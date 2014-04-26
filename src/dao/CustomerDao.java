@@ -72,6 +72,8 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
      * @throws DaoException
      */
     public Customer findOne(String sql) throws DaoException {
+        UserDao udao = new UserDao();
+        User tmpu;
 
         Customer customer = null;
         try {
@@ -81,6 +83,13 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
 
             if (rs.next()) {
                 customer = parseCustomer(rs);
+
+                if (customer.getUsername() != null) {
+                    tmpu = udao.find(customer.getUsername());
+                    customer.setPassword(tmpu.getPassword());
+                    customer.setType(tmpu.getType());
+                }
+
             } else {
                 return null;
             }
@@ -92,6 +101,9 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
     }
 
     private ArrayList<Customer> find(String cond) throws DaoException {
+        UserDao udao = new UserDao();
+        User tmpu;
+
         ArrayList<Customer> result = new ArrayList<>();
 
         SqlBuilder qb = new SqlBuilder();
@@ -109,6 +121,13 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 //Customer entity = new Customer();
                 Customer entity = parseCustomer(rs);    //modified by Elitward
                 EntityParser.parseEntity(rs, entity, ap);
+
+                if (entity.getUsername() != null) {
+                    tmpu = udao.find(entity.getUsername());
+                    entity.setPassword(tmpu.getPassword());
+                    entity.setType(tmpu.getType());
+                }
+
                 result.add(entity);
             }
 
@@ -215,12 +234,13 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
     @Override
     public boolean update(Customer customer) throws DaoException {
         Connection conn = null;
-        
+
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
         boolean added = false;
         boolean updated = false;
-        Customer customer_db = null;
+        Customer customer_db;
+        User userWithSameUname = null;
 
         qb.update(tb_name);
         qb.set(EntityParser.wrapEntityForSet(customer, ap));
@@ -232,39 +252,53 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
             if (customer_db == null) {
                 throw new DaoException(tb_name, "update() existing record not found");
             }
-            
+
+            if (customer.getUsername() != null) {
+                userWithSameUname = udao.find(customer.getUsername());
+            }
+
             conn = DbConn.getConn();
             conn.setAutoCommit(false);
-            
+
             if (customer_db.getUsername() != null
                     && customer_db.getUsername().equals(customer.getUsername())) { // username is not changed
                 udao.update(customer);
-                updated = true;
+                //updated = true;
             } else {        // username changed
-                if (udao.find(customer.getUsername()) != null) {  // username exist
+                if (userWithSameUname != null) {  // username exist
                     throw new DaoException(tb_name, "update() username exist");
                 }
 
                 udao.delete(customer_db.getUsername()); // delete old user name
                 if (customer.getUsername() != null) {
                     udao.add(customer);                     // add new customer name
-                    added = true;
+                    //added = true;
                 }
             }
             Statement stmt = DbConn.getStmt();
             System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
-            
+
             conn.commit();
         } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-            if (added) {
-                udao.delete(customer.getUsername());
-                udao.add(customer_db);
-            }
-            if (updated) {
-                udao.update(customer_db);
-            }
+            /*
+             if (added) {
+             udao.delete(customer.getUsername());
+             udao.add(customer_db);
+             }
+             if (updated) {
+             udao.update(customer_db);
+             }
+             */
             throw new DaoException(tb_name, "update()");
         } finally {
             try {
@@ -282,7 +316,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
     @Override
     public boolean add(Customer customer) throws DaoException {
         Connection conn = null;
-        
+
         boolean add_user = false;
         UserDao udao = new UserDao();
         SqlBuilder qb = new SqlBuilder();
@@ -297,20 +331,29 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         try {
             conn = DbConn.getConn();
             conn.setAutoCommit(false);
-            
+
             if (customer.getUsername() != null) {
                 udao.add(customer);
-                add_user = true;    // insert user success
+                //add_user = true;    // insert user success
             }
             Statement stmt = DbConn.getStmt();
             System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
-            
+
             conn.commit();
         } catch (SQLException ex) {
-            if (add_user) {     // insert user success but insert customer failed
-                udao.delete(customer.getUsername());
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex1);
             }
+            /*
+             if (add_user) {     // insert user success but insert customer failed
+             udao.delete(customer.getUsername());
+             }
+             */
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "add()");
         } finally {
@@ -322,7 +365,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 Logger.getLogger(StaffDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         return true;
     }
 
@@ -338,7 +381,7 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
         try {
             conn = DbConn.getConn();
             conn.setAutoCommit(false);
-            
+
             Customer cust = find(customerID);
             if (cust == null) {     // record not in table
                 return true;
@@ -351,12 +394,19 @@ public class CustomerDao implements GenericDao<Customer, Integer> {
                 UserDao udao = new UserDao();
                 udao.delete(cust.getUsername());
             }
-            
+
             conn.commit();
         } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex1);
+            }
             Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
             throw new DaoException(tb_name, "delete()");
-        }  finally {
+        } finally {
             try {
                 if (conn != null) {
                     conn.setAutoCommit(true);
