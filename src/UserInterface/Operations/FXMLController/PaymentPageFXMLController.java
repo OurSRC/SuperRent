@@ -65,6 +65,7 @@ public class PaymentPageFXMLController implements Initializable {
 
     @FXML
     private void ConfirmPaymentButtonAction(ActionEvent event) {
+        
     }
     
 }

@@ -19,7 +19,14 @@ public class Price {
     }
     
     public static int toCent(String text){
-        float f = Float.parseFloat(text);
+        float f;
+        if(text!=null)
+        {
+        f = Float.parseFloat(text);
+        }else
+        {
+            f=0;
+        }
         return (int)(f*100);
     }
 }

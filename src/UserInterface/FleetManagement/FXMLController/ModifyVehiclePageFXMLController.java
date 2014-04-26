@@ -8,6 +8,7 @@ package UserInterface.FleetManagement.FXMLController;
 import ControlObjects.VehicleCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
+import SystemOperations.ValidateFields;
 import entity.Vehicle;
 import entity.VehicleClass;
 import java.io.IOException;
@@ -54,7 +55,8 @@ public class ModifyVehiclePageFXMLController implements Initializable {
     public String plateNumber;
     public String model;
     public int odometerReading;
-    public int sellingPrice;
+    public String sellingPrice;
+
     /**
      * Initializes the controller class.
      */
@@ -77,7 +79,7 @@ public class ModifyVehiclePageFXMLController implements Initializable {
                 StatusCB.getSelectionModel().select(1);
                 SellingPriceTF.setDisable(false);
                 SellingPriceLabel.setDisable(false);
-                SellingPriceTF.setText(Integer.toString(VehicleNavigator.Modifyvehicle.getPrice()));
+                SellingPriceTF.setText(VehicleNavigator.Modifyvehicle.getSellingPrice());
                 break;
         }
     }
@@ -100,28 +102,25 @@ public class ModifyVehiclePageFXMLController implements Initializable {
 
     @FXML
     private void UpdateVehicleButtonAction(ActionEvent event) throws IOException {
-        if(ValidateMandatoryField())
-        {
+        if (ValidateMandatoryField()) {
             VehicleNavigator.Modifyvehicle.setPlateNo(plateNumber);
             VehicleNavigator.Modifyvehicle.setMode(model);
-            VehicleNavigator.Modifyvehicle.setPrice(sellingPrice);
+            VehicleNavigator.Modifyvehicle.setSellingPrice(sellingPrice);
             VehicleNavigator.Modifyvehicle.setOdometer(odometerReading);
             VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-            if(newVehicleCtrl.updateVehicle(VehicleNavigator.Modifyvehicle))
-            {
-                 DialogFX dialog = new DialogFX(Type.INFO);
+            if (newVehicleCtrl.updateVehicle(VehicleNavigator.Modifyvehicle)) {
+                DialogFX dialog = new DialogFX(Type.INFO);
                 dialog.setTitleText("Success");
                 dialog.setMessage("Vehicle " + plateNumber + " Successfully updated");
-                dialog.showDialog();      
+                dialog.showDialog();
                 VehicleNavigator.loadVista(VehicleNavigator.VEHICLEMAINPAGE);
             }
-            
-        }else
-        {
-                DialogFX dialog = new DialogFX(Type.ERROR);
-                dialog.setTitleText("Error");
-                dialog.setMessage(" Pleas enter the Mandatory Fields");
-                dialog.showDialog();
+
+        } else {
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage(" Pleas enter the Mandatory Fields");
+            dialog.showDialog();
         }
 
     }
@@ -129,11 +128,10 @@ public class ModifyVehiclePageFXMLController implements Initializable {
     @FXML
     private void BackToSearchButtonAction(ActionEvent event) {
     }
-    
+
     @FXML
-    private void SellVehicleButtonAction(ActionEvent event)
-    {
-        
+    private void SellVehicleButtonAction(ActionEvent event) {
+
     }
 
     public boolean ValidateMandatoryField() {
@@ -142,20 +140,29 @@ public class ModifyVehiclePageFXMLController implements Initializable {
                 && !OdometerTF.getText().equals("")
                 && StatusCB.getSelectionModel().getSelectedIndex() == 1
                 && !SellingPriceTF.getText().equals("")) {
-            plateNumber = PlateNumberTF.getText();
-            model = ModelTF.getText();
-            odometerReading = Integer.parseInt(OdometerTF.getText());
-            sellingPrice = Integer.parseInt(SellingPriceTF.getText());
-            return true;
+
+            if (ValidateFields.CheckForNumbersOnly(SellingPriceTF.getText())) {
+                plateNumber = PlateNumberTF.getText();
+                model = ModelTF.getText();
+                odometerReading = Integer.parseInt(OdometerTF.getText());
+                sellingPrice = SellingPriceTF.getText();
+                return true;
+            } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText(" Error ");
+                dialog.setMessage("Improper Selling Price Entered");
+                dialog.showDialog();
+                return false;
+            }
 
         } else if (!PlateNumberTF.getText().equals("")
                 && !ModelTF.getText().equals("")
                 && !OdometerTF.getText().equals("")
                 && StatusCB.getSelectionModel().getSelectedIndex() == 0) {
-                plateNumber = PlateNumberTF.getText();
-                model = ModelTF.getText();
-                odometerReading = Integer.parseInt(OdometerTF.getText());
-                sellingPrice = 0;
+            plateNumber = PlateNumberTF.getText();
+            model = ModelTF.getText();
+            odometerReading = Integer.parseInt(OdometerTF.getText());
+            sellingPrice = null;
             return true;
         } else {
             return false;
