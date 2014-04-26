@@ -104,14 +104,31 @@ public class CustomerCtrl {
         }
         return list;
     }
-    
-    public boolean checkMembershipActive(Customer customer){
-        if(customer.getIsClubMember()){
-            if(customer.getMembershipExpiry().compareTo(new Date())>0){
+
+    public boolean checkMembershipActive(Customer customer) {
+        if (customer.getIsClubMember()) {
+            if (customer.getMembershipExpiry().compareTo(new Date()) > 0) {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean extendMembership(Customer customer, int years, Date start) {
+        if(customer!=null){
+            if( checkMembershipActive(customer) ){
+                Date d = customer.getMembershipExpiry();
+                d.setYear( d.getYear()+1 );
+                customer.setMembershipExpiry(d);
+            }else{
+                Date d = new Date();
+                d.setYear( d.getYear()+1 );
+                customer.setMembershipExpiry(d);
+            }
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean payClubMemberFee(Customer customer, int Years) {

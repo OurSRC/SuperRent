@@ -93,6 +93,13 @@ public class PaymentCtrl {
                     Reservation rs =  ReserveCtrl.getReserve( rt.getReservationInfold() );
                     c.setPoint(c.getPoint() - (item.getQuantity()*FinanceCtrl.calculateMembershipPointForOneDay(rs)) );
                 }
+                
+                //new or extend membership
+                if(item.getType()==PaymentItem.ITEMTYPE.MEMBERSHIP){
+                    CustomerCtrl cc = new CustomerCtrl();
+                    Customer c = cc.getCustomerById(customerId);
+                    cc.extendMembership(c, item.getQuantity(), new Date());
+                }
             }
             
             if(customerId!=0){  //add new point

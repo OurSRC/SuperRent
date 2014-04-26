@@ -1,15 +1,9 @@
 package ControlObjects;
 
 import SystemOperations.ErrorMsg;
-import dao.CustomerDao;
 import dao.UserDao;
-import entity.Customer;
 import entity.User;
-import java.sql.SQLException;
 import dao.DaoException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +27,11 @@ public class LoginCtrl {
                 ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
                 return User.TYPE.ERROR;
             } else {
-                if (password.compareTo(userInfo.getPassword()) == 0) {
+                String savedPswd = userInfo.getPassword();
+                String digestPswd = SecurityCtrl.digestPassword(password);
+                if (password.compareTo(savedPswd) == 0) {
+                    return userInfo.getType();
+                } else if (digestPswd.compareTo(savedPswd) == 0) {
                     return userInfo.getType();
                 } else {
                     ErrorMsg.setLastError(ErrorMsg.ERROR_WRONG_PASSWORD);

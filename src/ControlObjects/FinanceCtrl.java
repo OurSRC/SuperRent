@@ -126,42 +126,39 @@ public class FinanceCtrl {
             }
         }
 
-        ArrayList<PaymentItem> newlist = new ArrayList<PaymentItem>();
+        list = new ArrayList<>();
         PaymentItem pRental = new PaymentItem(0, PaymentItem.ITEMTYPE.VEHICLE, "Rental", cRental, 1);
         PaymentItem pEquip = new PaymentItem(0, PaymentItem.ITEMTYPE.EQUIPMENT, "Equipment", cEquip, 1);
         PaymentItem pInsurance = new PaymentItem(0, PaymentItem.ITEMTYPE.INSURANCE, "Insurance", cInsurance, 1);
         PaymentItem pMile = new PaymentItem(0, PaymentItem.ITEMTYPE.MILE, "Additional Miles", cMile, 1);
         PaymentItem pFuel = new PaymentItem(0, PaymentItem.ITEMTYPE.FUEL, "Fuel", cFuel, 1);
         PaymentItem pDamage = new PaymentItem(0, PaymentItem.ITEMTYPE.DAMAGE, "Damage", cDamage, 1);
-        if (usePoint) {
-        PaymentItem pDiscount = new PaymentItem(0, PaymentItem.ITEMTYPE.POINTEXCHANGE, "Discount", cDiscount / cDiscountDays, cDiscountDays);
-        if (cDiscount != 0) {
-            newlist.add(pDiscount);
-        }
-        }
+        PaymentItem pDiscount = cDiscountDays==0 ? null : new PaymentItem(0, PaymentItem.ITEMTYPE.POINTEXCHANGE, "Discount", cDiscount / cDiscountDays, cDiscountDays);
 
         if (cRental != 0) {
-            newlist.add(pRental);
+            list.add(pRental);
         }
         if (cEquip != 0) {
-            newlist.add(pEquip);
+            list.add(pEquip);
         }
         if (cInsurance != 0) {
-            newlist.add(pInsurance);
+            list.add(pInsurance);
         }
         if (cMile != 0) {
-            newlist.add(pMile);
+            list.add(pMile);
         }
         if (cFuel != 0) {
-            newlist.add(pFuel);
+            list.add(pFuel);
         }
         if (cDamage != 0) {
-            newlist.add(pDamage);
+            list.add(pDamage);
         }
-        
+        if (cDiscount != 0) {
+            list.add(pDiscount);
+        }
 
         sumOutput = cRental + cEquip + cInsurance + cMile + cFuel + cDamage + cDiscount;
-        return newlist;
+        return list;
     }
 
     public ArrayList<PaymentItem> calulateMembershipCost(int years, int branchId, Integer sumOutput) {

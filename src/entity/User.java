@@ -1,5 +1,7 @@
 package entity;
 
+import ControlObjects.SecurityCtrl;
+
 /**
  * Entity class for user table.
  * @author Elitward
@@ -51,10 +53,14 @@ public class User {
     /**
      * @param password the password to set
      */
-    public void setPassword(String password) {
+    public void setPasswordText(String password) {
         this.password = password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+        //this.password = SecurityCtrl.digestPassword(password);
+    }
     /**
      * @return the type
      */
