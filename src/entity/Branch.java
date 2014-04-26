@@ -17,16 +17,20 @@ public class Branch {
     private String branchAddress;
     private int fuelPrice;
     private int pricePerKM;
+    private int clubMemberFeeRate;
 
     public Branch() {
     }
 
-    public Branch(String branchName, String branchPhone, String branchAddress, int fuelPrice, int pricePerKM) {
+    public Branch(String branchName, String branchPhone, String branchAddress, 
+            int fuelPrice, int pricePerKM, int clubMemberFeeRate) {
+        this.branchID = 0;
         this.branchName = branchName;
         this.branchPhone = branchPhone;
         this.branchAddress = branchAddress;
         this.fuelPrice = fuelPrice;
         this.pricePerKM = pricePerKM;
+        this.clubMemberFeeRate = clubMemberFeeRate;
     }
 
     /**
@@ -111,5 +115,19 @@ public class Branch {
      */
     public void setPricePerKM(int pricePerKM) {
         this.pricePerKM = pricePerKM;
+    }
+
+    /**
+     * @return the clubMemberFeeRate
+     */
+    public int getClubMemberFeeRate() {
+        return clubMemberFeeRate;
+    }
+
+    /**
+     * @param clubMemberFeeRate the clubMemberFeeRate to set
+     */
+    public void setClubMemberFeeRate(int clubMemberFeeRate) {
+        this.clubMemberFeeRate = clubMemberFeeRate;
     }
 }

@@ -6,18 +6,33 @@
 
 package UserInterface.Reports.FXMLController;
 
+import ControlObjects.RentCtrl;
+import ControlObjects.ReturnCtrl;
+import ControlObjects.VehicleCtrl;
+import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
+import entity.Rent;
+import entity.Return;
+import entity.Vehicle;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 
 /**
@@ -28,33 +43,37 @@ import javafx.scene.text.Font;
 public class ViewDailyReturnsFXMLController implements Initializable {
 
     @FXML
-    private TableColumn VehicleCategoryColumn;
-    @FXML
-    private TableColumn VehicleTypeColumn;
-    @FXML
-    private TableColumn NoOfReturnsColumn;
-    @FXML
-    private TableColumn PaymentsColumn;
-    @FXML
-    private Label DateLabel;
-    @FXML
-    private Button SearchButton;
-    @FXML
     private Label PrintDateLabel;
-    @FXML
-    private Button PrintPDFButton;
     @FXML
     private Label TotalLabel;
     @FXML
     private Label TotalNoOfReturnsLabel ;
     @FXML
      private Label TotalPaymentsLabel ;
-    @FXML
-    private CheckBox EmailCHB;
-    @FXML
     public DatePicker SearchDateDP;
     String DateValue;
+    @FXML
+    private Font x1;
+    @FXML
+    private ComboBox<?> BranchCB;
+    @FXML
+    private Button SearchButton;
+    @FXML
+    private TableView DailyReturnsTable;
+    @FXML
+    private TableColumn PlateNumberColumn;
+    @FXML
+    private TableColumn VehicleClassColoumn;
+    @FXML
+    private TableColumn ModelColumn;
+    @FXML
+    private TableColumn ManufacturingYearColumn;
+    @FXML
+    private TableColumn BranchIDColumn;
     
+    private Date dateValue;
+    private LocalDate localDateValue;
+    private int branchID;
 
     /**
      * Initializes the controller class.
@@ -63,16 +82,27 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
     @FXML
     private void SearchDailyReturnsAction(ActionEvent event) {
-        if (ValidateInput()) {
-              DateValue=(SearchDateDP.getValue().toString());
-              System.out.println(DateValue);
-                        PrintDateLabel.setText(DateValue);
-                        
-        }  else {
-            System.out.println("Please enter the Date");
+       if (ValidateInput()) {
+            localDateValue = SearchDateDP.getValue();
+            dateValue = DateClass.ConvertLocalDatetoDate(localDateValue);
+            if (!BranchCB.valueProperty().isNull().getValue()) {
+                switch (BranchCB.getSelectionModel().getSelectedItem().toString()) {
+                    case "Branch 1":
+                        branchID = 1;
+                        break;
+                       
+                }
+            } else {
+                branchID = 0;
+            }
+            
+            populateSearchTable();
+            
+       
+        } else {
+
             DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
             dialog.setTitleText("Error");
             dialog.setMessage("Please enter the Date");
@@ -97,5 +127,33 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     @FXML
     private void SearchDateAction(ActionEvent event) {
     }
-    
+
+    @FXML
+    private void SearchDailyRentalsAction(ActionEvent event) {
+    }
+    private void populateSearchTable() {
+
+        ReturnCtrl newReturnCtrl = new ReturnCtrl();
+        VehicleCtrl newVehicleCtrl = new VehicleCtrl();
+        RentCtrl newRentCtrl = new RentCtrl();
+        ArrayList<Return> returnArrayList = newReturnCtrl.getRerurnsByDate(dateValue, branchID);
+        ArrayList<Vehicle> vehicleArrayList = new ArrayList<>();
+        for (Return returnObject : returnArrayList) {
+            Rent rent = newRentCtrl.getRentByContractNumber(returnObject.getContractNo());
+            vehicleArrayList.add(newVehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo()));
+        }
+        DailyReturnsTable.getItems().clear();
+        ObservableList<Vehicle> vehicleObservableList = FXCollections.observableArrayList(vehicleArrayList);
+        DailyReturnsTable.setItems(vehicleObservableList);
+        PlateNumberColumn.setCellValueFactory(new PropertyValueFactory("plateNo"));
+        ModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
+        VehicleClassColoumn.setCellValueFactory(new PropertyValueFactory("className"));
+        ManufacturingYearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
+        BranchIDColumn.setCellValueFactory(new PropertyValueFactory("branchId"));
+
+    }
+
+    @FXML
+    private void BranchCBAction(ActionEvent event) {
+    }
 }

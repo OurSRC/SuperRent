@@ -5,7 +5,6 @@ import entity.Equipment;
 import dao.DaoException;
 import dao.EquipmentDao;
 import dao.ReservationInfoDao;
-import dao.ReserveEquipmentDao;
 import dao.SupportEquipmentDao;
 import entity.Branch;
 import entity.SupportEquipment;
@@ -72,7 +71,7 @@ public class EquipmentCtrl {
             Logger.getLogger(EquipmentCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        ArrayList<String> ans = new ArrayList<String>();
+        ArrayList<String> ans = new ArrayList<>();
         for (SupportEquipment se : list) {
             ans.add(se.getEquipmentType());
         }
@@ -88,7 +87,7 @@ public class EquipmentCtrl {
             Logger.getLogger(EquipmentCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        ArrayList<String> ans = new ArrayList<String>();
+        ArrayList<String> ans = new ArrayList<>();
         for (SupportEquipment se : list) {
             ans.add(se.getVehicleClass());
         }
@@ -111,10 +110,6 @@ public class EquipmentCtrl {
             Logger.getLogger(EquipmentCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        if (have > rent) {
-            return true;
-        } else {
-            return false;
-        }
+        return have > rent;
     }
 }

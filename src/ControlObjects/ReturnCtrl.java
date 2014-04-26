@@ -3,10 +3,9 @@ package ControlObjects;
 import SystemOperations.ErrorMsg;
 import dao.DaoException;
 import dao.ReturnDao;
+import entity.Rent;
 import entity.Return;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import entity.Vehicle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -14,7 +13,7 @@ import java.util.logging.Logger;
 
 public class ReturnCtrl {
 
-    public Return createReturn(Return returnInfo) {
+    static public Return createReturn(Return returnInfo) {
         ReturnDao dao = new ReturnDao();
         try {
             boolean suc = dao.add(returnInfo);
@@ -23,15 +22,19 @@ public class ReturnCtrl {
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
             return null;
         }
+        
+        //set the vehicle as idle again
+        setVehicleForRentStatus(returnInfo, Vehicle.RENTSTATUS.IDLE);
+        
         return returnInfo;
     }
 
-    public Return createReturn(int ContractNum, int Fuel, int Odometer, int StaffId, int PaymentId) {
-        Return rtn = new Return(ContractNum, new Date(), Fuel, Odometer, StaffId, PaymentId);
+    static public Return createReturn(int ContractNum, int Fuel, int Odometer, int StaffId, int PaymentId, int damageCost) {
+        Return rtn = new Return(ContractNum, new Date(), Fuel, Odometer, StaffId, PaymentId, damageCost);
         return createReturn(rtn);
     }
 
-    public boolean updateReturn(Return returnInfo) {
+    static public boolean updateReturn(Return returnInfo) {
         ReturnDao dao = new ReturnDao();
         boolean suc = false;
         try {
@@ -43,12 +46,12 @@ public class ReturnCtrl {
         return suc;
     }
 
-    public boolean deleteReturn(int returnId) {
+    static public boolean deleteReturn(int returnId) {
         //ReturnDao dao = new ReturnDao();
         return false;
     }
 
-    public ArrayList<Return> searchReturn(Return returnInfo) {
+    static public ArrayList<Return> searchReturn(Return returnInfo) {
         ReturnDao dao = new ReturnDao();
         ArrayList<Return> list = null;
         try {
@@ -60,7 +63,7 @@ public class ReturnCtrl {
         return list;
     }
 
-    public Return searchFirstReturn(Return returnInfo) {
+    static public Return searchFirstReturn(Return returnInfo) {
         ReturnDao dao = new ReturnDao();
         try {
             return dao.findFirstInstance(returnInfo);
@@ -71,23 +74,23 @@ public class ReturnCtrl {
         return null;
     }
 
-    public Return getReturnByContractNumber(int contractNum) {
+    static public Return getReturnByContractNumber(int contractNum) {
         Return rtn = new Return();
         rtn.setContractNo(contractNum);
         return searchFirstReturn(rtn);
     }
 
-    public Return getReturnByPaymentId(int paymentId) {
+    static public Return getReturnByPaymentId(int paymentId) {
         Return rtn = new Return();
         rtn.setPaymentId(paymentId);
         return searchFirstReturn(rtn);
     }
 
-    public ArrayList<Return> getRerurnsByDate(Date d, int branchId) {
+    static public ArrayList<Return> getRerurnsByDate(Date d, int branchId) {
         return getReturnsBetweenDates(d, d, branchId);
     }
 
-    public ArrayList<Return> getReturnsBetweenDates(Date start, Date end, int branchId) {
+    static public ArrayList<Return> getReturnsBetweenDates(Date start, Date end, int branchId) {
         ReturnDao returnDao = new ReturnDao();
         try {
             return returnDao.findBetween(start, end, branchId);
@@ -96,5 +99,21 @@ public class ReturnCtrl {
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
         return null;
+    }
+    
+    static private boolean setVehicleForRentStatus(Return returnInfo, Vehicle.RENTSTATUS status){
+        RentCtrl rentCtrl = new RentCtrl();
+        VehicleCtrl vehicleCtrl = new VehicleCtrl();
+        if(returnInfo==null)
+            return false;
+        Rent rent = rentCtrl.getRentByContractNumber(returnInfo.getContractNo());
+        if(rent==null)
+            return false;
+        Vehicle vehicle = vehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo());
+        if(vehicle==null)
+            return false;
+        vehicle.setRentStatus(status);
+        boolean suc = vehicleCtrl.updateVehicle(vehicle);
+        return suc;
     }
 }

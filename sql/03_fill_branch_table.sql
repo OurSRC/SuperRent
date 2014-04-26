@@ -1,1 +1,1 @@
-INSERT INTO `super_rent`.`branch` VALUES (1, 'Main Branch', '12345678', 'everywhere', 130, 18);
+INSERT INTO `super_rent`.`branch` VALUES (1, 'Main Branch', '12345678', 'everywhere', 130, 18, 1000);

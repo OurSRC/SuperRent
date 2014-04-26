@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class ReserveCtrl {
 
-    public Reservation createReserve(Reservation reserve) {
+    static public Reservation createReserve(Reservation reserve) {
         if (reserve == null) {
             return null;
         }
@@ -72,7 +72,7 @@ public class ReserveCtrl {
         return reserve;
     }
 
-    public String createReservationNumber(Reservation reserve) {
+    static public String createReservationNumber(Reservation reserve) {
         int id = reserve.getReservationInfoId();
         if (id > 0) {
             String rNo;
@@ -95,7 +95,7 @@ public class ReserveCtrl {
         }
     }
 
-    public boolean updateReserve(Reservation reserve) {	//modify & cancel
+    static public boolean updateReserve(Reservation reserve) {	//modify & cancel
         ArrayList<ReserveEquipment> eqList = null;
         ArrayList<BuyInsurance> inList = null;
 
@@ -143,7 +143,7 @@ public class ReserveCtrl {
         return true;
     }
 
-    public boolean cancelReserve(Reservation reserve) {
+    static public boolean cancelReserve(Reservation reserve) {
         ReservationInfoDao resInfoDAO = new ReservationInfoDao();
         ReservationInfo resInfo = reserve.getReserveInfo();
         resInfo.setReservationStatus(ReservationInfo.STATUS.CANCELED);
@@ -157,7 +157,7 @@ public class ReserveCtrl {
         return suc;
     }
 
-    public Reservation getReserve(int reserveId) {
+    static public Reservation getReserve(int reserveId) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ReservationInfo reserveInfo = new ReservationInfo();
         reserveInfo.setReservationInfoId(reserveId);
@@ -170,7 +170,7 @@ public class ReserveCtrl {
         return getCompleteReservation(reserveInfo);
     }
 
-    private Reservation getCompleteReservation(ReservationInfo reserveInfo) {
+    static private Reservation getCompleteReservation(ReservationInfo reserveInfo) {
         if (reserveInfo != null && reserveInfo.getReservationInfoId() != 0) {
             ReserveEquipmentDao resEqmDAO = new ReserveEquipmentDao();
             BuyInsuranceDao resInqDAO = new BuyInsuranceDao();
@@ -195,7 +195,7 @@ public class ReserveCtrl {
         }
     }
 
-    public Reservation getReserve(String ReservationNumber) {
+    static public Reservation getReserve(String ReservationNumber) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ReservationInfo reserveInfo = null;
         try {
@@ -207,12 +207,12 @@ public class ReserveCtrl {
         return getCompleteReservation(reserveInfo);
     }
 
-    public ArrayList<Reservation> searchReserve(Reservation reserve) {
+    static public ArrayList<Reservation> searchReserve(Reservation reserve) {
         ArrayList<Reservation> sample = new ArrayList<>();
         return sample;
     }
 
-    public ArrayList<ReservationInfo> getUnrentedReservations() {
+    static public ArrayList<ReservationInfo> getUnrentedReservations() {
         ReservationInfo reservationInfo = new ReservationInfo();
         reservationInfo.setReservationStatus(ReservationInfo.STATUS.PENDING);
         ReservationInfoDao dao = new ReservationInfoDao();
@@ -226,7 +226,7 @@ public class ReserveCtrl {
         return list;
     }
 
-    public ArrayList<Reservation> searchReserveBetween(Date pickUpTime, Date returnTime, Branch branch) {
+    static public ArrayList<Reservation> searchReserveBetween(Date pickUpTime, Date returnTime, Branch branch) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
         ArrayList<ReservationInfo> resInfList = null;
@@ -242,7 +242,7 @@ public class ReserveCtrl {
         return list;
     }
 
-    public ArrayList<Reservation> searchReserveForRent(Date FromReserveTime, Date ToReserveTime, Branch branch, String ReservationNo) {
+    static public ArrayList<Reservation> searchReserveForRent(Date FromReserveTime, Date ToReserveTime, Branch branch, String ReservationNo) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
         ArrayList<ReservationInfo> resInfList = null;
@@ -264,7 +264,7 @@ public class ReserveCtrl {
      * @param day The date that pending reservations should be pick up. Search all pending if is null.
      * @return ArrayList of reservation satisfy requirement.
      */
-    public ArrayList<Reservation> searchPendingReservation(int branchId, Date day) {
+    static public ArrayList<Reservation> searchPendingReservation(int branchId, Date day) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
         ArrayList<ReservationInfo> resInfList = null;
@@ -281,7 +281,7 @@ public class ReserveCtrl {
         return list;
     }
     
-    public ArrayList<Reservation> searchNotReturnedReservation(int branchId, Date day) {
+    static public ArrayList<Reservation> searchNotReturnedReservation(int branchId, Date day) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
         ArrayList<ReservationInfo> resInfList = null;

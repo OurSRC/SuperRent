@@ -6,6 +6,7 @@
 
 package ControlObjects;
 
+import SystemOperations.ErrorMsg;
 import dao.BranchDao;
 import dao.DaoException;
 import entity.Branch;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class BranchCtrl {
     
-    private static Branch defaultBranch = new Branch("Default Branch", "911", "nowhere", 130, 18);
+    private static final Branch defaultBranch = new Branch("Default Branch", "911", "nowhere", 130, 18, 1000);
     
     public static Branch getDefaultBranch(){
         BranchDao bDAO = new BranchDao();
@@ -27,10 +28,27 @@ public class BranchCtrl {
             branch = bDAO.findByName("Main Branch");    //from SQL script
         } catch (DaoException ex) {
             Logger.getLogger(BranchCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
         if(branch==null){
             branch = defaultBranch;
         }
         return branch;
+    }
+    
+    public Branch getBranchById(int id){
+        if( id==0 ) {
+            return defaultBranch;
+        } else {
+            BranchDao bDAO = new BranchDao();
+            Branch branch = null;
+            try {
+                branch = bDAO.findById(id);
+            } catch (DaoException ex) {
+                Logger.getLogger(BranchCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+            }
+            return branch;
+        }
     }
 }
