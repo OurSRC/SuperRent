@@ -11,7 +11,7 @@ import dao.PaymentDao;
 import dao.PaymentItemDao;
 import entity.Payment;
 import entity.PaymentItem;
-import entity.Rent;
+import entity.Return;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -73,9 +73,28 @@ public class PaymentCtrl {
         return false;
     }
 
-    public boolean addForRent(Rent rent) {
-        
-        return false;
+    public boolean addForReturn(Return returnInfo, boolean usePoint) {
+        FinanceCtrl finCtrl = new FinanceCtrl();
+        Integer sum = 0;
+        ArrayList<PaymentItem> list = finCtrl.calulateReturnCost(returnInfo, usePoint, sum);
+        if (list != null && list.size() > 0) {
+            addPayItem(list);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean addForMembershipFee(int year, int branchId){
+        FinanceCtrl finCtrl = new FinanceCtrl();
+        Integer sum = 0;
+        ArrayList<PaymentItem> list = finCtrl.calulateMembershipCost(year, branchId, sum);
+        if (list != null && list.size() > 0) {
+            addPayItem(list);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean addItem(PaymentItem item) {
@@ -90,7 +109,7 @@ public class PaymentCtrl {
     public boolean removeItem(PaymentItem item) {
         return payItem.remove(item);
     }
-    
+
     public Payment getPay() {
         return pay;
     }
@@ -105,6 +124,10 @@ public class PaymentCtrl {
 
     public void setPayItem(ArrayList<PaymentItem> payItem) {
         this.payItem = payItem;
+    }
+
+    public void addPayItem(ArrayList<PaymentItem> payItem) {
+        this.payItem.addAll(payItem);
     }
 
     public Payment getByPaymentId() {

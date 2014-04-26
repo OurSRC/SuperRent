@@ -115,7 +115,9 @@ public class PaymentItem {
         MEMBERSHIP(6),
         TICKET(7),
         POINTEXCHANGE(8),
-        OTHER(9);
+        INSURANCE(9),
+        FUEL(10),
+        OTHER(11);
         
         private int value;
         

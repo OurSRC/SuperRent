@@ -1,10 +1,12 @@
 package ControlObjects;
 
+import entity.Branch;
 import entity.BuyInsurance;
+import entity.PaymentItem;
+import entity.Rent;
 import entity.ReservationInfo;
 import entity.ReserveEquipment;
 import entity.Return;
-import entity.VehicleClass;
 import finance.Payment;
 import java.util.ArrayList;
 import java.util.Date;
@@ -76,12 +78,68 @@ public class FinanceCtrl {
         return rental + equip + insurance;
     }
 
-    public int calulateRentCost(Return returnInfo) {
-        return 0;
+    public ArrayList<PaymentItem> calulateReturnCost(Return returnInfo, boolean usePoint, Integer sumOutput) {
+        ArrayList<PaymentItem> list = null;
+        if(returnInfo==null)
+            return null;
+        
+        RentCtrl rentCtrl = new RentCtrl();
+        ReserveCtrl reserveCtrl = new ReserveCtrl();
+        BranchCtrl branchCtrl = new BranchCtrl();
+        
+        Date returnTime = returnInfo.getReturnTime();
+        Rent rent = rentCtrl.getRentByContractNumber(returnInfo.getContractNo());
+        Date rentTime = rent.getTime();
+        Reservation reserve = reserveCtrl.getReserve(rent.getReservationInfold());
+        TimeGroup tg = countTimes(rentTime, returnTime);
+        Branch branch = branchCtrl.getBranchById(reserve.getBranchId());
+
+        int cRental =  rentalCost(rentTime, returnTime, reserve.getReserveInfo());
+        int cEquip = 0;
+        if( tg.cWeeks==0 ){
+            ArrayList<ReserveEquipment> reserveEquipment = reserve.getReserveEquipment();
+            for(ReserveEquipment anEquip: reserveEquipment){
+                cEquip += equipmentCost(rentTime, returnTime, anEquip);
+            }
+        }
+        int cInsurance = 0;
+        ArrayList<BuyInsurance> reserveInsurances = reserve.getReserveInsurance();
+        for(BuyInsurance anInsu: reserveInsurances){
+            cInsurance += insuraceCost( reserve.getReturnTime(), reserve.getPickupTime(), anInsu, reserve.getReserveInfo().getvDailyRate() );
+        }
+        
+        int cMile = returnInfo.getOdometer()*branch.getPricePerKM();
+        int cFuel = returnInfo.getFuelLevel()*branch.getFuelPrice();
+        int cDamage = returnInfo.getDamageCost();
+        int cDiscount = 0;
+        list = new ArrayList<>();
+        
+        PaymentItem pRental       = new PaymentItem(0, PaymentItem.ITEMTYPE.VEHICLE, "Rental", cRental, 1);
+        PaymentItem pEquip        = new PaymentItem(0, PaymentItem.ITEMTYPE.EQUIPMENT, "Equipment", cEquip, 1);
+        PaymentItem pInsurance = new PaymentItem(0, PaymentItem.ITEMTYPE.INSURANCE, "Insurance", cInsurance, 1);
+        PaymentItem pMile           = new PaymentItem(0, PaymentItem.ITEMTYPE.MILE, "Additional Miles", cMile, 1);
+        PaymentItem pFuel           = new PaymentItem(0, PaymentItem.ITEMTYPE.FUEL, "Fuel", cFuel, 1);
+        PaymentItem pDamage     = new PaymentItem(0, PaymentItem.ITEMTYPE.DAMAGE, "Damage", cDamage, 1);
+        PaymentItem pDiscount    = new PaymentItem(0, PaymentItem.ITEMTYPE.POINTEXCHANGE, "Discount", cDiscount, 1);
+        
+        if(cRental!=0)        list.add(pRental);
+        if(cEquip!=0)         list.add(pEquip);
+        if(cInsurance!=0)  list.add(pInsurance);
+        if(cMile!=0)            list.add(pMile);
+        if(cFuel!=0)           list.add(pFuel);
+        if(cDamage!=0)     list.add(pDamage);
+        if(cDiscount!=0)    list.add(pDiscount);
+        
+        sumOutput = cRental+cEquip+cInsurance+cMile+cFuel+cDamage+cDiscount;
+        return list;
     }
 
-    public int calulateMembershipCost(int years) {
-        return 0;
+    public ArrayList<PaymentItem> calulateMembershipCost(int years, int branchId, Integer sumOutput) {
+        ArrayList<PaymentItem> list = new ArrayList<>();
+        BranchCtrl branchCtrl = new BranchCtrl();
+        Branch branch = branchCtrl.getBranchById(branchId);
+        list.add(new PaymentItem(0, PaymentItem.ITEMTYPE.MEMBERSHIP, "Membership", branch.getClubMemberFeeRate(), years));
+        return list;
     }
 
     public Payment createPayment() {

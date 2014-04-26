@@ -24,6 +24,7 @@ public class Branch {
 
     public Branch(String branchName, String branchPhone, String branchAddress, 
             int fuelPrice, int pricePerKM, int clubMemberFeeRate) {
+        this.branchID = 0;
         this.branchName = branchName;
         this.branchPhone = branchPhone;
         this.branchAddress = branchAddress;
