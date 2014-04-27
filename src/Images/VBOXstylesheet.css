@@ -1,17 +1,18 @@
 .button {
-  width: 250px;
-  padding: 10px 25px 10px 25px;
-  font-family: Arial;
-  font-size: 16px;
-  text-decoration: none;
-  color: #ffffff;
-  background-color: #98ba3f;
+  -fx-width: 220px;
+  -fx-height: 50px;
+  -fx-padding: 10px 25px 10px 25px;
+  -fx-font-family: Arial;
+  -fx-font-size: 12px;
+  -fx-text-decoration: none;
+  -fx-color: #ffffff;
+  -fx-background-color: #98ba3f;
 }
 
 .button:hover {
-  background-color: #245191;
+  -fx-background-color: #245191;
 }
 
 .button:active {
-    -fx-font-size:19px;
+    -fx-font-size:12px;
 }
