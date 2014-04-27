@@ -13,7 +13,7 @@
         <TextField fx:id="CreditCardNumberTF" disable="true" layoutX="180.0" layoutY="200.0" />
         <TextField fx:id="CreditCardNameTF" disable="true" layoutX="179.0" layoutY="239.0" />
         <Button alignment="CENTER" layoutX="475.0" layoutY="372.0" mnemonicParsing="false" onAction="#ConfirmPaymentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Confirm Payment" />
-        <Label layoutX="40.0048828125" layoutY="47.5" text="Customer Name" />
+        <Label fx:id="CustomerNameLabel" layoutX="40.0048828125" layoutY="47.5" text="Customer Name" />
         <Label layoutX="40.009765625" layoutY="87.5" text="Membership Fee (/year)" />
         <TextField fx:id="NumberOfYearsTF" editable="false" layoutX="180.73046875" layoutY="123.5" onAction="#NumberofYearsTFAction" />
         <Label layoutX="40.0048828125" layoutY="127.5" text="Number of Years" />

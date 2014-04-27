@@ -9,6 +9,7 @@ import ControlObjects.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.CustomerNavigator;
+import UserInterface.Operations.FXMLController.MembershipPaymentPageFXMLController;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
 import entity.Customer;
 import java.io.IOException;
@@ -134,7 +135,16 @@ public class CustomerMainPageFXMLController implements Initializable {
     }
 
     @FXML
-    private void RegisterClubMemberButtonAction(ActionEvent event) {
+    private void RegisterClubMemberButtonAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/Operations/FXML/MembershipPaymentPageFXML.fxml"));
+        Pane registerPane = (Pane) myLoader.load();
+        MembershipPaymentPageFXMLController newController = myLoader.getController();
+        newController.storeCustomer(PhoneTF.getText());
+        Scene scene = new Scene(registerPane);
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     @FXML
@@ -146,6 +156,7 @@ public class CustomerMainPageFXMLController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/PeopleManagement/FXML/CreateCustomerFXML.fxml"));
         Pane newCustomerPane = (Pane) myLoader.load();
+        
         Scene scene = new Scene(newCustomerPane);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
