@@ -38,6 +38,7 @@ public class ReturnNavigator {
         public static PaymentCtrl newPaymentCtrl;
         public static String ActualCost;
         public static String PaymentMode;
+        public static Return ReturnInfo;
        
 
 

@@ -44,6 +44,11 @@ public class OperationsFXMLController implements Initializable{
     public void ReturnVehicleAction(ActionEvent event) throws IOException
     {
         ReturnNavigator.setMainController(this);    
+        ReturnNavigator.returnRent=null;
+        ReturnNavigator.returnVehicle=null;
+        ReturnNavigator.returnReservation=null;
+        ReturnNavigator.newPaymentCtrl=null;
+        ReturnNavigator.Currentreturn=null;
         ReturnNavigator.loadVista(ReturnNavigator.ReturnMainPage);
 
     }

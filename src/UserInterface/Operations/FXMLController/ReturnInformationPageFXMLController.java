@@ -188,8 +188,8 @@ public class ReturnInformationPageFXMLController implements Initializable {
         Staff staff = staffCtrl.getStaffByUsername(ClerkMainPageNavigator.CurrentUserName);
         returninfo.setStaffId(staff.getStaffId());
         returninfo.setReturnTime(new Date());
-        PaymentCtrl newPaymentCtrl = new PaymentCtrl(ReturnNavigator.returnCustomer.getCustomerId(), "Rent Payment");
-        newPaymentCtrl.addForReturn(returninfo,redeemPointsFlag, roadStar);
+        ReturnNavigator.newPaymentCtrl = new PaymentCtrl(ReturnNavigator.returnCustomer.getCustomerId(), "Rent Payment");
+        ReturnNavigator.newPaymentCtrl.addForReturn(returninfo,redeemPointsFlag, roadStar);
         
         
         String points = ReturnNavigator.newPaymentCtrl.getTotalAmountText();

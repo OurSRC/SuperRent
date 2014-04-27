@@ -124,7 +124,7 @@ public class FXMLRegisterController {
                     dialog.setTitleText("Success");
                     dialog.setMessage( firstName + "," + " welcome to SuperRent!");
                     dialog.showDialog();
-                    PPLManagementNavigator.loadVista(PPLManagementNavigator.UserSearch);
+                    LoginNavigator.loadVista(LoginNavigator.VISTA_1);
             }
             
             
