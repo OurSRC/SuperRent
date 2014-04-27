@@ -86,7 +86,7 @@ public class CustomerDaoTest {
         assertEquals(result.getCustomerId(), 50);
         assertEquals(result.getPhone(), "1234567");
         assertEquals(result.getUsername(), cname1);
-        assertEquals(result.getPassword(), "customer");
+        //assertEquals(result.getPassword(), "customer");
         assertEquals(result.getType(), User.TYPE.CUSTOMER);
 
     }
@@ -101,7 +101,7 @@ public class CustomerDaoTest {
         CustomerDao instance = new CustomerDao();
         Customer customer = instance.findByUsername(username);
         assertEquals(cname1, customer.getUsername());
-        assertEquals(cname1, customer.getPassword());
+        //assertEquals(cname1, customer.getPassword());
         assertEquals("1234568", customer.getPhone());
         assertEquals("firstName", customer.getFirstName());
     }
@@ -116,7 +116,7 @@ public class CustomerDaoTest {
         CustomerDao instance = new CustomerDao();
         Customer customer = instance.findByPhone(phone);
         assertEquals(cname1, customer.getUsername());
-        assertEquals(cname1, customer.getPassword());
+        //assertEquals(cname1, customer.getPassword());
         assertEquals(phone, customer.getPhone());
         assertEquals("firstName", customer.getFirstName());
     }
@@ -133,32 +133,28 @@ public class CustomerDaoTest {
         customer1 = instance.findByUsername(cname1);
         assertEquals("firstName", customer1.getFirstName());
         assertEquals(cname1, customer1.getUsername());
-        assertEquals(cname1, customer1.getPassword());
+        //assertEquals(cname1, customer1.getPassword());
 
         // update name
         customer1.setFirstName("new name");
         instance.update(customer1);
         customer1 = instance.findByUsername(cname1);
         assertEquals("new name", customer1.getFirstName());
-
-        //update password
-        customer1.setPassword("new pass");
-        instance.update(customer1);
-        customer1 = instance.findByUsername(cname1);
-        assertEquals("new pass", customer1.getPassword());
+        
         
         // update username
         customer1.setUsername("new username");
         instance.update(customer1);
         customer1 = instance.findByUsername("new username");
         assertEquals("new username", customer1.getUsername());
-        assertEquals("new pass", customer1.getPassword());
         assertEquals("1234568", customer1.getPhone());
         // old username has need deleted
         assertEquals(null, udao.find(cname1));
         
         customer1.setUsername(cname1);
         instance.update(customer1);
+        
+        
 
         // test to update existing username 
         boolean thrown = false;
@@ -181,7 +177,10 @@ public class CustomerDaoTest {
         }
         assertTrue(thrown);
         
+        
+        
     }
+    
 
     /**
      * Test of add method, of class CustomerDao.

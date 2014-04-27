@@ -84,12 +84,6 @@ public class CustomerDao {
             if (rs.next()) {
                 customer = parseCustomer(rs);
 
-                if (customer.getUsername() != null) {
-                    tmpu = udao.find(customer.getUsername());
-                    customer.setPassword(tmpu.getPassword());
-                    customer.setType(tmpu.getType());
-                }
-
             } else {
                 return null;
             }
@@ -120,13 +114,7 @@ public class CustomerDao {
             while (rs.next()) {
                 //Customer entity = new Customer();
                 Customer entity = parseCustomer(rs);    //modified by Elitward
-                EntityParser.parseEntity(rs, entity, ap);
-
-                if (entity.getUsername() != null) {
-                    tmpu = udao.find(entity.getUsername());
-                    entity.setPassword(tmpu.getPassword());
-                    entity.setType(tmpu.getType());
-                }
+                //EntityParser.parseEntity(rs, entity, ap);
 
                 result.add(entity);
             }
@@ -268,15 +256,18 @@ public class CustomerDao {
                     throw new DaoException(tb_name, "update() username exist");
                 }
 
-                udao.delete(customer_db.getUsername()); // delete old user name
                 if (customer.getUsername() != null) {
                     udao.add(customer);                     // add new customer name
-                    //added = true;
+                    added = true;
                 }
             }
             Statement stmt = DbConn.getStmt();
             System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
+            
+            if (added) {
+                udao.delete(customer_db.getUsername()); // delete old user name
+            }
 
             conn.commit();
         } catch (SQLException ex) {
