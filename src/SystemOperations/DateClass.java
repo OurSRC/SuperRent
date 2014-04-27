@@ -96,6 +96,10 @@ public class DateClass {
         return finalDate;
     }
     
+    public static String getJustDateFromDateObject (Date date) {
+        DateFormat stringFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return stringFormat.format(date);
+    }
     
     
 }
