@@ -128,6 +128,9 @@ public class FinanceCtrl {
         int cDiscountDays = 0;
         if (usePoint) {
             cDiscountDays = calculateMenbershipPointEnoughForDays(reserve);
+            int rentDays = tg.cDays + tg.cWeeks*7;
+            if(cDiscountDays>rentDays)
+                cDiscountDays = rentDays;
             if (cDiscountDays > 0) {
                 cDiscount = -1 * cDiscountDays * reserve.getReserveInfo().getvDailyRate();
             }
