@@ -6,7 +6,12 @@
 
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.PaymentCtrl;
+import SystemOperations.DateClass;
+import entity.Payment;
 import java.net.URL;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +47,7 @@ public class PaymentPageFXMLController implements Initializable {
     @FXML
     private TextField AmountTF;
 
+    private boolean creditCardPay;
     /**
      * Initializes the controller class.
      */
@@ -61,12 +67,40 @@ public class PaymentPageFXMLController implements Initializable {
             CreditCardNumberTF.setDisable(false);
             CreditCardNameTF.setDisable(false);
             ExpiryDateTF.setDisable(false);
+            creditCardPay = true;
         }
     }    
 
     @FXML
-    private void ConfirmPaymentButtonAction(ActionEvent event) {
-        
+    private void ConfirmPaymentButtonAction(ActionEvent event) throws ParseException {
+        if(ValidateMandatory())
+        {
+            if(creditCardPay)
+            {
+            ReturnNavigator.newPaymentCtrl = new PaymentCtrl(ReturnNavigator.returnCustomer.getCustomerId(), "Rent Payment" , CreditCardNumberTF.getText() , DateClass.getDateObject(ExpiryDateTF.getValue()),CreditCardNameTF.getText());
+            Payment p = ReturnNavigator.newPaymentCtrl.proceed();
+            }
+        }else
+        {
+            System.out.println("Please Enter all the Mandatory Fields");
+        }
+    }
+    
+    public boolean ValidateMandatory()
+    {
+        if(creditCardPay)
+        {
+           if(!CreditCardNumberTF.getText().equals("") && !CreditCardNameTF.getText().equals("") && ExpiryDateTF.valueProperty().isNotNull().getValue()) 
+           {
+               return true;
+           }else
+           {
+               return false;
+           }
+        }else
+        {
+            return true;
+        }
     }
     
 }

@@ -5,20 +5,28 @@
  */
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.CreditCardCtrl;
+import ControlObjects.FinanceCtrl;
 import ControlObjects.RentCtrl;
 import ControlObjects.ReserveCtrl;
 import ControlObjects.StaffCtrl;
+import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
+import SystemOperations.ValidateFields;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import entity.Rent;
 import entity.ReservationInfo;
 import entity.Staff;
+import finance.Price;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -80,8 +88,14 @@ public class RentDetailPageFXMLController implements Initializable {
         ManufatureDateTF.setText(RentNavigator.RentVehicle.getManufactureDate().toString());
         oldOdometerReading = RentNavigator.RentVehicle.getOdometer();
         OdometerReadingTF.setText(Integer.toString(oldOdometerReading));
+        
+        FinanceCtrl newFinanceCtrl = new FinanceCtrl();
+        int sample = newFinanceCtrl.estimateReservationCost(RentNavigator.selectedReservation);
+        ActualCostTF.setText(Price.toText(sample));
         //ActualCostTF.setText(RentNavigator.selectedReservation.getPrice());
         validateFlag = false;
+        ExpiryDateYear.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
+        ExpiryDateMonth.addEventFilter(KeyEvent.KEY_TYPED, maxLength(2));
     }
 
     @FXML
@@ -107,7 +121,7 @@ public class RentDetailPageFXMLController implements Initializable {
                     newReserveCtrl.updateReserve(RentNavigator.selectedReservation);
                     DialogFX dialog = new DialogFX(Type.INFO);
                     dialog.setTitleText("Success");
-                    dialog.setMessage(" Rent Agreement Created . Agreement # : " + Integer.toString(createdRent.getContractNo()) );
+                    dialog.setMessage(" Rent Agreement Created . Agreement # : " + Integer.toString(createdRent.getContractNo()));
                     dialog.showDialog();
                     RentNavigator.loadVista(RentNavigator.ReserveSearchPage);
                 } else {
@@ -121,9 +135,19 @@ public class RentDetailPageFXMLController implements Initializable {
     }
 
     @FXML
-    private void ValidateButtonAction(ActionEvent event) {
-        CardValidatedTF.setText("Yes");
-        validateFlag = true;
+    private void ValidateButtonAction(ActionEvent event) throws ParseException {
+        if (!CreditCardNumberTF.getText().equals("") && !CardHolderNameTF.getText().equals("") && !ExpiryDateMonth.getText().equals("") && !ExpiryDateYear.getText().equals("")) {
+            if (ValidateFields.CheckIntegerNumbersOnly(ExpiryDateMonth.getText()) && ValidateFields.CheckIntegerNumbersOnly(ExpiryDateYear.getText()) && Integer.parseInt(ExpiryDateYear.getText()) >= Calendar.YEAR && Integer.parseInt(ExpiryDateMonth.getText()) <= 12) {
+                Date ExpiryDate = DateClass.getDateObjectFromString(ExpiryDateYear.getText()+ "/" + ExpiryDateMonth.getText() + "/01" );
+                CreditCardCtrl.create(CreditCardNumberTF.getText(), ExpiryDate, CardHolderNameTF.getText());
+                CardValidatedTF.setText("Yes");
+                validateFlag = true;
+            } else {
+                System.out.println("Please Enter a valid date");
+            }
+        } else {
+            System.out.println("Please Enter all the details");
+        }
     }
 
     @FXML
@@ -160,4 +184,18 @@ public class RentDetailPageFXMLController implements Initializable {
         return validateOdometer;
     }
 
+    public static EventHandler<KeyEvent> maxLength(final Integer i) {
+        return new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent arg0) {
+
+                TextField tx = (TextField) arg0.getSource();
+                if (tx.getText().length() >= i) {
+                    arg0.consume();
+                }
+            }
+        };
+
+    }
 }

@@ -7,10 +7,12 @@
 package UserInterface.Operations.FXMLController;
 
 
+import ControlObjects.PaymentCtrl;
 import ControlObjects.Reservation;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import entity.Customer;
 import entity.Rent;
+import entity.Return;
 import entity.Vehicle;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +34,8 @@ public class ReturnNavigator {
         public static Reservation returnReservation;
         public static Customer returnCustomer;
         public static Vehicle returnVehicle;
-        
+        public static Return Currentreturn;
+        public static PaymentCtrl newPaymentCtrl;
         public static String ActualCost;
         public static String PaymentMode;
        

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author Elitward
  */
 public class CreditCardCtrl {
-    static boolean create( String cardNum, Date expire, String name){
+    public static boolean create( String cardNum, Date expire, String name){
         CreditCard creditcard = new CreditCard(cardNum, expire, name);
         return create(creditcard);
     }
