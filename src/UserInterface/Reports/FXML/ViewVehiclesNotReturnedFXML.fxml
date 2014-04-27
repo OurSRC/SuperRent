@@ -22,7 +22,7 @@
         <TableColumn fx:id="CustomerIDColumn" prefWidth="79.0" resizable="false" text="Customer ID" visible="false" />
       </columns>
     </TableView>
-    <Label font="$x1" layoutX="16.0" layoutY="16.0" text="Vehicles Not Returned" />
+    <Label font="$x1" layoutX="16.0" layoutY="16.0" text="Overdue Rentals" />
     <Button fx:id="PrintPDFButton" layoutX="588.0" layoutY="411.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
     <CheckBox fx:id="EmailCHB" layoutX="524.0" layoutY="414.0" mnemonicParsing="false" text="Email" />
   </children>
