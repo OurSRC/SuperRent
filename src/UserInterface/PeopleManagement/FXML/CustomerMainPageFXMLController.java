@@ -146,6 +146,8 @@ public class CustomerMainPageFXMLController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/PeopleManagement/FXML/CreateCustomerFXML.fxml"));
         Pane newCustomerPane = (Pane) myLoader.load();
+        CreateCustomerFXMLController newController = myLoader.getController();
+        newController.loadCustomer();
         Scene scene = new Scene(newCustomerPane);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);

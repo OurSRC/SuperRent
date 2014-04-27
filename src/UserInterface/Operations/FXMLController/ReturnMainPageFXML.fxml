@@ -10,7 +10,7 @@
       <children>
         <Pane prefHeight="423.0" prefWidth="662.0">
           <children>
-            <Label layoutX="42.0" layoutY="26.0" text="Rental Agreement" />
+            <Label layoutX="42.0" layoutY="26.0" text="Contract #" />
             <TextField fx:id="RentalAgreementTF" layoutX="183.0" layoutY="26.0" prefHeight="25.0" prefWidth="138.0" />
             <Button alignment="CENTER" layoutX="502.0" layoutY="26.0" mnemonicParsing="false" onAction="#SearchRentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Search Rent " />
             <Separator layoutX="15.0" layoutY="69.0" prefWidth="633.0" />
