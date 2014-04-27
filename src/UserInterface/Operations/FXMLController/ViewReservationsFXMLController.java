@@ -70,6 +70,8 @@ public class ViewReservationsFXMLController implements Initializable {
     private TableColumn<?, ?> EstimatedCost;
     @FXML
     private TableColumn CustomerNameColumn;
+    @FXML
+    private TableColumn EstimatedCostColumn;
 
     /**
      * Initializes the controller class.
@@ -128,15 +130,13 @@ public class ViewReservationsFXMLController implements Initializable {
         if (!ReservationTable.getSelectionModel().isEmpty()) {
             Reservation selectedReservation = (Reservation) ReservationTable.getSelectionModel().getSelectedItem();
             //System.out.println(rrr.getReservationNumber());
-            if(ReserveCtrl.cancelReserve(selectedReservation))
-            {
+            if (ReserveCtrl.cancelReserve(selectedReservation)) {
                 System.out.println("Reservation Successfully Cancelled");
-            }else
-            {
+            } else {
                 System.out.println("Reservation Not updated ");
             }
         }
-        
+
     }
 
     @FXML

@@ -19,6 +19,7 @@ import entity.Rent;
 import entity.ReservationInfo;
 import entity.ReserveEquipment;
 import entity.VehicleClass;
+import finance.Price;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -306,4 +307,12 @@ public final class Reservation {
         return true;
     }
     */
+    
+    public String getEstimation()
+    {
+        FinanceCtrl newFinanceCtrl = new FinanceCtrl();
+        int cost = newFinanceCtrl.estimateReservationCost(this);
+        System.out.println("Estimated Cost : " + cost);
+        return Price.toText(cost);
+    }
 }
