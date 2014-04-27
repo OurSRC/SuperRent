@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.Reports.FXMLController;
 
 import ControlObjects.RentCtrl;
@@ -14,6 +13,8 @@ import SystemOperations.DialogFX;
 import entity.Rent;
 import entity.Return;
 import entity.Vehicle;
+import java.awt.Desktop;
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
+import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -40,7 +42,7 @@ import javafx.scene.text.Font;
  * @author Ashanthi Perera
  */
 public class ViewReturnsFXMLController implements Initializable {
-   
+
     @FXML
     private Button PrintPDFButton;
     @FXML
@@ -51,7 +53,7 @@ public class ViewReturnsFXMLController implements Initializable {
     private DatePicker ToDateDP;
     @FXML
     private DatePicker FromDateDP;
-    
+
     String fromDate;
     String toDate;
     @FXML
@@ -76,23 +78,34 @@ public class ViewReturnsFXMLController implements Initializable {
     private LocalDate fromLocalDateValue;
     private LocalDate toLocalDateValue;
     int branchID;
+    private ArrayList<Vehicle> vehicleArrayList;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        PrintPDFButton.setDisable(true);
+    }
 
     @FXML
     private void PrintPDFAction(ActionEvent event) {
+        String pdfName = "Returns Report from " + DateClass.getJustDateFromDateObject(fromDateValue) + " to " + DateClass.getJustDateFromDateObject(toDateValue);
+        PdfGen.genVehicleReport(vehicleArrayList, pdfName);
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(pdfName + ".pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    
-     public boolean ValidateInput() {
+    public boolean ValidateInput() {
         if (FromDateDP.valueProperty().isNotNull().getValue()
-                && ToDateDP.valueProperty().isNotNull().getValue())
-        {
+                && ToDateDP.valueProperty().isNotNull().getValue()) {
             return true;
         } else {
             return false;
@@ -110,39 +123,58 @@ public class ViewReturnsFXMLController implements Initializable {
             toLocalDateValue = ToDateDP.getValue();
             fromDateValue = DateClass.ConvertLocalDatetoDate(fromLocalDateValue);
             toDateValue = DateClass.ConvertLocalDatetoDate(toLocalDateValue);
-            if (!BranchCB.valueProperty().isNull().getValue()) {
-                switch (BranchCB.getSelectionModel().getSelectedItem().toString()) {
-                    case "Branch 1":
-                        branchID = 1;
-                        break;
-                       
+            if (toDateValue.compareTo(fromDateValue) > 0) {
+                if (!BranchCB.valueProperty().isNull().getValue()) {
+                    switch (BranchCB.getSelectionModel().getSelectedItem().toString()) {
+                        case "Branch 1":
+                            branchID = 1;
+                            break;
+
+                    }
+                } else {
+                    branchID = 0;
                 }
+
+                populateSearchTable();
+
             } else {
-                branchID = 0;
+                System.out.println("Please enter the Date");
+                DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("To Date should be after than From Date");
+                dialog.showDialog();
             }
-            
-            populateSearchTable(); 
-                        
-                        
-        }  else {
+        } else {
             System.out.println("Please enter the Date");
             DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
             dialog.setTitleText("Error");
             dialog.setMessage("Please enter the Date");
             dialog.showDialog();
+
         }
     }
+     
+
     
-     private void populateSearchTable() {
-         ReturnCtrl newReturnCtrl = new ReturnCtrl();
+
+    private void populateSearchTable() {
+        ReturnCtrl newReturnCtrl = new ReturnCtrl();
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
         RentCtrl newRentCtrl = new RentCtrl();
         ArrayList<Return> returnArrayList = newReturnCtrl.getReturnsBetweenDates(fromDateValue, toDateValue, branchID);
-        ArrayList<Vehicle> vehicleArrayList = new ArrayList<>();
+        vehicleArrayList = new ArrayList<>();
         for (Return returnObject : returnArrayList) {
             Rent rent = newRentCtrl.getRentByContractNumber(returnObject.getContractNo());
             vehicleArrayList.add(newVehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo()));
         }
+        
+        //Enabling - Disabling the PrintPDF button
+        if (vehicleArrayList.size() > 0) {
+            PrintPDFButton.setDisable(false);
+        } else {
+            PrintPDFButton.setDisable(true);
+        }
+        
         ReturnTable.getItems().clear();
         ObservableList<Vehicle> vehicleObservableList = FXCollections.observableArrayList(vehicleArrayList);
         ReturnTable.setItems(vehicleObservableList);
@@ -151,5 +183,5 @@ public class ViewReturnsFXMLController implements Initializable {
         VehicleClassColoumn.setCellValueFactory(new PropertyValueFactory("className"));
         ManufacturingYearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
         BranchIDColumn.setCellValueFactory(new PropertyValueFactory("branchId"));
-     }
+    }
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.Reports.FXMLController;
 
 import ControlObjects.RentCtrl;
@@ -13,6 +12,8 @@ import SystemOperations.DialogFX;
 import com.itextpdf.text.DocumentException;
 import entity.Rent;
 import entity.Vehicle;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -74,13 +75,14 @@ public class ViewRentalsFXMLController implements Initializable {
     private TableColumn ManufacturingYearColumn;
     @FXML
     private TableColumn BranchIDColumn;
-    
+
     private Date fromDateValue;
     private Date toDateValue;
     private LocalDate fromLocalDateValue;
     private LocalDate toLocalDateValue;
     private int branchID;
     private ArrayList<Vehicle> vehicleArrayList;
+
     /**
      * Initializes the controller class.
      */
@@ -88,12 +90,22 @@ public class ViewRentalsFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         PrintPDFButton.setDisable(true);
-    }    
+    }
 
     @FXML
-    private void PrintPDFAction(ActionEvent event) throws DocumentException, FileNotFoundException{
-        PdfGen.genDailyRentalReport(vehicleArrayList);
+    private void PrintPDFAction(ActionEvent event) throws DocumentException, FileNotFoundException {
+        String pdfName = "Rentals Report from " + DateClass.getJustDateFromDateObject(fromDateValue) + " to " + DateClass.getJustDateFromDateObject(toDateValue);
+        PdfGen.genVehicleReport(vehicleArrayList, pdfName);
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(pdfName + ".pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
     @FXML
     private void SearchButtonAction(ActionEvent event) {
         if (ValidateInput()) {
@@ -101,32 +113,39 @@ public class ViewRentalsFXMLController implements Initializable {
             toLocalDateValue = ToDateDP.getValue();
             fromDateValue = DateClass.ConvertLocalDatetoDate(fromLocalDateValue);
             toDateValue = DateClass.ConvertLocalDatetoDate(toLocalDateValue);
-            if (!BranchCB.valueProperty().isNull().getValue()) {
-                switch (BranchCB.getSelectionModel().getSelectedItem().toString()) {
-                    case "Branch 1":
-                        branchID = 1;
-                        break;
-                       
+            if (toDateValue.compareTo(fromDateValue) > 0) {
+                if (!BranchCB.valueProperty().isNull().getValue()) {
+                    switch (BranchCB.getSelectionModel().getSelectedItem().toString()) {
+                        case "Branch 1":
+                            branchID = 1;
+                            break;
+
+                    }
+                } else {
+                    branchID = 0;
                 }
+
+                populateSearchTable();
             } else {
-                branchID = 0;
+                System.out.println("Please enter the Date");
+                DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("To Date should be after than From Date");
+                dialog.showDialog();
             }
-            
-            populateSearchTable();            
-                        
-        }  else {
+        } else {
             System.out.println("Please enter the Date");
             DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
             dialog.setTitleText("Error");
             dialog.setMessage("Please enter the Dates");
             dialog.showDialog();
         }
+
     }
-    
+
     public boolean ValidateInput() {
         if (FromDateDP.valueProperty().isNotNull().getValue()
-                && ToDateDP.valueProperty().isNotNull().getValue())
-        {
+                && ToDateDP.valueProperty().isNotNull().getValue()) {
             return true;
         } else {
             return false;
@@ -145,9 +164,14 @@ public class ViewRentalsFXMLController implements Initializable {
         for (Rent rent : rentArrayList) {
             vehicleArrayList.add(newVehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo()));
         }
-        if(vehicleArrayList.size() > 0) {
+
+        //Enabling - Disabling the PrintPDF button
+        if (vehicleArrayList.size() > 0) {
             PrintPDFButton.setDisable(false);
+        } else {
+            PrintPDFButton.setDisable(true);
         }
+
         RentalTable.getItems().clear();
         ObservableList<Vehicle> vehicleObservableList = FXCollections.observableArrayList(vehicleArrayList);
         RentalTable.setItems(vehicleObservableList);
@@ -157,5 +181,5 @@ public class ViewRentalsFXMLController implements Initializable {
         ManufacturingYearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
         BranchIDColumn.setCellValueFactory(new PropertyValueFactory("branchId"));
     }
-    
+
 }
