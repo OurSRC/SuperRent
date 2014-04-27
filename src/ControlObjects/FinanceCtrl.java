@@ -87,7 +87,7 @@ public class FinanceCtrl {
         return rental + equip + insurance;
     }
 
-    public ArrayList<PaymentItem> calulateReturnCost(Return returnInfo, boolean usePoint, Integer sumOutput) {
+    public ArrayList<PaymentItem> calulateReturnCost(Return returnInfo, boolean usePoint, boolean  roadStar) {
         ArrayList<PaymentItem> list = null;
         if (returnInfo == null) {
             return null;
@@ -113,6 +113,8 @@ public class FinanceCtrl {
         for (BuyInsurance anInsu : reserveInsurances) {
             cInsurance += insuraceCost(reserve.getReturnTime(), reserve.getPickupTime(), anInsu, reserve.getReserveInfo().getvDailyRate());
         }
+        if(roadStar)
+            cInsurance /= 2;
 
         int cMile = returnInfo.getOdometer() * branch.getPricePerKM();
         int cFuel = returnInfo.getFuelLevel() * branch.getFuelPrice();
@@ -156,18 +158,15 @@ public class FinanceCtrl {
         if (cDiscount != 0) {
             list.add(pDiscount);
         }
-
-        sumOutput = cRental + cEquip + cInsurance + cMile + cFuel + cDamage + cDiscount;
         return list;
     }
 
-    public ArrayList<PaymentItem> calulateMembershipCost(int years, int branchId, Integer sumOutput) {
-        ArrayList<PaymentItem> list = new ArrayList<>();
+    public PaymentItem calulateMembershipCost(int years, int branchId) {
+        //ArrayList<PaymentItem> list = new ArrayList<>();
         BranchCtrl branchCtrl = new BranchCtrl();
         Branch branch = branchCtrl.getBranchById(branchId);
-        list.add(new PaymentItem(0, PaymentItem.ITEMTYPE.MEMBERSHIP, "Membership", branch.getClubMemberFeeRate(), years));
-        sumOutput = branch.getClubMemberFeeRate() * years;
-        return list;
+        return new PaymentItem(0, PaymentItem.ITEMTYPE.MEMBERSHIP, "Membership", branch.getClubMemberFeeRate(), years);
+        //return list;
     }
 
     public Payment createPayment() {
