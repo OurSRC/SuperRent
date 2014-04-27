@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 /**
  * <p>
  * This class provides basic access methods for vehicle entity</p>
- * @author Jingchuan Chen
  */
 public class VehicleDao extends AbstractDao<Vehicle> {
 

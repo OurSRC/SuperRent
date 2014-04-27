@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 /**
  * <p>This is the abstract class for all data access objects which provides
  * basic CRUD functionalities. </p>
- * @author Jingchuan Chen
  * @param <T> Corresponding entity class of the Dao class
  */
 public abstract class AbstractDao<T> {

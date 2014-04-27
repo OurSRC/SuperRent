@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * <p>
  *  This class provides basic access methods, for example, find, insert, update, delete
  *  for equipment entity.</p>
- * @author Xi Yang
  */
 public class EquipmentDao extends AbstractDao<Equipment>{
     protected static final String tb_name = "equipment";

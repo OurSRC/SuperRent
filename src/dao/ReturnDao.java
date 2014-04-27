@@ -17,8 +17,6 @@ import java.util.Date;
  * <p>
  * This class provides basic access methods, for example, find for rent
  * entity.</p>
- *
- * @author Xi Yang
  */
 public class ReturnDao extends AbstractDao<Return> {
 
