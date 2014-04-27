@@ -17,6 +17,7 @@ import entity.Branch;
 import entity.Customer;
 import entity.Payment;
 import entity.PaymentItem;
+import finance.Price;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
@@ -76,11 +77,14 @@ public class MembershipPaymentPageFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+    }
+    private void initializeFunction() {
         branchId = 1;
         BranchCtrl branchCtrl = new BranchCtrl();
         Branch branch = branchCtrl.getBranchById(branchId);
         CustomerNameLabel.setText(customer.getFirstName() + " " + customer.getLastName());
-        MembershipFeeLabel.setText(String.valueOf(branch.getClubMemberFeeRate()));
+        MembershipFeeLabel.setText(Price.toText(branch.getClubMemberFeeRate()));
 
         paymentCtrl = new PaymentCtrl(customer.getCustomerId(), "SuperRent Club Membership Fee");
 
@@ -116,8 +120,12 @@ public class MembershipPaymentPageFXMLController implements Initializable {
     }
 
     public void storeCustomer(String Customerphone) {
+        /*The original initialzie function runs before this function, therefore another
+        function should be created and called by this function.
+        */
         CustomerCtrl newCustomerCtrl = new CustomerCtrl();
         customer = newCustomerCtrl.getCustomerByPhone(Customerphone);
+        initializeFunction();
     }
 
     @FXML
