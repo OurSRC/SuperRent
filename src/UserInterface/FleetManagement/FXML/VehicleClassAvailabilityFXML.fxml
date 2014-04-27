@@ -8,19 +8,19 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.VehicleAvailabilityFXMLController">
   <children>
-    <Label layoutX="13.0" layoutY="48.0" text="Date From ">
+    <Label layoutX="13.0" layoutY="66.0" text="Date From ">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="376.0" layoutY="48.0" text="Date To ">
+    <Label layoutX="376.0" layoutY="66.0" text="Date To ">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="13.0" layoutY="88.0" text="Vehicle Type">
+    <Label layoutX="13.0" layoutY="106.0" text="Vehicle Type">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <ComboBox fx:id="VehicleType" layoutX="115.0" layoutY="84.0" prefHeight="25.0" prefWidth="104.0">
+    <ComboBox fx:id="VehicleType" layoutX="115.0" layoutY="102.0" prefHeight="25.0" prefWidth="104.0">
       <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="Car" />
@@ -28,7 +28,7 @@
             </FXCollections>
           </items>
     </ComboBox>
-    <TableView fx:id="VehicleClassTable" layoutY="163.0" prefHeight="226.0" prefWidth="641.0" tableMenuButtonVisible="true">
+    <TableView fx:id="VehicleClassTable" layoutY="197.0" prefHeight="214.0" prefWidth="641.0" tableMenuButtonVisible="true">
       <columns>
         <TableColumn fx:id="VehicleTypeColumn" prefWidth="151.0" text="Vehicle Type" />
         <TableColumn fx:id="VehicleClassColumn" prefWidth="136.0" text="Vehicle Class" />
@@ -39,8 +39,8 @@
 <columnResizePolicy>
 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
 </columnResizePolicy>
-    </TableView><DatePicker fx:id="DateFromDatePicker" layoutX="115.0" layoutY="45.0" prefHeight="25.0" prefWidth="104.0" />
-    <ComboBox fx:id="DateFromTime" layoutX="231.0" layoutY="46.0" prefHeight="25.0" prefWidth="79.0">
+    </TableView><DatePicker fx:id="DateFromDatePicker" layoutX="115.0" layoutY="63.0" prefHeight="25.0" prefWidth="104.0" />
+    <ComboBox fx:id="DateFromTime" layoutX="231.0" layoutY="64.0" prefHeight="25.0" prefWidth="79.0">
         <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="09 AM" />
@@ -56,7 +56,7 @@
             </FXCollections>
           </items>
     </ComboBox>
-    <ComboBox fx:id="DateToTime" layoutX="548.0" layoutY="46.0" prefHeight="25.0" prefWidth="79.0">
+    <ComboBox fx:id="DateToTime" layoutX="548.0" layoutY="64.0" prefHeight="25.0" prefWidth="79.0">
             <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="09 AM" />
@@ -72,9 +72,14 @@
             </FXCollections>
           </items>
     </ComboBox>
-    <DatePicker fx:id="DateToDatePicker" layoutX="433.0" layoutY="45.0" prefHeight="25.0" prefWidth="104.0" /><Button alignment="CENTER" layoutX="511.0" layoutY="404.0" mnemonicParsing="false" onAction="#ReserveVehicleActionButton" prefHeight="25.0" prefWidth="118.0" text="Reserve Vehicle" /><Button alignment="CENTER" layoutX="474.0" layoutY="127.0" mnemonicParsing="false" onAction="#DisplayAvailableVehicleAction" prefHeight="25.0" prefWidth="155.0" text="Display Available Vehicles" /><Label layoutX="269.0" layoutY="3.0" text="Reserve Vehicle">
+    <DatePicker fx:id="DateToDatePicker" layoutX="433.0" layoutY="63.0" prefHeight="25.0" prefWidth="104.0" /><Button alignment="CENTER" layoutX="472.0" layoutY="157.0" mnemonicParsing="false" onAction="#DisplayAvailableVehicleAction" prefHeight="25.0" prefWidth="155.0" text="Display Available Vehicles" /><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+<children><Button alignment="CENTER" layoutX="507.0" layoutY="6.5" mnemonicParsing="false" onAction="#ReserveVehicleActionButton" prefHeight="25.0" prefWidth="118.0" text="Reserve Vehicle" />
+</children></Pane><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+<children><Label layoutX="14.0" layoutY="10.0" text="Reserve Vehicle" textFill="#f8f6f6">
 <font>
-<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+<Font name="System Bold" size="14.0" />
 </font></Label>
+</children>
+</Pane>
   </children>
 </AnchorPane>

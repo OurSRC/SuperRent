@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="858.0" style="-fx-background-image: url(&quot;Images/blue.jpg&quot;);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLClerkMainPageController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="858.0" style="-fx-background-color: #c0c0c0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLClerkMainPageController">
   <children>
     <ToolBar layoutX="0.0" layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="858.0">
       <items>
@@ -28,7 +28,7 @@
     </ToolBar>
     <StackPane fx:id="ClerkMainStackPane" layoutY="59.0" prefHeight="478.0" prefWidth="858.0">
       <children>
-        <Pane id="ClerkMainStackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="475.0" prefWidth="858.0" style="-fx-background-color: #FFFFFF;" />
+        <Pane id="ClerkMainStackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="858.0" style="-fx-background-color: #FFFFFF;" />
       </children>
     </StackPane>
   </children>
