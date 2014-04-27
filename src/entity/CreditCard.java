@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
+import ControlObjects.SecurityCtrl;
 import java.util.Date;
 
 /**
  * Entity class for creditcard table.
+ *
  * @author Jingchuan Chen
  */
 public class CreditCard {
+
     private String creditCardNo;
     private Date expireDate;
     private String cardHolderName;
@@ -25,7 +27,7 @@ public class CreditCard {
         this.expireDate = expireDate;
         this.cardHolderName = cardHolderName;
     }
-    
+
     /**
      * @return the creditCardNo
      */
@@ -67,4 +69,15 @@ public class CreditCard {
     public void setCardHolderName(String cardHolderName) {
         this.cardHolderName = cardHolderName;
     }
+    
+    static private String key="SuperRent";
+
+    public void encrypt() {
+        creditCardNo = SecurityCtrl.encrypt(key, creditCardNo);
+    }
+
+    public void decrypt() {
+        creditCardNo = SecurityCtrl.decrypt(key, creditCardNo);
+    }
+
 }

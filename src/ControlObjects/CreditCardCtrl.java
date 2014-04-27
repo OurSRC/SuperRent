@@ -20,13 +20,14 @@ import java.util.logging.Logger;
  * @author Elitward
  */
 public class CreditCardCtrl {
-    public static boolean create( String cardNum, Date expire, String name){
+    static public boolean create( String cardNum, Date expire, String name){
         CreditCard creditcard = new CreditCard(cardNum, expire, name);
         return create(creditcard);
     }
     
-    static boolean create(CreditCard creditcard){
+    static private boolean create(CreditCard creditcard){
         CreditCardDao dao = new CreditCardDao();
+        creditcard.encrypt();
         boolean suc = false;
         try {
             suc = dao.add(creditcard);
