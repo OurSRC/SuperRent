@@ -18,8 +18,8 @@ import java.util.Date;
 
 /**
  * <p>
- * This class provides basic access methods, for example, find for reservationInfo
- * entity.</p>
+ * This class provides basic access methods, for example, find for
+ * reservationInfo entity.</p>
  */
 public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
 
@@ -78,10 +78,9 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
             Date ToReserveTime, Branch branch, String ReservationNo) throws DaoException {
 
         SqlBuilder qb = new SqlBuilder();
-        if(ToReserveTime!=null && FromReserveTime!=null)
-        {
-        qb.cond("ReserveTime < " + SqlBuilder.wrapDatetime(ToReserveTime));
-        qb.cond("ReserveTime > " + SqlBuilder.wrapDatetime(FromReserveTime));
+        if (ToReserveTime != null && FromReserveTime != null) {
+            qb.cond("ReserveTime < " + SqlBuilder.wrapDatetime(ToReserveTime));
+            qb.cond("ReserveTime > " + SqlBuilder.wrapDatetime(FromReserveTime));
         }
         qb.cond("ReservationStatus = 'PENDING'");
         qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
@@ -148,45 +147,71 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
 
         return find(cond);
     }
-
-    public ArrayList<ReservationInfo> searchPending(int branchId, Date date) throws DaoException {
+    
+    private String genPendingQuery(int branchId, Date date, String vehicleClass) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
+        
         if (branchId != 0) {
             qb.cond("BranchId = " + SqlBuilder.wrapInt(branchId));
         }
-
         if (date != null) {
             qb.cond("DATE(PickUpTime) = " + SqlBuilder.wrapDate(date));
         }
+        if (vehicleClass != null) {
+            qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
+        }
 
         String cond = qb.toString();
-
-        return find(cond);
+        return cond;
     }
     
-    public ArrayList<ReservationInfo> searchNotReturned(int branchId, Date date) throws DaoException {
+    private String genNotReturnedQuery(int branchId, Date date, String vehicleClass) throws DaoException {
         SqlBuilder subQb = new SqlBuilder();
         String subQuery = subQb.select("rent.ReservationInfoId")
                 .from("rent").from("return_record rtn")
                 .where("rent.ContractNo = rtn.ContractNo")
                 .isSubQueue().toString();
-        
+
         subQuery = "(" + subQuery + ")";
-        
+
         SqlBuilder qb = new SqlBuilder();
         qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.RENTED.getValue()));
         qb.cond("ReservationInfoId NOT IN " + subQuery);
+        
         if (branchId != 0) {
             qb.cond("BranchId = " + SqlBuilder.wrapInt(branchId));
         }
         if (date != null) {
             qb.cond("DATE(ReturnTime) <= " + SqlBuilder.wrapDate(date));
         }
+        if (vehicleClass != null) {
+            qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
+        }
 
         String cond = qb.toString();
+        return cond;
+    }
 
+    public ArrayList<ReservationInfo> searchPending(int branchId, Date date) throws DaoException {
+        String cond = genPendingQuery(branchId, date, null);
         return find(cond);
+    }
+
+    public int countPendingByClass(int branchId, Date date, String vehicleClass) throws DaoException {
+        String cond = genPendingQuery(branchId, date, vehicleClass);
+        return count(cond);
+    }
+
+    public ArrayList<ReservationInfo> searchNotReturned(int branchId, Date date) throws DaoException {
+        String cond = genNotReturnedQuery(branchId, date, null);
+        return find(cond);
+    }
+    
+    public int countNotReturnedByClass(int branchId, Date date, 
+            String vehicleClass) throws DaoException {
+        String cond = genNotReturnedQuery(branchId, date, vehicleClass);
+        return count(cond);
     }
 
 }
