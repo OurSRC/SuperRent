@@ -72,13 +72,11 @@ CREATE TABLE `creditcard` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `customer`
---
 
+-- ----------------------------
+-- Table structure for customer
+-- ----------------------------
 DROP TABLE IF EXISTS `customer`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
   `CustomerId` int(11) NOT NULL AUTO_INCREMENT,
   `PhoneNo` varchar(45) NOT NULL,
@@ -95,10 +93,11 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`CustomerId`),
   UNIQUE KEY `PhoneNo_UNIQUE` (`PhoneNo`),
   UNIQUE KEY `Username_UNIQUE` (`Username`),
+  UNIQUE KEY `DriverLicenseNo_UNIQUE` (`DriverLicenseNo`),
   KEY `Username_fk_idx` (`Username`),
   CONSTRAINT `customer_username_fk` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
 
 --
 -- Table structure for table `equipment`

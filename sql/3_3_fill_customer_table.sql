@@ -5,7 +5,7 @@ INSERT INTO `super_rent`.`customer` VALUES (6, '6046687000', 'William', 'Gene', 
 INSERT INTO `super_rent`.`customer` VALUES (7, '6048565956', 'Cynthia', 'Rice', 'Grissom', 'cgrissom@risceo.com', '6450 North Island Hwy', '5207500', '\0', 0, NULL, 'customer3');
 INSERT INTO `super_rent`.`customer` VALUES (8, '6048597368', 'Michael', 'Scott', 'Breen', 'breen11@gmail.com', '33 Terminal Ave.', '5233045', '\0', 0, NULL, 'customer4');
 INSERT INTO `super_rent`.`customer` VALUES (9, '6048503441', 'Christopher', 'James', 'Rusk', 'ruskc1@gmail.com', '2393 Hayes Road', '5234041', '\0', 0, NULL, 'customer5');
-INSERT INTO `super_rent`.`customer` VALUES (10, '6048506534', 'Roger', '', 'Kahao', 'kahaoroger@gmail.com', '3440 SHENTON RD', '5240912', '\0', 0, NULL, 'customer6');
+INSERT INTO `super_rent`.`customer` VALUES (10, '6048506534', 'Roger', '', 'Kahao', 'kahaoroger@gmail.com', '3440 SHENTON RD', '5890912', '\0', 0, NULL, 'customer6');
 INSERT INTO `super_rent`.`customer` VALUES (12, '7784364482', 'Michelle', 'Rene', 'Gassen', 'michelle.gassen@cna.com', 'One Galleria Blvd Ste 1530', '5186768', '', 1500, '2014-12-22', 'clubmember3');
 INSERT INTO `super_rent`.`customer` VALUES (13, '7784364382', 'Ryan', 'Michael', 'Friloux', 'ryan@tfgclaims.com', '609 Milling Avenue', '3185274', '', 1700, '2018-11-8', 'clubmember4');
 INSERT INTO `super_rent`.`customer` VALUES (14, '7784364282', 'Charles', 'Edward', 'Wineinger', 'cwclaims@ymail.com', '53 Allard Blvd', '1225603', '', 1000, '2015-6-5', 'clubmember5');
