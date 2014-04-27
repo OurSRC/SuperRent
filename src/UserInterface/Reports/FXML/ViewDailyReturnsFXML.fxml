@@ -37,7 +37,7 @@
         <Label id="TotalLabel" fx:id="TotalReturnsLabel" layoutX="437.0" layoutY="392.0" text="Total Numberof  Returns:" />
         <Label fx:id="totalReturnsForTheDay" layoutX="578.0048828125" layoutY="392.0" />
         <CheckBox layoutX="525.0" layoutY="420.0" mnemonicParsing="false" text="Email" />
-        <Button layoutX="587.0" layoutY="417.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
+        <Button fx:id="PrintPDFButton" layoutX="587.0" layoutY="417.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
         <Label id="DateLBL" layoutX="354.0" layoutY="41.0" text="Date" />
     </children>
 </AnchorPane>

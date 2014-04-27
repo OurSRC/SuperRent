@@ -12,6 +12,8 @@ import SystemOperations.DialogFX;
 import entity.Rent;
 import entity.Staff;
 import entity.Vehicle;
+import java.awt.Desktop;
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
+import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -80,7 +83,7 @@ public class ViewDailyRentalsFXMLController implements Initializable {
     private TableColumn ManufacturingYearColumn;
     @FXML
     private TableColumn BranchIDColumn;
-
+    private ArrayList<Vehicle> vehicleArrayList;
     /**
      * Initializes the controller class.
      */
@@ -88,6 +91,7 @@ public class ViewDailyRentalsFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         TotalRentalsLabel.setVisible(false);
+        PrintPDFButton.setDisable(true);
     }
 
     @FXML
@@ -128,6 +132,16 @@ public class ViewDailyRentalsFXMLController implements Initializable {
 
     @FXML
     private void PrintPDFAction(ActionEvent event) {
+        String pdfName = "Rentals Report " + DateClass.getJustDateFromDateObject(dateValue);
+        PdfGen.genVehicleReport(vehicleArrayList, pdfName);
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(pdfName + ".pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @FXML
@@ -139,9 +153,16 @@ public class ViewDailyRentalsFXMLController implements Initializable {
         RentCtrl newRentCtrl = new RentCtrl();
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
         ArrayList<Rent> rentArrayList = newRentCtrl.getRentsByDate(dateValue, branchID);
-        ArrayList<Vehicle> vehicleArrayList = new ArrayList<>();
+        vehicleArrayList = new ArrayList<>();
         for (Rent rent : rentArrayList) {
             vehicleArrayList.add(newVehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo()));
+        }
+        
+        //Enabling - Disabling the PrintPDF button
+        if (vehicleArrayList.size() > 0) {
+            PrintPDFButton.setDisable(false);
+        } else {
+            PrintPDFButton.setDisable(true);
         }
         
         // Setting the total number of rented vehicles label
