@@ -35,5 +35,12 @@ public class ValidateFields {
         
         return inputString.matches(regex);
     }
+    public static boolean CheckLettersOnly(String inputString)
+    {
+        String regex;
+        regex = "^[a-zA-Z\\s]+";
+        
+        return inputString.matches(regex);
+    }
     
 }
