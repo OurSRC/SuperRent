@@ -5,9 +5,13 @@
  */
 package UserInterface.Operations.FXMLController;
 
+import ControlObjects.CustomerCtrl;
 import ControlObjects.EquipmentCtrl;
 import ControlObjects.InsuranceCtrl;
 import ControlObjects.VehicleCtrl;
+import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
+import UserInterface.Login.FXMLController.CustomerNavigator;
+import entity.Customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -97,10 +101,25 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
             }
             ReservationNavigator.newReserve.setEquipmentType(SelectedEquipments);
             ReservationNavigator.clearVista();
-            ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
+            if (ClerkMainPageNavigator.staff) {
+                ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
+            } else {
+                CustomerCtrl newCustomerCtrl = new CustomerCtrl();
+                Customer currentCustomer = newCustomerCtrl.getCustomerByUsername(CustomerNavigator.CurrentUserName);
+                ReservationNavigator.newReserve.setCustomerId(currentCustomer.getCustomerId());
+                ReservationNavigator.loadVista(ReservationNavigator.ReservationSummary);
+
+            }
         } else if (NotRequiredCB.isSelected()) {
             ReservationNavigator.clearVista();
-            ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
+            if (ClerkMainPageNavigator.staff) {
+                ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
+            } else {
+                CustomerCtrl newCustomerCtrl = new CustomerCtrl();
+                Customer currentCustomer = newCustomerCtrl.getCustomerByUsername(CustomerNavigator.CurrentUserName);
+                ReservationNavigator.newReserve.setCustomerId(currentCustomer.getCustomerId());
+                ReservationNavigator.loadVista(ReservationNavigator.ReservationSummary);
+            }
         } else {
             System.out.println("Please select an Additional Item");
 
