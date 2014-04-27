@@ -203,12 +203,15 @@ public class CustomerDao {
 
         for (AttributeParser attr : ap) {
             String str = attr.wrapAttr(value);
-            if (!(str.equalsIgnoreCase("null") || (str.equals("0") && attr.getClass().equals(IntParser.class)))) {
+            //if (!(str.equalsIgnoreCase("null") || (str.equals("0") && attr.getClass().equals(IntParser.class)))) {
+            if (!(str.equalsIgnoreCase("null") || (str.equals("0")))) {
                 qb.cond(attr.getColName() + "=" + str);
             }
         }
 
         String sql = qb.toString();
+
+        System.out.println("***FindByInstance:" + sql);
         return find(sql);
     }
 
@@ -263,7 +266,7 @@ public class CustomerDao {
             Statement stmt = DbConn.getStmt();
             System.out.println("SQL:" + sql);
             stmt.executeUpdate(sql);
-            
+
             if (added) {
                 udao.delete(customer_db.getUsername()); // delete old user name
             }
