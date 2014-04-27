@@ -24,7 +24,6 @@ import java.util.logging.Logger;
 /**
  * <p>
  * This class provides basic access method for customer table.</p>
- * @author Jingchuan Chen
  */
 public class CustomerDao {
 

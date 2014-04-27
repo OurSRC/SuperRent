@@ -19,7 +19,6 @@ import java.util.Date;
 /**
  * <p>
  * This class provides basic access methods for reserve equipment entity.</p>
- * @author Elitward
  */
 public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
 

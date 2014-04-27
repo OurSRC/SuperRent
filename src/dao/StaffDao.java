@@ -22,7 +22,6 @@ import java.util.logging.Logger;
 /**
  * <p>
  * This class provides basic access methods for staff entity</p>
- * @author Jingchuan Chen
  */
 public class StaffDao {
 

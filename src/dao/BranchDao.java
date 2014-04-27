@@ -16,7 +16,6 @@ import entityParser.StringParser;
  * <p>
  *  This class provides basic access methods, for example, find
  *  for branch entity.</p>
- * @author Xi Yang
  */
 public class BranchDao extends AbstractDao<Branch> {
 

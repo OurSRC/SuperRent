@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * <p>
  * This class provides basic access methods, for example, find
  * for item entity.</p>
- * @author Jingchuan Chen
  */
 public class PaymentItemDao extends AbstractDao<PaymentItem> {
     

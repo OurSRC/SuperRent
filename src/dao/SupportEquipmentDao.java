@@ -17,7 +17,6 @@ import java.util.ArrayList;
  * <p>
  *  This class provides basic access methods, for example, find, match
  *  for supportEquipment entity.</p>
- * @author Xi Yang
  */
 public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
     protected static final String tb_name = "support";
