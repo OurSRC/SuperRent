@@ -10,8 +10,10 @@ import ControlObjects.RentCtrl;
 import ControlObjects.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
+import com.itextpdf.text.DocumentException;
 import entity.Rent;
 import entity.Vehicle;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
+import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -76,17 +79,20 @@ public class ViewRentalsFXMLController implements Initializable {
     private Date toDateValue;
     private LocalDate fromLocalDateValue;
     private LocalDate toLocalDateValue;
-    int branchID;
+    private int branchID;
+    private ArrayList<Vehicle> vehicleArrayList;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        PrintPDFButton.setDisable(true);
     }    
 
     @FXML
-    private void PrintPDFAction(ActionEvent event) {
+    private void PrintPDFAction(ActionEvent event) throws DocumentException, FileNotFoundException{
+        PdfGen.genDailyRentalReport(vehicleArrayList);
     }
     @FXML
     private void SearchButtonAction(ActionEvent event) {
@@ -135,9 +141,12 @@ public class ViewRentalsFXMLController implements Initializable {
         RentCtrl newRentCtrl = new RentCtrl();
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
         ArrayList<Rent> rentArrayList = newRentCtrl.getRentByDates(fromDateValue, toDateValue, branchID);
-        ArrayList<Vehicle> vehicleArrayList = new ArrayList<>();
+        vehicleArrayList = new ArrayList<>();
         for (Rent rent : rentArrayList) {
             vehicleArrayList.add(newVehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo()));
+        }
+        if(vehicleArrayList.size() > 0) {
+            PrintPDFButton.setDisable(false);
         }
         RentalTable.getItems().clear();
         ObservableList<Vehicle> vehicleObservableList = FXCollections.observableArrayList(vehicleArrayList);

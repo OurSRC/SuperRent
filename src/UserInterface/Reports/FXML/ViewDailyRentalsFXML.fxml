@@ -17,8 +17,8 @@
         <Label id="DateLBL" fx:id="DateLabel" layoutX="354.0" layoutY="41.0" text="Date" />
         <DatePicker fx:id="SearchDateDP" layoutX="394.0" layoutY="37.0" onAction="#SearchDateAction" />
         <Button fx:id="SearchButton" layoutX="583.0" layoutY="72.0" mnemonicParsing="false" onAction="#SearchDailyRentalsAction" prefHeight="25.0" prefWidth="71.0" text="Search" />
-        <Button fx:id="PrintPDFButton" layoutX="587.0" layoutY="417.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
-        <CheckBox fx:id="EmailCHB" layoutX="525.0" layoutY="420.0" mnemonicParsing="false" text="Email" />
+        <Button fx:id="PrintPDFButton" disable="true" layoutX="587.0" layoutY="417.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
+        <CheckBox fx:id="EmailCHB" disable="true" layoutX="525.0" layoutY="420.0" mnemonicParsing="false" text="Email" />
         <Label fx:id="RentalDateLabel" font="$x1" layoutX="69.0" layoutY="16.0" text=" " />
         <TableView fx:id="DailyRentalsTable" layoutX="5.0" layoutY="111.0" prefHeight="275.0" prefWidth="681.0">
             <columns>
