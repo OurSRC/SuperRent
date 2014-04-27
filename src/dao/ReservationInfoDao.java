@@ -177,7 +177,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         
         SqlBuilder qb = new SqlBuilder();
         qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.RENTED.getValue()));
-        qb.cond("ReservationInfoId IN " + subQuery);
+        qb.cond("ReservationInfoId NOT IN " + subQuery);
         if (branchId != 0) {
             qb.cond("BranchId = " + SqlBuilder.wrapInt(branchId));
         }

@@ -13,12 +13,19 @@ import java.sql.*;
  * @author Jingchuan Chen
  */
 public class DbConn {
+    /*
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/super_rent";
     static final String USER = "superrent";
     static final String PASSWORD = "superrent";
+    */
     
     static Connection conn = null;
+    
+    private static void setConn() throws SQLException {
+        conn = DriverManager.getConnection(XmlParser.get("url"), XmlParser.get("user"), XmlParser.get("password"));
+        //conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+    }
     
     /**
      * Return a Statement of the connection
@@ -27,7 +34,7 @@ public class DbConn {
      */
     public static Statement getStmt() throws SQLException {
         if (conn == null) {
-            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            setConn();
         }
 
         return conn.createStatement();
@@ -41,7 +48,7 @@ public class DbConn {
      */
     public static PreparedStatement getPStmtWithAutoGenKey(String sql) throws SQLException {
         if (conn == null) {
-            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            setConn();
         }
         
         return conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -54,7 +61,7 @@ public class DbConn {
      */
     public static Connection getConn() throws SQLException {
         if (conn == null) {
-            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            setConn();
         }
 
         return conn;

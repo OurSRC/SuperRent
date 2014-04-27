@@ -44,12 +44,6 @@ public class ViewDailyReturnsFXMLController implements Initializable {
 
     @FXML
     private Label PrintDateLabel;
-    @FXML
-    private Label TotalLabel;
-    @FXML
-    private Label TotalNoOfReturnsLabel ;
-    @FXML
-     private Label TotalPaymentsLabel ;
     public DatePicker SearchDateDP;
     String DateValue;
     @FXML
@@ -74,6 +68,11 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     private Date dateValue;
     private LocalDate localDateValue;
     private int branchID;
+    private int totalNumberOfReturns;
+    @FXML
+    private Label TotalReturnsLabel;
+    @FXML
+    private Label totalReturnsForTheDay;
 
     /**
      * Initializes the controller class.
@@ -81,6 +80,7 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+         TotalReturnsLabel.setVisible(false);
     }    
     @FXML
     private void SearchDailyReturnsAction(ActionEvent event) {
@@ -128,9 +128,6 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     private void SearchDateAction(ActionEvent event) {
     }
 
-    @FXML
-    private void SearchDailyRentalsAction(ActionEvent event) {
-    }
     private void populateSearchTable() {
 
         ReturnCtrl newReturnCtrl = new ReturnCtrl();
@@ -142,6 +139,12 @@ public class ViewDailyReturnsFXMLController implements Initializable {
             Rent rent = newRentCtrl.getRentByContractNumber(returnObject.getContractNo());
             vehicleArrayList.add(newVehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo()));
         }
+        
+        // Setting the total number of rented vehicles label
+        totalNumberOfReturns = vehicleArrayList.size();
+        totalReturnsForTheDay.setText(String.valueOf(totalNumberOfReturns));
+        TotalReturnsLabel.setVisible(true);
+        
         DailyReturnsTable.getItems().clear();
         ObservableList<Vehicle> vehicleObservableList = FXCollections.observableArrayList(vehicleArrayList);
         DailyReturnsTable.setItems(vehicleObservableList);
