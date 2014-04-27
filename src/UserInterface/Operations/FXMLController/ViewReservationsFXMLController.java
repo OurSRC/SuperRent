@@ -126,6 +126,12 @@ public class ViewReservationsFXMLController implements Initializable {
         getList();
 
     }
+    
+    @FXML
+    public void CancelReservationButtonAction(ActionEvent event)
+    {
+        
+    }
 
     @FXML
     private void ViewReservationButtonAction(ActionEvent event) throws IOException {
@@ -137,6 +143,5 @@ public class ViewReservationsFXMLController implements Initializable {
             RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
         }
         RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
-
     }
 }

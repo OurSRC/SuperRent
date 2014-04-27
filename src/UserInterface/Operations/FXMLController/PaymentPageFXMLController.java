@@ -77,7 +77,8 @@ public class PaymentPageFXMLController implements Initializable {
             CreditCardNameLabel.setDisable(false);
             CreditCardNumberTF.setDisable(false);
             CreditCardNameTF.setDisable(false);
-            ExpiryDateTF.setDisable(false);
+            ExpiryDateMonthTF.setDisable(false);
+            ExpiryDateYearTF.setDisable(false);
             creditCardPay = true;
         }
         

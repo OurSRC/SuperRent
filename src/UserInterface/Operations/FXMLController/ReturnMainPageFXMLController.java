@@ -80,11 +80,13 @@ public class ReturnMainPageFXMLController implements Initializable {
 
         RentCtrl newRentCtrl = new RentCtrl();
         searchRent = newRentCtrl.getRentByContractNumber(Integer.parseInt(RentalAgreementTF.getText()));
-        
-        ReturnCtrl newReturnCtrl = new ReturnCtrl();
-        Return newReturn = newReturnCtrl.getReturnByContractNumber(searchRent.getContractNo());
-        if (searchRent != null && newReturn==null) {
-            RentalPane.setVisible(true);
+
+        if (searchRent != null) {
+            ReturnCtrl newReturnCtrl = new ReturnCtrl();
+            Return newReturn = newReturnCtrl.getReturnByContractNumber(searchRent.getContractNo());
+            if (newReturn == null) {
+                RentalPane.setVisible(true);
+            
             System.out.println(searchRent.getContractNo());
             ReserveCtrl newReserveCtrl = new ReserveCtrl();
             rentReservation = newReserveCtrl.getReserve(searchRent.getReservationInfold());
@@ -123,6 +125,10 @@ public class ReturnMainPageFXMLController implements Initializable {
              fadeTransition1.play();*/
             FadeTransitionMethod(RentalPane);
             FadeTransitionMethod(BottomPane);
+            }else
+            {
+                System.out.println("Rent Already Returned");
+            }
         } else {
             System.out.println("Invalid Contract number");
         }
