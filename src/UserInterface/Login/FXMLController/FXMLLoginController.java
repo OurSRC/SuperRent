@@ -68,6 +68,9 @@ public class FXMLLoginController {
                 Clerkcontroller.InitializeScreen(UserName);
                 Scene Clerkscene = new Scene(ForgotPane);
                 Clerkstage.setScene(Clerkscene);
+                Clerkstage.setWidth(858);
+                Clerkstage.setHeight(570);
+                Clerkstage.resizableProperty().setValue(Boolean.FALSE);
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 Clerkstage.show();
                 break;
