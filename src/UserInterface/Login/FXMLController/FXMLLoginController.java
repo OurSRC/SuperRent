@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import SystemOperations.ErrorMsg;
+import UserInterface.Operations.FXMLController.ReservationNavigator;
 import entity.Customer;
 
 /**
@@ -78,6 +79,7 @@ public class FXMLLoginController {
                 /* Opening the Customer Form and Passing the UserName to the next screen */
                 CustomerCtrl newCustomerCtrl = new CustomerCtrl();
                 CustomerNavigator.CurrentUserName = UserName;
+                CustomerNavigator.customerFlag=true;
                 System.out.println("Please open the Customer Screen here");
                 Stage CustomerStage = new Stage();
                 FXMLLoader CustomerLoader = new FXMLLoader(getClass().getResource("/UserInterface/Login/FXML/CustomerMainPageFXML.fxml"));
@@ -96,4 +98,6 @@ public class FXMLLoginController {
         }
 
     }
+    
+    
 }

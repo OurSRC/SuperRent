@@ -32,8 +32,8 @@ public class StartApplication extends Application {
 
         MainStage.show();
         MainStage.setResizable(false);
-        MainStage.setWidth(605);
-        MainStage.setHeight(445);
+        MainStage.setWidth(630);
+        MainStage.setHeight(509);
         MainStage.show();
     }
 

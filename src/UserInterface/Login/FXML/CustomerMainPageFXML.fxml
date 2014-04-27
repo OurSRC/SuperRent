@@ -4,13 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="573.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLCustomerMainPageController">
-<children><ToolBar prefHeight="56.0" prefWidth="700.0">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLCustomerMainPageController">
+<children>
+<StackPane fx:id="CustomerMainStackPane" layoutY="56.0" prefHeight="453.0" prefWidth="641.0" /><ToolBar prefHeight="56.0" prefWidth="630.0">
   <items>
-    <Button mnemonicParsing="false" onAction="#ReserveButtonAction" prefHeight="36.0" prefWidth="102.0" text="Reserve" />
-    <Button fx:id="CustomerInfoButton" mnemonicParsing="false" onAction="#CustomerInfoButton" prefHeight="37.0" prefWidth="95.0" text="Customer Info" />
-    <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="99.0" text="Button" />
+    <Button mnemonicParsing="false" onAction="#ReserveButtonAction" prefHeight="36.0" prefWidth="95.0" text="Reserve" /><Button mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" text="Customer" /><Pane fx:id="CustomerButtonPane" prefHeight="46.0" prefWidth="369.0" visible="false" />
+<Button mnemonicParsing="false" prefHeight="36.0" prefWidth="42.0" />
   </items>
 </ToolBar>
-<StackPane fx:id="CustomerMainStackPane" layoutX="-8.0" prefHeight="466.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0" />
 </children></AnchorPane>

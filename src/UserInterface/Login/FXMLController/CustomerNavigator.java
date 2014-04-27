@@ -19,6 +19,7 @@ public class CustomerNavigator {
     private static OperationsFXMLController mainController;
 
     public static String CurrentUserName;
+    public static boolean customerFlag;
     public static final String OPERATIONS = "/UserInterface/Operations/FXML/OperationsFXML.fxml";
 
     public static void setMainController(OperationsFXMLController mainControlle) {

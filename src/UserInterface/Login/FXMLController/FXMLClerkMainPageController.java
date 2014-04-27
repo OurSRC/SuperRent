@@ -111,8 +111,8 @@ public class FXMLClerkMainPageController implements Initializable {
                             LoginNavigator.loadVista(LoginNavigator.VISTA_1);
                             MainStage.show();
                             MainStage.setResizable(false);
-                            MainStage.setWidth(605);
-                            MainStage.setHeight(445);
+                            MainStage.setWidth(630);
+                            MainStage.setHeight(509);
                             MainStage.show();
                             stage.getScene().getRoot().setEffect(null);
                             dialog.close();
