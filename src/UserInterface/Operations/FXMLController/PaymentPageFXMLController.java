@@ -15,11 +15,13 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -78,6 +80,11 @@ public class PaymentPageFXMLController implements Initializable {
             ExpiryDateTF.setDisable(false);
             creditCardPay = true;
         }
+        
+        ExpiryDateYearTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
+        ExpiryDateMonthTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(2));
+        
+        
     }
 
     @FXML
@@ -110,5 +117,19 @@ public class PaymentPageFXMLController implements Initializable {
             System.out.println("Paying By Cash");
             return true;
         }
+    }
+
+    public static EventHandler<KeyEvent> maxLength(final Integer i) {
+        return new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent arg0) {
+
+                TextField tx = (TextField) arg0.getSource();
+                if (tx.getText().length() >= i) {
+                    arg0.consume();
+                }
+            }
+        };
     }
 }
