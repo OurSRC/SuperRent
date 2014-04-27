@@ -74,6 +74,7 @@ public class PaymentCtrl {
         } catch (DaoException ex) {
             Logger.getLogger(PaymentCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+            return null;
         }
         if (suc) {
             for (PaymentItem item : payItem) {
@@ -83,6 +84,7 @@ public class PaymentCtrl {
                 } catch (DaoException ex) {
                     Logger.getLogger(PaymentCtrl.class.getName()).log(Level.SEVERE, null, ex);
                     ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
+                    return null;
                 }
                 total += item.getQuantity() * item.getPrice();
 
@@ -112,6 +114,12 @@ public class PaymentCtrl {
                     c.setPoint(c.getPoint() + newPoint);
                     cc.updateCustomer(c);
                 }
+            }
+            
+            //write the record into return_table
+            if(returnInfo!=null){
+                returnInfo.setPaymentId(pay.getPaymentId());
+                ReturnCtrl.createReturn(returnInfo);
             }
             return pay;
         } else {
