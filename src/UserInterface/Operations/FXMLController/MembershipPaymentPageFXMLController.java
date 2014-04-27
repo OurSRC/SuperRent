@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -109,6 +110,8 @@ public class MembershipPaymentPageFXMLController implements Initializable {
         if (ValidateMandatory()) {
             paymentCtrl.useCreditCard(CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
             Payment p = paymentCtrl.proceed();
+            System.out.println("Payment Success");
+            ((Node) (event.getSource())).getScene().getWindow().hide(); 
             
         }
         } catch(ParseException e){
@@ -118,6 +121,7 @@ public class MembershipPaymentPageFXMLController implements Initializable {
 
     @FXML
     private void CancelButtonAction(ActionEvent event) {
+        ((Node) (event.getSource())).getScene().getWindow().hide(); 
     }
 
     public void storeCustomer(String Customerphone) {
