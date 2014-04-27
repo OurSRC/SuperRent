@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `creditcard`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `creditcard` (
-  `CreditCardNo` varchar(16) NOT NULL,
+  `CreditCardNo` varchar(64) NOT NULL,
   `ExpireDate` date NOT NULL,
   `CardHolderName` varchar(45) NOT NULL,
   PRIMARY KEY (`CreditCardNo`),
