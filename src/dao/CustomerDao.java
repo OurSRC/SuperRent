@@ -216,7 +216,7 @@ public class CustomerDao {
     }
 
     /**
-     *
+     * Update a record in customer table.
      * @param customer Customer object to update
      * @return
      * @throws DaoException
