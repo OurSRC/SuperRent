@@ -133,7 +133,7 @@ public class PaymentCtrl {
         ArrayList<PaymentItem> list = finCtrl.calulateReturnCost(returnInfo, usePoint, roadStar);
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
-                pay.setAmount(pay.getAmount() + list.get(i).getPrice()*list.get(i).getPrice());
+                pay.setAmount(pay.getAmount() + list.get(i).getPrice()*list.get(i).getQuantity());
                 addPayItem(list);
             }
             return true;

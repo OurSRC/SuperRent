@@ -52,7 +52,11 @@ public class FinanceCtrl {
 
     public int equipmentCost(Date t1, Date t2, ReserveEquipment reserveEquipment) {
         if (reserveEquipment != null) {
-            return cost(t1, t2, 7 * reserveEquipment.getEDailyRate(), reserveEquipment.getEDailyRate(), reserveEquipment.getEHourlyRate());
+            int week = reserveEquipment.getEDailyRate() * 7;
+            int day = reserveEquipment.getEDailyRate();
+            int hour = reserveEquipment.getEHourlyRate();
+            int ans = cost(t1, t2, week, day, hour);
+            return ans;
         } else {
             return 0;
         }
@@ -63,7 +67,8 @@ public class FinanceCtrl {
             int week = insurance.getWeeklyRate();
             int day = insurance.getDailyRate();
             int hour = insurance.getHourlyRate();
-            return cost(t1, t2, week, day, hour, basePrice);
+            int ans = cost(t1, t2, week, day, hour, basePrice);
+            return ans;
         } else {
             return 0;
         }
