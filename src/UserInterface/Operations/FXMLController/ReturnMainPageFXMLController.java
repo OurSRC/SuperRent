@@ -9,9 +9,11 @@ import ControlObjects.CustomerCtrl;
 import ControlObjects.RentCtrl;
 import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
+import ControlObjects.ReturnCtrl;
 import ControlObjects.VehicleCtrl;
 import entity.Customer;
 import entity.Rent;
+import entity.Return;
 import entity.Vehicle;
 import java.io.IOException;
 import java.net.URL;
@@ -78,7 +80,10 @@ public class ReturnMainPageFXMLController implements Initializable {
 
         RentCtrl newRentCtrl = new RentCtrl();
         searchRent = newRentCtrl.getRentByContractNumber(Integer.parseInt(RentalAgreementTF.getText()));
-        if (searchRent != null) {
+        
+        ReturnCtrl newReturnCtrl = new ReturnCtrl();
+        Return newReturn = newReturnCtrl.getReturnByContractNumber(searchRent.getContractNo());
+        if (searchRent != null && newReturn==null) {
             RentalPane.setVisible(true);
             System.out.println(searchRent.getContractNo());
             ReserveCtrl newReserveCtrl = new ReserveCtrl();
