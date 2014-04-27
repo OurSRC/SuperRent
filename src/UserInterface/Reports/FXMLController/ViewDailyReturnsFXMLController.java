@@ -14,8 +14,6 @@ import SystemOperations.DialogFX;
 import entity.Rent;
 import entity.Return;
 import entity.Vehicle;
-import java.awt.Desktop;
-import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,7 +34,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
-import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -52,11 +49,9 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     @FXML
     private Font x1;
     @FXML
-    private ComboBox BranchCB;
+    private ComboBox<?> BranchCB;
     @FXML
     private Button SearchButton;
-    @FXML
-    private Button PrintPDFButton;
     @FXML
     private TableView DailyReturnsTable;
     @FXML
@@ -78,7 +73,6 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     private Label TotalReturnsLabel;
     @FXML
     private Label totalReturnsForTheDay;
-    private ArrayList<Vehicle> vehicleArrayList;
 
     /**
      * Initializes the controller class.
@@ -87,7 +81,6 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
          TotalReturnsLabel.setVisible(false);
-         PrintPDFButton.setDisable(true);
     }    
     @FXML
     private void SearchDailyReturnsAction(ActionEvent event) {
@@ -129,16 +122,6 @@ public class ViewDailyReturnsFXMLController implements Initializable {
     
     @FXML
     private void PrintPDFAction(ActionEvent event) {
-        String pdfName = "Returns Report " + DateClass.getJustDateFromDateObject(dateValue);
-        PdfGen.genVehicleReport(vehicleArrayList, pdfName);
-        if (Desktop.isDesktopSupported()) {
-            try {
-                File myFile = new File(pdfName + ".pdf");
-                Desktop.getDesktop().open(myFile);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
     }
 
     @FXML
@@ -151,17 +134,10 @@ public class ViewDailyReturnsFXMLController implements Initializable {
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
         RentCtrl newRentCtrl = new RentCtrl();
         ArrayList<Return> returnArrayList = newReturnCtrl.getRerurnsByDate(dateValue, branchID);
-        vehicleArrayList = new ArrayList<>();
+        ArrayList<Vehicle> vehicleArrayList = new ArrayList<>();
         for (Return returnObject : returnArrayList) {
             Rent rent = newRentCtrl.getRentByContractNumber(returnObject.getContractNo());
             vehicleArrayList.add(newVehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo()));
-        }
-        
-         //Enabling - Disabling the PrintPDF button
-        if (vehicleArrayList.size() > 0) {
-            PrintPDFButton.setDisable(false);
-        } else {
-            PrintPDFButton.setDisable(true);
         }
         
         // Setting the total number of rented vehicles label
