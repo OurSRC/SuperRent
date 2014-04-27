@@ -60,6 +60,11 @@ public class CreateCustomerFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    
+    public void loadCustomer()
+    {
+        System.out.println("Calling Load Customer");
+    }
 
     @FXML
     private void CreateCustomerButtonAction(ActionEvent event) {
@@ -113,7 +118,7 @@ public class CreateCustomerFXMLController implements Initializable {
                 && !address.equals("")
                 && !email.equals("")
                 && !licenseNumber.equals("")) {
-            if(ValidateFields.CheckForNumbersOnly(customerPhone) && ValidateFields.CheckForNumbersOnly(licenseNumber))
+            if(ValidateFields.CheckIntegerNumbersOnly(customerPhone))
             {
                 
                 return true;
