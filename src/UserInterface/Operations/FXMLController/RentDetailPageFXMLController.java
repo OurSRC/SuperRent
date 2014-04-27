@@ -88,7 +88,7 @@ public class RentDetailPageFXMLController implements Initializable {
         ManufatureDateTF.setText(RentNavigator.RentVehicle.getManufactureDate().toString());
         oldOdometerReading = RentNavigator.RentVehicle.getOdometer();
         OdometerReadingTF.setText(Integer.toString(oldOdometerReading));
-        
+        CreditCardNumberTF.setPrefColumnCount(16);
         FinanceCtrl newFinanceCtrl = new FinanceCtrl();
         int sample = newFinanceCtrl.estimateReservationCost(RentNavigator.selectedReservation);
         ActualCostTF.setText(Price.toText(sample));
@@ -137,8 +137,9 @@ public class RentDetailPageFXMLController implements Initializable {
     @FXML
     private void ValidateButtonAction(ActionEvent event) throws ParseException {
         if (!CreditCardNumberTF.getText().equals("") && !CardHolderNameTF.getText().equals("") && !ExpiryDateMonth.getText().equals("") && !ExpiryDateYear.getText().equals("")) {
-            if (ValidateFields.CheckIntegerNumbersOnly(ExpiryDateMonth.getText()) && ValidateFields.CheckIntegerNumbersOnly(ExpiryDateYear.getText()) && Integer.parseInt(ExpiryDateYear.getText()) >= Calendar.YEAR && Integer.parseInt(ExpiryDateMonth.getText()) <= 12) {
-                Date ExpiryDate = DateClass.getDateObjectFromString(ExpiryDateYear.getText()+ "/" + ExpiryDateMonth.getText() + "/01" );
+            Date currentDate = new Date();
+            if (ValidateFields.CheckIntegerNumbersOnly(ExpiryDateMonth.getText()) && ValidateFields.CheckIntegerNumbersOnly(ExpiryDateYear.getText()) && Integer.parseInt(ExpiryDateYear.getText()) >= ((new Date()).getYear() + 1900) && Integer.parseInt(ExpiryDateMonth.getText()) <= 12) {
+                Date ExpiryDate = DateClass.getDateObjectFromString(ExpiryDateYear.getText() + "/" + ExpiryDateMonth.getText() + "/01");
                 CreditCardCtrl.create(CreditCardNumberTF.getText(), ExpiryDate, CardHolderNameTF.getText());
                 CardValidatedTF.setText("Yes");
                 validateFlag = true;
