@@ -88,6 +88,15 @@ public class DateClass {
         return finalDate;
     }
     
+    public static Date getDateObjectFromString(String date) throws ParseException 
+    {
+        String DATE_FORMAT = "yyyy/MM/dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        Date finalDate = sdf.parse(date);
+        return finalDate;
+    }
+    
+    
     
 }
     

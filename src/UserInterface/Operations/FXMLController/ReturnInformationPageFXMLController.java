@@ -192,9 +192,9 @@ public class ReturnInformationPageFXMLController implements Initializable {
         newPaymentCtrl.addForReturn(returninfo,redeemPointsFlag, roadStar);
         
         
-        String points = newPaymentCtrl.getTotalAmountText();
+        String points = ReturnNavigator.newPaymentCtrl.getTotalAmountText();
         System.out.println(points);
-
+        ReturnNavigator.Currentreturn = returninfo;
         ReturnNavigator.ActualCost = points;
         ReturnNavigator.PaymentMode = PaymentModeCB.valueProperty().getValue().toString();
         ReturnNavigator.loadVista(ReturnNavigator.RentPaymentPage);
