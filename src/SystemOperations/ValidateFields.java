@@ -35,6 +35,10 @@ public class ValidateFields {
         
         return inputString.matches(regex);
     }
+    public static boolean ValidatePhoneNumber(String inputPhoneString) {
+        return CheckIntegerNumbersOnly(inputPhoneString) && (inputPhoneString.length() <= 10);
+    }
+    
     public static boolean CheckLettersOnly(String inputString)
     {
         String regex;
