@@ -1,4 +1,4 @@
-INSERT INTO `super_rent`.`reservation_info` VALUES (1, 1, '2014-4-1 22:04:00', 5000, '2014-5-2 09:05:00', '2014-5-3 09:05:00', 4, 2, 'ECONOMY', 3000, 1000, 12000, '100001', 'PENDING');
+INSERT INTO `super_rent`.`reservation_info` VALUES (1, 1, '2014-4-1 22:04:00', 5000, '2014-5-2 09:05:00', '2014-5-3 09:05:00', 4, 2, 'ECONOMY', 3000, 1000, 12000, '100001', 'RENTED');
 INSERT INTO `super_rent`.`reservation_info` VALUES (2, 1, '2014-3-5 10:40:00', 21000, '2014-3-10 10:41:00', '2014-3-17 10:42:00', 5, 4, 'COMPACT', 5500, 1100, 22000, '100002', 'RENTED');
 INSERT INTO `super_rent`.`reservation_info` VALUES (3, 1, '2014-1-2 22:59:00', 144000, '2014-2-1 10:59:00', '2014-3-1 10:59:00', 1, 7, 'FOOT24', 8000, 1700, 32000, '100003', 'RENTED');
 INSERT INTO `super_rent`.`reservation_info` VALUES (4, 1, '2014-3-1 22:04:00', NULL, '2014-4-18 09:05:00', '2014-4-23 09:05:00', 6, 7, 'ECONOMY', 3000, 1000, 12000, '100004', 'RENTED');

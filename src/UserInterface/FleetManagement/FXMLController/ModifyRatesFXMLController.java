@@ -10,6 +10,7 @@ import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ValidateFields;
 import entity.VehicleClass;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -87,7 +88,9 @@ public class ModifyRatesFXMLController implements Initializable {
     }
 
     @FXML
-    private void BackToSearchButtonAction(ActionEvent event) {
+    private void BackToSearchButtonAction(ActionEvent event) throws IOException {
+        
+        VehicleClassNavigator.loadVista(VehicleClassNavigator.VEHICLECLASSMAINPAGE);
     }
 
     @FXML

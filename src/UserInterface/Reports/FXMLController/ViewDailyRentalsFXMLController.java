@@ -69,6 +69,7 @@ public class ViewDailyRentalsFXMLController implements Initializable {
     private Date dateValue;
     private LocalDate localDateValue;
     private int branchID;
+    private int totalNumberOfRentals;
     @FXML
     private TableColumn PlateNumberColumn;
     @FXML
@@ -86,6 +87,7 @@ public class ViewDailyRentalsFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        TotalRentalsLabel.setVisible(false);
     }
 
     @FXML
@@ -141,6 +143,13 @@ public class ViewDailyRentalsFXMLController implements Initializable {
         for (Rent rent : rentArrayList) {
             vehicleArrayList.add(newVehicleCtrl.getVehicleByVehicleNo(rent.getVehicleNo()));
         }
+        
+        // Setting the total number of rented vehicles label
+        totalNumberOfRentals = vehicleArrayList.size();
+        totalRentalsForTheDay.setText(String.valueOf(totalNumberOfRentals));
+        TotalRentalsLabel.setVisible(true);
+        
+        
         DailyRentalsTable.getItems().clear();
         ObservableList<Vehicle> vehicleObservableList = FXCollections.observableArrayList(vehicleArrayList);
         DailyRentalsTable.setItems(vehicleObservableList);

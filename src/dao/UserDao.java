@@ -1,11 +1,11 @@
 package dao;
 
-import entityParser.*;
-import entity.User;
-import java.sql.*;
+import ControlObjects.SecurityCtrl;
 import dbconn.DbConn;
 import dbconn.SqlBuilder;
-
+import entity.User;
+import entityParser.*;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,13 +27,13 @@ public class UserDao {
     public void UserDao() {
     }
 
-    public User find(String pk) throws DaoException {
+    public User find(String username) throws DaoException {
         User user = new User();
         SqlBuilder qb = new SqlBuilder();
         String sql = qb
                 .select("*")
                 .from(tb_name)
-                .where("Username=" + SqlBuilder.wrapStr(pk))
+                .where("Username=" + SqlBuilder.wrapStr(username))
                 .toString();
 
         try {
@@ -55,6 +55,10 @@ public class UserDao {
     }
 
     public boolean update(User value) throws DaoException {
+        String pswd = value.getPassword();  //encrypt password in database
+        if(pswd!=null && pswd.length()>0)
+            value.setPassword(SecurityCtrl.digestPassword(pswd));
+        
         SqlBuilder qb = new SqlBuilder();
         qb.update(tb_name);
         qb.set(EntityParser.wrapEntityForSet(value, ap));
@@ -74,6 +78,10 @@ public class UserDao {
     }
 
     public boolean add(User value) throws DaoException {
+        String pswd = value.getPassword();  //encrypt password in database
+        if(pswd!=null && pswd.length()>0)
+            value.setPassword(SecurityCtrl.digestPassword(pswd));
+        
         SqlBuilder qb = new SqlBuilder();
         qb.insert(tb_name);
         qb.values(EntityParser.wrapEntity(value, ap));    
