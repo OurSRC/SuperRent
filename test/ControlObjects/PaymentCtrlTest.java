@@ -49,6 +49,7 @@ public class PaymentCtrlTest {
     
      @Test
      public void hello() {
+         /*
          int CustomerID = 5;
          int ContractNo = 2;
          int BranchID = 1;
@@ -57,6 +58,11 @@ public class PaymentCtrlTest {
          PaymentCtrl paymentCtrl = new PaymentCtrl(CustomerID, "Pay Name", "343706449472636", new Date(), "Tim");
          paymentCtrl.addForReturn(returnInfo, true, true);
          paymentCtrl.addForMembershipFee(Years, BranchID);
+         int total = paymentCtrl.getTotalAmount();
+         Payment p = paymentCtrl.proceed();
+                 */
+         PaymentCtrl paymentCtrl = new PaymentCtrl(6, "Pay Membership Fee");
+         paymentCtrl.addForMembershipFee(2, 1);
          int total = paymentCtrl.getTotalAmount();
          Payment p = paymentCtrl.proceed();
      }

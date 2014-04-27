@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class PaymentCtrl {
 
-    private final static int PAYMENT_TO_POINT_RATE = 5;
+    private final static int PAYMENT_TO_POINT_RATE = 5*100;     //cent
 
     private Payment pay;
     private ArrayList<PaymentItem> payItem;
@@ -68,7 +68,8 @@ public class PaymentCtrl {
 
     public Payment proceed() {
         boolean suc = false;
-        int total = 0;
+        int moneyTotal = 0;
+        int moneyForPoint = 0;
         try {
             suc = payDao.add(pay);
         } catch (DaoException ex) {
@@ -86,7 +87,7 @@ public class PaymentCtrl {
                     ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
                     return null;
                 }
-                total += item.getQuantity() * item.getPrice();
+                moneyTotal += item.getQuantity() * item.getPrice();
 
                 //reduse the point if using discount
                 if (item.getType() == PaymentItem.ITEMTYPE.POINTEXCHANGE && returnInfo != null) {
@@ -102,6 +103,8 @@ public class PaymentCtrl {
                     CustomerCtrl cc = new CustomerCtrl();
                     Customer c = cc.getCustomerById(customerId);
                     cc.extendMembership(c, item.getQuantity(), new Date());
+                }else{
+                    moneyForPoint += item.getQuantity() * item.getPrice();
                 }
             }
 
@@ -109,7 +112,7 @@ public class PaymentCtrl {
                 CustomerCtrl cc = new CustomerCtrl();
                 Customer c = cc.getCustomerById(customerId);
                 boolean member = cc.checkMembershipActive(c);
-                int newPoint = total / PAYMENT_TO_POINT_RATE;
+                int newPoint = moneyForPoint / PAYMENT_TO_POINT_RATE;
                 if (member && newPoint > 0) {
                     c.setPoint(c.getPoint() + newPoint);
                     cc.updateCustomer(c);

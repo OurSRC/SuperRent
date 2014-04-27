@@ -1,4 +1,3 @@
-INSERT INTO `super_rent`.`user` VALUES ('admin', 'admin', 'STAFF');
 INSERT INTO `super_rent`.`user` VALUES ('clerk', 'clerk', 'STAFF');
 INSERT INTO `super_rent`.`user` VALUES ('clerk2', 'clerk2', 'STAFF');
 INSERT INTO `super_rent`.`user` VALUES ('clerk3', 'clerk3', 'STAFF');

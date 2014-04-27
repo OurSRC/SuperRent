@@ -50,4 +50,17 @@ public class SecurityCtrlTest {
         assertEquals(expResult, result);
     }
     
+    
+    @Test
+    public void testCrypt(){
+        String key="ezeon8547";  
+        String plain="This is an important message";
+        String enc=SecurityCtrl.encrypt(key, plain);
+        System.out.println("Original text: "+plain);
+        System.out.println("Encrypted text: "+enc);
+        String plainAfter=SecurityCtrl.decrypt(key, enc);
+        System.out.println("Original text after decryption: "+plainAfter);
+        
+        assertEquals(plain, plainAfter);
+    }
 }

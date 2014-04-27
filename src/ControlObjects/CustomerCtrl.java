@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CustomerCtrl {
+    static final int MEMBERSHIP_INIT_POINT = 500;
 
     public Customer createCustomer(Customer customer) {
         try {
@@ -118,14 +119,20 @@ public class CustomerCtrl {
         if(customer!=null){
             if( checkMembershipActive(customer) ){
                 Date d = customer.getMembershipExpiry();
-                d.setYear( d.getYear()+1 );
+                d.setYear( d.getYear()+years );
                 customer.setMembershipExpiry(d);
             }else{
                 Date d = new Date();
-                d.setYear( d.getYear()+1 );
+                d.setYear( d.getYear()+years );
                 customer.setMembershipExpiry(d);
             }
-            return true;
+            if( !customer.getIsClubMember() ){
+                customer.setIsClubMember(true);
+                customer.setPoint(MEMBERSHIP_INIT_POINT);
+            }
+            CustomerCtrl cc = new CustomerCtrl();
+            boolean suc = cc.updateCustomer(customer);
+            return suc;
         }else{
             return false;
         }
