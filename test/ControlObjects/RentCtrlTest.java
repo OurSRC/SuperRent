@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ControlObjects;
 
 import java.text.DateFormat;
@@ -25,22 +24,22 @@ import entity.Rent;
  * @author Jingchuan Chen
  */
 public class RentCtrlTest {
-    
+
     public RentCtrlTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -106,6 +105,15 @@ public class RentCtrlTest {
      */
     @Test
     public void testGetRent_Reservation() {
+        RentCtrl instance = new RentCtrl();
+        Rent rent = instance.searchRentByReservationInfoId(1);
+        assertTrue(rent.getReservationInfold() == 1);
+        assertTrue(rent.getVehicleNo() == 5);
+        assertTrue(rent.getFuelLevel() == 30);
+        assertTrue(rent.getOdometer() == 100000);
+        assertTrue(rent.getCreditCardNo().equals("5202601352321285"));
+        assertTrue(rent.getStaffId() == 2);
+
     }
 
     /**
@@ -124,19 +132,19 @@ public class RentCtrlTest {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date d;
         ArrayList<Rent> result;
-        
+
         d = df.parse("2014-04-02");
         result = ctl.getRentsByDate(d, 1);
         assertEquals(result.size(), 1);
-        
+
         d = df.parse("2014-04-18");
         result = ctl.getRentsByDate(d, 1);
         assertEquals(result.size(), 1);
-        
+
         d = df.parse("2014-10-02");
         result = ctl.getRentsByDate(d, 1);
         assertEquals(result.size(), 0);
-        
+
     }
-    
+
 }

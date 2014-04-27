@@ -5,6 +5,7 @@
  */
 package ControlObjects;
 
+import entity.Branch;
 import entity.Equipment;
 import static entity.Equipment.STATUS.UNAVAILABLE;
 import entity.Rent;
@@ -116,6 +117,12 @@ public class EquipmentCtrlTest {
      */
     @Test
     public void testGetEquipmentTypeByVehicleClass() {
+        EquipmentCtrl instance = new EquipmentCtrl();
+        ArrayList<String> resList = instance.getEquipmentTypeByVehicleClass("COMPACT");
+        assertTrue(resList.contains("Ski Rack"));
+        resList = instance.getEquipmentTypeByVehicleClass("FOOT24");
+        assertTrue(resList.contains("Towing Equipment"));
+
     }
 
     /**
@@ -123,6 +130,11 @@ public class EquipmentCtrlTest {
      */
     @Test
     public void testGetVehicleClassByEquipmentType() {
+        EquipmentCtrl instance = new EquipmentCtrl();
+        ArrayList<String> resList = instance.getVehicleClassByEquipmentType("Ski Rack");
+        assertTrue(resList.contains("COMPACT"));
+        resList = instance.getVehicleClassByEquipmentType("Towing Equipment");
+        assertTrue(resList.contains("FOOT24"));
     }
 
     /**
@@ -137,6 +149,17 @@ public class EquipmentCtrlTest {
      */
     @Test
     public void testCheckEquipmentAvailability() {
+        EquipmentCtrl instance = new EquipmentCtrl();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = null;
+        try {
+            d = df.parse("2018-04-02");
+        } catch (ParseException ex) {
+            Logger.getLogger(EquipmentCtrlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Branch brc = new Branch();
+        brc.setBranchID(1);
+        assertTrue(instance.checkEquipmentAvailability("Ski Rack", d, d, brc));
     }
 
 }

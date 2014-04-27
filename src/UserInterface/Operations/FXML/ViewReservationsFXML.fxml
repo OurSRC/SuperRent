@@ -31,7 +31,7 @@
               <String fx:value="09 AM" />
               <String fx:value="10 AM" />
               <String fx:value="11 AM" />
-              <String fx:value="12 AM" />
+              <String fx:value="12 PM" />
               <String fx:value="01 PM" />
               <String fx:value="02 PM" />
               <String fx:value="03 PM" />
@@ -47,7 +47,7 @@
               <String fx:value="09 AM" />
               <String fx:value="10 AM" />
               <String fx:value="11 AM" />
-              <String fx:value="12 AM" />
+              <String fx:value="12 PM" />
               <String fx:value="01 PM" />
               <String fx:value="02 PM" />
               <String fx:value="03 PM" />
