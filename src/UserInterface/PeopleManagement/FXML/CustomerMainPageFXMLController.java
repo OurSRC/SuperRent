@@ -192,7 +192,6 @@ public class CustomerMainPageFXMLController implements Initializable {
         modifyFlag = true;
         System.out.println("Enable the Modify Button");
         ModifyCustomerButton.setDisable(false);
-
     }
 
     public void PopulateCustomer() {

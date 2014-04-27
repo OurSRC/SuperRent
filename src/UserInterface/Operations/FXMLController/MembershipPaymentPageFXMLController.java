@@ -109,6 +109,7 @@ public class MembershipPaymentPageFXMLController implements Initializable {
         if (ValidateMandatory()) {
             paymentCtrl.useCreditCard(CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
             Payment p = paymentCtrl.proceed();
+            
         }
         } catch(ParseException e){
             System.out.println(e.getMessage());

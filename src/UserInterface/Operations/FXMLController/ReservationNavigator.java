@@ -29,7 +29,7 @@ public class ReservationNavigator {
         public static final String PickDate = "/UserInterface/Operations/FXML/ReservationPickUpdateFXML.fxml";
         public static final String ADDITIONALEQUIPMENTS = "/UserInterface/Operations/FXML/ReserveAdditionalEquipmentFXML.fxml";
         //public static final String ReservationCustomer = "/UserInterface/Operations/FXML/ReservationCustomerFXML.fxml";
-        public static final String ReservationCustomer = "/UserInterface/PeopleManagement/FXML/CustomerMainPageFXML.fxml";
+        public static final String ReservationCustomer = "/UserInterface/PeopleManagement/FXML/CustomerPageForClerkReservation.fxml";
 
         public static final String ReservationSummary = "/UserInterface/Operations/FXML/ReservationSummaryFXML.fxml";
         public static final String ReserveSearchPage = "/UserInterface/Operations/FXML/ReserveSearchPageFXML.fxml";
