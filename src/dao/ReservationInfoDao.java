@@ -62,6 +62,16 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return findOne(cond);
     }
 
+    /**
+     * Find reservationInfo that overlap with given time period in given branch.
+     *
+     * @param pickUpTime Start of given time period.
+     * @param returnTime End of given time period.
+     * @param branch Branch number to search.
+     * @return ArrayList of reservationInfo records that overlap with given time
+     * period.
+     * @throws DaoException
+     */
     public ArrayList<ReservationInfo> findReservationBetween(Date pickUpTime,
             Date returnTime, Branch branch) throws DaoException {
 
@@ -69,6 +79,35 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         qb.cond("PickUpTime <" + SqlBuilder.wrapDatetime(returnTime));
         qb.cond("ReturnTime > " + SqlBuilder.wrapDatetime(pickUpTime));
         qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        String cond = qb.toString();
+
+        return find(cond);
+    }
+
+    /**
+     * Find reservationInfo that overlap with given time period in given branch
+     * for given vehicle class.
+     *
+     * @param vehicleClass Vehicle class to search.
+     * @param pickUpTime Start of given time period.
+     * @param returnTime End of given time period.
+     * @param branch Branch number to search.
+     * @return All matching reservationInfo records
+     * @throws DaoException
+     */
+    public ArrayList<ReservationInfo> findReservationBetween(String vehicleClass, Date pickUpTime,
+            Date returnTime, Branch branch) throws DaoException {
+
+        SqlBuilder qb = new SqlBuilder();
+        qb.cond("PickUpTime <" + SqlBuilder.wrapDatetime(returnTime));
+        qb.cond("ReturnTime > " + SqlBuilder.wrapDatetime(pickUpTime));
+        qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
+        qb.cond("ReservationStatus<>" + SqlBuilder.wrapInt(ReservationInfo.STATUS.CANCELED.getValue()));
+
+        if (vehicleClass != null) {
+            qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
+        }
+
         String cond = qb.toString();
 
         return find(cond);
@@ -82,40 +121,13 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
             qb.cond("ReserveTime < " + SqlBuilder.wrapDatetime(ToReserveTime));
             qb.cond("ReserveTime > " + SqlBuilder.wrapDatetime(FromReserveTime));
         }
-        qb.cond("ReservationStatus = 'PENDING'");
+        qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
         qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
         if (!ReservationNo.equals("")) {
             System.out.println("I am here");
             qb.cond("ReservationNo =" + SqlBuilder.wrapStr(ReservationNo));
         }
 
-        String cond = qb.toString();
-
-        return find(cond);
-    }
-
-    public ArrayList<ReservationInfo> findReservationBetween(String vehicleClass, Date pickUpTime,
-            Date returnTime, Branch branch) throws DaoException {
-
-        SqlBuilder qb = new SqlBuilder();
-        qb.cond("PickUpTime <" + SqlBuilder.wrapDatetime(returnTime));
-        qb.cond("ReturnTime > " + SqlBuilder.wrapDatetime(pickUpTime));
-        qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
-        qb.cond("BranchId =" + SqlBuilder.wrapInt(branch.getBranchID()));
-        qb.cond("ReservationStatus<>" + SqlBuilder.wrapInt(ReservationInfo.STATUS.CANCELED.getValue()));
-        String cond = qb.toString();
-
-        return find(cond);
-    }
-
-    public ArrayList<ReservationInfo> findReservationTimeBetween(Date early_bound, Date late_bound, int branchId) throws DaoException {
-
-        SqlBuilder qb = new SqlBuilder();
-        qb.cond("ReserveTime <" + SqlBuilder.wrapDatetime(late_bound));
-        qb.cond("ReserveTime => " + SqlBuilder.wrapDatetime(early_bound));
-        if (branchId != 0) {
-            qb.cond("BranchId =" + SqlBuilder.wrapInt(branchId));
-        }
         String cond = qb.toString();
 
         return find(cond);
@@ -147,11 +159,11 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
 
         return find(cond);
     }
-    
+
     private String genPendingQuery(int branchId, Date date, String vehicleClass) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
         qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.PENDING.getValue()));
-        
+
         if (branchId != 0) {
             qb.cond("BranchId = " + SqlBuilder.wrapInt(branchId));
         }
@@ -165,7 +177,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         String cond = qb.toString();
         return cond;
     }
-    
+
     private String genNotReturnedQuery(int branchId, Date date, String vehicleClass) throws DaoException {
         SqlBuilder subQb = new SqlBuilder();
         String subQuery = subQb.select("rent.ReservationInfoId")
@@ -178,7 +190,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         SqlBuilder qb = new SqlBuilder();
         qb.cond("ReservationStatus = " + SqlBuilder.wrapInt(ReservationInfo.STATUS.RENTED.getValue()));
         qb.cond("ReservationInfoId NOT IN " + subQuery);
-        
+
         if (branchId != 0) {
             qb.cond("BranchId = " + SqlBuilder.wrapInt(branchId));
         }
@@ -207,8 +219,8 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         String cond = genNotReturnedQuery(branchId, date, null);
         return find(cond);
     }
-    
-    public int countNotReturnedByClass(int branchId, Date date, 
+
+    public int countNotReturnedByClass(int branchId, Date date,
             String vehicleClass) throws DaoException {
         String cond = genNotReturnedQuery(branchId, date, vehicleClass);
         return count(cond);
