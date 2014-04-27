@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.PeopleManagement.FXML;
 
 import ControlObjects.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.ValidateFields;
+import UserInterface.Operations.FXMLController.ReservationNavigator;
 import entity.Customer;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import javafx.scene.control.TextField;
  * @author Vyas
  */
 public class CustomerPageForGuestFXMLController implements Initializable {
+
     @FXML
     private TextField CustomerPhoneTF;
     @FXML
@@ -41,7 +43,6 @@ public class CustomerPageForGuestFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     public String customerPhone;
     public String firstName;
     public String lastName;
@@ -49,21 +50,19 @@ public class CustomerPageForGuestFXMLController implements Initializable {
     public String email;
     public String address;
     public String licenseNumber;
+    public Customer createCustomer;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
-    private void NextButtonAction(ActionEvent event) {
-        if(createCustomer())
-        {
-            
-        }
+    private void NextButtonAction(ActionEvent event) throws IOException {
+        createCustomer(); 
     }
-    
-    public boolean createCustomer()
-    {
+
+    public void createCustomer() throws IOException {
         if (validateMandatory()) {
             Customer newCustomer = new Customer();
             newCustomer.setPhone(customerPhone);
@@ -76,16 +75,18 @@ public class CustomerPageForGuestFXMLController implements Initializable {
             newCustomer.setIsClubMember(false);
             newCustomer.setUsername(null);
             CustomerCtrl newCustomerCtrl = new CustomerCtrl();
-            Customer createCustomer = newCustomerCtrl.createCustomer(newCustomer);
-        return true;
-    }else
-        {
-            return false;
+            createCustomer = newCustomerCtrl.checkCreateCustomer(newCustomer);
+            
+                Customer currentCustomer = newCustomerCtrl.getCustomerByPhone(createCustomer.getPhone());
+                ReservationNavigator.newReserve.setCustomerId(createCustomer.getCustomerId());
+                ReservationNavigator.loadVista(ReservationNavigator.ReservationSummary);
+            
+        } else {
+            System.out.println("please enter all mandatory Fields");
         }
     }
-        
-        
-        public boolean validateMandatory() {
+
+    public boolean validateMandatory() {
         customerPhone = CustomerPhoneTF.getText();
         firstName = FirstNameTF.getText();
         lastName = LastNameTF.getText();
@@ -100,12 +101,10 @@ public class CustomerPageForGuestFXMLController implements Initializable {
                 && !address.equals("")
                 && !email.equals("")
                 && !licenseNumber.equals("")) {
-            if(ValidateFields.CheckIntegerNumbersOnly(customerPhone))
-            {
-                
+            if (ValidateFields.CheckIntegerNumbersOnly(customerPhone)) {
+
                 return true;
-            }else 
-            {
+            } else {
                 DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
                 dialog.setTitleText("Error");
                 dialog.setMessage("Improrper Phone Number");
@@ -116,5 +115,5 @@ public class CustomerPageForGuestFXMLController implements Initializable {
             return false;
         }
     }
-    
+
 }
