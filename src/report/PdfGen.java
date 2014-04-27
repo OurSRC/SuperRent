@@ -28,6 +28,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,50 +39,42 @@ public class PdfGen {
 
     private static Font TitleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
+    
+    public static void genVehicleReport(ArrayList<Vehicle> vlist, String title) {
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
+            document.open();
+            
+            document.newPage();
+            addMetaData(document, title);
+            addTitle(document, title);
+            
+            PdfPTable table = new PdfPTable(5);
+            addTableContent(table, "Plate Number", "Vehicle Class", "Brand & Model", "Manufacturer Year", "BranchID");
+            for (Vehicle v : vlist) {
+                addTableContent(table, v.getPlateNo(), v.getClassName(),
+                        v.getMode(), v.getManufactureDate().toString(), Integer.toString(v.getBranchId()));
+            }
+            document.add(table);
+            
+            document.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static void genDailyRentalReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
         String title = "Daily Rental Report " + getDate();
 
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
-        document.open();
-        
-        document.newPage();
-        addMetaData(document, title);
-        addTitle(document, title);
-
-        PdfPTable table = new PdfPTable(5);
-        addTableContent(table, "Plate Number", "Vehicle Class", "Brand & Model", "Manufacturer Year", "BranchID");
-        for (Vehicle v : vlist) {
-            addTableContent(table, v.getPlateNo(), v.getClassName(), 
-                    v.getMode(), v.getManufactureDate().toString(), Integer.toString(v.getBranchId()));
-        }
-        document.add(table);
-        
-        document.close();
+        genVehicleReport(vlist, title);
 
     }
     
     public static void genDailyReturnReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
         String title = "Daily Return Report " + getDate();
 
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
-        document.open();
-        
-        document.newPage();
-        addMetaData(document, title);
-        addTitle(document, title);
-
-        PdfPTable table = new PdfPTable(5);
-        addTableContent(table, "Plate Number", "Vehicle Class", "Brand & Model", "Manufacturer Year", "BranchID");
-        for (Vehicle v : vlist) {
-            addTableContent(table, v.getPlateNo(), v.getClassName(), 
-                    v.getMode(), v.getManufactureDate().toString(), Integer.toString(v.getBranchId()));
-        }
-        document.add(table);
-        
-        document.close();
+        genVehicleReport(vlist, title);
 
     }
 
