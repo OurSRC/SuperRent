@@ -38,6 +38,7 @@ public class ClerkHomePageFXMLController implements Initializable {
                 new PieChart.Data("Pears", 22),
                 new PieChart.Data("Apples", 30));
         ReservePieChart.setData(pieChartData);
+        ReservePieChart.setAnimated(true);
         ReservePieChart.setTitle("Reservation's");
     }    
     
