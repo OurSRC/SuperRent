@@ -142,4 +142,15 @@ public class CustomerCtrl {
         ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
         return false;
     }
+    
+    public Customer checkCreateCustomer(Customer customer) {
+        ArrayList<Customer>  list = searchCustomer(customer);
+        if( list!=null && list.size()>0 ){
+            Customer first = list.get(0);
+            return first;
+        }else{
+            return createCustomer(customer);
+        }
+    }
+
 }
