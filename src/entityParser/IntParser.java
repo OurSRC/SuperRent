@@ -29,6 +29,11 @@ public class IntParser extends AttributeParser {
             IllegalArgumentException, InvocationTargetException {
         
         int obj = (int) entity.getClass().getMethod("get" + getAttrName()).invoke(entity);
+        
+        if (obj == 0) {
+            return "null";
+        }
+                
         return Integer.toString(obj);
     }
 
