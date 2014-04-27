@@ -103,7 +103,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
             ReservationNavigator.clearVista();
             if (ClerkMainPageNavigator.staff) {
                 ReservationNavigator.loadVista(ReservationNavigator.ReservationCustomer);
-            } else if (CustomerNavigator.CurrentUserName.equals("")) {
+            } else if (CustomerNavigator.customerFlag) {
                 CustomerCtrl newCustomerCtrl = new CustomerCtrl();
                 Customer currentCustomer = newCustomerCtrl.getCustomerByUsername(CustomerNavigator.CurrentUserName);
                 ReservationNavigator.newReserve.setCustomerId(currentCustomer.getCustomerId());
