@@ -31,18 +31,11 @@ public class XmlParser {
         doc.getDocumentElement().normalize();
     }
 
-    public static String get(String str) {
-        try {
+    public static String get(String str) throws SAXException, IOException, ParserConfigurationException {
             if (doc == null) {
                 setDoc();
             }
-
             return doc.getElementsByTagName(str).item(0).getTextContent();
-        } catch (Exception ex) {
-            Logger.getLogger(XmlParser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return null;
     }
 
 }

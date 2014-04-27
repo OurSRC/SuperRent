@@ -6,7 +6,12 @@
 
 package dbconn;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  * The DbConn class handles database connection. 
@@ -14,7 +19,6 @@ import java.sql.*;
  */
 public class DbConn {
     /*
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/super_rent";
     static final String USER = "superrent";
     static final String PASSWORD = "superrent";
@@ -23,8 +27,14 @@ public class DbConn {
     static Connection conn = null;
     
     private static void setConn() throws SQLException {
-        conn = DriverManager.getConnection(XmlParser.get("url"), XmlParser.get("user"), XmlParser.get("password"));
-        //conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+        
+        try {
+            conn = DriverManager.getConnection(XmlParser.get("url"), XmlParser.get("user"), XmlParser.get("password"));
+        } catch (IOException | SQLException | ParserConfigurationException | SAXException ex) {
+            Logger.getLogger(DbConn.class.getName()).log(Level.SEVERE, null, ex);
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/super_rent", 
+                    "superrent", "superrent");
+        }
     }
     
     /**

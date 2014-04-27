@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class VehicleCtrl {
 
     public Vehicle createVehicle(Vehicle vehicle) {
@@ -60,7 +59,7 @@ public class VehicleCtrl {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        if( theVehicle!=null ){
+        if (theVehicle != null) {
             try {
                 return vehicleDAO.delete(theVehicle);
             } catch (DaoException ex) {
@@ -68,7 +67,7 @@ public class VehicleCtrl {
                 ErrorMsg.setLastError(ErrorMsg.ERROR_DATABASE_LOGIC_ERROR);
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -96,9 +95,7 @@ public class VehicleCtrl {
         }
         return theVehicle;
     }
-    
-   
-    
+
     public ArrayList<Vehicle> searchVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
         ArrayList<Vehicle> getList = null;
@@ -111,55 +108,56 @@ public class VehicleCtrl {
         //ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
         return getList;
     }
-    
-    public ArrayList<Vehicle> searchIdleVehicles(String VehivleClassName, Branch branch){
+
+    public ArrayList<Vehicle> searchIdleVehicles(String VehivleClassName, Branch branch) {
         Vehicle vehicle = new Vehicle();
         vehicle.setBranchId(branch.getBranchID());
         vehicle.setStatus(Vehicle.STATUS.FORRENT);
         vehicle.setRentStatus(Vehicle.RENTSTATUS.IDLE);
-        if(VehivleClassName!=null){
+        if (VehivleClassName != null) {
             vehicle.setClassName(VehivleClassName);
         }
         return searchVehicle(vehicle);
     }
 
-
-        public ArrayList<Vehicle> searchForSaleVehicles(String VehicleClassName, Branch branch){
+    public ArrayList<Vehicle> searchForSaleVehicles(String VehicleClassName, Branch branch) {
         Vehicle vehicle = new Vehicle();
         vehicle.setBranchId(branch.getBranchID());
         vehicle.setSellStatus(Vehicle.SELLSTATUS.FORSALE);
         vehicle.setClassName(VehicleClassName);
         return searchVehicle(vehicle);
     }
-        
+
     public ArrayList<String> getAvailableVehicleClasses(VehicleClass.TYPE type, Date pickUpTime, Date returnTime, Branch branch) {
         ArrayList<String> ans = new ArrayList<String>();
         ArrayList<String> list = getSubVehicleType(type);
-        for(String vClass : list){
-            if( checkVehicleAvailability(vClass, pickUpTime, returnTime, branch) )
+        for (String vClass : list) {
+            if (checkVehicleAvailability(vClass, pickUpTime, returnTime, branch)) {
                 ans.add(vClass);
+            }
         }
         return ans;
     }
-    
+
     public boolean checkVehicleAvailability(String vehicleClass, Date pickUpTime, Date returnTime, Branch branch) {
         try {
             VehicleDao vDAO = new VehicleDao();
             ReservationInfoDao rDAO = new ReservationInfoDao();
-            int vCount = vDAO.countVehicle( new Vehicle(null, null, null, 0, branch.getBranchID(), Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0) );
+            int vCount = vDAO.countVehicle(new Vehicle(null, null, null, 0, branch.getBranchID(), Vehicle.STATUS.FORRENT, Vehicle.RENTSTATUS.IDLE, null, vehicleClass, 0));
             int rCount = rDAO.findReservationBetween(vehicleClass, pickUpTime, returnTime, branch).size();
-            if(vCount>rCount)
+            if (vCount > rCount) {
                 return true;
-            else
+            } else {
                 return false;
+            }
         } catch (DaoException ex) {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
         return false;
     }
-    
-    public boolean createVehicleClass(VehicleClass vehicleClass){
+
+    public boolean createVehicleClass(VehicleClass vehicleClass) {
         VehicleClassDao classDAO = new VehicleClassDao();
         boolean suc = false;
         try {
@@ -171,7 +169,7 @@ public class VehicleCtrl {
         return suc;
     }
 
-    public boolean deleteVehicleClass(VehicleClass vehicleClass){
+    public boolean deleteVehicleClass(VehicleClass vehicleClass) {
         VehicleClassDao classDAO = new VehicleClassDao();
         boolean suc = false;
         try {
@@ -182,8 +180,8 @@ public class VehicleCtrl {
         }
         return suc;
     }
-    
-    public boolean updateVehicleClass(VehicleClass vehicleClass){
+
+    public boolean updateVehicleClass(VehicleClass vehicleClass) {
         VehicleClassDao classDAO = new VehicleClassDao();
         boolean suc = false;
         try {
@@ -195,10 +193,10 @@ public class VehicleCtrl {
         return suc;
     }
 
-    public VehicleClass findVehicleClass(String className){
+    public VehicleClass findVehicleClass(String className) {
         VehicleClassDao classDAO = new VehicleClassDao();
         VehicleClass theClass = null;
-       try {
+        try {
             theClass = classDAO.findByName(className);
         } catch (DaoException ex) {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,13 +204,13 @@ public class VehicleCtrl {
         }
         return theClass;
     }
-    
+
     public ArrayList<String> getVehicleType() {
         ArrayList<String> ans = getCarType();
         ans.addAll(getTruckType());
         return ans;
     }
-   
+
     public ArrayList<String> getSubVehicleType(VehicleClass.TYPE type) {
         VehicleClassDao classDAO = new VehicleClassDao();
         ArrayList<VehicleClass> classList = new ArrayList<VehicleClass>();
@@ -223,7 +221,7 @@ public class VehicleCtrl {
             classList = null;
         }
         ArrayList<String> ans = new ArrayList<String>();
-        for(int i=0; i<classList.size(); i++){
+        for (int i = 0; i < classList.size(); i++) {
             ans.add(classList.get(i).getClassName());
         }
         return ans;
@@ -236,8 +234,8 @@ public class VehicleCtrl {
     public ArrayList<String> getTruckType() {
         return getSubVehicleType(VehicleClass.TYPE.Truck);
     }
-    
-    public VehicleClass.TYPE getVehicleTypeByClassName(String className){
+
+    public VehicleClass.TYPE getVehicleTypeByClassName(String className) {
         VehicleClassDao classDAO = new VehicleClassDao();
         VehicleClass vehicleClass = null;
         try {
@@ -246,9 +244,9 @@ public class VehicleCtrl {
             Logger.getLogger(VehicleCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_GENERAL);
         }
-        if( vehicleClass!=null ){
+        if (vehicleClass != null) {
             return vehicleClass.getVehicleType();
-        }else{
+        } else {
             return null;
         }
     }
