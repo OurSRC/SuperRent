@@ -74,9 +74,9 @@ public class ViewReservationsFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     Date reserveFromDate;
     Date reserveToDate;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // ViewReservationButton.setDisable(true);
@@ -86,23 +86,19 @@ public class ViewReservationsFXMLController implements Initializable {
 
         Reservation sample = new Reservation();
 
-        if(ReserveFromTime.valueProperty().isNotNull().getValue())
-        {
-        LocalDate DateFrom = ReserveFromTime.getValue();
-        String FromTime = TimeComboBox1.getValue().toString();
-        reserveFromDate = DateClass.getDateTimeObject(DateFrom, FromTime);
-        }else
-        {
+        if (ReserveFromTime.valueProperty().isNotNull().getValue()) {
+            LocalDate DateFrom = ReserveFromTime.getValue();
+            String FromTime = TimeComboBox1.getValue().toString();
+            reserveFromDate = DateClass.getDateTimeObject(DateFrom, FromTime);
+        } else {
             reserveFromDate = null;
         }
 
-        if(ReserveToTime.valueProperty().isNotNull().getValue())
-        {
-        LocalDate ToDate = ReserveToTime.getValue();
-        String ToTime = TimeComboBox.getValue().toString();
-        reserveToDate = DateClass.getDateTimeObject(ToDate, ToTime);
-        }else
-        {
+        if (ReserveToTime.valueProperty().isNotNull().getValue()) {
+            LocalDate ToDate = ReserveToTime.getValue();
+            String ToTime = TimeComboBox.getValue().toString();
+            reserveToDate = DateClass.getDateTimeObject(ToDate, ToTime);
+        } else {
             reserveToDate = null;
         }
 
@@ -126,10 +122,20 @@ public class ViewReservationsFXMLController implements Initializable {
         getList();
 
     }
-    
+
     @FXML
-    public void CancelReservationButtonAction(ActionEvent event)
-    {
+    public void CancelReservationButtonAction(ActionEvent event) {
+        if (!ReservationTable.getSelectionModel().isEmpty()) {
+            Reservation selectedReservation = (Reservation) ReservationTable.getSelectionModel().getSelectedItem();
+            //System.out.println(rrr.getReservationNumber());
+            if(ReserveCtrl.cancelReserve(selectedReservation))
+            {
+                System.out.println("Reservation Successfully Cancelled");
+            }else
+            {
+                System.out.println("Reservation Not updated ");
+            }
+        }
         
     }
 
@@ -142,6 +148,5 @@ public class ViewReservationsFXMLController implements Initializable {
             //System.out.println(rrr.getReservationNumber());
             RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
         }
-        RentNavigator.loadVista(RentNavigator.ReservationSummaryPage);
     }
 }

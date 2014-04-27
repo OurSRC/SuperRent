@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.PeopleManagement.FXML.CustomerPageForCustomerController">
+  <children>
+    <Label layoutX="27.0" layoutY="29.0" text="Phone" />
+    <Label layoutX="23.0" layoutY="67.0" text="First Name" />
+    <TextField fx:id="PhoneTF" layoutX="139.0" layoutY="25.0" prefWidth="162.0" />
+    <TextField fx:id="FirstNameTF" layoutX="140.0" layoutY="64.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
+    <Pane layoutX="18.0" layoutY="402.0" prefHeight="50.0" prefWidth="667.0">
+      <children>
+        <Button fx:id="RegisterClubMemberButton" alignment="CENTER" disable="true" layoutX="374.0" layoutY="13.0" mnemonicParsing="false" onAction="#RegisterClubMemberButtonAction" prefHeight="25.0" prefWidth="145.0" text="Register Membership" />
+        <Button fx:id="RenewClubMemberButton" alignment="CENTER" disable="true" layoutX="236.0" layoutY="13.0" mnemonicParsing="false" onAction="#RenewClubMemberButtonAction" prefHeight="25.0" prefWidth="123.0" text="Renew Membership" />
+        <Button fx:id="ModifyCustomerButton" alignment="CENTER" disable="true" layoutX="529.0" layoutY="13.0" mnemonicParsing="false" onAction="#ModifyCustomerButtonAction" prefHeight="25.0" prefWidth="112.0" text="Modify Details" />
+      </children>
+    </Pane>
+    <Label layoutX="385.0" layoutY="68.0" text="Middle Name" />
+    <Label layoutX="22.0" layoutY="105.0" text=" Last Name" />
+    <TextField fx:id="MiddleNameTF" layoutX="501.0" layoutY="65.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
+    <TextField fx:id="LastNameTF" layoutX="139.0" layoutY="101.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
+    <Label layoutX="385.0" layoutY="106.0" text="Email" />
+    <TextField fx:id="EmailTF" layoutX="502.0" layoutY="101.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
+    <Label layoutX="23.0" layoutY="142.0" text="Address" />
+    <TextField fx:id="AddressTF" layoutX="140.0" layoutY="138.0" onKeyTyped="#ModifyCheckAction" prefWidth="161.0" />
+    <Label layoutX="28.0" layoutY="260.0" prefWidth="112.0" text="Club Member Points" />
+    <TextField fx:id="ClubMemberPointsTF" editable="false" layoutX="148.0" layoutY="256.0" prefHeight="25.0" prefWidth="102.0" />
+    <Label layoutX="28.0" layoutY="307.0" text="Membership Expiry" />
+    <TextField fx:id="MemberShipExpiryTF" editable="false" layoutX="145.0" layoutY="303.0" prefHeight="25.0" prefWidth="102.0" />
+    <Separator layoutX="24.0" layoutY="201.0" prefHeight="3.0" prefWidth="622.0" />
+    <Label layoutX="24.0" layoutY="208.0" text="Club Membership Details" />
+    <Separator layoutX="23.0" layoutY="230.0" prefHeight="3.0" prefWidth="622.0" /><Label layoutX="384.0" layoutY="30.0" text="License No" /><TextField fx:id="LicenseNumberTF" layoutX="501.0" layoutY="25.0" onKeyTyped="#ModifyCheckAction" prefWidth="161.0" />
+  </children>
+</AnchorPane>

@@ -60,11 +60,7 @@ public class CreateCustomerFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
-    public void loadCustomer()
-    {
-        System.out.println("Calling Load Customer");
-    }
+
 
     @FXML
     private void CreateCustomerButtonAction(ActionEvent event) {

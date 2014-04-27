@@ -41,6 +41,7 @@ public class FXMLCustomerMainPageController implements Initializable {
     @FXML
     private void ReserveButtonAction(ActionEvent event) throws IOException {
         ReservationNavigator.newReserve = new Reservation();
+        ReservationNavigator.reservation=true;
         ReservationNavigator.setMainController(this);
         ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
 
@@ -49,7 +50,7 @@ public class FXMLCustomerMainPageController implements Initializable {
     @FXML
     private void CustomerInfoButton(ActionEvent event) throws IOException {
         CustomerMainStackPane.getChildren().clear();
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/PeopleManagement/FXML/CustomerMainPageFXML.fxml"));
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/PeopleManagement/FXML/CustomerPageForCustomer.fxml"));
         Pane CustomerInfoPane = (Pane) myLoader.load();
         CustomerMainStackPane.getChildren().add(CustomerInfoPane);
     }
