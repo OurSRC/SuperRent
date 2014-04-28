@@ -37,11 +37,11 @@
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-        <Label id="DateLBL" fx:id="TotalRentalsLabel" layoutX="437.0" layoutY="360.0" text="Total Numberof  Rentals:">
+        <Label id="DateLBL" fx:id="TotalRentalsLabel" layoutX="416.0" layoutY="359.0" text="Total Numberof  Rentals:">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-        <Label fx:id="totalRentalsForTheDay" layoutX="578.0" layoutY="360.0" />
+        <Label fx:id="totalRentalsForTheDay" layoutX="580.0" layoutY="362.0" />
         <ComboBox fx:id="BranchCB" layoutX="76.0" layoutY="55.0" onAction="#BranchCBAction" prefHeight="25.0" prefWidth="104.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">

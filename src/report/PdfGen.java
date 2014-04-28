@@ -96,7 +96,8 @@ public class PdfGen {
             PdfPTable table = new PdfPTable(5);
             addTableContent(table, "Contract #", "Vehicle Class", "Return Date", "Customer Name", "Customer Phone");
             for (Reservation res : notReturnList) {
-                addTableContent(table, Integer.toString(res.getContractNo()), res.getVehicleClass(), res.getReturnTime().toString(),
+                addTableContent(table, Integer.toString(res.getContractNo()), 
+                        res.getVehicleClass(), tf.format(res.getReturnTime()),
                         res.getCustomerName(), res.getCustomerPhone());
             }
             document.add(table);
@@ -189,7 +190,7 @@ public class PdfGen {
             addMetaData(document, title);
             addTitle(document, title);
 
-            PdfPTable table = new PdfPTable(6);
+            PdfPTable table = new PdfPTable(5);
             addTableContent(table, "Reservation #", "Vehicle Class",
                     "Pickup Date", "Return Date", "Customer Name");
             for (Reservation res : resList) {
@@ -258,7 +259,7 @@ public class PdfGen {
             addTableContent(table, "Plate Number", "Vehicle Class", "Brand & Model", "Manufacturer Year", "BranchID");
             for (Vehicle v : vlist) {
                 addTableContent(table, v.getPlateNo(), v.getClassName(),
-                        v.getMode(), v.getManufactureDate().toString(), Integer.toString(v.getBranchId()));
+                        v.getMode(), df.format(v.getManufactureDate()), Integer.toString(v.getBranchId()));
             }
             document.add(table);
 

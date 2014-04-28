@@ -7,11 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.PeopleManagement.FXMLController.AddUserFXMLController">
-  <children><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
-<children>
-    <Button alignment="CENTER" contentDisplay="LEFT" layoutX="13.5" layoutY="6.0" mnemonicParsing="false" onAction="#CancelButtonAction" prefWidth="97.0" text="Cancel" textAlignment="LEFT" wrapText="false" />
-</children>
-</Pane>
+  <children>
     <Label layoutX="13.0" layoutY="176.0" text="User Name">
       <font>
         <Font name="ArnoPro-SmText" size="14.0" fx:id="x1" />
@@ -52,8 +48,7 @@
       </items>
     </ComboBox>
     <PasswordField id="SetNewPasswordTF" fx:id="SetPasswordPF" layoutX="206.0" layoutY="305.0" prefWidth="159.0" />
-    <PasswordField id="ReenterNewPasswordTF" fx:id="ReenterPasswordPF" layoutX="206.0" layoutY="337.0" prefWidth="159.0" />
-    <Button alignment="CENTER" contentDisplay="LEFT" layoutX="522.0" layoutY="421.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Confirm" textAlignment="LEFT" wrapText="false" />
+    <PasswordField id="ReenterNewPasswordTF" fx:id="ReenterPasswordPF" layoutX="206.0" layoutY="337.0" prefWidth="159.0" /><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
     <Label layoutX="13.0" layoutY="85.0" text="Last Name">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
@@ -99,5 +94,7 @@
 </Label>
 </children>
 </Pane>
+    <Button alignment="CENTER" contentDisplay="LEFT" layoutX="522.0" layoutY="421.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Confirm" textAlignment="LEFT" wrapText="false" />
+    <Button alignment="CENTER" contentDisplay="LEFT" layoutX="17.0" layoutY="421.0" mnemonicParsing="false" onAction="#CancelButtonAction" prefWidth="97.0" text="Cancel" textAlignment="LEFT" wrapText="false" />
   </children>
 </AnchorPane>
