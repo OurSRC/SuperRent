@@ -65,11 +65,11 @@ public class FinanceCtrl {
     }
 
     /**
-     * 
+     * This method find the cost of rental with given {@code t1, t2, reserveInfo}
      * @param t1
      * @param t2
      * @param reserveInfo
-     * @return
+     * @return rental cost
      */
     public int rentalCost(Date t1, Date t2, ReservationInfo reserveInfo) {
         if (reserveInfo != null) {
@@ -80,11 +80,11 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * This method find the cost of equipment with given {@code t1, t2, reserveEquipment}
      * @param t1
      * @param t2
      * @param reserveEquipment
-     * @return
+     * @return equipment cost
      */
     public int equipmentCost(Date t1, Date t2, ReserveEquipment reserveEquipment) {
         if (reserveEquipment != null) {
@@ -99,12 +99,12 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * This method find the cost of equipment with given {@code t1, t2, insurance, basePrice}
      * @param t1
      * @param t2
      * @param insurance
      * @param basePrice
-     * @return
+     * @return 
      */
     public int insuraceCost(Date t1, Date t2, BuyInsurance insurance, int basePrice) {
         if (insurance != null) {
