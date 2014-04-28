@@ -19,7 +19,7 @@ import javax.crypto.spec.PBEParameterSpec;
  */
 /**
  *
- * @author Elitward
+ * 
  */
 public class SecurityCtrl {
 
