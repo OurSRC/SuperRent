@@ -14,11 +14,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Elitward
+ * <p>This class provides data access and control function of user entity for UI</p> 
+ * 
  */
 public class VehicleCtrl {
 
+    /**
+     * This method find a {@link Vehicle} with given {@code vehicle}
+     * @param vehicle vehicle
+     * @return vehicle or null
+     */
     public Vehicle createVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
         boolean suc = false;
