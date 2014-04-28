@@ -1,4 +1,6 @@
-INSERT INTO `super_rent`.`return_record` VALUES ('2', '2014-03-17 10:50:05', '20', '120100', '5', '2', null);
-INSERT INTO `super_rent`.`return_record` VALUES ('3', '2014-03-17 07:42:00', '20', '150100', '7', '3', null);
-INSERT INTO `super_rent`.`return_record` VALUES ('4', '2014-03-01 08:59:00', '30', '160100', '7', '4', null);
-INSERT INTO `super_rent`.`return_record` VALUES ('5', '2014-04-23 08:05:00', '30', '170100', '8', '5', null);
+INSERT INTO `super_rent`.`return_record` VALUES (10, '2014-4-28 13:08:18', 0, 0, 12, 15, 0);
+INSERT INTO `super_rent`.`return_record` VALUES (11, '2014-4-28 13:32:27', 15, 1, 14, 16, 0);
+INSERT INTO `super_rent`.`return_record` VALUES (12, '2014-4-28 13:45:29', 0, 1, 8, 17, 0);
+INSERT INTO `super_rent`.`return_record` VALUES (13, '2014-4-28 14:08:38', 8, 1, 8, 18, 0);
+INSERT INTO `super_rent`.`return_record` VALUES (19, '2014-4-28 15:00:26', 0, 1, 2, 19, 0);
+INSERT INTO `super_rent`.`return_record` VALUES (20, '2014-4-28 15:07:41', 0, 6, 10, 20, 0);

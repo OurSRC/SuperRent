@@ -1,6 +1,11 @@
-INSERT INTO `super_rent`.`payment` VALUES (1, 4, 'Ford rent', 11500, '5202601352321285', '2014-5-2 08:32:00');
-INSERT INTO `super_rent`.`payment` VALUES (2, 5, 'Suzuki Aerio', 28000, '4916671004885490', '2014-3-6 22:47:00');
-INSERT INTO `super_rent`.`payment` VALUES (3, 1, 'Foot24', 144000, '343706449472636', '2014-1-9 23:04:00');
-INSERT INTO `super_rent`.`payment` VALUES (4, 6, '', 0, '6011794295303038', '2014-4-18 08:55:00');
-INSERT INTO `super_rent`.`payment` VALUES (5, 7, '', 0, '6011526095097968', '2014-4-10 09:41:00');
-INSERT INTO `super_rent`.`payment` VALUES (6, 6, '', 0, '6011808238404750', '2014-4-26 09:59:00');
+INSERT INTO `super_rent`.`payment` VALUES (10, 6, 'SuperRent Club Membership Fee', 2000, '5202601352321285', '2014-4-28 10:11:44');
+INSERT INTO `super_rent`.`payment` VALUES (11, 12, 'SuperRent Club Membership Fee', 1000, '6375942923771932', '2014-4-28 10:14:39');
+INSERT INTO `super_rent`.`payment` VALUES (12, 20, 'SuperRent Club Membership Fee', 1000, '6011808238404711', '2014-4-28 10:23:19');
+INSERT INTO `super_rent`.`payment` VALUES (13, 16, 'SuperRent Club Membership Fee', 5000, '6706286556204013', '2014-4-28 10:24:49');
+INSERT INTO `super_rent`.`payment` VALUES (14, 18, 'SuperRent Club Membership Fee', 1000, '5018883046653893', '2014-4-28 11:12:37');
+INSERT INTO `super_rent`.`payment` VALUES (15, 19, 'Rent Payment', 866600, NULL, '2014-4-28 13:08:18');
+INSERT INTO `super_rent`.`payment` VALUES (16, 16, 'Rent Payment', 6268, NULL, '2014-4-28 13:32:27');
+INSERT INTO `super_rent`.`payment` VALUES (17, 12, 'Rent Payment', 2118, NULL, '2014-4-28 13:45:29');
+INSERT INTO `super_rent`.`payment` VALUES (18, 7, 'Rent Payment', 3978, NULL, '2014-4-28 14:08:38');
+INSERT INTO `super_rent`.`payment` VALUES (19, 6, 'Rent Payment', 34838, NULL, '2014-4-28 15:00:26');
+INSERT INTO `super_rent`.`payment` VALUES (20, 26, 'Rent Payment', 407428, '6011526095097981', '2014-4-28 15:07:41');

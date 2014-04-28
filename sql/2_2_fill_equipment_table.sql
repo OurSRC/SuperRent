@@ -1,4 +1,4 @@
-INSERT INTO `super_rent`.`equipment` VALUES (1, 'Ski Rack', 'UNAVAILABLE', 'Thule', '2013-11-5', 'Universal', 1);
+INSERT INTO `super_rent`.`equipment` VALUES (1, 'Ski Rack', 'AVAILABLE', 'Thule', '2013-11-5', 'Universal', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (2, 'Ski Rack', 'AVAILABLE', 'CROSSBARS', '2013-11-6', 'VW Tiguan SE 4Motion', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (3, 'Additional Luggage Rack', 'AVAILABLE', 'SUBARU', '2013-11-7', 'TRIBECA', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (4, 'Additional Luggage Rack', 'AVAILABLE', 'Yakima', '2013-11-8', 'Ski Slope roof', 1);
@@ -8,7 +8,7 @@ INSERT INTO `super_rent`.`equipment` VALUES (7, 'Ski Rack', 'AVAILABLE', 'Thule'
 INSERT INTO `super_rent`.`equipment` VALUES (8, 'Ski Rack', 'AVAILABLE', 'CROSSBARS', '2013-11-12', 'SUBARU 4Motion', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (9, 'Ski Rack', 'AVAILABLE', 'Yakima', '2013-11-13', 'SideWinder', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (10, 'Ski Rack', 'AVAILABLE', 'Yakima', '2013-11-14', 'CopperHead', 1);
-INSERT INTO `super_rent`.`equipment` VALUES (11, 'Towing Equipment', 'UNAVAILABLE', 'OharazManualz', '2013-11-15', 'Towing Rope', 1);
+INSERT INTO `super_rent`.`equipment` VALUES (11, 'Towing Equipment', 'AVAILABLE', 'OharazManualz', '2013-11-15', 'Towing Rope', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (12, 'Towing Equipment', 'AVAILABLE', '1megadeal', '2013-11-16', '651XT', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (13, 'Towing Equipment', 'AVAILABLE', 'Paul Politis Automotive Literature', '2013-11-8', '489YJH', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (14, 'DVD Players', 'AVAILABLE', 'Wholesale Direct Auto Parts', '2013-11-9', '652XT', 1);
@@ -17,7 +17,7 @@ INSERT INTO `super_rent`.`equipment` VALUES (16, 'DVD Players', 'AVAILABLE', '2m
 INSERT INTO `super_rent`.`equipment` VALUES (17, 'Towing Equipment', 'AVAILABLE', 'Paul Politis Automotive Literature', '2013-11-12', '489YJH', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (18, 'Towing Equipment', 'AVAILABLE', 'Wholesale Direct Auto Parts', '2013-11-13', '652XT', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (19, 'Towing Equipment', 'AVAILABLE', 'Angstrom Autohaus', '2013-11-14', '490RJ', 1);
-INSERT INTO `super_rent`.`equipment` VALUES (20, 'Child Safety Seat', 'UNAVAILABLE', 'Tasca OEM Parts', '2010-5-9', 'VOLVO XJU-56', 1);
+INSERT INTO `super_rent`.`equipment` VALUES (20, 'Child Safety Seat', 'AVAILABLE', 'Tasca OEM Parts', '2010-5-9', 'VOLVO XJU-56', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (21, 'Child Safety Seat', 'AVAILABLE', 'Babytrend', '2010-7-10', 'BMW OMK-32', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (22, 'Child Safety Seat', 'AVAILABLE', 'Britax', '2010-9-10', 'WV ULT-954', 1);
 INSERT INTO `super_rent`.`equipment` VALUES (23, 'Child Safety Seat', 'AVAILABLE', 'Dorel', '2010-11-11', 'VOLVO XJU-57', 1);
