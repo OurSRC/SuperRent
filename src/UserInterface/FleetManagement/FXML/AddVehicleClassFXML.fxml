@@ -3,23 +3,53 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.AddVehicleClassFXMLController">
-<children>
-    <Label layoutX="51.0" layoutY="70.0" text="Vehicle Type" />
-    <Label layoutX="51.0" layoutY="110.0" text="Vehicle Class" />
-    <Label layoutX="51.0" layoutY="150.0" text="Hourly Rate" />
-    <Label layoutX="51.0" layoutY="190.0" text="Daily Rate" />
-    <Label layoutX="51.0" layoutY="230.0" text="Weekly Rate" />
-    <TextField fx:id="VehicleClassTF" layoutX="163.74609375" layoutY="106.0" />
-    <TextField fx:id="HourlyRateTF" layoutX="164.0" layoutY="146.0" />
-    <TextField fx:id="DailyRateTF" layoutX="164.0" layoutY="186.0" />
-    <TextField fx:id="WeeklyRateTF" layoutX="164.0" layoutY="226.0" />
-    <RadioButton layoutX="163.7900390625" layoutY="70.0" mnemonicParsing="false" onAction="#VehicleTypeCarAction" selected="true" text="Car">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.AddVehicleClassFXMLController">
+<children><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
+    <Label layoutX="13.0" layoutY="55.0" text="Vehicle Type">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="13.0" layoutY="98.0" text="Vehicle Class">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="13.0" layoutY="141.0" text="Hourly Rate">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="13.0" layoutY="187.0" text="Daily Rate">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="13.0" layoutY="231.0" text="Weekly Rate">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <TextField fx:id="VehicleClassTF" layoutX="131.0" layoutY="98.0" />
+    <TextField fx:id="HourlyRateTF" layoutX="131.0" layoutY="141.0" />
+    <TextField fx:id="DailyRateTF" layoutX="131.0" layoutY="187.0" />
+    <TextField fx:id="WeeklyRateTF" layoutX="131.0" layoutY="231.0" />
+    <RadioButton layoutX="163.7900390625" layoutY="55.0" mnemonicParsing="false" onAction="#VehicleTypeCarAction" selected="true" text="Car">
 <toggleGroup>
 <ToggleGroup fx:id="VehicleTypeTG" />
-</toggleGroup></RadioButton>
-<RadioButton layoutX="263.0" layoutY="70.0" mnemonicParsing="false" onAction="#VehicleTypeTruckAction" text="Truck" toggleGroup="$VehicleTypeTG" />
-<Button layoutX="469.0" layoutY="388.0" mnemonicParsing="false" onAction="#AddVehicleClassButtonAction" prefHeight="25.0" prefWidth="149.0" text="Add Vehicle Class" />
-<Button layoutX="52.0" layoutY="388.0" mnemonicParsing="false" onAction="#BackToSearchButtonAction" prefHeight="25.0" prefWidth="135.0" text="Back to Search" />
+</toggleGroup>
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></RadioButton>
+<RadioButton layoutX="263.0" layoutY="55.0" mnemonicParsing="false" onAction="#VehicleTypeTruckAction" text="Truck" toggleGroup="$VehicleTypeTG">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></RadioButton>
+<Button layoutX="479.0" layoutY="419.0" mnemonicParsing="false" onAction="#AddVehicleClassButtonAction" prefHeight="25.0" prefWidth="149.0" text="Add Vehicle Class" />
+<Button layoutX="13.0" layoutY="419.0" mnemonicParsing="false" onAction="#BackToSearchButtonAction" prefHeight="25.0" prefWidth="135.0" text="Back to Search" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+<children>
+<Label layoutX="14.0" layoutY="8.0" text="Add Vehicle Class" textFill="WHITE">
+<font>
+<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+</font>
+</Label>
+</children>
+</Pane>
 </children></AnchorPane>

@@ -34,7 +34,6 @@ public class ReservationNavigator {
         public static final String ReservationSummary = "/UserInterface/Operations/FXML/ReservationSummaryFXML.fxml";
         public static final String ReserveSearchPage = "/UserInterface/Operations/FXML/ReserveSearchPageFXML.fxml";
         public static final String SelectSpecificVehicle = "/UserInterface/Operations/FXML/SelectParticularVehicleFXML.fxml";
-        public static final String RentConfirmPage = "";
         public static final String ViewReseration = "/UserInterface/Operations/FXML/ViewReservationsFXML.fxml";
         
         /* Common Variables to facilitate navigations */

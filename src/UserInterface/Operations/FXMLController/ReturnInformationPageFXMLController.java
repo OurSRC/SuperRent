@@ -109,6 +109,7 @@ public class ReturnInformationPageFXMLController implements Initializable {
         }
         ReturnDateTF.setText((new Date()).toString());
         ContractNumberTF.setText(Integer.toString(ReturnNavigator.returnRent.getContractNo()));
+        
         MissingFuelTF.lengthProperty().addListener(new ChangeListener<Number>() {
 
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -254,5 +255,7 @@ public class ReturnInformationPageFXMLController implements Initializable {
         }
 
     }
+    
+    
 
 }

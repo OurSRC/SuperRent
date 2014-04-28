@@ -16,17 +16,7 @@ import javafx.scene.control.ControlBuilder;
 import javafx.util.Builder;
 
 
-/**
- * Created with IntelliJ IDEA.
- * User: hansolo
- * Date: 04.09.12
- * Time: 09:05
- * To change this template use File | Settings | File Templates.
- * 
- * Mods: HecklerMark
- * Date: 25.09.12
- * Desc: Added stylesheet capability. Guess I need to check out IDEA for this project now (sigh). :-)
- */
+
 public class DialogFXBuilder <B extends DialogFXBuilder<B>> extends ControlBuilder<B> implements Builder<DialogFX> {
     private HashMap<String, Property> properties = new HashMap<>();
 

@@ -5,39 +5,65 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.AddVehicleFXMLController">
-  <children>
-    <Label layoutX="28.0" layoutY="189.0" text="Model">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.AddVehicleFXMLController">
+  <children><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
+    <Label layoutX="13.0" layoutY="189.0" text="Model">
       <font>
-        <Font name="System Italic" size="12.0" fx:id="x1" />
+        <Font name="ArnoPro-SmText" size="14.0" fx:id="x1" />
       </font>
     </Label>
-    <TextField fx:id="ModelTF" layoutX="181.0" layoutY="184.0" prefWidth="159.0" />
-    <Label font="$x1" layoutX="28.0" layoutY="235.0" text="Manufacturing Date" />
-    <Label font="$x1" layoutX="27.0" layoutY="140.0" text="Plate Number" />
-    <Button layoutX="513.0" layoutY="403.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Confirm" />
-    <Button layoutX="27.0" layoutY="403.0" mnemonicParsing="false" onAction="#BeckToSearchButtonAction" prefHeight="25.0" prefWidth="134.0" text="Back to Search" />
-    <TextField fx:id="PlateNumberTF" layoutX="180.0" layoutY="134.0" prefWidth="159.0" />
-    <Label layoutX="28.0" layoutY="49.0" text="Vehicle Type">
+    <TextField fx:id="ModelTF" layoutX="181.0" layoutY="189.0" prefWidth="159.0" />
+    <Label layoutX="13.0" layoutY="235.0" text="Manufacturing Date">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="13.0" layoutY="144.0" text="Plate Number">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Button layoutX="502.0" layoutY="419.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Confirm" />
+    <Button layoutX="13.0" layoutY="419.0" mnemonicParsing="false" onAction="#BeckToSearchButtonAction" prefHeight="25.0" prefWidth="134.0" text="Back to Search" />
+    <TextField fx:id="PlateNumberTF" layoutX="180.0" layoutY="144.0" prefWidth="159.0" />
+    <Label layoutX="13.0" layoutY="55.0" text="Vehicle Type">
       <font>
-        <Font size="12.0" fx:id="x2" />
+        <Font name="ArnoPro-SmText" size="14.0" fx:id="x2" />
       </font>
     </Label>
-    <RadioButton fx:id="VehicleTypeTruckRB" layoutX="268.0" layoutY="49.0" mnemonicParsing="false" onAction="#VehicleTypeTruckRBAction" text="Truck">
+    <RadioButton fx:id="VehicleTypeTruckRB" layoutX="268.0" layoutY="55.0" mnemonicParsing="false" onAction="#VehicleTypeTruckRBAction" text="Truck">
 <toggleGroup>
 <ToggleGroup fx:id="VehicleTypeTG" />
-</toggleGroup></RadioButton>
-    <RadioButton fx:id="VehicleTypeCarRB" layoutX="184.0" layoutY="49.0" mnemonicParsing="false" onAction="#VehicleTypeCarRBAction" selected="true" text="Car" toggleGroup="$VehicleTypeTG" />
-    <Label font="$x2" layoutX="27.0" layoutY="91.0" text="Vehicle Class" /><DatePicker fx:id="ManufacturingDatePicker" layoutX="181.0" layoutY="230.0" prefHeight="25.0" prefWidth="159.0" showWeekNumbers="true" /><ComboBox fx:id="VehicleClassCB" layoutX="180.0" layoutY="85.0" prefHeight="25.0" prefWidth="159.0" /><Label layoutX="20.0" layoutY="6.0" text="Add New Vehicle">
+</toggleGroup>
 <font>
-<Font name="System Italic" size="16.0" />
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></RadioButton>
+    <RadioButton fx:id="VehicleTypeCarRB" layoutX="184.0" layoutY="55.0" mnemonicParsing="false" onAction="#VehicleTypeCarRBAction" selected="true" text="Car" toggleGroup="$VehicleTypeTG">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></RadioButton>
+    <Label layoutX="13.0" layoutY="100.0" text="Vehicle Class">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><DatePicker fx:id="ManufacturingDatePicker" layoutX="181.0" layoutY="235.0" prefHeight="25.0" prefWidth="159.0" showWeekNumbers="true" /><ComboBox fx:id="VehicleClassCB" layoutX="180.0" layoutY="100.0" prefHeight="25.0" prefWidth="159.0" />
+<CheckBox fx:id="NewVehicleCheckBox" layoutX="351.0" layoutY="144.0" mnemonicParsing="false" text="New Vehicle">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></CheckBox>
+<Label layoutX="13.0" layoutY="280.0" text="Odometer Reading">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-<Separator layoutX="20.0" layoutY="26.0" prefHeight="4.0" prefWidth="648.0" />
-<Separator layoutX="20.0" layoutY="4.0" prefHeight="4.0" prefWidth="648.0" />
-<Separator layoutX="163.0" layoutY="14.0" prefHeight="4.0" prefWidth="505.0" />
-<CheckBox fx:id="NewVehicleCheckBox" layoutX="351.0" layoutY="138.0" mnemonicParsing="false" text="New Vehicle" />
-<Label layoutX="30.0048828125" layoutY="280.5" text="Odometer Reading" />
-<TextField fx:id="OdometerReadingTF" layoutX="181.0" layoutY="277.0" prefHeight="25.0" prefWidth="67.0" />
-<Label layoutX="257.0" layoutY="280.0" text="kms" />
+<TextField fx:id="OdometerReadingTF" layoutX="181.0" layoutY="280.0" prefHeight="25.0" prefWidth="67.0" />
+<Label layoutX="257.0" layoutY="283.0" text="kms">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+<children>
+<Label layoutX="14.0" layoutY="8.0" text="Add New Vehicle" textFill="WHITE">
+<font>
+<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+</font>
+</Label>
+</children>
+</Pane>
   </children>
 </AnchorPane>

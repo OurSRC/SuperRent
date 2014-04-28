@@ -13,10 +13,14 @@ import entity.Customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -55,6 +59,28 @@ public class CustomerPageForGuestFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        CustomerPhoneTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(16));
+        CustomerPhoneTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = CustomerPhoneTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9')) {
+
+                        //if it's not number then just setText to previous one
+                        CustomerPhoneTF.setText(CustomerPhoneTF.getText().substring(0, CustomerPhoneTF.getText().length() - 1));
+                    }
+                }
+            }
+
+           
+
+        }); 
+        
     }
 
     @FXML
@@ -114,6 +140,20 @@ public class CustomerPageForGuestFXMLController implements Initializable {
         } else {
             return false;
         }
+    }
+    
+    public static EventHandler<KeyEvent> maxLength(final Integer i) {
+        return new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent arg0) {
+
+                TextField tx = (TextField) arg0.getSource();
+                if (tx.getText().length() >= i) {
+                    arg0.consume();
+                }
+            }
+        };
     }
 
 }
