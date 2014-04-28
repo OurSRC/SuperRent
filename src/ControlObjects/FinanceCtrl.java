@@ -99,12 +99,12 @@ public class FinanceCtrl {
     }
 
     /**
-     * This method find the cost of equipment with given {@code t1, t2, insurance, basePrice}
+     * This method find the cost of insurance with given {@code t1, t2, insurance, basePrice}
      * @param t1
      * @param t2
      * @param insurance
      * @param basePrice
-     * @return 
+     * @return cost of insurance
      */
     public int insuraceCost(Date t1, Date t2, BuyInsurance insurance, int basePrice) {
         if (insurance != null) {
@@ -119,9 +119,9 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * 
      * @param reserve
-     * @return
+     * @return cost of estimate reservation
      */
     public int estimateReservationCost(Reservation reserve) {
         TimeGroup tg = countTimes(reserve.getReturnTime(), reserve.getPickupTime());
