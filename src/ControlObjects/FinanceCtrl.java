@@ -13,6 +13,9 @@ import finance.Payment;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ *<p>This FinanceCtrl class provides data access and control function of user entity for UI</p>
+ */
 public class FinanceCtrl {
 
     private static final int BASE_DAILY_IRATE_DIVISION = 100;
@@ -20,12 +23,31 @@ public class FinanceCtrl {
     private static final int EXCHANG_POINT_HIGH = 1500;
     private static final String BOUNDARY_HIGH_CAR = "LUXURY";
 
+    /**
+     * This method calculate the cost of rental with given {@code t1, t2, weekRate, dayRate, hourRate}
+     * @param t1
+     * @param t2
+     * @param weekRate
+     * @param dayRate
+     * @param hourRate
+     * @return rental cost
+     */
     public int cost(Date t1, Date t2, int weekRate, int dayRate, int hourRate) {
         TimeGroup tg = countTimes(t1, t2);
         int rental = tg.cWeeks * weekRate + tg.cDays * dayRate + tg.cHours * hourRate;
         return rental;
     }
 
+    /**
+     *
+     * @param t1
+     * @param t2
+     * @param weekRate
+     * @param dayRate
+     * @param hourRate
+     * @param baseRate
+     * @return
+     */
     public int cost(Date t1, Date t2, int weekRate, int dayRate, int hourRate, int baseRate) {
         TimeGroup tg = countTimes(t1, t2);
         if (weekRate < 0) {
@@ -42,6 +64,13 @@ public class FinanceCtrl {
         return rental;
     }
 
+    /**
+     *
+     * @param t1
+     * @param t2
+     * @param reserveInfo
+     * @return
+     */
     public int rentalCost(Date t1, Date t2, ReservationInfo reserveInfo) {
         if (reserveInfo != null) {
             return cost(t1, t2, reserveInfo.getvWeeklyRate(), reserveInfo.getvDailyRate(), reserveInfo.getvHourlyRate());
@@ -50,6 +79,13 @@ public class FinanceCtrl {
         }
     }
 
+    /**
+     *
+     * @param t1
+     * @param t2
+     * @param reserveEquipment
+     * @return
+     */
     public int equipmentCost(Date t1, Date t2, ReserveEquipment reserveEquipment) {
         if (reserveEquipment != null) {
             int week = reserveEquipment.getEDailyRate() * 7;
@@ -62,6 +98,14 @@ public class FinanceCtrl {
         }
     }
 
+    /**
+     *
+     * @param t1
+     * @param t2
+     * @param insurance
+     * @param basePrice
+     * @return
+     */
     public int insuraceCost(Date t1, Date t2, BuyInsurance insurance, int basePrice) {
         if (insurance != null) {
             int week = insurance.getWeeklyRate();
@@ -74,6 +118,11 @@ public class FinanceCtrl {
         }
     }
 
+    /**
+     *
+     * @param reserve
+     * @return
+     */
     public int estimateReservationCost(Reservation reserve) {
         TimeGroup tg = countTimes(reserve.getReturnTime(), reserve.getPickupTime());
         ReservationInfo reserveInfo = reserve.getReserveInfo();
