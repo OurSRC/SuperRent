@@ -11,6 +11,7 @@ import ControlObjects.FinanceCtrl;
 import ControlObjects.PaymentCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import SystemOperations.ValidateFields;
 import static UserInterface.Operations.FXMLController.PaymentPageFXMLController.maxLength;
 import entity.Branch;
@@ -110,7 +111,10 @@ public class MembershipPaymentPageFXMLController implements Initializable {
         if (ValidateMandatory()) {
             paymentCtrl.useCreditCard(CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
             Payment p = paymentCtrl.proceed();
-            System.out.println("Payment Success");
+            DialogFX dialog = new DialogFX(Type.INFO);
+            dialog.setTitleText("Payment Success");
+            dialog.setMessage("Payment Towards Club Membership Received");
+            dialog.showDialog();
             ((Node) (event.getSource())).getScene().getWindow().hide(); 
             
         }

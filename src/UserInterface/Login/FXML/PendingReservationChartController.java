@@ -100,10 +100,10 @@ public class PendingReservationChartController implements Initializable {
 
         ReservationNumberColumn.setCellValueFactory(new PropertyValueFactory("reservationNo"));
         VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("vehicleClass"));
-        ReturnDateColumn.setCellValueFactory(new PropertyValueFactory("returnTime"));
+        ReturnDateColumn.setCellValueFactory(new PropertyValueFactory("returnTimeString"));
         CustomerPhoneColumn.setCellValueFactory(new PropertyValueFactory("customerPhone"));
         CustomerNameColumn.setCellValueFactory(new PropertyValueFactory("customerName"));
-        PickUpDateColumn.setCellValueFactory(new PropertyValueFactory("pickupTime"));
+        PickUpDateColumn.setCellValueFactory(new PropertyValueFactory("pickupTimeString"));
         EstimatedCostColumn.setCellValueFactory(new PropertyValueFactory("estimation"));
 
     }

@@ -13,7 +13,7 @@
         <Button fx:id="Login" layoutX="253.0" layoutY="269.0" mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="23.9609375" prefWidth="131.0" text="Login" />
         <Label id="WarningLabel" fx:id="MissingDetailsMessage" layoutX="265.0" layoutY="243.0" text="Please enter Login Details" textFill="RED" visible="false" />
         <Label id="LoginText" fx:id="InvalidMessage" graphicTextGap="0.0" layoutX="247.0" layoutY="241.0" prefWidth="149.0" text="Invalid Username/Password" textFill="RED" visible="false" />
-            <Button layoutX="253.0" layoutY="308.0" mnemonicParsing="false" onAction="#nextPane" prefHeight="23.9609375" prefWidth="131.0" text="Forgot Login Details" />
+            <Button layoutX="253.0" layoutY="308.0" mnemonicParsing="false" onAction="#nextPane" prefHeight="23.9609375" prefWidth="131.0" text="Forgot" />
       </children>
     </Pane>
   </children>
