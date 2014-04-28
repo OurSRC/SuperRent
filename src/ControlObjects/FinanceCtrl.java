@@ -135,6 +135,15 @@ public class FinanceCtrl {
                 cDiscount = -1 * cDiscountDays * reserve.getReserveInfo().getvDailyRate();
             }
         }
+        
+        System.out.println("FinanceCtrl->Rental:" + cRental);
+        System.out.println("FinanceCtrl->cEquip:" + cEquip);
+        System.out.println("FinanceCtrl->cInsurance:" + cInsurance);
+        System.out.println("FinanceCtrl->cMile:" + cMile);
+        System.out.println("FinanceCtrl->cFuel:" + cFuel);
+        System.out.println("FinanceCtrl->cDamage:" + cDamage);
+        System.out.println("FinanceCtrl->cDiscountDays:" + cDiscountDays);
+        System.out.println("FinanceCtrl->cDiscount:" + cDiscount);
 
         list = new ArrayList<>();
         PaymentItem pRental = new PaymentItem(0, PaymentItem.ITEMTYPE.VEHICLE, "Rental", cRental, 1);

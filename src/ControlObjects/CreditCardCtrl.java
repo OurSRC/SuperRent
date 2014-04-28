@@ -20,6 +20,8 @@ import java.util.logging.Logger;
  * @author Elitward
  */
 public class CreditCardCtrl {
+    static final boolean ENABLE_ENCRYPT = false;
+    
     static public boolean create( String cardNum, Date expire, String name){
         CreditCard creditcard = new CreditCard(cardNum, expire, name);
         return create(creditcard);
@@ -27,7 +29,10 @@ public class CreditCardCtrl {
     
     static private boolean create(CreditCard creditcard){
         CreditCardDao dao = new CreditCardDao();
-        creditcard.encrypt();
+        
+        if(ENABLE_ENCRYPT)
+            creditcard.encrypt();
+        
         boolean suc = false;
         try {
             suc = dao.add(creditcard);
