@@ -22,6 +22,8 @@ import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import entity.BuyInsurance;
+import entity.ReserveEquipment;
 import entity.Vehicle;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -37,36 +39,37 @@ import java.util.logging.Logger;
  * @author Jingchuan Chen
  */
 public class PdfGen {
-    
+
     private static DateFormat df = new SimpleDateFormat("yyyy");
 
     private static Font TitleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
-    
-    
+    private static Font ContentFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,
+            Font.NORMAL);
+
     public static void genDailyRentalReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
         String title = "Daily Rental Report " + getDate();
 
         genVehicleReport(vlist, title);
 
     }
-    
+
     public static void genDailyReturnReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
         String title = "Daily Return Report " + getDate();
 
         genVehicleReport(vlist, title);
     }
-    
+
     public static void genVehicleNotReturnReport(ArrayList<Reservation> notReturnList, String title) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
             document.open();
-            
+
             document.newPage();
             addMetaData(document, title);
             addTitle(document, title);
-            
+
             PdfPTable table = new PdfPTable(5);
             addTableContent(table, "Contract #", "Vehicle Class", "Return Date", "Customer Name", "Customer Phone");
             for (Reservation res : notReturnList) {
@@ -74,27 +77,26 @@ public class PdfGen {
                         res.getCustomerName(), res.getCustomerPhone());
             }
             document.add(table);
-            
+
             document.close();
         } catch (Exception ex) {
             Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void genVehicleForSaleReport(ArrayList<Vehicle> vlist, String title) {
         try {
-            
-            
+
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
             document.open();
-            
+
             document.newPage();
             addMetaData(document, title);
             addTitle(document, title);
-            
+
             PdfPTable table = new PdfPTable(6);
-            addTableContent(table, "Vehicle Number", "Vehicle Class", 
+            addTableContent(table, "Vehicle Number", "Vehicle Class",
                     "Brand & Model", "Manufacturer Year", "Odometer", "Sale Price");
             for (Vehicle v : vlist) {
                 addTableContent(table, Integer.toString(v.getVehicleNo()), v.getClassName(),
@@ -102,25 +104,25 @@ public class PdfGen {
                         Integer.toString(v.getOdometer()), v.getSellingPrice());
             }
             document.add(table);
-            
+
             document.close();
         } catch (Exception ex) {
             Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void genVehicleListReport(ArrayList<Vehicle> vlist, String title) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
             document.open();
-            
+
             document.newPage();
             addMetaData(document, title);
             addTitle(document, title);
-            
+
             PdfPTable table = new PdfPTable(6);
-            addTableContent(table, "Vehicle No", "Vehicle Class", "Brand & Model", 
+            addTableContent(table, "Vehicle No", "Vehicle Class", "Brand & Model",
                     "Manufacturer Year", "Odometer", "Status");
             for (Vehicle v : vlist) {
                 addTableContent(table, Integer.toString(v.getVehicleNo()), v.getClassName(),
@@ -128,24 +130,23 @@ public class PdfGen {
                         v.getStatus().toString());
             }
             document.add(table);
-            
+
             document.close();
         } catch (Exception ex) {
             Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     public static void genVehicleReport(ArrayList<Vehicle> vlist, String title) {
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
             document.open();
-            
+
             document.newPage();
             addMetaData(document, title);
             addTitle(document, title);
-            
+
             PdfPTable table = new PdfPTable(5);
             addTableContent(table, "Plate Number", "Vehicle Class", "Brand & Model", "Manufacturer Year", "BranchID");
             for (Vehicle v : vlist) {
@@ -153,14 +154,47 @@ public class PdfGen {
                         v.getMode(), v.getManufactureDate().toString(), Integer.toString(v.getBranchId()));
             }
             document.add(table);
-            
+
             document.close();
         } catch (Exception ex) {
             Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    
+    public static void genReservationConfirmation(Reservation res, String title) {
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
+            document.open();
+
+            document.newPage();
+            addMetaData(document, title);
+            addTitle(document, title);
+
+            addParagraph(document, "Your Reservation number is : " + res.getReservationNo());
+            addParagraph(document, "Pickup Time: " + res.getPickupTime().toString());
+            addParagraph(document, "Return Time: " + res.getReturnTime().toString());
+            addParagraph(document, "Vehicle Class: " + res.getVehicleClass());
+
+            addEmptyLine(document, 1);
+            
+            addLine(document, "Additional Equipment:");
+            for (ReserveEquipment re : res.getReserveEquipment()) {
+                addLine(document, "        " + re.getEquipmentType());
+            }
+            
+            addLine(document, "Insurance: ");
+            for (BuyInsurance insurance : res.getReserveInsurance()) {
+                addLine(document, "        " + insurance.getInsuranceName());
+            }
+            
+            addParagraph(document, "Your total cost will be: " + res.getEstimation());
+
+            document.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private static String getDate() {
         DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
@@ -180,11 +214,33 @@ public class PdfGen {
         }
     }
 
+    private static void addEmptyLine(Document document, int number) throws DocumentException {
+        Paragraph para = new Paragraph();
+        for (int i = 0; i < number; i++) {
+            para.add(new Paragraph(" "));
+        }
+        document.add(para);
+    }
+
     private static void addTitle(Document document, String title) throws DocumentException {
         Paragraph para = new Paragraph();
         addEmptyLine(para, 1);
         para.add(new Paragraph(title, TitleFont));
         addEmptyLine(para, 2);
+        document.add(para);
+    }
+
+    private static void addParagraph(Document document, String content) throws DocumentException {
+        Paragraph para = new Paragraph();
+        addEmptyLine(para, 1);
+        para.add(new Paragraph(content, ContentFont));
+        addEmptyLine(para, 1);
+        document.add(para);
+    }
+
+    private static void addLine(Document document, String content) throws DocumentException {
+        Paragraph para = new Paragraph();
+        para.add(new Paragraph(content, ContentFont));
         document.add(para);
     }
 
