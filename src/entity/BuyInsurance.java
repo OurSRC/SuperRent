@@ -7,7 +7,6 @@ package entity;
 
 /**
  * Entity for buy_insurance table.
- * @author Jingchuan Chen
  */
 public class BuyInsurance {
 

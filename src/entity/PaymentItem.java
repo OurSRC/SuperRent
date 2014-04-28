@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 /**
  * Entity class for item table.
- * @author Jingchuan Chen
  */
 public class PaymentItem {
 
@@ -53,7 +51,7 @@ public class PaymentItem {
     public void setType(ITEMTYPE type) {
         this.type = type;
     }
-    
+
     /**
      * @param type the String contains type name to set
      */
@@ -106,7 +104,9 @@ public class PaymentItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
     public enum ITEMTYPE {
+
         VEHICLE(1),
         EQUIPMENT(2),
         DELAY(3),
@@ -118,9 +118,9 @@ public class PaymentItem {
         INSURANCE(9),
         FUEL(10),
         OTHER(11);
-        
+
         private int value;
-        
+
         private ITEMTYPE(int value) {
             this.value = value;
         }
@@ -129,7 +129,7 @@ public class PaymentItem {
             return value;
         }
     }
-    
+
     private int itemId;
     private int paymentId;
     private ITEMTYPE type;

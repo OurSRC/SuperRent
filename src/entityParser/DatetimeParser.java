@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entityParser;
 
 import java.lang.reflect.InvocationTargetException;
@@ -13,8 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * This class represent a mapping between Date field in entity object and DateTime field in database.
- * @author Jingchuan Chen
+ * This class represent a mapping between Date field in entity object and
+ * DateTime field in database.
  */
 public class DatetimeParser extends AttributeParser {
 
@@ -45,5 +44,5 @@ public class DatetimeParser extends AttributeParser {
     protected void setAttrByValEx(Object entity, Object value) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

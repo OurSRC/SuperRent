@@ -7,6 +7,12 @@ import dao.DaoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * <p>
+ * LogininCtrl is one of the components in Logical Control, get input from
+ * Database and output data to support User Interface.
+ * </p>
+ */
 public class LoginCtrl {
 
     public LoginCtrl() {
@@ -14,6 +20,13 @@ public class LoginCtrl {
         // Initialize database connection ...
     }
 
+    /**
+     * Check if given username and password is valid.
+     * @param username Username provided by user.
+     * @param password Password provided by user.
+     * @return The type of user. Return {@link User.TYPE.ERROR} if username 
+     * and password is invalid
+     */
     public User.TYPE loginCheck(String username, String password) {
         //search user table by username & password
         //if there is a match, get user type

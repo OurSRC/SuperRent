@@ -9,20 +9,20 @@ import finance.Price;
 
 /**
  * Entity class for vehicle_class table.
- * @author Jingchuan Chen
  */
 public class VehicleClass {
 
     public enum TYPE {
+
         Car(1),
         Truck(2);
-        
+
         private int value;
-        
+
         private TYPE(int value) {
             this.value = value;
         }
-        
+
         public int getValue() {
             return value;
         }
@@ -34,18 +34,19 @@ public class VehicleClass {
     private int dailyRate;
     private int weeklyRate;
 
-    public VehicleClass(String className, TYPE type, 
+    public VehicleClass(String className, TYPE type,
             int hourlyRate, int dailyRate, int weeklyRate) {
-        
+
         this.className = className;
         this.vehicleType = type;
         this.hourlyRate = hourlyRate;
         this.dailyRate = dailyRate;
         this.weeklyRate = weeklyRate;
     }
-    
-    public VehicleClass() {}
-    
+
+    public VehicleClass() {
+    }
+
     /**
      * @return the className
      */
@@ -73,7 +74,7 @@ public class VehicleClass {
     public void setVehicleType(TYPE vehicleType) {
         this.vehicleType = vehicleType;
     }
-    
+
     public void setVehicleType(String vehicleType) {
         this.vehicleType = TYPE.valueOf(vehicleType);
     }
@@ -126,7 +127,7 @@ public class VehicleClass {
 
     public boolean setHourlyPrice(String price) {
         hourlyRate = Price.toCent(price);
-        return  true;
+        return true;
     }
 
     public String getDailyPrice() {

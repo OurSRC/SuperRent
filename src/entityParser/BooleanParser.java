@@ -9,8 +9,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 
 /**
- * This class represent a mapping between boolean field in entity object and in database.
- * @author Jingchuan Chen
+ * This class represent a mapping between boolean field in entity object and in
+ * database.
  */
 public class BooleanParser extends AttributeParser {
 
@@ -27,13 +27,14 @@ public class BooleanParser extends AttributeParser {
     @Override
     protected String wrapAttrEx(Object entity) throws NoSuchMethodException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException {
-        
+
         boolean obj = (boolean) entity.getClass().getMethod("get" + getAttrName()).invoke(entity);
         return obj ? "1" : "0";
     }
 
     /**
      * Create a mapping between boolean entity field and database field.
+     *
      * @param colName
      * @param attrName
      */

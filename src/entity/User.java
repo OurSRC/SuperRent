@@ -4,7 +4,6 @@ import ControlObjects.SecurityCtrl;
 
 /**
  * Entity class for user table.
- * @author Elitward
  */
 public class User {
 
@@ -61,6 +60,7 @@ public class User {
         this.password = password;
         //this.password = SecurityCtrl.digestPassword(password);
     }
+
     /**
      * @return the type
      */

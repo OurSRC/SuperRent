@@ -15,7 +15,6 @@ import org.xml.sax.SAXException;
 
 /**
  * The DbConn class handles database connection. 
- * @author Jingchuan Chen
  */
 public class DbConn {
     /*
