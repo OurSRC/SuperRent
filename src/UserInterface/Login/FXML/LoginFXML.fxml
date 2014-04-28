@@ -4,16 +4,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="loginAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLLoginController">
+<AnchorPane id="loginAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" style="-fx-background-image: url(&quot;Images/Background.png&quot;);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLLoginController">
   <children>
-    <Pane id="loginPane" layoutX="0.0" layoutY="0.0" prefHeight="342.0" prefWidth="534.0">
+    <Pane id="loginPane" prefHeight="453.0" prefWidth="641.0">
       <children>
-        <TextField fx:id="UserNameTF" layoutX="170.0" layoutY="80.0" prefHeight="42.9609375" prefWidth="200.0" promptText="Username" text="" />
-        <PasswordField fx:id="PasswordTF" layoutX="170.0" layoutY="144.0" prefHeight="42.9609375" prefWidth="200.0" promptText="Password" />
-        <Button fx:id="Login" layoutX="202.0" layoutY="229.0" mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="23.9609375" prefWidth="131.0" text="Login" />
-        <Label id="WarningLabel" fx:id="MissingDetailsMessage" layoutX="198.0" layoutY="200.0" text="Please enter Login Details" textFill="RED" visible="false" />
-        <Label id="LoginText" fx:id="InvalidMessage" graphicTextGap="0.0" layoutX="193.0" layoutY="198.0" prefWidth="149.0" text="Invalid Username/Password" textFill="RED" visible="false" />
-            <Button layoutX="202.0" layoutY="268.0" mnemonicParsing="false" onAction="#nextPane" prefHeight="23.9609375" prefWidth="131.0" text="Forgot Login Details" />
+        <TextField fx:id="UserNameTF" layoutX="221.0" layoutY="120.0" prefHeight="42.9609375" prefWidth="200.0" promptText="Username" text="" />
+        <PasswordField fx:id="PasswordTF" layoutX="221.0" layoutY="184.0" prefHeight="42.9609375" prefWidth="200.0" promptText="Password" />
+        <Button fx:id="Login" layoutX="253.0" layoutY="269.0" mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="23.9609375" prefWidth="131.0" text="Login" />
+        <Label id="WarningLabel" fx:id="MissingDetailsMessage" layoutX="265.0" layoutY="243.0" text="Please enter Login Details" textFill="RED" visible="false" />
+        <Label id="LoginText" fx:id="InvalidMessage" graphicTextGap="0.0" layoutX="247.0" layoutY="241.0" prefWidth="149.0" text="Invalid Username/Password" textFill="RED" visible="false" />
+            <Button layoutX="253.0" layoutY="308.0" mnemonicParsing="false" onAction="#nextPane" prefHeight="23.9609375" prefWidth="131.0" text="Forgot Login Details" />
       </children>
     </Pane>
   </children>

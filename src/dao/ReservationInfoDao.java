@@ -202,7 +202,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         if (vehicleClass != null) {
             qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
         }
-
+            qb.cond("ReservationStatus = 'RENTED'");
         String cond = qb.toString();
         return cond;
     }

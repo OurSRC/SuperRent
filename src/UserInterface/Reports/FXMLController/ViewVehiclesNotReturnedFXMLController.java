@@ -65,6 +65,8 @@ public class ViewVehiclesNotReturnedFXMLController implements Initializable {
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
         ArrayList<Reservation> notReturnedArrayList = newReserveCtrl.searchNotReturnedReservation(0, date);
         NotReturnedTable.getItems().clear();
+        if(!notReturnedArrayList.isEmpty())
+        {
         ObservableList notReturnedObservableList = FXCollections.observableArrayList(notReturnedArrayList);
         NotReturnedTable.setItems(notReturnedObservableList);
         ContractNoColumn.setCellValueFactory(new PropertyValueFactory("contractNo"));
@@ -73,6 +75,7 @@ public class ViewVehiclesNotReturnedFXMLController implements Initializable {
         CustomerIDColumn.setCellValueFactory(new PropertyValueFactory("customerId"));
         CustomerNameColumn.setCellValueFactory(new PropertyValueFactory("customerName"));
         CustomerPhoneColumn.setCellValueFactory(new PropertyValueFactory("customerPhone"));
+        }
     }    
 
     @FXML

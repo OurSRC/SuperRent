@@ -78,24 +78,26 @@ public class AddVehicleClassFXMLController implements Initializable {
             newVehicleClass.setDailyPrice(dailyRate);
             newVehicleClass.setWeeklyPrice(weeklyRate);
             newVehicleClass.setHourlyPrice(hourlyRate);
-            
+
             VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-            if(newVehicleCtrl.createVehicleClass(newVehicleClass))
-            {
-            DialogFX dialog = new DialogFX(Type.INFO);
-            dialog.setTitleText("Vehicle Class Created");
-            dialog.setMessage("Vehicle Class " + vehicleClass + " is successfully created");
-            dialog.showDialog();
-            }else
-            {
-            DialogFX dialog = new DialogFX(Type.ERROR);
-            dialog.setTitleText(" Error ");
-            dialog.setMessage("Vehicle Class Creation Failed");
-            dialog.showDialog();
+            if (newVehicleCtrl.createVehicleClass(newVehicleClass)) {
+                DialogFX dialog = new DialogFX(Type.INFO);
+                dialog.setTitleText("Vehicle Class Created");
+                dialog.setMessage("Vehicle Class " + vehicleClass + " is successfully created");
+                dialog.showDialog();
+            } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText(" Error ");
+                dialog.setMessage("Vehicle Class Creation Failed");
+                dialog.showDialog();
             }
-            
+
         } else {
             System.out.println("Please enter all the mandatory records");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Invalid Details");
+            dialog.setMessage("Please enter all Mandatory Fields.");
+            dialog.showDialog();
         }
 
     }
@@ -111,16 +113,14 @@ public class AddVehicleClassFXMLController implements Initializable {
                 && !dailyRate.equals("")
                 && !weeklyRate.equals("")
                 && !vehicleType.equals("")) {
-            if(ValidateFields.CheckForNumbersOnly(hourlyRate) && ValidateFields.CheckForNumbersOnly(weeklyRate) && ValidateFields.CheckForNumbersOnly(dailyRate))
-            {
-            System.out.println(vehicleType + " " + vehicleClass + " " + hourlyRate + " " + dailyRate + " " + weeklyRate);
-            return true;
-            }else
-            {
-            DialogFX dialog = new DialogFX(Type.ERROR);
-            dialog.setTitleText(" Error ");
-            dialog.setMessage("Improper Rates Entered");
-            dialog.showDialog();
+            if (ValidateFields.CheckForNumbersOnly(hourlyRate) && ValidateFields.CheckForNumbersOnly(weeklyRate) && ValidateFields.CheckForNumbersOnly(dailyRate)) {
+                System.out.println(vehicleType + " " + vehicleClass + " " + hourlyRate + " " + dailyRate + " " + weeklyRate);
+                return true;
+            } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText(" Error ");
+                dialog.setMessage("Improper Rates Entered");
+                dialog.showDialog();
                 return false;
             }
         } else {
