@@ -11,6 +11,8 @@ import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
 import ControlObjects.ReturnCtrl;
 import ControlObjects.VehicleCtrl;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import entity.Customer;
 import entity.Rent;
 import entity.Return;
@@ -86,51 +88,58 @@ public class ReturnMainPageFXMLController implements Initializable {
             Return newReturn = newReturnCtrl.getReturnByContractNumber(searchRent.getContractNo());
             if (newReturn == null) {
                 RentalPane.setVisible(true);
-            
-            System.out.println(searchRent.getContractNo());
-            ReserveCtrl newReserveCtrl = new ReserveCtrl();
-            rentReservation = newReserveCtrl.getReserve(searchRent.getReservationInfold());
-            System.out.println(rentReservation.getVehicleClass());
-            CustomerCtrl newCustomerCtrl = new CustomerCtrl();
-            rentCustomer = newCustomerCtrl.getCustomerById(rentReservation.getCustomerId());
 
-            VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-            rentedVehicle = newVehicleCtrl.getVehicleByVehicleNo(searchRent.getVehicleNo());
+                System.out.println(searchRent.getContractNo());
+                ReserveCtrl newReserveCtrl = new ReserveCtrl();
+                rentReservation = newReserveCtrl.getReserve(searchRent.getReservationInfold());
+                System.out.println(rentReservation.getVehicleClass());
+                CustomerCtrl newCustomerCtrl = new CustomerCtrl();
+                rentCustomer = newCustomerCtrl.getCustomerById(rentReservation.getCustomerId());
 
-            ReservationNumberTF.setText(rentReservation.getReservationNo());
-            VehiclePlateTF.setText(rentedVehicle.getPlateNo());
-            RentStartDate.setText(searchRent.getTime().toString());
-            CustomerPhoneTF.setText(rentCustomer.getPhone());
-            VehicleModelTF.setText(rentedVehicle.getMode());
+                VehicleCtrl newVehicleCtrl = new VehicleCtrl();
+                rentedVehicle = newVehicleCtrl.getVehicleByVehicleNo(searchRent.getVehicleNo());
 
-            if (rentReservation.getEquipmentType().size() != 0) {
-                System.out.println("Inside Additional Equipments");
-                ObservableList<String> items = FXCollections.observableArrayList(rentReservation.getEquipmentType());
-                AdditionalEquipmentList.setItems(items);
-            }
+                ReservationNumberTF.setText(rentReservation.getReservationNo());
+                VehiclePlateTF.setText(rentedVehicle.getPlateNo());
+                RentStartDate.setText(searchRent.getTime().toString());
+                CustomerPhoneTF.setText(rentCustomer.getPhone());
+                VehicleModelTF.setText(rentedVehicle.getMode());
 
-            if (!rentReservation.getInsurance().isEmpty()) {
-                ObservableList<String> items = FXCollections.observableArrayList(rentReservation.getInsurance());
-                InsuranceList.setItems(items);
-            }
+                if (rentReservation.getEquipmentType().size() != 0) {
+                    System.out.println("Inside Additional Equipments");
+                    ObservableList<String> items = FXCollections.observableArrayList(rentReservation.getEquipmentType());
+                    AdditionalEquipmentList.setItems(items);
+                }
 
-            /*FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), RentalPane);
-             FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), BottomPane);
-             fadeTransition1.setFromValue(0.0);
-             fadeTransition1.setToValue(1.0);
+                if (!rentReservation.getInsurance().isEmpty()) {
+                    ObservableList<String> items = FXCollections.observableArrayList(rentReservation.getInsurance());
+                    InsuranceList.setItems(items);
+                }
 
-             fadeTransition.setFromValue(0.0);
-             fadeTransition.setToValue(1.0);
-             fadeTransition.play();
-             fadeTransition1.play();*/
-            FadeTransitionMethod(RentalPane);
-            FadeTransitionMethod(BottomPane);
-            }else
-            {
+                /*FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), RentalPane);
+                 FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), BottomPane);
+                 fadeTransition1.setFromValue(0.0);
+                 fadeTransition1.setToValue(1.0);
+
+                 fadeTransition.setFromValue(0.0);
+                 fadeTransition.setToValue(1.0);
+                 fadeTransition.play();
+                 fadeTransition1.play();*/
+                FadeTransitionMethod(RentalPane);
+                FadeTransitionMethod(BottomPane);
+            } else {
                 System.out.println("Rent Already Returned");
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Invalid Rent");
+                dialog.setMessage("Rent Already Returned");
+                dialog.showDialog();
             }
         } else {
             System.out.println("Invalid Contract number");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Invalid Rent");
+            dialog.setMessage("Invalid Contract number");
+            dialog.showDialog();
         }
 
     }
