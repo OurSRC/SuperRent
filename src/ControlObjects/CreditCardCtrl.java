@@ -50,7 +50,7 @@ public class CreditCardCtrl {
         try {
             suc = dao.add(creditcard);
         } catch (DaoException ex) {
-            Logger.getLogger(CreditCardCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(CreditCardCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
         return suc;
