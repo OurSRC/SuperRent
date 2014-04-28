@@ -13,6 +13,9 @@ import finance.Payment;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ *<p>This FinanceCtrl class provides data access and control function of user entity for UI</p>
+ */
 public class FinanceCtrl {
 
     private static final int BASE_DAILY_IRATE_DIVISION = 100;
@@ -20,12 +23,31 @@ public class FinanceCtrl {
     private static final int EXCHANG_POINT_HIGH = 1500;
     private static final String BOUNDARY_HIGH_CAR = "LUXURY";
 
+    /**
+     * This method calculate the cost of rental with given {@code t1, t2, weekRate, dayRate, hourRate}
+     * @param t1
+     * @param t2
+     * @param weekRate
+     * @param dayRate
+     * @param hourRate
+     * @return rental cost
+     */
     public int cost(Date t1, Date t2, int weekRate, int dayRate, int hourRate) {
         TimeGroup tg = countTimes(t1, t2);
         int rental = tg.cWeeks * weekRate + tg.cDays * dayRate + tg.cHours * hourRate;
         return rental;
     }
 
+    /**
+     * This method calculate the cost of rental with given {@code t1, t2, weekRate, dayRate, hourRate}
+     * @param t1
+     * @param t2
+     * @param weekRate
+     * @param dayRate
+     * @param hourRate
+     * @param baseRate
+     * @return rental rate
+     */
     public int cost(Date t1, Date t2, int weekRate, int dayRate, int hourRate, int baseRate) {
         TimeGroup tg = countTimes(t1, t2);
         if (weekRate < 0) {
@@ -42,6 +64,13 @@ public class FinanceCtrl {
         return rental;
     }
 
+    /**
+     * This method find the cost of rental with given {@code t1, t2, reserveInfo}
+     * @param t1
+     * @param t2
+     * @param reserveInfo
+     * @return rental cost
+     */
     public int rentalCost(Date t1, Date t2, ReservationInfo reserveInfo) {
         if (reserveInfo != null) {
             return cost(t1, t2, reserveInfo.getvWeeklyRate(), reserveInfo.getvDailyRate(), reserveInfo.getvHourlyRate());
@@ -50,6 +79,13 @@ public class FinanceCtrl {
         }
     }
 
+    /**
+     * This method find the cost of equipment with given {@code t1, t2, reserveEquipment}
+     * @param t1
+     * @param t2
+     * @param reserveEquipment
+     * @return equipment cost
+     */
     public int equipmentCost(Date t1, Date t2, ReserveEquipment reserveEquipment) {
         if (reserveEquipment != null) {
             int week = reserveEquipment.getEDailyRate() * 7;
@@ -62,6 +98,14 @@ public class FinanceCtrl {
         }
     }
 
+    /**
+     * This method find the cost of insurance with given {@code t1, t2, insurance, basePrice}
+     * @param t1
+     * @param t2
+     * @param insurance
+     * @param basePrice
+     * @return cost of insurance
+     */
     public int insuraceCost(Date t1, Date t2, BuyInsurance insurance, int basePrice) {
         if (insurance != null) {
             int week = insurance.getWeeklyRate();
@@ -74,6 +118,11 @@ public class FinanceCtrl {
         }
     }
 
+    /**
+     * This method calculates the estimated reservation cost with given {@code reserve}
+     * @param reserve
+     * @return cost of estimate reservation
+     */
     public int estimateReservationCost(Reservation reserve) {
         TimeGroup tg = countTimes(reserve.getReturnTime(), reserve.getPickupTime());
         ReservationInfo reserveInfo = reserve.getReserveInfo();
@@ -92,6 +141,13 @@ public class FinanceCtrl {
         return rental + equip + insurance;
     }
 
+    /**
+     * This method calculates Return Cost find {@link PaymentItem} with given {@code returnInfo, usePoint, roadStar}
+     * @param returnInfo
+     * @param usePoint
+     * @param roadStar
+     * @return
+     */
     public ArrayList<PaymentItem> calulateReturnCost(Return returnInfo, boolean usePoint, boolean  roadStar) {
         ArrayList<PaymentItem> list = null;
         if (returnInfo == null) {
@@ -178,6 +234,12 @@ public class FinanceCtrl {
         return list;
     }
 
+    /**
+     * This method find a {@link PaymentItem} with given {@code years, branchId}
+     * @param years
+     * @param branchId id of the branch
+     * @return Payment Item
+     */
     public PaymentItem calulateMembershipCost(int years, int branchId) {
         //ArrayList<PaymentItem> list = new ArrayList<>();
         BranchCtrl branchCtrl = new BranchCtrl();
@@ -186,6 +248,10 @@ public class FinanceCtrl {
         //return list;
     }
 
+    /**
+     * The method create payment
+     * @return null
+     */
     public Payment createPayment() {
         return null;
     }
@@ -219,6 +285,11 @@ public class FinanceCtrl {
         return time;
     }
 
+    /**
+     * This method calculates membership point for one day with given {@code reserve}
+     * @param reserve
+     * @return point per day
+     */
     static public int calculateMembershipPointForOneDay(Reservation reserve) {
         int perDayPoint;
         VehicleCtrl vCtrl = new VehicleCtrl();
@@ -236,6 +307,11 @@ public class FinanceCtrl {
         return perDayPoint;
     }
 
+    /**
+     * This method calculates membership point for days with given {@code reserve}
+     * @param reserve
+     * @return 
+     */
     public int calculateMenbershipPointEnoughForDays(Reservation reserve) {
         TimeGroup tg = countTimes(reserve.getReturnTime(), reserve.getPickupTime());
         int resDays = tg.cDays + tg.cWeeks * 7;
