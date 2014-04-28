@@ -39,14 +39,14 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * This method calculate the cost of rental with given {@code t1, t2, weekRate, dayRate, hourRate}
      * @param t1
      * @param t2
      * @param weekRate
      * @param dayRate
      * @param hourRate
      * @param baseRate
-     * @return
+     * @return rental rate
      */
     public int cost(Date t1, Date t2, int weekRate, int dayRate, int hourRate, int baseRate) {
         TimeGroup tg = countTimes(t1, t2);
@@ -65,7 +65,7 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * 
      * @param t1
      * @param t2
      * @param reserveInfo
@@ -141,6 +141,13 @@ public class FinanceCtrl {
         return rental + equip + insurance;
     }
 
+    /**
+     *
+     * @param returnInfo
+     * @param usePoint
+     * @param roadStar
+     * @return
+     */
     public ArrayList<PaymentItem> calulateReturnCost(Return returnInfo, boolean usePoint, boolean  roadStar) {
         ArrayList<PaymentItem> list = null;
         if (returnInfo == null) {
@@ -227,6 +234,12 @@ public class FinanceCtrl {
         return list;
     }
 
+    /**
+     *
+     * @param years
+     * @param branchId
+     * @return
+     */
     public PaymentItem calulateMembershipCost(int years, int branchId) {
         //ArrayList<PaymentItem> list = new ArrayList<>();
         BranchCtrl branchCtrl = new BranchCtrl();
@@ -235,6 +248,10 @@ public class FinanceCtrl {
         //return list;
     }
 
+    /**
+     *
+     * @return
+     */
     public Payment createPayment() {
         return null;
     }
@@ -268,6 +285,11 @@ public class FinanceCtrl {
         return time;
     }
 
+    /**
+     *
+     * @param reserve
+     * @return
+     */
     static public int calculateMembershipPointForOneDay(Reservation reserve) {
         int perDayPoint;
         VehicleCtrl vCtrl = new VehicleCtrl();
@@ -285,6 +307,11 @@ public class FinanceCtrl {
         return perDayPoint;
     }
 
+    /**
+     *
+     * @param reserve
+     * @return
+     */
     public int calculateMenbershipPointEnoughForDays(Reservation reserve) {
         TimeGroup tg = countTimes(reserve.getReturnTime(), reserve.getPickupTime());
         int resDays = tg.cDays + tg.cWeeks * 7;
