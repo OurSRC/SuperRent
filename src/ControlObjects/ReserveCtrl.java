@@ -292,6 +292,7 @@ public class ReserveCtrl {
             Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
+        
         for (ReservationInfo a : resInfList) {
             list.add(getCompleteReservation(a));
         }

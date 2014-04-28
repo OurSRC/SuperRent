@@ -6,6 +6,8 @@
 package UserInterface.FleetManagement.FXMLController;
 
 import ControlObjects.VehicleCtrl;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import entity.VehicleClass;
 import java.io.IOException;
 import java.net.URL;
@@ -77,6 +79,10 @@ public class VehicleClassSearchFXMLController implements Initializable {
             VehicleClassNavigator.loadVista(VehicleClassNavigator.MODIFYVEHICLECLASSPAGE);
         } else {
             System.out.println("No Items Selected");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Invalid operation");
+            dialog.setMessage("No Vehicle Class Selected.");
+            dialog.showDialog();
         }
     }
 

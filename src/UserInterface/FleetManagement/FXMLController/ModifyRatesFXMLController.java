@@ -36,13 +36,13 @@ public class ModifyRatesFXMLController implements Initializable {
     public TextField WeeklyRateTF;
     public TextField HourlyRateTF;
 
-    
     /* Variables to store Values */
     public String vehicleClass;
     public String hourlyRate;
     public String weeklyRate;
     public String dailyRate;
     public String vehicleType;
+
     /**
      * Initializes the controller class.
      */
@@ -53,20 +53,20 @@ public class ModifyRatesFXMLController implements Initializable {
         WeeklyRateTF.setText(VehicleClassNavigator.vehicleClass.getWeeklyPrice());
         DailyRateTF.setText(VehicleClassNavigator.vehicleClass.getDailyPrice());
         VehicleClassTF.setText(VehicleClassNavigator.vehicleClass.getClassName());
-            VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-            
-            vehicleType = newVehicleCtrl.getVehicleTypeByClassName(VehicleClassNavigator.vehicleClass.getClassName()).toString();
-        
+        VehicleCtrl newVehicleCtrl = new VehicleCtrl();
+
+        vehicleType = newVehicleCtrl.getVehicleTypeByClassName(VehicleClassNavigator.vehicleClass.getClassName()).toString();
+
     }
 
     @FXML
-    private void ConfirmButtonAction(ActionEvent event) {
-        
+    private void ConfirmButtonAction(ActionEvent event) throws IOException {
+
         vehicleClass = VehicleClassTF.getText();
         hourlyRate = HourlyRateTF.getText();
         dailyRate = DailyRateTF.getText();
         weeklyRate = WeeklyRateTF.getText();
-        
+
         if (ValidateMandatoryRecords()) {
             /* Call the Create Vehicle Class function in the VehicleClass Control */
             VehicleClass newVehicleClass = new VehicleClass();
@@ -75,21 +75,28 @@ public class ModifyRatesFXMLController implements Initializable {
             newVehicleClass.setDailyPrice(dailyRate);
             newVehicleClass.setWeeklyPrice(weeklyRate);
             newVehicleClass.setHourlyPrice(hourlyRate);
-            
+
             VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-            if(newVehicleCtrl.updateVehicleClass(newVehicleClass))
-            {
+            if (newVehicleCtrl.updateVehicleClass(newVehicleClass)) {
                 System.out.println("Sucess");
-            }else
-            {
+                DialogFX dialog = new DialogFX(Type.INFO);
+                dialog.setTitleText("Success");
+                dialog.setMessage("Vehicle Updated Sucessfully.");
+                dialog.showDialog();
+                VehicleClassNavigator.loadVista(VehicleClassNavigator.VEHICLECLASSMAINPAGE);
+            } else {
                 System.out.println("Failed");
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Failed");
+                dialog.setMessage("Vehicle Updated Failed.");
+                dialog.showDialog();
             }
         }
     }
 
     @FXML
     private void BackToSearchButtonAction(ActionEvent event) throws IOException {
-        
+
         VehicleClassNavigator.loadVista(VehicleClassNavigator.VEHICLECLASSMAINPAGE);
     }
 
@@ -104,23 +111,21 @@ public class ModifyRatesFXMLController implements Initializable {
     @FXML
     private void HourlyRateTF(ActionEvent event) {
     }
-    
+
     public boolean ValidateMandatoryRecords() {
         if (!vehicleClass.equals("")
                 && !hourlyRate.equals("")
                 && !dailyRate.equals("")
                 && !weeklyRate.equals("")
                 && !vehicleType.equals("")) {
-            if(ValidateFields.CheckForNumbersOnly(hourlyRate) && ValidateFields.CheckForNumbersOnly(weeklyRate) && ValidateFields.CheckForNumbersOnly(dailyRate))
-            {
-            System.out.println(vehicleType + " " + vehicleClass + " " + hourlyRate + " " + dailyRate + " " + weeklyRate);
-            return true;
-            }else
-            {
-            DialogFX dialog = new DialogFX(Type.ERROR);
-            dialog.setTitleText(" Error ");
-            dialog.setMessage("Improper Rates Entered");
-            dialog.showDialog();
+            if (ValidateFields.CheckForNumbersOnly(hourlyRate) && ValidateFields.CheckForNumbersOnly(weeklyRate) && ValidateFields.CheckForNumbersOnly(dailyRate)) {
+                System.out.println(vehicleType + " " + vehicleClass + " " + hourlyRate + " " + dailyRate + " " + weeklyRate);
+                return true;
+            } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText(" Error ");
+                dialog.setMessage("Improper Rates Entered");
+                dialog.showDialog();
                 return false;
             }
         } else {

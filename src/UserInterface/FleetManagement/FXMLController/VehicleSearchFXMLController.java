@@ -114,6 +114,10 @@ public class VehicleSearchFXMLController implements Initializable {
             populateSearchTable();
         } else {
             System.out.println("Please enter all the Mandatory Fields");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Missing Details");
+            dialog.setMessage("Please Enter All Mandatory Fields");
+            dialog.showDialog();
         }
     }
 
@@ -161,6 +165,10 @@ public class VehicleSearchFXMLController implements Initializable {
             VehicleNavigator.loadVista(VehicleNavigator.MODIFYVEHICLE);
         } else {
             System.out.println("No Items Selected");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Missing Details");
+            dialog.setMessage("No Vehicle Selected");
+            dialog.showDialog();
         }
     }
 

@@ -155,6 +155,7 @@ public final class Reservation {
         Customer CurrentCustomer = newCustomerCtrl.getCustomerById(getCustomerId());
         return CurrentCustomer.getFirstName() + " " + CurrentCustomer.getLastName();
     }
+    
     public int getContractNo() {
         Rent correspondingRent = RentCtrl.searchRentByReservationInfoId(getReservationInfoId());
         return correspondingRent.getContractNo();

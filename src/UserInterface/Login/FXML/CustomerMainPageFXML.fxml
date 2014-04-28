@@ -8,7 +8,7 @@
 <children>
 <StackPane fx:id="CustomerMainStackPane" layoutY="56.0" prefHeight="453.0" prefWidth="641.0" /><ToolBar prefHeight="56.0" prefWidth="630.0">
   <items>
-    <Button mnemonicParsing="false" onAction="#ReserveButtonAction" prefHeight="36.0" prefWidth="95.0" text="Reserve" /><Button mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" text="Customer" /><Pane fx:id="CustomerButtonPane" prefHeight="46.0" prefWidth="369.0" visible="false" />
+    <Button mnemonicParsing="false" onAction="#ReserveButtonAction" prefHeight="36.0" prefWidth="95.0" text="Reserve" /><Button mnemonicParsing="false" onAction="#CustomerInfoButton" prefHeight="36.0" prefWidth="97.0" text="Customer" /><Pane fx:id="CustomerButtonPane" prefHeight="46.0" prefWidth="369.0" visible="false" />
 <Button fx:id="LogoutButton" mnemonicParsing="false" onAction="#LogoutAction" prefHeight="36.0" prefWidth="42.0" />
   </items>
 </ToolBar>

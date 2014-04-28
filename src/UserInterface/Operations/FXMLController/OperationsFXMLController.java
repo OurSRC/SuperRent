@@ -6,6 +6,8 @@ import entity.ReservationInfo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
@@ -113,6 +115,15 @@ public class OperationsFXMLController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        MainOperationsStackPane.getChildren().clear();
+       ReservationNavigator.reservation=true;
+       ReservationNavigator.newReserve = new Reservation();
+       ReservationNavigator.setMainController(this);
+        try {
+            ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
+        } catch (IOException ex) {
+            Logger.getLogger(OperationsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

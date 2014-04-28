@@ -133,6 +133,10 @@ public class AddVehicleFXMLController implements Initializable {
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Improper Input provided");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("Improper Input provided");
+                dialog.showDialog();
         }
     }
 
@@ -168,8 +172,9 @@ public class AddVehicleFXMLController implements Initializable {
             if(ValidateFields.CheckForNumbersOnly(Integer.toString(odometerReading)))
             {
                 System.out.println("Hello i am insde the checkfornumbersonly");
+                return true;
             }
-            return true;
+            return false;
         } else {
             return false;
         }

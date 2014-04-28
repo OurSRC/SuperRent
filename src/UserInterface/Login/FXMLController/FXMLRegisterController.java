@@ -4,6 +4,7 @@ package UserInterface.Login.FXMLController;
 
 import ControlObjects.CustomerCtrl;
 import SystemOperations.DialogFX;
+import SystemOperations.MailSender;
 import SystemOperations.ValidateFields;
 import UserInterface.PeopleManagement.FXMLController.PPLManagementNavigator;
 import entity.Customer;
@@ -124,6 +125,7 @@ public class FXMLRegisterController {
                     dialog.setTitleText("Success");
                     dialog.setMessage( firstName + "," + " welcome to SuperRent!");
                     dialog.showDialog();
+                    MailSender.send(returnedCustomer.getEmail(),returnedCustomer.getFirstName() + " , " + returnedCustomer.getLastName() + " , Welcome to SuperRent","User has been successfully Created. UserName : " + returnedCustomer.getUsername() + "  ,  Password : " + returnedCustomer.getPassword());
                     LoginNavigator.loadVista(LoginNavigator.VISTA_1);
             }
             
