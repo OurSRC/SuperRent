@@ -6,6 +6,7 @@
 package UserInterface.FleetManagement.FXMLController;
 
 import ControlObjects.BranchCtrl;
+import ControlObjects.Reservation;
 import ControlObjects.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
@@ -71,6 +72,7 @@ public class VehicleAvailabilityFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ReservationNavigator.newReserve = new Reservation();
     }
 
     @FXML
