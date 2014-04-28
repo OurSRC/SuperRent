@@ -11,6 +11,7 @@ import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ValidateFields;
 import entity.Payment;
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
@@ -168,7 +169,7 @@ public class PaymentPageFXMLController implements Initializable {
     }
 
     @FXML
-    private void ConfirmPaymentButtonAction(ActionEvent event) throws ParseException {
+    private void ConfirmPaymentButtonAction(ActionEvent event) throws ParseException , IOException{
         if (ValidateMandatory()) {
             if (creditCardPay) {
                 //ReturnNavigator.newPaymentCtrl = new PaymentCtrl(ReturnNavigator.returnCustomer.getCustomerId(), "Rent Payment", CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
@@ -179,12 +180,15 @@ public class PaymentPageFXMLController implements Initializable {
                 dialog.setTitleText("Return Success");
                 dialog.setMessage("Vehicle Plate Number " + ReturnNavigator.returnVehicle.getPlateNo() + " successfully Returned");
                 dialog.showDialog();
+                ReturnNavigator.loadVista(ReturnNavigator.ReturnMainPage);
+                
             } else {
                 Payment p = ReturnNavigator.newPaymentCtrl.proceed();
                 DialogFX dialog = new DialogFX(Type.INFO);
                 dialog.setTitleText("Return Success");
                 dialog.setMessage("Vehicle Plate Number " + ReturnNavigator.returnVehicle.getPlateNo() + " successfully Returned");
                 dialog.showDialog();
+                ReturnNavigator.loadVista(ReturnNavigator.ReturnMainPage);
             }
 
         } else {

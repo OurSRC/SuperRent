@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.RentDetailPageFXMLController">
 <children><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
-    <CheckBox fx:id="LicenseVerifiedCB" layoutX="13.0" layoutY="213.0" mnemonicParsing="false" text="License Verified (Mandatory)">
+    <CheckBox fx:id="LicenseVerifiedCB" layoutX="13.0" layoutY="213.0" mnemonicParsing="false" text="License Verified">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></CheckBox>
@@ -67,5 +67,5 @@
 </font>
 </Label>
 </children>
-</Pane>
+</Pane><Label layoutX="127.0" layoutY="294.0" text="*" textFill="#ff0202" /><Label layoutX="117.0" layoutY="327.0" text="*" textFill="#ff0202" /><Label layoutX="417.0" layoutY="328.0" text="*" textFill="#ff0202" /><Label layoutX="427.0" layoutY="291.0" text="*" textFill="#ff0202" /><Label layoutX="128.0" layoutY="209.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#ff0202" />
 </children></AnchorPane>

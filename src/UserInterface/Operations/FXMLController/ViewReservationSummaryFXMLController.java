@@ -58,8 +58,8 @@ public class ViewReservationSummaryFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ReservationNumberLabel.setText(RentNavigator.ReservationNumber);
-        PickUpDateTF.setText(RentNavigator.selectedReservation.getPickupTime().toString());
-        ReturnDateTF.setText(RentNavigator.selectedReservation.getReturnTime().toString());
+        PickUpDateTF.setText(RentNavigator.selectedReservation.getPickupTime().toLocaleString());
+        ReturnDateTF.setText(RentNavigator.selectedReservation.getReturnTime().toLocaleString());
         VehicleClassTF.setText(RentNavigator.selectedReservation.getVehicleClass());
         
         if (RentNavigator.selectedReservation.getEquipmentType().size() != 0) {

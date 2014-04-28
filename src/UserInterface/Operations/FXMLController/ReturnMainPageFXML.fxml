@@ -52,7 +52,7 @@
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
               </children>
-            </Pane>
+            </Pane><Label layoutX="60.0" layoutY="51.0" text="*" textFill="#ff0202" />
           </children>
         </Pane>
       </children>

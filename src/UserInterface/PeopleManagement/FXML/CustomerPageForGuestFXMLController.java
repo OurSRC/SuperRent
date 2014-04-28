@@ -7,6 +7,7 @@ package UserInterface.PeopleManagement.FXML;
 
 import ControlObjects.CustomerCtrl;
 import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import SystemOperations.ValidateFields;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
 import entity.Customer;
@@ -81,6 +82,63 @@ public class CustomerPageForGuestFXMLController implements Initializable {
 
         }); 
         
+        FirstNameTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = FirstNameTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!ValidateFields.CheckLettersOnly(String.valueOf(ch))) {
+
+                        //if it's not number then just setText to previous one
+                        FirstNameTF.setText(FirstNameTF.getText().substring(0, FirstNameTF.getText().length() - 1));
+                    }
+                }
+            }
+
+        });
+        
+         LastNameTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = LastNameTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!ValidateFields.CheckLettersOnly(String.valueOf(ch))) {
+
+                        //if it's not number then just setText to previous one
+                        LastNameTF.setText(LastNameTF.getText().substring(0, LastNameTF.getText().length() - 1));
+                    }
+                }
+            }
+
+        });
+         
+         MiddleNameTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = MiddleNameTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!ValidateFields.CheckLettersOnly(String.valueOf(ch))) {
+
+                        //if it's not number then just setText to previous one
+                        MiddleNameTF.setText(MiddleNameTF.getText().substring(0, MiddleNameTF.getText().length() - 1));
+                    }
+                }
+            }
+
+        });
+        
     }
 
     @FXML
@@ -109,6 +167,10 @@ public class CustomerPageForGuestFXMLController implements Initializable {
             
         } else {
             System.out.println("please enter all mandatory Fields");
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Missing Details");
+            dialog.setMessage("Please Enter all Mandatory Fields to proceed");
+            dialog.showDialog();
         }
     }
 
