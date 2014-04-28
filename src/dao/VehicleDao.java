@@ -44,6 +44,11 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return new Vehicle();
     }
 
+    /**
+     * This method find a {@link Vehicle} available vehicle for rent
+     * @return status and rent status
+     * @throws DaoException
+     */
     public ArrayList<Vehicle> findAvailableForRent() throws DaoException {
         String cond;
         cond = "Status=" + SqlBuilder.wrapInt(Vehicle.STATUS.FORRENT.getValue());
@@ -51,6 +56,11 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return find(cond);
     }
 
+    /**
+     * This method find a {@link Vehicle} available vehicle for sale
+     * @return status and sell status
+     * @throws DaoException
+     */
     public ArrayList<Vehicle> findAvailableForSale() throws DaoException {
         String cond;
         cond = "Status=" + SqlBuilder.wrapInt(Vehicle.STATUS.FORSALE.getValue());
@@ -58,14 +68,36 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return find(cond);
     }
 
+    /**
+     * This method find a {@link Vehicle} with given {@code plateNo}
+     * @param plateNo the number of plate
+     * @return find one vehicle by plate number
+     * @throws DaoException
+     */
     public Vehicle findByPlateNo(String plateNo) throws DaoException {
         return findOne("PlateNo=" + SqlBuilder.wrapStr(plateNo));
     }
 
+    /**
+     * This method find a {@link Vehicle} with given {@code vehicleNo}
+     * @param vehicleNo the number of vehicle
+     * @return find one vehicle by vehicle number 
+     * @throws DaoException
+     */
     public Vehicle findByVehicleNo(int vehicleNo) throws DaoException {
         return findOne("VehicleNo=" + SqlBuilder.wrapInt(vehicleNo));
     }
     
+    /**
+     * This method find a {@link Vehicle} with given {@code vehicleNo, Mode, manufactureDate, Odometer, price}
+     * @param VehicleNo the number of vehicle
+     * @param Mode
+     * @param manufactureDate
+     * @param Odometer
+     * @param price
+     * @return array list of vehicles
+     * @throws DaoException
+     */
     public ArrayList<Vehicle> findByVehicleModel(int VehicleNo,String Mode,java.util.Date manufactureDate,int Odometer,int price) throws DaoException{
         String cond;
         cond="VehicleNo="+SqlBuilder.wrapInt(VehicleNo);
@@ -76,6 +108,14 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return find(cond);
     }
     
+    /**
+     * This method find a {@link Vehicle} with given {@code year, className, type}
+     * @param year
+     * @param className the name of class
+     * @param type
+     * @return vehicle which is older than the given manufacture date
+     * @throws DaoException
+     */
     public ArrayList<Vehicle> findVehicleOlderThan(int year, String className, 
             VehicleClass.TYPE type) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
@@ -96,7 +136,11 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         return find(qb.toString());
     }
             
-            
+    /**
+     * This method counts the vehicle number with given {@code v}
+     * @param v
+     * @return vehicle number
+     */
     public int countVehicle(Vehicle v){ //include int branchId
         ArrayList<Vehicle> list = null;
         try {
