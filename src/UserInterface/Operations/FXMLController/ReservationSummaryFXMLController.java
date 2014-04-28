@@ -64,8 +64,8 @@ public class ReservationSummaryFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         VehicleClassTF.setText(ReservationNavigator.newReserve.getVehicleClass());
-        PickUpDateTF.setText(ReservationNavigator.newReserve.getPickupTime().toString());
-        ReturnDateTF.setText(ReservationNavigator.newReserve.getReturnTime().toString());
+        PickUpDateTF.setText(ReservationNavigator.newReserve.getPickupTime().toLocaleString());
+        ReturnDateTF.setText(ReservationNavigator.newReserve.getReturnTime().toLocaleString());
         CustomerTF.setText(ReservationNavigator.newReserve.getCustomerPhone());
         System.out.println("Outside Additional Equipments");
 

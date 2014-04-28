@@ -85,7 +85,6 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
 
         return find(cond);
     }
-    
 
     /**
      * Find reservationInfo that overlap with given time period in given branch

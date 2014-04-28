@@ -18,6 +18,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import entity.Rent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -49,6 +51,17 @@ public class RentCtrlTest {
      */
     @Test
     public void testCreateRent_Rent() {
+        try {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date d = null;
+            d = df.parse("2018-04-02");
+            Rent rt;
+            rt = new Rent(1, 5, 30, 100000, "5202601352321285", 2, null);
+            Rent result = RentCtrl.createRent(rt);
+            assertTrue(result != null);
+        } catch (ParseException ex) {
+            Logger.getLogger(RentCtrlTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

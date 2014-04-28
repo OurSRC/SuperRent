@@ -21,6 +21,10 @@ public class BranchCtrl {
     
     private static final Branch defaultBranch = new Branch("Default Branch", "911", "nowhere", 130, 18, 1000);
     
+    /**
+     *
+     * @return
+     */
     public static Branch getDefaultBranch(){
         BranchDao bDAO = new BranchDao();
         Branch branch = null;
@@ -36,6 +40,11 @@ public class BranchCtrl {
         return branch;
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Branch getBranchById(int id){
         if( id==0 ) {
             return defaultBranch;

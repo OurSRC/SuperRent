@@ -2,18 +2,22 @@
 
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="858.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXML.ClerkHomePageFXMLController">
-  <children><Pane prefHeight="40.0" prefWidth="858.0" style="-fx-background-color: #496791;">
+  <children><Pane prefHeight="47.0" prefWidth="858.0" style="-fx-background-color: #496791;">
 <children><Label layoutX="23.0" layoutY="10.0" text="Welcome" textFill="#fcf9f9">
 <font>
 <Font name="System Bold" size="18.0" />
-</font></Label><ToggleButton layoutX="684.0" layoutY="8.0" mnemonicParsing="false" onAction="#ReturnToggleButton" prefHeight="25.0" prefWidth="144.0" text="Pending Return">
+</font></Label><ToggleButton layoutX="684.0" layoutY="10.0" mnemonicParsing="false" onAction="#ReturnToggleButton" prefHeight="25.0" prefWidth="144.0" text="Pending Return">
 <toggleGroup>
 <ToggleGroup fx:id="PieChartToggleGroup" />
-</toggleGroup></ToggleButton><ToggleButton layoutX="540.0" layoutY="8.0" mnemonicParsing="false" onAction="#ReservationToggleButton" prefHeight="25.0" prefWidth="144.0" selected="true" text="Pending Reservation" toggleGroup="$PieChartToggleGroup" />
+</toggleGroup></ToggleButton><ToggleButton layoutX="540.0" layoutY="10.0" mnemonicParsing="false" onAction="#ReservationToggleButton" prefHeight="25.0" prefWidth="144.0" selected="true" text="Pending Reservation" toggleGroup="$PieChartToggleGroup" />
 </children></Pane><Pane layoutY="420.0" prefHeight="47.0" prefWidth="858.0" style="-fx-background-color: #496791;" /><StackPane fx:id="HomePageStackPane" layoutY="46.0" prefHeight="368.0" prefWidth="858.0" />
   </children>
+<effect>
+<DropShadow />
+</effect>
 </AnchorPane>

@@ -7,12 +7,17 @@ package UserInterface.Operations.FXMLController;
 
 import ControlObjects.PaymentCtrl;
 import SystemOperations.DateClass;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
 import SystemOperations.ValidateFields;
 import entity.Payment;
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -83,23 +88,112 @@ public class PaymentPageFXMLController implements Initializable {
         CreditCardNumberTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(16));
         ExpiryDateYearTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
         ExpiryDateMonthTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(2));
+
+        CreditCardNameTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = CreditCardNameTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!ValidateFields.CheckLettersOnly(String.valueOf(ch))) {
+
+                        //if it's not number then just setText to previous one
+                        CreditCardNameTF.setText(CreditCardNameTF.getText().substring(0, CreditCardNameTF.getText().length() - 1));
+                    }
+                }
+            }
+
+        });
+
+        ExpiryDateYearTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = ExpiryDateYearTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9')) {
+
+                        //if it's not number then just setText to previous one
+                        ExpiryDateYearTF.setText(ExpiryDateYearTF.getText().substring(0, ExpiryDateYearTF.getText().length() - 1));
+                    }
+                }
+            }
+
+        });
+
+        ExpiryDateMonthTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = ExpiryDateMonthTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9')) {
+
+                        //if it's not number then just setText to previous one
+                        ExpiryDateMonthTF.setText(ExpiryDateMonthTF.getText().substring(0, ExpiryDateMonthTF.getText().length() - 1));
+                    }
+                }
+            }
+
+        });
         
-        
+        CreditCardNumberTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = CreditCardNumberTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9')) {
+
+                        //if it's not number then just setText to previous one
+                        CreditCardNumberTF.setText(CreditCardNumberTF.getText().substring(0, CreditCardNumberTF.getText().length() - 1));
+                    }
+                }
+            }
+
+           
+
+        }); 
     }
 
     @FXML
-    private void ConfirmPaymentButtonAction(ActionEvent event) throws ParseException {
+    private void ConfirmPaymentButtonAction(ActionEvent event) throws ParseException , IOException{
         if (ValidateMandatory()) {
             if (creditCardPay) {
                 //ReturnNavigator.newPaymentCtrl = new PaymentCtrl(ReturnNavigator.returnCustomer.getCustomerId(), "Rent Payment", CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
                 ReturnNavigator.newPaymentCtrl.useCreditCard(CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
                 Payment p = ReturnNavigator.newPaymentCtrl.proceed();
-            }else
-            {
-                 Payment p = ReturnNavigator.newPaymentCtrl.proceed();
+                System.out.println("I am here -----");
+                DialogFX dialog = new DialogFX(Type.INFO);
+                dialog.setTitleText("Return Success");
+                dialog.setMessage("Vehicle Plate Number " + ReturnNavigator.returnVehicle.getPlateNo() + " successfully Returned");
+                dialog.showDialog();
+                ReturnNavigator.loadVista(ReturnNavigator.ReturnMainPage);
+                
+            } else {
+                Payment p = ReturnNavigator.newPaymentCtrl.proceed();
+                DialogFX dialog = new DialogFX(Type.INFO);
+                dialog.setTitleText("Return Success");
+                dialog.setMessage("Vehicle Plate Number " + ReturnNavigator.returnVehicle.getPlateNo() + " successfully Returned");
+                dialog.showDialog();
+                ReturnNavigator.loadVista(ReturnNavigator.ReturnMainPage);
             }
+
         } else {
             System.out.println("Please Enter all the Mandatory Fields");
+            ;
         }
     }
 
@@ -111,9 +205,17 @@ public class PaymentPageFXMLController implements Initializable {
                     return true;
                 } else {
                     System.out.println("Invalid Dates Entered");
+                    DialogFX dialog = new DialogFX(Type.ERROR);
+                    dialog.setTitleText("Invalid Date Entered");
+                    dialog.setMessage("Please input Valid Year and Month");
+                    dialog.showDialog();
                     return false;
                 }
             } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Details Required");
+                dialog.setMessage("Please enter all Mandatory Fields");
+                dialog.showDialog();
                 System.out.println("Please enter all Mandatory Values");
                 return false;
             }
@@ -135,5 +237,7 @@ public class PaymentPageFXMLController implements Initializable {
                 }
             }
         };
+
     }
+
 }
