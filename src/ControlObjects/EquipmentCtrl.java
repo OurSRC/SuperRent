@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  * <p>
- * CustomerCtrl is one of the components in Logical Control, get input from Database and output data to support User Interface, which operates Equipment entity object
+ * EquipmentCtrl is one of the components in Logical Control, get input from Database and output data to support User Interface, which operates Equipment entity object
  * </p>
  */
 public class EquipmentCtrl {
