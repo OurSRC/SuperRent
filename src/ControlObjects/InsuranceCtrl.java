@@ -14,11 +14,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Elitward
+ * <p>This InsuranceCtrl class provides data access and control function of user entity for UI</p> 
  */
 public class InsuranceCtrl {
 
+    /**
+     * This method gets the insurance type
+     * @return array list of strings
+     */
     public ArrayList<String> getInsuranceType() {
         InsuranceDao dao = new InsuranceDao();
         ArrayList<Insurance> list = new ArrayList<>();
