@@ -35,7 +35,7 @@ public class PaymentItemDao extends AbstractDao<PaymentItem> {
     /**
      * Find {@link PaymentItem} objects by {@code PaymentId}.
      *
-     * @param paymentId The id of {@link Payment} to search with.
+     * @param paymentId The id of {@link PaymentItem} to search with.
      * @return ArrayList of all matching {@link PaymentItem}.
      * @throws DaoException
      */
