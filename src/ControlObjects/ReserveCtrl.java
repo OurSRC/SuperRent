@@ -115,10 +115,10 @@ public class ReserveCtrl {
     }
 
     /**
-     * Update reservation with in database by {@link reservation} object with
+     * Update reservation with in database by reservation object with
      * same reservationInfoId.
      *
-     * @param reserve The {@link reservation} object with information to update.
+     * @param reserve The reservation object with information to update.
      * @return True on success, false otherwise.
      */
     static public boolean updateReserve(Reservation reserve) {	//modify & cancel
