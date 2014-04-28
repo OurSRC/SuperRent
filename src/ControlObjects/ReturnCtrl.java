@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <p>This VehicleCtrl class provides data access and control function of user entity for UI</p> 
+ * <p>This ReturnCtrl class provides data access and control function of user entity for UI</p> 
  */
 public class ReturnCtrl {
 
