@@ -206,7 +206,7 @@ public class CustomerDao {
         if (!phone.equals("")) {
             newQb.cond("phoneNo = " + SqlBuilder.wrapStr(phone));
         }
-
+        System.out.println(" Here : " + License);
         if (!License.equals("")) {
             newQb.cond("DriverLicenseNo = " + SqlBuilder.wrapStr(License));
         }

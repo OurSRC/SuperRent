@@ -143,6 +143,7 @@ public class CustomerMainPageFXMLController implements Initializable {
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        PopulateCustomer();
     }
 
     @FXML
@@ -158,6 +159,7 @@ public class CustomerMainPageFXMLController implements Initializable {
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+            PopulateCustomer();
 
         } else {
             DialogFX dialog = new DialogFX(Type.ERROR);
@@ -176,6 +178,7 @@ public class CustomerMainPageFXMLController implements Initializable {
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
     }
 
     @FXML
@@ -184,7 +187,6 @@ public class CustomerMainPageFXMLController implements Initializable {
         LastNameTF.setText("");
         MiddleNameTF.setText("");
         EmailTF.setText("");
-        LicenseNumberTF.setText("");
         AddressTF.setText("");
         ClubMemberPointsTF.setText("");
         MemberShipExpiryTF.setText("");

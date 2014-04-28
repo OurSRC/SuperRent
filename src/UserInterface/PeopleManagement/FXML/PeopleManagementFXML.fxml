@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="869.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.PeopleManagement.FXMLController.PeopleManagementFXMLController">
-  <children>
-    <StackPane id="MainOperationsStackPane" fx:id="MainPPLManagementStackPane" layoutX="171.0" layoutY="2.0" prefHeight="466.0" prefWidth="690.0" />
-    <Pane layoutX="-5.0" layoutY="-3.0" prefHeight="475.0" prefWidth="177.0">
-      <children>
-        <Button alignment="CENTER" layoutX="7.0" layoutY="37.0" mnemonicParsing="false" onAction="#EditUserButtonAction" prefHeight="32.0" prefWidth="164.0" text="Edit User" />
-        <Button alignment="CENTER" layoutX="7.0" layoutY="5.0" mnemonicParsing="false" onAction="#AddUserButtonAction" prefHeight="32.0" prefWidth="164.0" text="Add User" />
-        <Separator layoutX="171.0" layoutY="5.0" orientation="VERTICAL" prefHeight="475.0" prefWidth="7.0" />
-      </children>
-    </Pane>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.PeopleManagement.FXMLController.PeopleManagementFXMLController">
+  <children><Pane layoutX="2.0" layoutY="6.0" prefHeight="453.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
+<children>
+<Pane layoutY="-0.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
+<children>
+<Label layoutX="72.0" layoutY="10.0" text="User" textFill="#f8f6f6">
+<font>
+<Font name="System Bold" size="14.0" />
+</font>
+</Label>
+</children>
+</Pane>
+<Pane layoutY="414.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
+<children>
+<Label layoutX="52.0" layoutY="10.0" textFill="#f8f6f6">
+<font>
+<Font name="System Bold" size="14.0" />
+</font>
+</Label>
+</children>
+</Pane>
+</children>
+</Pane>
+    <StackPane id="MainOperationsStackPane" fx:id="MainPPLManagementStackPane" layoutX="184.0" layoutY="5.0" prefHeight="453.0" prefWidth="641.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;" /><Pane layoutX="2.0" layoutY="6.0" prefHeight="475.0" prefWidth="177.0">
+<children>
+<Button alignment="CENTER" layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#EditUserButtonAction" prefHeight="32.0" prefWidth="164.0" text="Edit User" />
+<Button alignment="CENTER" layoutX="6.0" layoutY="47.0" mnemonicParsing="false" onAction="#AddUserButtonAction" prefHeight="32.0" prefWidth="164.0" text="Add User" />
+</children>
+</Pane>
   </children>
 </AnchorPane>

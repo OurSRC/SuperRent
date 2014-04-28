@@ -75,7 +75,7 @@ public class MailSender {
             transport.close();
  
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Invalid Mail ID . Mail Not Send");
         }
  
     }

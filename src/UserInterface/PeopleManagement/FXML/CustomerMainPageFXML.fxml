@@ -7,9 +7,15 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.PeopleManagement.FXML.CustomerMainPageFXMLController">
   <children>
-    <Label layoutX="27.0" layoutY="60.0" text="Phone" />
-    <Label layoutX="23.0" layoutY="168.0" text="First Name" />
-    <TextField fx:id="PhoneTF" layoutX="110.0" layoutY="57.0" prefWidth="162.0" />
+    <Label layoutX="13.0" layoutY="55.0" text="Phone">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="13.0" layoutY="168.0" text="First Name">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <TextField fx:id="PhoneTF" layoutX="110.0" layoutY="55.0" prefWidth="162.0" />
     <TextField fx:id="FirstNameTF" layoutX="111.0" layoutY="166.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
     <Pane layoutX="18.0" layoutY="402.0" prefHeight="50.0" prefWidth="667.0">
       <children><Pane layoutX="-18.0" layoutY="12.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
@@ -22,19 +28,40 @@
 </Pane>
       </children>
     </Pane>
-    <Label layoutX="340.0" layoutY="169.0" text="Middle Name" />
-    <Label layoutX="22.0" layoutY="206.0" text=" Last Name" />
+    <Label layoutX="340.0" layoutY="169.0" text="Middle Name">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="13.0" layoutY="206.0" text=" Last Name">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
     <TextField fx:id="MiddleNameTF" layoutX="456.0" layoutY="166.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
     <TextField fx:id="LastNameTF" layoutX="110.0" layoutY="203.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
-    <Label layoutX="340.0" layoutY="207.0" text="Email" />
+    <Label layoutX="340.0" layoutY="207.0" text="Email">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
     <TextField fx:id="EmailTF" layoutX="457.0" layoutY="202.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
-    <Label layoutX="23.0" layoutY="243.0" text="Address" />
+    <Label layoutX="13.0" layoutY="243.0" text="Address">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
     <TextField fx:id="AddressTF" layoutX="111.0" layoutY="240.0" onKeyTyped="#ModifyCheckAction" prefWidth="161.0" />
-    <Label layoutX="18.0" layoutY="325.0" prefWidth="112.0" text="Member Points" />
+    <Label layoutX="13.0" layoutY="325.0" prefWidth="112.0" text="Member Points">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
     <Button fx:id="SearchCustomerButton" alignment="CENTER" layoutX="516.0" layoutY="99.0" mnemonicParsing="false" onAction="#SearchCustomerButtonAction" prefHeight="25.0" prefWidth="102.0" text="Search " />
     <TextField fx:id="ClubMemberPointsTF" editable="false" layoutX="111.0" layoutY="321.0" prefHeight="25.0" prefWidth="102.0" />
-    <Label layoutX="339.0" layoutY="325.0" text="Membership Expiry" />
-    <TextField fx:id="MemberShipExpiryTF" editable="false" layoutX="456.0" layoutY="321.0" prefHeight="25.0" prefWidth="161.0" /><Label layoutX="339.0" layoutY="61.0" text="License No" /><TextField fx:id="LicenseNumberTF" layoutX="456.0" layoutY="56.0" onKeyTyped="#ModifyCheckAction" prefWidth="161.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+    <Label layoutX="339.0" layoutY="325.0" text="Membership Expiry">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <TextField fx:id="MemberShipExpiryTF" editable="false" layoutX="456.0" layoutY="321.0" prefHeight="25.0" prefWidth="161.0" /><Label layoutX="339.0" layoutY="55.0" text="License No">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><TextField fx:id="LicenseNumberTF" layoutX="456.0" layoutY="55.0" onKeyTyped="#ModifyCheckAction" prefWidth="161.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
 <children>
 <Label layoutX="14.0" layoutY="8.0" text="Customer Information" textFill="WHITE">
 <font>
