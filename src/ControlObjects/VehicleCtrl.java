@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <p>This class provides data access and control function of user entity for UI</p> 
+ * <p>This VehicleCtrl class provides data access and control function of user entity for UI</p> 
  * 
  */
 public class VehicleCtrl {
@@ -22,7 +22,7 @@ public class VehicleCtrl {
     /**
      * This method find a {@link Vehicle} with given {@code vehicle}
      * @param vehicle vehicle
-     * @return vehicle or null
+     * @return vehicle
      */
     public Vehicle createVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
@@ -47,6 +47,11 @@ public class VehicleCtrl {
         }
     }
 
+    /**
+     * This method find a boolean value with given {@code vehicle}
+     * @param vehicle
+     * @return true or false
+     */
     public boolean updateVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
         boolean suc = false;
@@ -59,6 +64,11 @@ public class VehicleCtrl {
         return suc;
     }
 
+    /**
+     * This method find a boolean value of remove vehicle with given {@code vehicleNo}
+     * @param vehicleNo
+     * @return true or false
+     */
     public boolean removeVehicle(int vehicleNo) {
         VehicleDao vehicleDAO = new VehicleDao();
         Vehicle theVehicle = null;
@@ -81,6 +91,11 @@ public class VehicleCtrl {
         }
     }
 
+    /**
+     * This method find vehicle with given {@code vehicleNo}
+     * @param vehicleNo The number of vehicle
+     * @return Vehicle
+     */
     public Vehicle getVehicleByVehicleNo(int vehicleNo) {
         VehicleDao vehicleDAO = new VehicleDao();
         Vehicle theVehicle = null;
@@ -93,6 +108,11 @@ public class VehicleCtrl {
         return theVehicle;
     }
 
+    /**
+     * This method find vehicle with given {@code plateNo}
+     * @param plateNo The number of plate
+     * @return Vehicle
+     */
     public Vehicle getVehicleByPlateNo(String plateNo) {
         VehicleDao vehicleDAO = new VehicleDao();
         Vehicle theVehicle = null;
@@ -105,6 +125,11 @@ public class VehicleCtrl {
         return theVehicle;
     }
 
+    /**
+     * This method searches vehicle with given {@code vehicle}
+     * @param vehicle
+     * @return array list of vehicle
+     */
     public ArrayList<Vehicle> searchVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
         ArrayList<Vehicle> getList = null;
@@ -118,6 +143,12 @@ public class VehicleCtrl {
         return getList;
     }
 
+    /**
+     * This method searches idle vehicle with given {@code VehivleClassName, branch}
+     * @param VehivleClassName
+     * @param branch
+     * @return array list of vehicle
+     */
     public ArrayList<Vehicle> searchIdleVehicles(String VehivleClassName, Branch branch) {
         Vehicle vehicle = new Vehicle();
         vehicle.setBranchId(branch.getBranchID());
@@ -129,6 +160,12 @@ public class VehicleCtrl {
         return searchVehicle(vehicle);
     }
 
+    /**
+     * This method searches vehicle for sale with given {@code VehivleClassName, branch}
+     * @param VehicleClassName
+     * @param branch
+     * @return array list of vehicle
+     */
     public ArrayList<Vehicle> searchForSaleVehicles(String VehicleClassName, Branch branch) {
         Vehicle vehicle = new Vehicle();
         vehicle.setBranchId(branch.getBranchID());
@@ -137,6 +174,14 @@ public class VehicleCtrl {
         return searchVehicle(vehicle);
     }
 
+    /**
+     * This method searches available vehicle with given {@code type, pickUpTime, returnTime, branch}
+     * @param type type of vehicle class
+     * @param pickUpTime
+     * @param returnTime
+     * @param branch
+     * @return array list of available vehicle classes
+     */
     public ArrayList<String> getAvailableVehicleClasses(VehicleClass.TYPE type, Date pickUpTime, Date returnTime, Branch branch) {
         ArrayList<String> ans = new ArrayList<String>();
         ArrayList<String> list = getSubVehicleType(type);
@@ -148,6 +193,14 @@ public class VehicleCtrl {
         return ans;
     }
 
+    /**
+     * This method checks available vehicle with given {@code vehicleClass, pickUpTime, returnTime, branch}
+     * @param vehicleClass
+     * @param pickUpTime
+     * @param returnTime
+     * @param branch
+     * @return true or false
+     */
     public boolean checkVehicleAvailability(String vehicleClass, Date pickUpTime, Date returnTime, Branch branch) {
         try {
             VehicleDao vDAO = new VehicleDao();
@@ -166,6 +219,11 @@ public class VehicleCtrl {
         return false;
     }
 
+    /**
+     * This method creates vehicle class with given {@code vehicleClass}
+     * @param vehicleClass
+     * @return true or false
+     */
     public boolean createVehicleClass(VehicleClass vehicleClass) {
         VehicleClassDao classDAO = new VehicleClassDao();
         boolean suc = false;
@@ -178,6 +236,11 @@ public class VehicleCtrl {
         return suc;
     }
 
+    /**
+     * This method delete vehicle class with given {@code vehicleClass}
+     * @param vehicleClass
+     * @return true or false
+     */
     public boolean deleteVehicleClass(VehicleClass vehicleClass) {
         VehicleClassDao classDAO = new VehicleClassDao();
         boolean suc = false;
@@ -190,6 +253,11 @@ public class VehicleCtrl {
         return suc;
     }
 
+    /**
+     * This method update vehicle class with given {@code vehicleClass}
+     * @param vehicleClass
+     * @return true or false
+     */
     public boolean updateVehicleClass(VehicleClass vehicleClass) {
         VehicleClassDao classDAO = new VehicleClassDao();
         boolean suc = false;
@@ -202,6 +270,11 @@ public class VehicleCtrl {
         return suc;
     }
 
+    /**
+     * This method find vehicle class with given {@code vehicclassNameleClass}
+     * @param className
+     * @return VehicleClass
+     */
     public VehicleClass findVehicleClass(String className) {
         VehicleClassDao classDAO = new VehicleClassDao();
         VehicleClass theClass = null;
@@ -214,12 +287,21 @@ public class VehicleCtrl {
         return theClass;
     }
 
+    /**
+     * This method gets vehicle type
+     * @return array list of type
+     */
     public ArrayList<String> getVehicleType() {
         ArrayList<String> ans = getCarType();
         ans.addAll(getTruckType());
         return ans;
     }
 
+    /**
+     * This method get sub vehicle type with given {@code type}
+     * @param type
+     * @return array list of SubVehicleType
+     */
     public ArrayList<String> getSubVehicleType(VehicleClass.TYPE type) {
         VehicleClassDao classDAO = new VehicleClassDao();
         ArrayList<VehicleClass> classList = new ArrayList<VehicleClass>();
@@ -236,6 +318,7 @@ public class VehicleCtrl {
         return ans;
     }
 
+    
     public ArrayList<String> getCarType() {
         return getSubVehicleType(VehicleClass.TYPE.Car);
     }
@@ -244,6 +327,11 @@ public class VehicleCtrl {
         return getSubVehicleType(VehicleClass.TYPE.Truck);
     }
 
+    /**
+     * This method find vehicle type by class name with given {@code className}
+     * @param className the class name of the vehicle
+     * @return VehicleClass.TYPE
+     */
     public VehicleClass.TYPE getVehicleTypeByClassName(String className) {
         VehicleClassDao classDAO = new VehicleClassDao();
         VehicleClass vehicleClass = null;

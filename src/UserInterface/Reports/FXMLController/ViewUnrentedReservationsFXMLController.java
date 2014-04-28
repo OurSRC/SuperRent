@@ -8,7 +8,10 @@ package UserInterface.Reports.FXMLController;
 
 import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
+import SystemOperations.DateClass;
 import entity.ReservationInfo;
+import java.awt.Desktop;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
+import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -56,6 +60,7 @@ public class ViewUnrentedReservationsFXMLController implements Initializable {
     private TableColumn CustomerPhoneColumn;
     
     private Date date;
+    private ArrayList<Reservation> reservationArrayList;
     /**
      * Initializes the controller class.
      */
@@ -64,8 +69,16 @@ public class ViewUnrentedReservationsFXMLController implements Initializable {
         // TODO
         date = new Date();
         ReserveCtrl newReserveCtrl = new ReserveCtrl();
-        ArrayList<Reservation> reservationArrayList = newReserveCtrl.searchPendingReservation(0, date);
+        reservationArrayList = newReserveCtrl.searchPendingReservation(0, date);
         UnrentedTable.getItems().clear();
+        
+        //Enabling - Disabling the PrintPDF button
+                if (reservationArrayList.size() > 0) {
+                    PrintPDFButton.setDisable(false);
+                } else {
+                    PrintPDFButton.setDisable(true);
+                }
+        
         ObservableList reservationObservableList = FXCollections.observableArrayList(reservationArrayList);
         UnrentedTable.setItems(reservationObservableList);
         ReservationnoColumn.setCellValueFactory(new PropertyValueFactory("reservationNo"));
@@ -82,6 +95,16 @@ public class ViewUnrentedReservationsFXMLController implements Initializable {
 
     @FXML
     private void PrintPDFAction(ActionEvent event) {
+         String pdfName = "Reservation not Rented, " + DateClass.getJustDateFromDateObject(date);
+        PdfGen.genUnrentedReservation(reservationArrayList, pdfName);
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(pdfName + ".pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
     
 }

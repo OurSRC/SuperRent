@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package UserInterface.Reports.FXMLController;
 
 import ControlObjects.BranchCtrl;
@@ -11,6 +10,8 @@ import ControlObjects.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import entity.VehicleClass;
+import java.awt.Desktop;
+import java.io.File;
 import java.net.URL;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -31,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
+import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -73,11 +75,12 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
     private ComboBox DateFromTime;
     @FXML
     private ComboBox DateToTime;
-    
+
     /* Variables to store */
-    public Date PickUpDate;
-    public Date ReturnDate;
-    public String vehicleType;
+    private Date PickUpDate;
+    private Date ReturnDate;
+    private String vehicleType;
+    private ArrayList<VehicleClass> VehicleClassArray;
 
     /**
      * Initializes the controller class.
@@ -85,7 +88,7 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void ViewAvailableVehiclesAction(ActionEvent event) throws ParseException {
@@ -116,13 +119,20 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
                 VehicleCtrl vehicleControl = new VehicleCtrl();
                 ArrayList<String> AvailableVehicleTypes = vehicleControl.getAvailableVehicleClasses(type, PickUpDate, ReturnDate, BranchCtrl.getDefaultBranch());
 
-                ArrayList<VehicleClass> VehicleClassArray = new ArrayList();
-                System.out.println(AvailableVehicleTypes.size() + " Size of the Arraylist");
+                VehicleClassArray = new ArrayList();
                 for (int i = 0; i < AvailableVehicleTypes.size(); i++) {
                     VehicleClassArray.add(vehicleControl.findVehicleClass(AvailableVehicleTypes.get(i)));
                 }
+
+                //Enabling - Disabling the PrintPDF button
+                if (VehicleClassArray.size() > 0) {
+                    PrintPDFButton.setDisable(false);
+                } else {
+                    PrintPDFButton.setDisable(true);
+                }
+
                 ObservableList<VehicleClass> list = FXCollections.observableArrayList(VehicleClassArray);
-                AvailableVehiclesTable.getItems().clear(); 
+                AvailableVehiclesTable.getItems().clear();
                 AvailableVehiclesTable.setItems(list);
 
                 VehicleTypeColumn.setCellValueFactory(new PropertyValueFactory("vehicleType"));
@@ -145,17 +155,16 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
             dialog.setMessage("Please enter all the Mandatory Values");
             dialog.showDialog();
         }
-        
+
         System.out.println("I am inside this");
     }
-    
-     public boolean ValidateInput() {
+
+    public boolean ValidateInput() {
         if (PickUpDateDP.valueProperty().isNotNull().getValue()
                 && ReturnDateDP.valueProperty().isNotNull().getValue()
                 && TypeOfVehicle.valueProperty().isNotNull().getValue()
                 && DateFromTime.valueProperty().isNotNull().getValue()
-                && DateToTime.valueProperty().isNotNull().getValue()) 
-        {
+                && DateToTime.valueProperty().isNotNull().getValue()) {
             return true;
         } else {
             return false;
@@ -164,6 +173,17 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
 
     @FXML
     private void PrintPDFAction(ActionEvent event) {
+        String pdfName = "Available Vehicles between " + DateClass.getJustDateFromDateObject(PickUpDate) + 
+                " to " + DateClass.getJustDateFromDateObject(ReturnDate);
+        PdfGen.genAvailableVehicleClassReport(VehicleClassArray, pdfName);
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(pdfName + ".pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @FXML
@@ -173,5 +193,5 @@ public class ViewAvailableVehiclesFXMLController implements Initializable {
     @FXML
     private void ReturnDateAction(ActionEvent event) {
     }
-    
+
 }
