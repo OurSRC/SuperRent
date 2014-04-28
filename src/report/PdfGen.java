@@ -5,6 +5,7 @@
  */
 package report;
 
+import ControlObjects.Reservation;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
@@ -36,9 +37,104 @@ import java.util.logging.Logger;
  * @author Jingchuan Chen
  */
 public class PdfGen {
+    
+    private static DateFormat df = new SimpleDateFormat("yyyy");
 
     private static Font TitleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
+    
+    
+    public static void genDailyRentalReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
+        String title = "Daily Rental Report " + getDate();
+
+        genVehicleReport(vlist, title);
+
+    }
+    
+    public static void genDailyReturnReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
+        String title = "Daily Return Report " + getDate();
+
+        genVehicleReport(vlist, title);
+    }
+    
+    public static void genVehicleNotReturnReport(ArrayList<Reservation> notReturnList, String title) {
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
+            document.open();
+            
+            document.newPage();
+            addMetaData(document, title);
+            addTitle(document, title);
+            
+            PdfPTable table = new PdfPTable(5);
+            addTableContent(table, "Contract #", "Vehicle Class", "Return Date", "Customer Name", "Customer Phone");
+            for (Reservation res : notReturnList) {
+                addTableContent(table, Integer.toString(res.getContractNo()), res.getVehicleClass(), res.getReturnTime().toString(),
+                        res.getCustomerName(), res.getCustomerPhone());
+            }
+            document.add(table);
+            
+            document.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void genVehicleForSaleReport(ArrayList<Vehicle> vlist, String title) {
+        try {
+            
+            
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
+            document.open();
+            
+            document.newPage();
+            addMetaData(document, title);
+            addTitle(document, title);
+            
+            PdfPTable table = new PdfPTable(6);
+            addTableContent(table, "Vehicle Number", "Vehicle Class", 
+                    "Brand & Model", "Manufacturer Year", "Odometer", "Sale Price");
+            for (Vehicle v : vlist) {
+                addTableContent(table, Integer.toString(v.getVehicleNo()), v.getClassName(),
+                        v.getMode(), df.format(v.getManufactureDate()),
+                        Integer.toString(v.getOdometer()), v.getSellingPrice());
+            }
+            document.add(table);
+            
+            document.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void genVehicleListReport(ArrayList<Vehicle> vlist, String title) {
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
+            document.open();
+            
+            document.newPage();
+            addMetaData(document, title);
+            addTitle(document, title);
+            
+            PdfPTable table = new PdfPTable(6);
+            addTableContent(table, "Vehicle No", "Vehicle Class", "Brand & Model", 
+                    "Manufacturer Year", "Odometer", "Status");
+            for (Vehicle v : vlist) {
+                addTableContent(table, Integer.toString(v.getVehicleNo()), v.getClassName(),
+                        v.getMode(), df.format(v.getManufactureDate()), Integer.toString(v.getOdometer()),
+                        v.getStatus().toString());
+            }
+            document.add(table);
+            
+            document.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
     public static void genVehicleReport(ArrayList<Vehicle> vlist, String title) {
         try {
@@ -64,19 +160,7 @@ public class PdfGen {
         }
     }
 
-    public static void genDailyRentalReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
-        String title = "Daily Rental Report " + getDate();
-
-        genVehicleReport(vlist, title);
-
-    }
     
-    public static void genDailyReturnReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
-        String title = "Daily Return Report " + getDate();
-
-        genVehicleReport(vlist, title);
-
-    }
 
     private static String getDate() {
         DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
