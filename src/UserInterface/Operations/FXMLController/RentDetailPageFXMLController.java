@@ -25,6 +25,8 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -96,6 +98,45 @@ public class RentDetailPageFXMLController implements Initializable {
         validateFlag = false;
         ExpiryDateYear.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
         ExpiryDateMonth.addEventFilter(KeyEvent.KEY_TYPED, maxLength(2));
+        CreditCardNumberTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(16));
+
+        CreditCardNumberTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = CreditCardNumberTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9')) {
+
+                        //if it's not number then just setText to previous one
+                        CreditCardNumberTF.setText(CreditCardNumberTF.getText().substring(0, CreditCardNumberTF.getText().length() - 1));
+                    }
+                }
+            }
+
+        });
+        
+        CardHolderNameTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = CardHolderNameTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!ValidateFields.CheckLettersOnly(String.valueOf(ch))) {
+
+                        //if it's not number then just setText to previous one
+                        CardHolderNameTF.setText(CardHolderNameTF.getText().substring(0, CardHolderNameTF.getText().length() - 1));
+                    }
+                }
+            }
+
+        });
     }
 
     @FXML
