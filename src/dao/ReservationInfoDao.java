@@ -52,6 +52,13 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return new ReservationInfo();
     }
 
+    /**
+     * create a reservationInfo record in database.
+     *
+     * @param reservationInfo the {@link ReservationInfo} to insert.
+     * @return Added {@link ReservationInfo} object with populated primary key.
+     * @throws DaoException
+     */
     public ReservationInfo makeReservationInfo(ReservationInfo reservationInfo) throws DaoException {
         add(reservationInfo);
         int id = getLastAutoIncrementId();
@@ -59,6 +66,13 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return reservationInfo;
     }
 
+    /**
+     * Search {@link ReservationInfo} by {@code reservationNo}.
+     *
+     * @param reservatioNo The Reservation number to search with.
+     * @return Matching {@link ReservationInfo}.
+     * @throws DaoException
+     */
     public ReservationInfo findByReservationNo(String reservatioNo) throws DaoException {
         String cond = "ReservationNo=" + SqlBuilder.wrapStr(reservatioNo);
         return findOne(cond);
@@ -94,7 +108,7 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
      * @param pickUpTime Start of given time period.
      * @param returnTime End of given time period.
      * @param branch Branch number to search.
-     * @return All matching reservationInfo records
+     * @return ArrayList of all matching {@link ReservationInfo} records.
      * @throws DaoException
      */
     public ArrayList<ReservationInfo> findReservationBetween(String vehicleClass, Date pickUpTime,
@@ -115,6 +129,16 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return find(cond);
     }
 
+    /**
+     * Search {@link ReservationInfo} using reserveTime field.
+     *
+     * @param FromReserveTime Start of time period to search with.
+     * @param ToReserveTime End of time period to search with.
+     * @param branch Branch to search.
+     * @param ReservationNo Reservation number to search with.
+     * @return ArrayList of all matching {@link ReservationInfo} records.
+     * @throws DaoException
+     */
     public ArrayList<ReservationInfo> findReservationUsingReserveTime(Date FromReserveTime,
             Date ToReserveTime, Branch branch, String ReservationNo) throws DaoException {
 
@@ -135,6 +159,17 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         return find(cond);
     }
 
+    /**
+     * Search {@link ReservationInfo} that reserved a specific type of equipment
+     * and has overlap with given time period.
+     *
+     * @param equipmentType The equipment type to search.
+     * @param pickUpTime The start of time period to search.
+     * @param returnTime The end of time period to search.
+     * @param branch The branch to search.
+     * @return ArrayList of all matching {@link ReservationInfo} records.
+     * @throws DaoException
+     */
     public ArrayList<ReservationInfo> findReservationBetweenUsingEquipmentType(String equipmentType,
             Date pickUpTime, Date returnTime, Branch branch) throws DaoException {
 
@@ -202,26 +237,63 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         if (vehicleClass != null) {
             qb.cond("VehicleClass = " + SqlBuilder.wrapStr(vehicleClass));
         }
-            qb.cond("ReservationStatus = 'RENTED'");
+        qb.cond("ReservationStatus = 'RENTED'");
         String cond = qb.toString();
         return cond;
     }
 
+    /**
+     * Search pending {@link ReservationInfo} of a branch in given date.
+     *
+     * @param branchId The branch to search.
+     * @param date The data to search.
+     * @return ArrayList of all matching {@link ReservationInfo} records.
+     * @throws DaoException
+     */
     public ArrayList<ReservationInfo> searchPending(int branchId, Date date) throws DaoException {
         String cond = genPendingQuery(branchId, date, null);
         return find(cond);
     }
 
+    /**
+     * Count pending {@link ReservationInfo} of a branch in given date of
+     * specific vehicle type.
+     *
+     * @param branchId The branch to search.
+     * @param date The data to search.
+     * @param vehicleClass The vehicle class to search.
+     * @return Number of matching records.
+     * @throws DaoException
+     */
     public int countPendingByClass(int branchId, Date date, String vehicleClass) throws DaoException {
         String cond = genPendingQuery(branchId, date, vehicleClass);
         return count(cond);
     }
 
+    /**
+     * Search {@link ReservationInfo} which is not returned of a branch in given
+     * date.
+     *
+     * @param branchId The branch to search.
+     * @param date The data to search.
+     * @return ArrayList of all matching {@link ReservationInfo} records.
+     * @throws DaoException
+     */
     public ArrayList<ReservationInfo> searchNotReturned(int branchId, Date date) throws DaoException {
         String cond = genNotReturnedQuery(branchId, date, null);
         return find(cond);
     }
 
+    /**
+     * Count {@link ReservationInfo} which is not returned of a branch in given
+     * date for a vehicle class.
+     *
+     * @param branchId The branch to search.
+     * @param date The data to search.
+     * @param vehicleClass The vehicle class to search.
+     * @return Number of matching records..
+     * @throws DaoException
+     */
     public int countNotReturnedByClass(int branchId, Date date,
             String vehicleClass) throws DaoException {
         String cond = genNotReturnedQuery(branchId, date, vehicleClass);

@@ -41,10 +41,6 @@ public class EquipmentTypeDao extends AbstractDao<EquipmentType>{
         return findOne("TypeName="+SqlBuilder.wrapStr(typeName));
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     protected EquipmentType getInstance() {
         return new EquipmentType();

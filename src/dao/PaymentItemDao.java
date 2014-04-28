@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dao;
 
 import entity.PaymentItem;
@@ -13,11 +12,11 @@ import java.util.ArrayList;
 
 /**
  * <p>
- * This class provides basic access methods, for example, find
- * for item entity.</p>
+ * This class provides basic access methods, for example, find for item
+ * entity.</p>
  */
 public class PaymentItemDao extends AbstractDao<PaymentItem> {
-    
+
     protected static final String tb_name = "item";
 
     protected static final AttributeParser ap[] = {
@@ -32,7 +31,14 @@ public class PaymentItemDao extends AbstractDao<PaymentItem> {
     protected static final int[] pkIndex = {0};
 
     protected static final boolean pkIsAutoGen = true;
-    
+
+    /**
+     * Find {@link PaymentItem} objects by {@code PaymentId}.
+     *
+     * @param paymentId The id of {@link Payment} to search with.
+     * @return ArrayList of all matching {@link PaymentItem}.
+     * @throws DaoException
+     */
     public ArrayList<PaymentItem> findByPaymentId(int paymentId) throws DaoException {
         String cond = "PaymentId=" + SqlBuilder.wrapInt(paymentId);
         return find(cond);
@@ -42,5 +48,5 @@ public class PaymentItemDao extends AbstractDao<PaymentItem> {
     protected PaymentItem getInstance() {
         return new PaymentItem();
     }
-    
+
 }

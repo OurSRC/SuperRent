@@ -37,11 +37,22 @@ public class InsuranceDao extends AbstractDao<Insurance> {
         return new Insurance();
     }
     
+    /**
+     * Find {@link Insurance} object by {@code InsuranceName}.
+     * @param insuranceName The name of insurance to search with.
+     * @return Matching {@link Insurance}.
+     * @throws DaoException
+     */
     public Insurance findByName(String insuranceName) throws DaoException {
         String cond = "Name = " + SqlBuilder.wrapStr(insuranceName);
         return findOne(cond);
     }
 
+    /**
+     * Return all {@link Insurance} in database.
+     * @return ArrayList of all insurance in db.
+     * @throws DaoException
+     */
     public ArrayList<Insurance> findAll() throws DaoException {
         return all();
     }

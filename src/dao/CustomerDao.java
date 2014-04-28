@@ -149,7 +149,7 @@ public class CustomerDao {
     }
 
     /**
-     * Search customer object by username
+     * Search {@link Customer} object by {@code username}.
      *
      * @param username The username of customer to find
      * @return Customer object, or null;
@@ -167,6 +167,13 @@ public class CustomerDao {
         return customer;
     }
 
+    /**
+     * Search {@link Customer} object by {@code Csutomer@d}.
+     *
+     * @param CustomerId The id of customer to search with.
+     * @return Matching {@link Customer} object.
+     * @throws DaoException
+     */
     public Customer findByCustomerId(int CustomerId) throws DaoException {
         Customer customer;
         SqlBuilder qb = new SqlBuilder();
@@ -180,7 +187,7 @@ public class CustomerDao {
     }
 
     /**
-     * Search customer object by phone number
+     * Search {@link Customer} object by {@code phone}.
      *
      * @param phone The phone number to search
      * @return Customer object, or null;
@@ -198,6 +205,13 @@ public class CustomerDao {
         return customer;
     }
 
+    /**
+     * Search {@link Customer} object by {@code phone} or {@code License}.
+     * @param phone Phone number to search with.
+     * @param License Driver license number to search with.
+     * @return Matched {@link Customer} object.
+     * @throws DaoException
+     */
     public Customer findByPhoneAndLicense(String phone, String License) throws DaoException {
         Customer customer;
         SqlBuilder newQb = new SqlBuilder();
@@ -222,6 +236,12 @@ public class CustomerDao {
         return findOne(cond);
     }
 
+    /**
+     * Search customer records by a customer entity populated with fields to search.
+     * @param value {@link Customer} entity with fields to search with.
+     * @return ArrayList of matching {@link Customer} record.
+     * @throws DaoException
+     */
     public ArrayList<Customer> findByInstance(Customer value) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
 
@@ -330,6 +350,12 @@ public class CustomerDao {
         return true;
     }
 
+    /**
+     * Add {@link Customer} to database.
+     * @param customer The entity to add.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean add(Customer customer) throws DaoException {
         Connection conn = null;
 
@@ -385,6 +411,12 @@ public class CustomerDao {
         return true;
     }
 
+    /**
+     * Delete a customer record from database identified by {@code customerID}.
+     * @param customerID The primary key to identify customer.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean delete(Integer customerID) throws DaoException {
         Connection conn = null;
 
@@ -434,6 +466,12 @@ public class CustomerDao {
         return true;
     }
 
+    /**
+     * Delete a customer record from database identified by primary key of {@code customer} object.
+     * @param customer Entity with customerId of the record to delete.
+     * @return true on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean delete(Customer customer) throws DaoException {
         this.delete(customer.getCustomerId());
         return true;
