@@ -13,8 +13,16 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ */
 public class EquipmentCtrl {
 
+    /**
+     *
+     * @param equipment
+     * @return
+     */
     public Equipment createEquipment(Equipment equipment) {
         EquipmentDao equipmentDao = new EquipmentDao();
         boolean suc = false;
@@ -62,6 +70,11 @@ public class EquipmentCtrl {
         return false;
     }
 
+    /**
+     *
+     * @param VehicleClass
+     * @return
+     */
     public ArrayList<String> getEquipmentTypeByVehicleClass(String VehicleClass) {
         SupportEquipmentDao dao = new SupportEquipmentDao();
         ArrayList<SupportEquipment> list = null;
@@ -78,6 +91,11 @@ public class EquipmentCtrl {
         return ans;
     }
 
+    /**
+     *
+     * @param EquipmentType
+     * @return
+     */
     public ArrayList<String> getVehicleClassByEquipmentType(String EquipmentType) {
         SupportEquipmentDao dao = new SupportEquipmentDao();
         ArrayList<SupportEquipment> list = null;
@@ -98,6 +116,14 @@ public class EquipmentCtrl {
         return null;
     }
 
+    /**
+     *
+     * @param EquipmentType
+     * @param pickUpTime
+     * @param returnTime
+     * @param branch
+     * @return
+     */
     public boolean checkEquipmentAvailability(String EquipmentType, Date pickUpTime, Date returnTime, Branch branch) {
         EquipmentDao eqDAO = new EquipmentDao();
         ReservationInfoDao rInfoDao = new ReservationInfoDao();
