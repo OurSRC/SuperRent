@@ -123,7 +123,7 @@ public class VehicleCtrlTest {
     @Test
     public void testSearchForSaleVehicles() {
         VehicleCtrl vehicleCtrl = new VehicleCtrl();
-        Branch branch = new Branch("Main Branch", "12345678", "everywhere", 130, 18, 1000);
+//        Branch branch = new Branch("Main Branch", "12345678", "everywhere", 130, 18, 1000);
         BranchCtrl branchCtrl = new BranchCtrl();
         ArrayList<Vehicle> result = vehicleCtrl.searchForSaleVehicles("BOXTRUCKS", branchCtrl.getBranchById(1));
         for (int i = 0; i < result.size(); i++) {
