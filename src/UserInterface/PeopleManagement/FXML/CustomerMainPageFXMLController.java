@@ -11,6 +11,8 @@ import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.CustomerNavigator;
 import UserInterface.Operations.FXMLController.MembershipPaymentPageFXMLController;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
+import dao.CustomerDao;
+import dao.DaoException;
 import entity.Customer;
 import java.io.IOException;
 import java.net.URL;
@@ -95,10 +97,6 @@ public class CustomerMainPageFXMLController implements Initializable {
             LicenseNumberTF.setEditable(false);
             PopulateCustomer();
         }
-        if(!ReservationNavigator.reservation)
-        {
-            NextButton.setVisible(false);
-        }
     }
 
     @FXML
@@ -148,7 +146,25 @@ public class CustomerMainPageFXMLController implements Initializable {
     }
 
     @FXML
-    private void RenewClubMemberButtonAction(ActionEvent event) {
+    private void RenewClubMemberButtonAction(ActionEvent event) throws IOException {
+        if(currentCustomer.getIsClubMember())
+        {
+            Stage stage = new Stage();
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/Operations/FXML/MembershipPaymentPageFXML.fxml"));
+            Pane renewPane = (Pane) myLoader.load();
+            MembershipPaymentPageFXMLController newController = myLoader.getController();
+            newController.storeCustomer(currentCustomer.getPhone());
+            Scene scene = new Scene(renewPane);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+        } else {
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Error");
+            dialog.setMessage("Customer is not a Club Member");
+            dialog.showDialog();
+        }
     }
 
     @FXML
@@ -156,16 +172,14 @@ public class CustomerMainPageFXMLController implements Initializable {
         Stage stage = new Stage();
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/PeopleManagement/FXML/CreateCustomerFXML.fxml"));
         Pane newCustomerPane = (Pane) myLoader.load();
-        
         Scene scene = new Scene(newCustomerPane);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-
     }
 
     @FXML
-    private void SearchCustomerButtonAction(ActionEvent event) {
+    private void SearchCustomerButtonAction(ActionEvent event) throws DaoException {
         FirstNameTF.setText("");
         LastNameTF.setText("");
         MiddleNameTF.setText("");
@@ -175,8 +189,9 @@ public class CustomerMainPageFXMLController implements Initializable {
         ClubMemberPointsTF.setText("");
         MemberShipExpiryTF.setText("");
         customerPhone = PhoneTF.getText();
-        CustomerCtrl newCustomerCtrl = new CustomerCtrl();
-        currentCustomer = newCustomerCtrl.getCustomerByPhone(customerPhone);
+        customerLicense = LicenseNumberTF.getText();
+        CustomerDao newCustomerCtrl = new CustomerDao();
+        currentCustomer = newCustomerCtrl.findByPhoneAndLicense(customerPhone,customerLicense);
         if (currentCustomer != null) {
             PopulateCustomer();
         } else {
@@ -195,6 +210,7 @@ public class CustomerMainPageFXMLController implements Initializable {
     }
 
     public void PopulateCustomer() {
+        PhoneTF.setText(currentCustomer.getPhone());
         FirstNameTF.setText(currentCustomer.getFirstName());
         LastNameTF.setText(currentCustomer.getLastName());
         MiddleNameTF.setText(currentCustomer.getMiddleName());

@@ -198,6 +198,30 @@ public class CustomerDao {
         return customer;
     }
 
+    public Customer findByPhoneAndLicense(String phone, String License) throws DaoException {
+        Customer customer;
+        SqlBuilder newQb = new SqlBuilder();
+        SqlBuilder qb = new SqlBuilder();
+
+        if (!phone.equals("")) {
+            newQb.cond("phoneNo = " + SqlBuilder.wrapStr(phone));
+        }
+
+        if (!License.equals("")) {
+            newQb.cond("DriverLicenseNo = " + SqlBuilder.wrapStr(License));
+        }
+
+        String sql = qb
+                .select("*")
+                .from(tb_name)
+                .where(newQb.toString())
+                .toString();
+
+        String cond = qb.toString();
+        System.out.println(qb.toString());
+        return findOne(cond);
+    }
+
     public ArrayList<Customer> findByInstance(Customer value) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
 
@@ -217,6 +241,7 @@ public class CustomerDao {
 
     /**
      * Update a record in customer table.
+     *
      * @param customer Customer object to update
      * @return
      * @throws DaoException
