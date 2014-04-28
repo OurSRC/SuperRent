@@ -24,7 +24,7 @@ public class LoginCtrl {
      * Check if given username and password is valid.
      * @param username Username provided by user.
      * @param password Password provided by user.
-     * @return The type of user. Return {@link User.TYPE.ERROR} if username 
+     * @return The type of user. Return User.TYPE.ERROR if username 
      * and password is invalid
      */
     public User.TYPE loginCheck(String username, String password) {
