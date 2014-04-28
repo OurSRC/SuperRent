@@ -39,9 +39,9 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
     
     /**
      * Make a {@link BuyInsurance} object with given insuranceName and reservationInfoId.
-     * @param reservationInfoId The Id of {@link ReservationInfo} to buy insurance.
-     * @param insuranceName The name of the {@link Insurance} to buy.
-     * @return the created {@link BuyInsurance} object.
+     * @param reservationInfoId The Id of ReservationInfo to buy insurance.
+     * @param insuranceName The name of the Insurance to buy.
+     * @return the created BuyInsurance object.
      * @throws DaoException
      */
     public BuyInsurance makeBuyInsurance(int reservationInfoId, String insuranceName) throws DaoException {
