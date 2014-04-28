@@ -110,6 +110,7 @@ public class ReserveAdditionalEquipmentFXMLController implements Initializable {
                 ReservationNavigator.loadVista(ReservationNavigator.ReservationSummary);
             } else {
                 System.out.println("Call the CreateCustomer for Guest user");
+                ReservationNavigator.loadVista(ReservationNavigator.ReservationGuestPage);
             }
         } else if (NotRequiredCB.isSelected()) {
             ReservationNavigator.clearVista();
