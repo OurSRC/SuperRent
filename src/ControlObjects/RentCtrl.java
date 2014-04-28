@@ -181,8 +181,8 @@ public class RentCtrl {
      * {@code branchId}.
      *
      * @param d The day to search
-     * @param branchId The branchId of the {@link Branch} to search.
-     * @return ArrayList of matching {@link Rent} objects.
+     * @param branchId The branchId of the Branch to search.
+     * @return ArrayList of matching Rent objects.
      */
     static public ArrayList<Rent> getRentsByDate(Date d, int branchId) {
         return getRentByDates(d, d, branchId);
@@ -194,8 +194,8 @@ public class RentCtrl {
      *
      * @param start Start date of the search.
      * @param end End date of the search.
-     * @param branchId BranchId of {@link Branch} to search.
-     * @return ArrayList of matching {@link Rent} objects.
+     * @param branchId BranchId of Branch to search.
+     * @return ArrayList of matching Rent objects.
      */
     static public ArrayList<Rent> getRentByDates(Date start, Date end, int branchId) {
         RentDao rentDao = new RentDao();
