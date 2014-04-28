@@ -22,7 +22,7 @@ public class VehicleCtrl {
     /**
      * This method find a {@link Vehicle} with given {@code vehicle}
      * @param vehicle vehicle
-     * @return vehicle or null
+     * @return vehicle
      */
     public Vehicle createVehicle(Vehicle vehicle) {
         VehicleDao vehicleDAO = new VehicleDao();
