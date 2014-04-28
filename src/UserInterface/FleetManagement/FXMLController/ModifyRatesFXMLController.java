@@ -56,6 +56,7 @@ public class ModifyRatesFXMLController implements Initializable {
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
 
         vehicleType = newVehicleCtrl.getVehicleTypeByClassName(VehicleClassNavigator.vehicleClass.getClassName()).toString();
+        VehicleTypeTF.setText(vehicleType);
 
     }
 
