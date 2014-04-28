@@ -150,24 +150,31 @@ public class CustomerPageForClerkReservationController implements Initializable 
     private void RenewMemberAction(ActionEvent event
     ) throws IOException {
         if (!CustomerTable.getSelectionModel().isEmpty()) {
-
             Customer selectedCustomer = (Customer) CustomerTable.getSelectionModel().getSelectedItem();
-            Stage stage = new Stage();
-            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/Operations/FXML/MembershipPaymentPageFXML.fxml"));
-            Pane renewPane = (Pane) myLoader.load();
-            MembershipPaymentPageFXMLController newController = myLoader.getController();
-            newController.storeCustomer(selectedCustomer.getPhone());
-            Scene scene = new Scene(renewPane);
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
+            if (selectedCustomer.getIsClubMember()) {
 
+                Stage stage = new Stage();
+                FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/Operations/FXML/MembershipPaymentPageFXML.fxml"));
+                Pane renewPane = (Pane) myLoader.load();
+                MembershipPaymentPageFXMLController newController = myLoader.getController();
+                newController.storeCustomer(selectedCustomer.getPhone());
+                Scene scene = new Scene(renewPane);
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("Please register Club Member");
+                dialog.showDialog();
+            }
         } else {
             DialogFX dialog = new DialogFX(Type.ERROR);
             dialog.setTitleText("Error");
             dialog.setMessage("Please select a Customer to Proceed");
             dialog.showDialog();
         }
+
     }
 
     @FXML

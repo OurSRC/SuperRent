@@ -112,10 +112,10 @@ public class ViewReservationsFXMLController implements Initializable {
         System.out.println("I am here and it is working");
         ReservationNumber.setCellValueFactory(new PropertyValueFactory("reservationNo"));
         VehicleClass.setCellValueFactory(new PropertyValueFactory("vehicleClass"));
-        ReturnDate.setCellValueFactory(new PropertyValueFactory("returnTime"));
+        ReturnDate.setCellValueFactory(new PropertyValueFactory("returnTimeString"));
         CustomerPhone.setCellValueFactory(new PropertyValueFactory("customerPhone"));
         CustomerNameColumn.setCellValueFactory(new PropertyValueFactory("customerName"));
-        PickUpDate.setCellValueFactory(new PropertyValueFactory("pickupTime"));
+        PickUpDate.setCellValueFactory(new PropertyValueFactory("pickupTimeString"));
     }
 
     @FXML

@@ -14,14 +14,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * <p>
+ * CustomerCtrl is one of the components in Logical Control, get input from Database and output data to support User Interface, which operates Equipment entity object
+ * </p>
  */
 public class EquipmentCtrl {
 
     /**
-     *
+     *This method create a new record of the equipment
      * @param equipment
-     * @return
+     * @return The complete equipment
      */
     public Equipment createEquipment(Equipment equipment) {
         EquipmentDao equipmentDao = new EquipmentDao();
@@ -46,34 +48,66 @@ public class EquipmentCtrl {
         }
     }
 
+    /**
+     *This method update an equipment record (has not supported yet)
+     * @param equipment
+     * @return true for success, false for otherwise
+     */
     public boolean updateEquipment(Equipment equipment) {
         return false;
     }
 
+    /**
+     *This method remove an equipment record (has not supported yet)
+     * @param equipmentId
+     * @return true for success, false for otherwise
+     */
     public boolean removeEquipment(int equipmentId) {
         return false;
     }
 
+    /**
+     *This method find a {@link Equipment} with given {@code equipmentId}
+     * @param equipmentId
+     * @return the matching object or null
+     */
     public Equipment getEquipment(int equipmentId) {
         return null;
     }
 
+    /**
+     *This method find all matching {@link Equipment} with given {@code equipment}
+     * @param equipment
+     * @return an array list of matching {@link Equipment} or null
+     */
     public ArrayList<Equipment> searchEquipment(Equipment equipment) {
         return null;
     }
 
+    /**
+     *This method append Equipment Type To Vehicle Class (has not supported yet)
+     * @param EquipmentType The specified {@code EquipmentType}
+     * @param VehicleClass The specified {@code VehicleClass}
+     * @return true for success, false for otherwise
+     */
     public boolean appendEquipmentTypeToVehicleClass(String EquipmentType, String VehicleClass) {
         return false;
     }
 
+    /**
+     *This method remove Equipment Type From Vehicle Class (has not supported yet)
+     * @param EquipmentType The specified {@code EquipmentType}
+     * @param VehicleClass The specified {@code VehicleClass}
+     * @return true for success, false for otherwise
+     */
     public boolean removeEquipmentTypeFromVehicleClass(String EquipmentType, String VehicleClass) {
         return false;
     }
 
     /**
-     *
-     * @param VehicleClass
-     * @return
+     *This method get Equipment Type By Vehicle Class
+     * @param VehicleClass The specified {@code VehicleClass}
+     * @return an array list string {@link String} of matching {@code VehicleClass}or null
      */
     public ArrayList<String> getEquipmentTypeByVehicleClass(String VehicleClass) {
         SupportEquipmentDao dao = new SupportEquipmentDao();
@@ -92,9 +126,9 @@ public class EquipmentCtrl {
     }
 
     /**
-     *
-     * @param EquipmentType
-     * @return
+     *This method get Vehicle Class By Equipment Type
+     * @param EquipmentType The specified {@cide EquipmentType }
+     * @return an array list string {@link String} of matching {@code EquipmentType}or null
      */
     public ArrayList<String> getVehicleClassByEquipmentType(String EquipmentType) {
         SupportEquipmentDao dao = new SupportEquipmentDao();
@@ -112,17 +146,13 @@ public class EquipmentCtrl {
         return ans;
     }
 
-    public ArrayList<String> getEquipmentType() {
-        return null;
-    }
-
     /**
-     *
-     * @param EquipmentType
-     * @param pickUpTime
-     * @param returnTime
-     * @param branch
-     * @return
+     *This method check Equipment Availability 
+     * @param EquipmentType The specified {@code EquipmentType}
+     * @param pickUpTime The specified {@code pickUpTime}
+     * @param returnTime The specified {@code returnTime}
+     * @param branch The specified {@code branch}
+     * @return true for success, false for otherwise
      */
     public boolean checkEquipmentAvailability(String EquipmentType, Date pickUpTime, Date returnTime, Branch branch) {
         EquipmentDao eqDAO = new EquipmentDao();

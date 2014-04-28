@@ -153,7 +153,6 @@ public class FXMLClerkMainPageController implements Initializable {
     {
                 ClerkMainPageNavigator.loadVista(ClerkMainPageNavigator.HOME_PAGE);
 
-        UserNameLabel.setText(userName);
         username= userName;
         ClerkMainPageNavigator.CurrentUserName=userName;
         ClerkMainPageNavigator.staff=true;

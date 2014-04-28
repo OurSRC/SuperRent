@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *<p>
- * This is one of the components in Logical Control, get input from Database and output data to support User Interface
+ * This is one of the components in Logical Control, get input from Database and output data to support User Interface, which operates Branch entity object
  * </p>
  */
 public class BranchCtrl {

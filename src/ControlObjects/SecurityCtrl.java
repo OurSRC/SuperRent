@@ -12,19 +12,21 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
- * @author Elitward
+ *<p>
+ * This is one of the components in Logical Control, which provide security related functions
+ * </p>
  */
 public class SecurityCtrl {
 
     private final String PASSWORD_SALT = "src";     //this is a simply text to be mix with password, to against rainbow table
 
+    /**
+     *This method returns the MD5 digest of a string
+     * @param text The specified text
+     * @return The MD5 digest string
+     */
     static public String toMD5(String text) {
         MessageDigest md = null;
         try {
@@ -50,21 +52,26 @@ public class SecurityCtrl {
         return hexString.toString();
     }
 
+    /**
+     *This method returns the digest string of a password (by adding original password and salt)
+     * @param text The specified text
+     * @return The digest string
+     */
     static public String digestPassword(String passwd) {
         return toMD5("PASSWORD_SALT" + passwd);
     }
 
     // 8-byte Salt
-    final static byte[] salt = {
+    final static private byte[] salt = {
         (byte) 0xA9, (byte) 0x9B, (byte) 0xC8, (byte) 0x32,
         (byte) 0x56, (byte) 0x35, (byte) 0xE3, (byte) 0x03
     };
     // Iteration count
-    final static int iterationCount = 19;
+    final static private int iterationCount = 19;
 
 
     /**
-     * 
+     * This method encrypt a plain text
      * @param secretKey Key used to encrypt data
      * @param plainText Text input to be encrypted
      * @return Returns encrypted text
@@ -93,7 +100,9 @@ public class SecurityCtrl {
         }
         return null;
     }
-     /**     
+    
+     /**
+      * This method decrypt an encrypted text
      * @param secretKey Key used to decrypt data
      * @param encryptedText encrypted text input to decrypt
      * @return Returns plain text after decryption

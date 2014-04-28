@@ -37,7 +37,7 @@
 </Pane><Pane layoutY="415.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
 <children>
     <Button alignment="CENTER" layoutX="506.0" layoutY="6.5" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="118.0" text="Next" />
-    <Button alignment="CENTER" layoutX="22.0" layoutY="6.0" mnemonicParsing="false" onAction="#BackButtonAction" prefHeight="25.0" prefWidth="118.0" text="Back" />
+    <Button alignment="CENTER" layoutX="22.0" layoutY="6.0" mnemonicParsing="false" onAction="#BackButtonAction" prefHeight="25.0" prefWidth="118.0" text="Back to Search" />
 </children>
 </Pane>
   </children>

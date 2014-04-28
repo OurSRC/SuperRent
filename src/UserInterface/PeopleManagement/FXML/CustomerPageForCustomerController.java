@@ -9,15 +9,22 @@ import ControlObjects.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.CustomerNavigator;
+import UserInterface.Operations.FXMLController.MembershipPaymentPageFXMLController;
 import entity.Customer;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -89,11 +96,45 @@ public class CustomerPageForCustomerController implements Initializable {
     }
 
     @FXML
-    private void RegisterClubMemberButtonAction(ActionEvent event) {
+    private void RegisterClubMemberButtonAction(ActionEvent event) throws IOException {
+        if (!currentCustomer.getIsClubMember()) {
+                Stage stage = new Stage();
+                FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/Operations/FXML/MembershipPaymentPageFXML.fxml"));
+                Pane registerPane = (Pane) myLoader.load();
+                MembershipPaymentPageFXMLController newController = myLoader.getController();
+                newController.storeCustomer(currentCustomer.getPhone());
+                Scene scene = new Scene(registerPane);
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("Customer is already a Club Member");
+                dialog.showDialog();
+            }
     }
 
     @FXML
-    private void RenewClubMemberButtonAction(ActionEvent event) {
+    private void RenewClubMemberButtonAction(ActionEvent event) throws IOException {
+        
+        if (currentCustomer.getIsClubMember()) {
+
+                Stage stage = new Stage();
+                FXMLLoader myLoader = new FXMLLoader(getClass().getResource("/UserInterface/Operations/FXML/MembershipPaymentPageFXML.fxml"));
+                Pane renewPane = (Pane) myLoader.load();
+                MembershipPaymentPageFXMLController newController = myLoader.getController();
+                newController.storeCustomer(currentCustomer.getPhone());
+                Scene scene = new Scene(renewPane);
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Error");
+                dialog.setMessage("Please register Club Member");
+                dialog.showDialog();
+            }
     }
 
     @FXML

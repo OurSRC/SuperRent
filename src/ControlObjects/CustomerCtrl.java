@@ -10,16 +10,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * 
+ *<p>
+ * CustomerCtrl is one of the components in Logical Control, get input from Database and output data to support User Interface, which operates Customer entity object
+ * </p>
  */
 public class CustomerCtrl {
     static final int MEMBERSHIP_INIT_POINT = 500;
 
     /**
-     *
-     * @param customer
-     * @return
+     * Create a customer record in database
+     * @param customer The input entity object
+     * @return The complete entity object, the id is reset.
      */
     public Customer createCustomer(Customer customer) {
         try {
@@ -61,9 +62,9 @@ public class CustomerCtrl {
     }
 
     /**
-     *
-     * @param customerId
-     * @return
+     * Update a record in database
+     * @param customerId The input entity object
+     * @return true for success, false for otherwise
      */
     public boolean deleteCustomer(int customerId) {
         CustomerDao customerDAO = new CustomerDao();
@@ -78,9 +79,9 @@ public class CustomerCtrl {
     }
 
     /**
-     *
-     * @param phone
-     * @return
+     * Find the customer record as entity object by specifying a phone number
+     * @param phone The specified phone number
+     * @return The found record or null for not found
      */
     public Customer getCustomerByPhone(String phone) {
         CustomerDao customerDAO = new CustomerDao();
@@ -95,8 +96,8 @@ public class CustomerCtrl {
     }
 
     /**
-     *
-     * @param username
+     *Find the customer record as entity object by specifying a username
+     * @param username The specified username
      * @return
      */
     public Customer getCustomerByUsername(String username) {
@@ -112,9 +113,9 @@ public class CustomerCtrl {
     }
 
     /**
-     *
+     *This method find a {@link Customer} with given {@code customerId}
      * @param customerId
-     * @return
+     * @return {@link Customer}
      */
     public Customer getCustomerById(int customerId) {
         CustomerDao customerDAO = new CustomerDao();
@@ -129,9 +130,9 @@ public class CustomerCtrl {
     }
 
     /**
-     *
+     *This method find a {@link Customer} with given {@code customer}
      * @param customer
-     * @return
+     * @return an array list of {@link Customer}
      */
     public ArrayList<Customer> searchCustomer(Customer customer) {
         CustomerDao customerDAO = new CustomerDao();
@@ -146,9 +147,9 @@ public class CustomerCtrl {
     }
 
     /**
-     *
+     *This method check whether the customer is an active club member
      * @param customer
-     * @return
+     * @return true if the customer is an active member, false for otherwise
      */
     public boolean checkMembershipActive(Customer customer) {
         if (customer.getIsClubMember()) {
@@ -160,11 +161,11 @@ public class CustomerCtrl {
     }
 
     /**
-     *
-     * @param customer
-     * @param years
-     * @param start
-     * @return
+     * This method extend the membership of the customer for specified years
+     * @param customer The specified customer
+     * @param years The years to extend membership
+     * @param start The time to start from
+     * @return true for success, false for otherwise
      */
     public boolean extendMembership(Customer customer, int years, Date start) {
         if(customer!=null){
@@ -190,7 +191,7 @@ public class CustomerCtrl {
     }
 
     /**
-     *
+     * This method has not supported yet
      * @param customer
      * @param Years
      * @return
@@ -201,7 +202,7 @@ public class CustomerCtrl {
     }
     
     /**
-     *
+     * This method check whether the customer is exist or not. If the customer record has already exist, it return the complete object otherwise create new record.
      * @param customer
      * @return
      */
