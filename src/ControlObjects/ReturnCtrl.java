@@ -113,7 +113,7 @@ public class ReturnCtrl {
     }
 
     /**
-     * This method gets a {@link return} with given {@code contractNum}
+     * This method gets a {@link Return} with given {@code contractNum}
      * @param contractNum
      * @return search First Return
      */
