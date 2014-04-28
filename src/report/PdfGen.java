@@ -36,13 +36,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Jingchuan Chen
+ * This class provide function that generate pdf report.
  */
 public class PdfGen {
 
     private static DateFormat df = new SimpleDateFormat("yyyy");
-    
+
     private static DateFormat tf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 
     private static Font TitleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
@@ -50,6 +49,13 @@ public class PdfGen {
     private static Font ContentFont = new Font(Font.FontFamily.TIMES_ROMAN, 14,
             Font.NORMAL);
 
+    /**
+     * Generate daily rental report.
+     *
+     * @param vlist Arraylist of {@link Vehicle} to be shown in report.
+     * @throws DocumentException
+     * @throws FileNotFoundException
+     */
     public static void genDailyRentalReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
         String title = "Daily Rental Report " + getDate();
 
@@ -57,12 +63,26 @@ public class PdfGen {
 
     }
 
+    /**
+     * Generate daily return report.
+     *
+     * @param vlist Arraylist of {@link Vehicle} to be shown in report.
+     * @throws DocumentException
+     * @throws FileNotFoundException
+     */
     public static void genDailyReturnReport(ArrayList<Vehicle> vlist) throws DocumentException, FileNotFoundException {
         String title = "Daily Return Report " + getDate();
 
         genVehicleReport(vlist, title);
     }
 
+    /**
+     * Generate report for not returned vehicles.
+     *
+     * @param notReturnList ArrayList of {@link Reservation} that has not been
+     * returned.
+     * @param title The title of the report.
+     */
     public static void genVehicleNotReturnReport(ArrayList<Reservation> notReturnList, String title) {
         try {
             Document document = new Document();
@@ -86,7 +106,13 @@ public class PdfGen {
             Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    /**
+     * Generate report for available vehicle class
+     *
+     * @param vcList ArrayList of available {@link VehicleClass}.
+     * @param title Title of the report.
+     */
     public static void genAvailableVehicleClassReport(ArrayList<VehicleClass> vcList, String title) {
         try {
 
@@ -112,8 +138,13 @@ public class PdfGen {
             Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
+    /**
+     * Generate report for vehicle for sale.
+     *
+     * @param vlist ArrayList of for sale {@link Vehicle}.
+     * @param title Title of the report.
+     */
     public static void genVehicleForSaleReport(ArrayList<Vehicle> vlist, String title) {
         try {
 
@@ -140,7 +171,13 @@ public class PdfGen {
             Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    /**
+     * Generate report for not rented reservation.
+     *
+     * @param resList ArrayList of not rented {@link Reservation}.
+     * @param title Title of the report.
+     */
     public static void genUnrentedReservation(ArrayList<Reservation> resList, String title) {
         try {
 
@@ -168,6 +205,12 @@ public class PdfGen {
         }
     }
 
+    /**
+     * Generate report for all vehicle list.
+     *
+     * @param vlist ArrayList of {@link Vehicle} to display in report.
+     * @param title Title of the report.
+     */
     public static void genVehicleListReport(ArrayList<Vehicle> vlist, String title) {
         try {
             Document document = new Document();
@@ -194,6 +237,13 @@ public class PdfGen {
         }
     }
 
+    /**
+     * Generate report for vehicle list that used in daily rent and daily
+     * return.
+     *
+     * @param vlist ArrayList of {@link Vehicle} to display in report.
+     * @param title Title of the report.
+     */
     public static void genVehicleReport(ArrayList<Vehicle> vlist, String title) {
         try {
             Document document = new Document();
@@ -218,6 +268,11 @@ public class PdfGen {
         }
     }
 
+    /**
+     * Generate reservation confirmation.
+     * @param res The {@link Reservation} to generate confirmation.
+     * @param title Title of the report.
+     */
     public static void genReservationConfirmation(Reservation res, String title) {
         try {
             Document document = new Document();
@@ -234,17 +289,17 @@ public class PdfGen {
             addParagraph(document, "Vehicle Class: " + res.getVehicleClass());
 
             addEmptyLine(document, 1);
-            
+
             addLine(document, "Additional Equipment:");
             for (ReserveEquipment re : res.getReserveEquipment()) {
                 addLine(document, "        " + re.getEquipmentType());
             }
-            
+
             addLine(document, "Insurance: ");
             for (BuyInsurance insurance : res.getReserveInsurance()) {
                 addLine(document, "        " + insurance.getInsuranceName());
             }
-            
+
             addParagraph(document, "Your total cost will be: " + res.getEstimation());
 
             document.close();

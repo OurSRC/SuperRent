@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 /**
  * Entity class for insurance table.
- * @author Jingchuan Chen
  */
 public class Insurance {
-    
+
     private String name;
     private int hourlyRate;
     private int dailyRate;

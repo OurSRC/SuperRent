@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 import java.util.Date;
+
 /**
  * Entity class for return table.
- * @author Xi Yang
  */
 public class Return {
+
     private int contractNo;
     private Date returnTime;
     private int fuelLevel;
@@ -23,7 +23,7 @@ public class Return {
     public Return() {
     }
 
-    public Return(int contractNo, Date returnTime, int fuelLevel, int odometer, 
+    public Return(int contractNo, Date returnTime, int fuelLevel, int odometer,
             int staffId, int paymentId, int damageCost) {
         this.contractNo = contractNo;
         this.returnTime = returnTime;
@@ -32,7 +32,7 @@ public class Return {
         this.staffId = staffId;
         this.paymentId = paymentId;
         this.damageCost = damageCost;
-        
+
     }
 
     /**
@@ -132,7 +132,5 @@ public class Return {
     public void setDamageCost(int damageCost) {
         this.damageCost = damageCost;
     }
-    
-    
-    
+
 }

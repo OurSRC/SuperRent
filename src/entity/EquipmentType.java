@@ -3,28 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 import finance.Price;
 
 /**
  * Entity class for equipment_type table.
- * @author Jingchuan Chen
  */
 public class EquipmentType {
+
     private String typeName;
     private int hourlyRate;
     private int dailyRate;
 
-    public EquipmentType(String typeName, int hourlyRate,int DailyRate) {
+    public EquipmentType(String typeName, int hourlyRate, int DailyRate) {
         this.typeName = typeName;
         this.hourlyRate = hourlyRate;
         this.dailyRate = DailyRate;
-       
+
     }
-    
-    public EquipmentType(){}
+
+    public EquipmentType() {
+    }
+
     /**
      * @return the typeName
      */
@@ -66,7 +67,7 @@ public class EquipmentType {
     public void setDailyRate(int DailyRate) {
         this.dailyRate = DailyRate;
     }
-    
+
     public String getHourlyPrice() {
         return Price.toText(hourlyRate);
     }

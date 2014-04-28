@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 /**
  * Entity class for branch table.
- * @author Jingchuan Chen
  */
 public class Branch {
+
     private int branchID;
     private String branchName;
     private String branchPhone;
@@ -22,7 +21,7 @@ public class Branch {
     public Branch() {
     }
 
-    public Branch(String branchName, String branchPhone, String branchAddress, 
+    public Branch(String branchName, String branchPhone, String branchAddress,
             int fuelPrice, int pricePerKM, int clubMemberFeeRate) {
         this.branchID = 0;
         this.branchName = branchName;

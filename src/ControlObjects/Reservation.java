@@ -26,8 +26,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Elitward
+ * <p>
+ * Reservation class is the abstraction of ReservationInfo, reserveEquipment and
+ * buyInsurance tables in control layer that provide uniformed interface for
+ * CURD operation on these three tables.
+ * </p>
  */
 public final class Reservation {
 
@@ -41,13 +44,16 @@ public final class Reservation {
         this.reserveInsurance = new ArrayList();
     }
 
-    public Reservation(ReservationInfo reserveInfo, ArrayList<ReserveEquipment> reserveEqmt, ArrayList<BuyInsurance> reserveInsn) {
+    public Reservation(ReservationInfo reserveInfo, ArrayList<ReserveEquipment> reserveEqmt,
+            ArrayList<BuyInsurance> reserveInsn) {
         this.reserveInfo = reserveInfo;
         this.reserveEquipment = reserveEqmt;
         this.reserveInsurance = reserveInsn;
     }
 
-    public Reservation(int branchId, Date pickupTime, Date returnTime, int customerId, int staffId, String vehicleClass, ArrayList<String> equipmentType, ArrayList<String> insurance) {
+    public Reservation(int branchId, Date pickupTime, Date returnTime,
+            int customerId, int staffId, String vehicleClass,
+            ArrayList<String> equipmentType, ArrayList<String> insurance) {
         VehicleClassDao vcDAO = new VehicleClassDao();
         VehicleClass vc = null;
         try {
@@ -92,7 +98,6 @@ public final class Reservation {
     public int getBranchId() {
         return reserveInfo.getBranchId();
     }
-     
 
     public Branch matchBranch() {
         BranchDao brDAO = new BranchDao();
@@ -144,18 +149,19 @@ public final class Reservation {
     public String getVehicleClass() {
         return reserveInfo.getVehicleClass();
     }
-    
+
     public String getCustomerPhone() {
         CustomerCtrl newCustomerCtrl = new CustomerCtrl();
         Customer CurrentCustomer = newCustomerCtrl.getCustomerById(getCustomerId());
         return CurrentCustomer.getPhone();
     }
+
     public String getCustomerName() {
         CustomerCtrl newCustomerCtrl = new CustomerCtrl();
         Customer CurrentCustomer = newCustomerCtrl.getCustomerById(getCustomerId());
         return CurrentCustomer.getFirstName() + " " + CurrentCustomer.getLastName();
     }
-    
+
     public int getContractNo() {
         Rent correspondingRent = RentCtrl.searchRentByReservationInfoId(getReservationInfoId());
         return correspondingRent.getContractNo();
@@ -163,7 +169,7 @@ public final class Reservation {
 
     public void setVehicleClass(String vehicleClass) {
         this.reserveInfo.setVehicleClass(vehicleClass);
-        
+
         VehicleClassDao vcDAO = new VehicleClassDao();
         VehicleClass vc = null;
         try {
@@ -173,7 +179,7 @@ public final class Reservation {
             ErrorMsg.setLastError(ErrorMsg.ERROR_PARAMETER_ERROR);
             return;
         }
-        
+
         this.reserveInfo.setvHourlyRate(vc.getHourlyRate());
         this.reserveInfo.setvDailyRate(vc.getDailyRate());
         this.reserveInfo.setvWeeklyRate(vc.getWeeklyRate());
@@ -284,33 +290,36 @@ public final class Reservation {
     }
 
     /*
-    public String getHourlyPrice() {
-        return "123.45";
-    }
+     public String getHourlyPrice() {
+     return "123.45";
+     }
 
-    public boolean setHourlyPrice(String price) {
-        return true;
-    }
+     public boolean setHourlyPrice(String price) {
+     return true;
+     }
 
-    public String getDailyPrice() {
-        return "123.45";
-    }
+     public String getDailyPrice() {
+     return "123.45";
+     }
 
-    public boolean setDailyPrice(String price) {
-        return true;
-    }
+     public boolean setDailyPrice(String price) {
+     return true;
+     }
 
-    public String getWeeklyPrice() {
-        return "123.45";
-    }
+     public String getWeeklyPrice() {
+     return "123.45";
+     }
 
-    public boolean setWeeklyPrice(String price) {
-        return true;
-    }
-    */
-    
-    public String getEstimation()
-    {
+     public boolean setWeeklyPrice(String price) {
+     return true;
+     }
+     */
+    /**
+     * Calculate estimate price for a reservation.
+     *
+     * @return String represents estimated price.
+     */
+    public String getEstimation() {
         FinanceCtrl newFinanceCtrl = new FinanceCtrl();
         int cost = newFinanceCtrl.estimateReservationCost(this);
         System.out.println("Estimated Cost : " + cost);

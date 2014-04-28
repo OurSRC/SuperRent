@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 import java.util.Date;
 
 /**
  * Entity class for payment table.
- * @author Jingchuan Chen
  */
 public class Payment {
-    
+
     private int paymentId;
     private int customerId;
     private String title;
@@ -79,7 +77,5 @@ public class Payment {
     public void setTime(Date time) {
         this.time = time;
     }
-    
-    
 
 }

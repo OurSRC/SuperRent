@@ -10,14 +10,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author Jingchuan Chen
+ * This class provide functionalities to read "config.xml".
  */
 public class XmlParser {
 
@@ -31,6 +25,14 @@ public class XmlParser {
         doc.getDocumentElement().normalize();
     }
 
+    /**
+     * Get {@code str} field in xml.
+     * @param str The name of the field.
+     * @return The value of the matching field.
+     * @throws SAXException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     */
     public static String get(String str) throws SAXException, IOException, ParserConfigurationException {
             if (doc == null) {
                 setDoc();

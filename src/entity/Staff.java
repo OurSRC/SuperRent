@@ -2,7 +2,6 @@ package entity;
 
 /**
  * Entity class for staff table.
- * @author Elitward
  */
 public class Staff extends User {
 
@@ -209,9 +208,8 @@ public class Staff extends User {
             this.staffType = TYPE.valueOf(staffType);
         }
     }
-    
-    public String getStaffType(String staffType)
-    {
+
+    public String getStaffType(String staffType) {
         return this.staffType.toString();
     }
 

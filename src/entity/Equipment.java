@@ -10,7 +10,6 @@ import java.util.Objects;
 
 /**
  * Entity class for equipment table.
- * @author Jingchuan Chen
  */
 public class Equipment {
 
@@ -84,8 +83,8 @@ public class Equipment {
     public void setStatus(STATUS status) {
         this.status = status;
     }
-    
-        /**
+
+    /**
      * @param status the status to set
      */
     public void setStatus(String status) {

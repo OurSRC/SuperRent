@@ -4,7 +4,6 @@ import java.util.Date;
 
 /**
  * Entity class for Customer table
- * @author Elitward
  */
 public class Customer extends User {
 
@@ -21,16 +20,16 @@ public class Customer extends User {
     private int point;				//for club member only
     private Date membershipExpiry;              //for club member only
 
-    public Customer(){
+    public Customer() {
     }
-    
-    public Customer(String username, String password, String phone, String address, 
-            String fistName, String middleName, String lastName, String email, 
+
+    public Customer(String username, String password, String phone, String address,
+            String fistName, String middleName, String lastName, String email,
             String driverLicenseNumber, boolean isClubMember, int point, Date membershipExpiry) {
         super.setUsername(username);
         super.setPassword(password);
         super.setType(TYPE.CUSTOMER);
-        
+
         this.phone = phone;
         this.address = address;
         this.firstName = fistName;

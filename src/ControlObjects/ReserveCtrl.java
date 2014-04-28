@@ -14,8 +14,20 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * <p>
+ * ReserveCtrl is one of the components in Logical Control, which connect UI and
+ * database by manipulating Reservation object.
+ * </p>
+ */
 public class ReserveCtrl {
 
+    /**
+     * Create a reservation record in database.
+     *
+     * @param reserve The reservation object to be added to database.
+     * @return Added {@link Reservation} object.
+     */
     static public Reservation createReserve(Reservation reserve) {
         if (reserve == null) {
             return null;
@@ -72,6 +84,13 @@ public class ReserveCtrl {
         return reserve;
     }
 
+    /**
+     * Generate reservation number for a {@link Reservation} object.
+     *
+     * @param reserve The {@link Reservation} object to generate a reservation
+     * number.
+     * @return The generated reservation number on success, false otherwise.
+     */
     static public String createReservationNumber(Reservation reserve) {
         int id = reserve.getReservationInfoId();
         if (id > 0) {
@@ -95,6 +114,13 @@ public class ReserveCtrl {
         }
     }
 
+    /**
+     * Update reservation with in database by {@link reservation} object with
+     * same reservationInfoId.
+     *
+     * @param reserve The {@link reservation} object with information to update.
+     * @return True on success, false otherwise.
+     */
     static public boolean updateReserve(Reservation reserve) {	//modify & cancel
         ArrayList<ReserveEquipment> eqList = null;
         ArrayList<BuyInsurance> inList = null;
@@ -143,6 +169,12 @@ public class ReserveCtrl {
         return true;
     }
 
+    /**
+     * Update database and mark a reservation as canceled.
+     *
+     * @param reserve The {@link Reservation} to cancel.
+     * @return True on success, false otherwise.
+     */
     static public boolean cancelReserve(Reservation reserve) {
         ReservationInfoDao resInfoDAO = new ReservationInfoDao();
         ReservationInfo resInfo = reserve.getReserveInfo();
@@ -157,6 +189,13 @@ public class ReserveCtrl {
         return suc;
     }
 
+    /**
+     * Search {@link Reservation} by reservationInfoId.
+     *
+     * @param reserveId The reservationInfoId to search.
+     * @return {@link Reservation} with matching reservationInfoId, or null if
+     * not found.
+     */
     static public Reservation getReserve(int reserveId) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ReservationInfo reserveInfo = new ReservationInfo();
@@ -195,6 +234,13 @@ public class ReserveCtrl {
         }
     }
 
+    /**
+     * Search {@link Reservation} by ReservationNumber.
+     *
+     * @param ReservationNumber The ReservationNumber to search with.
+     * @return {@link Reservation} with matching {@code ReservationNumber}, or
+     * null if not found.
+     */
     static public Reservation getReserve(String ReservationNumber) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ReservationInfo reserveInfo = null;
@@ -207,11 +253,17 @@ public class ReserveCtrl {
         return getCompleteReservation(reserveInfo);
     }
 
-    static public ArrayList<Reservation> searchReserve(Reservation reserve) {
-        ArrayList<Reservation> sample = new ArrayList<>();
-        return sample;
-    }
-
+    /*
+     static public ArrayList<Reservation> searchReserve(Reservation reserve) {
+     ArrayList<Reservation> sample = new ArrayList<>();
+     return sample;
+     }
+     */
+    /**
+     * Search not rented {@link Reservation}.
+     *
+     * @return ArrayList of not rented {@link Reservation} objects.
+     */
     static public ArrayList<ReservationInfo> getUnrentedReservations() {
         ReservationInfo reservationInfo = new ReservationInfo();
         reservationInfo.setReservationStatus(ReservationInfo.STATUS.PENDING);
@@ -226,6 +278,16 @@ public class ReserveCtrl {
         return list;
     }
 
+    /**
+     * Search {@link Reservation} objects whose pickup time and return time
+     * overlap with given time period for a branch.
+     *
+     * @param pickUpTime Pickup time of given time period.
+     * @param returnTime Return time of given time period.
+     * @param branch {@link Branch} to search with.
+     * @return ArrayList of all {@link Reservation} that overlap with given time
+     * period.
+     */
     static public ArrayList<Reservation> searchReserveBetween(Date pickUpTime, Date returnTime, Branch branch) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
@@ -242,6 +304,16 @@ public class ReserveCtrl {
         return list;
     }
 
+    /**
+     * Search {@link Reservation} that made between a time period which are
+     * available to be rent.
+     *
+     * @param FromReserveTime Start of time period to search.
+     * @param ToReserveTime End of time period to search.
+     * @param branch {@link Branch} to search.
+     * @param ReservationNo ReservationNo to search with.
+     * @return ArrayList of matching {@link Reservation} objects.
+     */
     static public ArrayList<Reservation> searchReserveForRent(Date FromReserveTime, Date ToReserveTime, Branch branch, String ReservationNo) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
@@ -257,18 +329,21 @@ public class ReserveCtrl {
         }
         return list;
     }
-    
+
     /**
      * Search pending reservation to be pick up for a branch in a day.
-     * @param branchId Id for branch to search. Search all branches if this equals to 0.
-     * @param day The date that pending reservations should be pick up. Search all pending if is null.
+     *
+     * @param branchId Id for branch to search. Search all branches if this
+     * equals to 0.
+     * @param day The date that pending reservations should be pick up. Search
+     * all pending if is null.
      * @return ArrayList of reservation satisfy requirement.
      */
     static public ArrayList<Reservation> searchPendingReservation(int branchId, Date day) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
         ArrayList<ReservationInfo> resInfList = null;
-        
+
         try {
             resInfList = resInfDAO.searchPending(branchId, day);
         } catch (DaoException ex) {
@@ -280,19 +355,27 @@ public class ReserveCtrl {
         }
         return list;
     }
-    
+
+    /**
+     * Search {@link Reservation} that has been rented and should be returned on
+     * specific day for a branch.
+     *
+     * @param branchId BranchId of the {@link Branch} to search.
+     * @param day The date to search with.
+     * @return ArrayList of matching {@link Reservation} objects.
+     */
     static public ArrayList<Reservation> searchNotReturnedReservation(int branchId, Date day) {
         ReservationInfoDao resInfDAO = new ReservationInfoDao();
         ArrayList<Reservation> list = new ArrayList<>();
         ArrayList<ReservationInfo> resInfList = null;
-        
+
         try {
             resInfList = resInfDAO.searchNotReturned(branchId, day);
         } catch (DaoException ex) {
             Logger.getLogger(ReserveCtrl.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMsg.setLastError(ErrorMsg.ERROR_SQL_ERROR);
         }
-        
+
         for (ReservationInfo a : resInfList) {
             list.add(getCompleteReservation(a));
         }

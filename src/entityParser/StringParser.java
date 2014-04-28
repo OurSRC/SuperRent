@@ -9,8 +9,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 
 /**
- * This class represent a mapping between String field in entity object and Varchar field in database.
- * @author Jingchuan Chen
+ * This class represent a mapping between String field in entity object and
+ * Varchar field in database.
  */
 public class StringParser extends AttributeParser {
 
@@ -19,19 +19,19 @@ public class StringParser extends AttributeParser {
     }
 
     @Override
-    protected void setAttrEx(ResultSet rs, Object entity) throws NoSuchMethodException, IllegalAccessException, 
+    protected void setAttrEx(ResultSet rs, Object entity) throws NoSuchMethodException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException {
-        
-            // call rs.getString("column name");
-            String args = (String) rs.getClass().getMethod("getString", String.class).invoke(rs, getColName());
-            // call entity.setAttr(args);
-            entity.getClass().getMethod("set" + getAttrName(), String.class).invoke(entity, args);
+
+        // call rs.getString("column name");
+        String args = (String) rs.getClass().getMethod("getString", String.class).invoke(rs, getColName());
+        // call entity.setAttr(args);
+        entity.getClass().getMethod("set" + getAttrName(), String.class).invoke(entity, args);
     }
-    
+
     @Override
-    protected String wrapAttrEx(Object entity) throws NoSuchMethodException, IllegalAccessException, 
+    protected String wrapAttrEx(Object entity) throws NoSuchMethodException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException {
-        
+
         String obj = (String) entity.getClass().getMethod("get" + getAttrName()).invoke(entity);
         if (obj == null) {
             return "NULL";
@@ -40,7 +40,7 @@ public class StringParser extends AttributeParser {
     }
 
     @Override
-    protected void setAttrByValEx(Object entity, Object value) throws NoSuchMethodException, 
+    protected void setAttrByValEx(Object entity, Object value) throws NoSuchMethodException,
             IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

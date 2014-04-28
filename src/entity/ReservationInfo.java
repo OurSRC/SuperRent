@@ -10,7 +10,6 @@ import java.util.Date;
 
 /**
  * Entity class for reservation_info table.
- * @author Jingchuan Chen
  */
 public class ReservationInfo {
 
@@ -49,8 +48,8 @@ public class ReservationInfo {
     public ReservationInfo() {
     }
 
-    public ReservationInfo(int branchId, Date reserveTime, Date pickupTime, Date returnTime, 
-            int customerId, int staffId, String vehicleClass, int vHourlyRate, 
+    public ReservationInfo(int branchId, Date reserveTime, Date pickupTime, Date returnTime,
+            int customerId, int staffId, String vehicleClass, int vHourlyRate,
             int vDailyRate, int vWeeklyRate, String reservationNo, STATUS reservationStatus) {
         this.branchId = branchId;
         this.reserveTime = reserveTime;
@@ -72,12 +71,14 @@ public class ReservationInfo {
     public int getReservationInfoId() {
         return reservationInfoId;
     }
-    
-    public boolean checkReservationInfoIdValid(){
-        if(reservationInfoId>0)     //the ID is auto increased from 1
+
+    public boolean checkReservationInfoIdValid() {
+        if (reservationInfoId > 0) //the ID is auto increased from 1
+        {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -254,7 +255,7 @@ public class ReservationInfo {
     public void setReservationStatus(STATUS reservationStatus) {
         this.reservationStatus = reservationStatus;
     }
-    
+
     public void setReservationStatus(String reservationStatus) {
         if (reservationStatus == null) {
             this.reservationStatus = null;
@@ -262,9 +263,8 @@ public class ReservationInfo {
             this.reservationStatus = STATUS.valueOf(reservationStatus);
         }
     }
-    
-    public String getPrice()
-    {
+
+    public String getPrice() {
         return Price.toText(this.estimatePrice);
     }
 

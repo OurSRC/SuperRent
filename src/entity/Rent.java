@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 import java.util.Date;
 
 /**
  * Entity class for rent table.
- * @author Xi Yang
  */
 public class Rent {
+
     private int contractNo;
     private int reservationInfold;
     private int vehicleNo;
@@ -147,5 +146,4 @@ public class Rent {
         this.time = time;
     }
 
-  
 }

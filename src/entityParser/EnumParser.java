@@ -12,8 +12,6 @@ import java.sql.ResultSet;
  * Convey Enum type between attribute and database string. IMPORTANT: To parse
  * an enum object, the entity class's setter method of enum attribute must
  * support String argument. Enum class also need to have
- *
- * @author Jingchuan Chen
  */
 public class EnumParser extends AttributeParser {
 

@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entityParser;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 
-
+/**
+ * This class represent a mapping between int field in entity object and int
+ * field in database. The int field is null in database if its value is 0.
+ */
 public class IntNullableParser extends AttributeParser {
 
     @Override
@@ -23,11 +25,11 @@ public class IntNullableParser extends AttributeParser {
     @Override
     protected String wrapAttrEx(Object entity) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         int obj = (int) entity.getClass().getMethod("get" + getAttrName()).invoke(entity);
-        
+
         if (obj == 0) {
             return "null";
         }
-                
+
         return Integer.toString(obj);
     }
 
@@ -39,5 +41,5 @@ public class IntNullableParser extends AttributeParser {
     public IntNullableParser(String colName, String attrName) {
         super(colName, attrName);
     }
-    
+
 }

@@ -10,8 +10,6 @@ import java.util.Date;
 
 /**
  * Entity class for creditcard table.
- *
- * @author Jingchuan Chen
  */
 public class CreditCard {
 
@@ -69,8 +67,8 @@ public class CreditCard {
     public void setCardHolderName(String cardHolderName) {
         this.cardHolderName = cardHolderName;
     }
-    
-    static private String key="SuperRent";
+
+    static private String key = "SuperRent";
 
     public void encrypt() {
         creditCardNo = SecurityCtrl.encrypt(key, creditCardNo);

@@ -21,12 +21,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Elitward
+ * <p>
+ * This class provide data access and control function of Payment entity for UI.
+ * </p>
  */
 public class PaymentCtrl {
 
-    private final static int PAYMENT_TO_POINT_RATE = 5*100;     //cent
+    private final static int PAYMENT_TO_POINT_RATE = 5 * 100;     //cent
 
     private Payment pay;
     private ArrayList<PaymentItem> payItem;
@@ -60,12 +61,26 @@ public class PaymentCtrl {
         customerId = CustomerID;
     }
 
+    /**
+     * Setup credit card to use
+     *
+     * @param CreditCardNum
+     * @param Expire
+     * @param HolderName
+     * @return True if credit card has been added. False otherwise.
+     */
     public boolean useCreditCard(String CreditCardNum, Date Expire, String HolderName) {
         boolean suc = CreditCardCtrl.create(CreditCardNum, Expire, HolderName);
         pay.setCreditCardNo(CreditCardNum);
         return suc;
     }
 
+    /**
+     * Proceed payment, add record to database.
+     *
+     * @return Payment object inserted into database on success. Or null if not
+     * success.
+     */
     public Payment proceed() {
         boolean suc = false;
         int moneyTotal = 0;
@@ -103,7 +118,7 @@ public class PaymentCtrl {
                     CustomerCtrl cc = new CustomerCtrl();
                     Customer c = cc.getCustomerById(customerId);
                     cc.extendMembership(c, item.getQuantity(), new Date());
-                }else{
+                } else {
                     moneyForPoint += item.getQuantity() * item.getPrice();
                 }
             }
@@ -118,9 +133,9 @@ public class PaymentCtrl {
                     cc.updateCustomer(c);
                 }
             }
-            
+
             //write the record into return_table
-            if(returnInfo!=null){
+            if (returnInfo != null) {
                 returnInfo.setPaymentId(pay.getPaymentId());
                 ReturnCtrl.createReturn(returnInfo);
             }
@@ -130,13 +145,21 @@ public class PaymentCtrl {
         }
     }
 
+    /**
+     * Add payment information to return record.
+     *
+     * @param returnInfo The corresponding return record.
+     * @param usePoint True if customer want to use point to pay.
+     * @param roadStar True if customer is a roadStar.
+     * @return True on success, false otherwise.
+     */
     public boolean addForReturn(Return returnInfo, boolean usePoint, boolean roadStar) {
         this.returnInfo = returnInfo;
         FinanceCtrl finCtrl = new FinanceCtrl();
         ArrayList<PaymentItem> list = finCtrl.calulateReturnCost(returnInfo, usePoint, roadStar);
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
-                pay.setAmount(pay.getAmount() + list.get(i).getPrice()*list.get(i).getQuantity());
+                pay.setAmount(pay.getAmount() + list.get(i).getPrice() * list.get(i).getQuantity());
                 addPayItem(list);
             }
             return true;
@@ -145,11 +168,18 @@ public class PaymentCtrl {
         }
     }
 
+    /**
+     * Add pay member ship item.
+     *
+     * @param year Number of years to pay.
+     * @param branchId The branch to handle this operation.
+     * @return True on success, false otherwise.
+     */
     public boolean addForMembershipFee(int year, int branchId) {
         FinanceCtrl finCtrl = new FinanceCtrl();
         PaymentItem item = finCtrl.calulateMembershipCost(year, branchId);
         if (item != null) {
-            pay.setAmount(pay.getAmount() + item.getPrice()*item.getQuantity());
+            pay.setAmount(pay.getAmount() + item.getPrice() * item.getQuantity());
             addPayItem(item);
             return true;
         } else {
@@ -189,7 +219,7 @@ public class PaymentCtrl {
     public void addPayItem(PaymentItem payItem) {
         this.payItem.add(payItem);
     }
-    
+
     public void addPayItem(ArrayList<PaymentItem> payItem) {
         this.payItem.addAll(payItem);
     }
