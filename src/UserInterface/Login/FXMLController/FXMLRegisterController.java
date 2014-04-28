@@ -143,7 +143,6 @@ public class FXMLRegisterController {
     
     private boolean ValidatePhoneNumber()
     {
-        
         return ValidateFields.ValidatePhoneNumber(PhoneNumberTF.getText().trim());
     }
     
@@ -151,7 +150,7 @@ public class FXMLRegisterController {
     {
         
         if (ValidateFields.CheckLettersOnly(FirstNameTF.getText()) && ValidateFields.CheckLettersOnly(LastNameTF.getText()) &&
-                ValidateFields.CheckLettersOnly(EmailTF.getText()) && !EmailTF.getText().equals("") &&
+                 !EmailTF.getText().equals("") &&
                 !AddressTF.getText().equals("") && !UsernameTF.getText().equals("") && 
                 !PasswordPF.getText().equals(""))
         {
