@@ -118,7 +118,7 @@ public class UserDao {
     
     /**
      * Delete a user record from database.
-     * @param value The {@link User} with primary key to delete.
+     * @param value The user with primary key to delete.
      * @return True on success, false otherwise.
      * @throws DaoException
      */
