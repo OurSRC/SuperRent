@@ -25,6 +25,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import entity.BuyInsurance;
 import entity.ReserveEquipment;
 import entity.Vehicle;
+import entity.VehicleClass;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
@@ -85,6 +86,33 @@ public class PdfGen {
             Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void genAvailableVehicleClassReport(ArrayList<VehicleClass> vcList, String title) {
+        try {
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
+            document.open();
+
+            document.newPage();
+            addMetaData(document, title);
+            addTitle(document, title);
+
+            PdfPTable table = new PdfPTable(5);
+            addTableContent(table, "Vehicle Type", "Vehicle Class",
+                    "Hourly Rate", "Daily Rate", "Weekly Rate");
+            for (VehicleClass vc : vcList) {
+                addTableContent(table, vc.getVehicleType().toString(), vc.getClassName(),
+                        vc.getHourlyPrice(), vc.getDailyPrice(), vc.getWeeklyPrice());
+            }
+            document.add(table);
+
+            document.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     public static void genVehicleForSaleReport(ArrayList<Vehicle> vlist, String title) {
         try {
