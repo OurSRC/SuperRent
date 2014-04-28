@@ -41,10 +41,10 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
     }
     
     /**
-     * Make a {@link ReseveEquipment} object.
-     * @param reservationInfoId Id of {@link ReservationInfo} correspond with this object.
+     * Make a {@link ReserveEquipment} object.
+     * @param reservationInfoId Id of ReservationInfo correspond with this object.
      * @param equipmentType Type of the equipment to reserve.
-     * @return Generated {@link ReserveEquopment} object.
+     * @return Generated ReserveEquipment object.
      * @throws DaoException
      */
     public ReserveEquipment makeReserveEquipment( int reservationInfoId,String equipmentType ) throws DaoException{
