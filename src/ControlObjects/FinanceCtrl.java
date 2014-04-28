@@ -9,7 +9,6 @@ import entity.ReservationInfo;
 import entity.ReserveEquipment;
 import entity.Return;
 import entity.VehicleClass;
-import finance.Payment;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -246,14 +245,6 @@ public class FinanceCtrl {
         Branch branch = branchCtrl.getBranchById(branchId);
         return new PaymentItem(0, PaymentItem.ITEMTYPE.MEMBERSHIP, "Membership", branch.getClubMemberFeeRate(), years);
         //return list;
-    }
-
-    /**
-     * The method create payment
-     * @return null
-     */
-    public Payment createPayment() {
-        return null;
     }
 
     private class TimeGroup {
