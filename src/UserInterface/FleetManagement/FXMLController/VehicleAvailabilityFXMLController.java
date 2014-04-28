@@ -71,7 +71,6 @@ public class VehicleAvailabilityFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ReservationNavigator.newReserve = null;
     }
 
     @FXML
