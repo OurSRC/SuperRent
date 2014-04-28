@@ -91,8 +91,8 @@ public class VehicleAvailabilityFXMLController implements Initializable {
             System.out.println("PickUpDate : " + PickUpDate.toString());
             System.out.println("ReturnDate : " + ReturnDate.toString());
             System.out.println("Return Type : ArrayList<VehicleClass>");
-
-            if (ReturnDate.after(PickUpDate) && PickUpDate.compareTo(ReturnDate) != 0) {
+            Date currentDate = new Date();
+            if (ReturnDate.after(PickUpDate) && PickUpDate.compareTo(ReturnDate) != 0 && PickUpDate.after(currentDate)) {
                 VehicleClass.TYPE type;
                 if (vehicleType.compareTo("Car") == 0) {
                     type = VehicleClass.TYPE.Car;
