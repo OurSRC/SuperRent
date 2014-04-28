@@ -54,7 +54,7 @@ public class ModifyRatesFXMLController implements Initializable {
         DailyRateTF.setText(VehicleClassNavigator.vehicleClass.getDailyPrice());
         VehicleClassTF.setText(VehicleClassNavigator.vehicleClass.getClassName());
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-
+        System.out.println(VehicleClassNavigator.vehicleClass.getClassName());
         vehicleType = newVehicleCtrl.getVehicleTypeByClassName(VehicleClassNavigator.vehicleClass.getClassName()).toString();
         VehicleTypeTF.setText(vehicleType);
 

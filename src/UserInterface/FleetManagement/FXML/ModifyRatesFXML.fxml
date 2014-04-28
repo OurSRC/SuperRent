@@ -32,7 +32,7 @@
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <TextField fx:id="HourlyRateTF" layoutX="131.0" layoutY="216.0" prefHeight="25.0" prefWidth="149.0" /><TextField editable="false" layoutX="442.0" layoutY="55.0" /><TextField fx:id="VehicleClassTF" editable="false" layoutX="131.0" layoutY="55.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+    <TextField fx:id="HourlyRateTF" layoutX="131.0" layoutY="216.0" prefHeight="25.0" prefWidth="149.0" /><TextField fx:id="VehicleTypeTF" editable="false" layoutX="442.0" layoutY="55.0" /><TextField fx:id="VehicleClassTF" editable="false" layoutX="131.0" layoutY="55.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
 <children>
 <Label layoutX="14.0" layoutY="8.0" text="Modify Rates" textFill="WHITE">
 <font>

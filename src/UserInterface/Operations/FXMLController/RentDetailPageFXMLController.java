@@ -185,7 +185,7 @@ public class RentDetailPageFXMLController implements Initializable {
 
     @FXML
     private void ValidateButtonAction(ActionEvent event) throws ParseException {
-        if (!CreditCardNumberTF.getText().equals("") && !CardHolderNameTF.getText().equals("") && !ExpiryDateMonth.getText().equals("") && !ExpiryDateYear.getText().equals("")) {
+        if (!CreditCardNumberTF.getText().equals("") && !CardHolderNameTF.getText().equals("") && !ExpiryDateMonth.getText().equals("") && !ExpiryDateYear.getText().equals("") && CardTypeCB.valueProperty().isNotNull().getValue()) {
             Date currentDate = new Date();
             if (ValidateFields.CheckIntegerNumbersOnly(ExpiryDateMonth.getText()) && ValidateFields.CheckIntegerNumbersOnly(ExpiryDateYear.getText()) && Integer.parseInt(ExpiryDateYear.getText()) >= ((new Date()).getYear() + 1900) && Integer.parseInt(ExpiryDateMonth.getText()) <= 12) {
                 Date ExpiryDate = DateClass.getDateObjectFromString(ExpiryDateYear.getText() + "/" + ExpiryDateMonth.getText() + "/01");
