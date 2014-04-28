@@ -35,10 +35,22 @@ public class VehicleClassDao extends AbstractDao<VehicleClass> {
         return new VehicleClass();
     }
     
+    /**
+     * This method find a {@link VehicleClass} by name with given {@code name}
+     * @param name
+     * @return
+     * @throws DaoException
+     */
     public VehicleClass findByName(String name) throws DaoException {
         return findOne("ClassName=" + SqlBuilder.wrapStr(name));
     }
     
+    /**
+     * This method find a {@link VehicleClass} with given {@code type}
+     * @param type
+     * @return array list of vehicle class
+     * @throws DaoException
+     */
     public ArrayList<VehicleClass> findByClass(VehicleClass.TYPE type) throws DaoException {
         return find("Type=" + SqlBuilder.wrapInt(type.getValue()));
     }
