@@ -82,6 +82,7 @@ public class PaymentCtrl {
      * success.
      */
     public Payment proceed() {
+        System.out.println("Calling Proceed Here");
         boolean suc = false;
         int moneyTotal = 0;
         int moneyForPoint = 0;

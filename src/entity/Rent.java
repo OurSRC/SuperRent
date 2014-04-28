@@ -145,5 +145,5 @@ public class Rent {
     public void setTime(Date time) {
         this.time = time;
     }
-
+    
 }

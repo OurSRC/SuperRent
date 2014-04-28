@@ -79,7 +79,7 @@ public class ReturnMainPageFXMLController implements Initializable {
      */
     @FXML
     public void SearchRentButtonAction(ActionEvent event) {
-
+        RentalPane.setVisible(false);
         RentCtrl newRentCtrl = new RentCtrl();
         searchRent = newRentCtrl.getRentByContractNumber(Integer.parseInt(RentalAgreementTF.getText()));
 
@@ -101,7 +101,7 @@ public class ReturnMainPageFXMLController implements Initializable {
 
                 ReservationNumberTF.setText(rentReservation.getReservationNo());
                 VehiclePlateTF.setText(rentedVehicle.getPlateNo());
-                RentStartDate.setText(searchRent.getTime().toString());
+                RentStartDate.setText(searchRent.getTime().toLocaleString());
                 CustomerPhoneTF.setText(rentCustomer.getPhone());
                 VehicleModelTF.setText(rentedVehicle.getMode());
 
