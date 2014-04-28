@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ *<p>This is the Constructor of Branch Controller</p>
  * @author Elitward
  */
 public class BranchCtrl {
@@ -22,8 +22,8 @@ public class BranchCtrl {
     private static final Branch defaultBranch = new Branch("Default Branch", "911", "nowhere", 130, 18, 1000);
     
     /**
-     *
-     * @return
+     *Get the default branch, if there is no Main Branch found in database, a dummy default branch will be returned.
+     * @return The branch information.
      */
     public static Branch getDefaultBranch(){
         BranchDao bDAO = new BranchDao();
@@ -41,9 +41,9 @@ public class BranchCtrl {
     }
     
     /**
-     *
-     * @param id
-     * @return
+     *Get the complete Branch information as an object by specify a branch ID.
+     * @param id The specified branch ID
+     * @return The complete Branch information as an object.
      */
     public Branch getBranchById(int id){
         if( id==0 ) {
