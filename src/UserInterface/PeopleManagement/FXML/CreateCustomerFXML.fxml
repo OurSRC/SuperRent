@@ -22,5 +22,5 @@
 </font>
 </Label><Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false" onAction="#AbortButtonAction" prefHeight="25.0" prefWidth="101.0" text="Abort" /><Button layoutX="299.0" layoutY="6.0" mnemonicParsing="false" onAction="#CreateCustomerButtonAction" prefHeight="25.0" prefWidth="101.0" text="Create" />
 </children>
-</Pane>
+</Pane><Label layoutX="65.0" layoutY="62.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#ff0202" /><Label layoutX="89.0" layoutY="93.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#ff0202" /><Label layoutX="87.0" layoutY="123.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#ff0202" /><Label layoutX="104.0" layoutY="154.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#ff0202" /><Label layoutX="60.0" layoutY="187.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#ff0202" /><Label layoutX="73.0" layoutY="222.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#ff0202" /><Label layoutX="89.0" layoutY="257.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#ff0202" />
 </children></AnchorPane>
