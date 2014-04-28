@@ -46,7 +46,7 @@ public class VehicleClassDao extends AbstractDao<VehicleClass> {
     }
     
     /**
-     * This method find a {@link VehicleClass} with given {@code type}
+     * This method find a {@link VehicleClass} by class with given {@code type}
      * @param type
      * @return array list of vehicle class
      * @throws DaoException
