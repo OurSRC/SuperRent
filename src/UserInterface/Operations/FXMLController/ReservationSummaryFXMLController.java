@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
+import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -111,7 +112,7 @@ public class ReservationSummaryFXMLController implements Initializable {
         } else {
             String resservationNumber = newReserveCtrl.createReservationNumber(newReservation);
             System.out.println(newReservation.getReservationNo());
-
+            PdfGen.genReservationConfirmation(newReservation,resservationNumber);
             DialogFX dialog = new DialogFX(Type.QUESTION);
             dialog.setTitleText("Success");
             dialog.setMessage("Reservation Successfully Created. Reservation # : " + newReservation.getReservationNo());

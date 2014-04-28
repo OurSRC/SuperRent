@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ViewTransactionsFXMLController">
-  <children>
+<AnchorPane id="AnchorPane" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ViewTransactionsFXMLController">
+  <children><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
     <Label layoutX="21.0" layoutY="14.0" text="">
       <font>
         <Font size="14.0" fx:id="x1" />
       </font>
     </Label>
-    <TableView fx:id="TransactionsTable" layoutX="24.0" layoutY="89.0" prefHeight="310.0" prefWidth="627.0">
+    <TableView fx:id="TransactionsTable" layoutX="1.0" layoutY="89.0" prefHeight="310.0" prefWidth="627.0">
       <columns>
         <TableColumn fx:id="PaymentID" maxWidth="5000.0" minWidth="10.0" prefWidth="89.0" resizable="false" text="Payment ID #" />
         <TableColumn fx:id="ContractID" maxWidth="5000.0" minWidth="10.0" prefWidth="97.0" resizable="false" text="Contract #" />
@@ -23,12 +23,27 @@
         <TableColumn fx:id="CustomerID" maxWidth="5000.0" minWidth="10.0" prefWidth="87.0" text="Customer ID" />
       </columns>
     </TableView>
-    <Label font="$x1" layoutX="28.0" layoutY="16.0" text="Transactions Summary" />
-    <Button fx:id="PrintPDFButton" layoutX="588.0" layoutY="411.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
-    <Label fx:id="DateLabel" layoutX="29.0" layoutY="56.0" text="Date" />
-    <Label fx:id="ToLabel" layoutX="80.0" layoutY="55.0" text="To" />
-    <Label fx:id="FromLabel" layoutX="266.0" layoutY="56.0" text="From" />
-    <Button fx:id="SearchButton" layoutX="455.0" layoutY="53.0" mnemonicParsing="false" onAction="#ViewTransactionsAction" text="Search" />
-    <CheckBox fx:id="EmailCHB" layoutX="529.0" layoutY="413.0" mnemonicParsing="false" text="Email" /><DatePicker fx:id="FromDateDP" layoutX="299.0" layoutY="53.0" prefHeight="25.0" prefWidth="149.0" /><DatePicker fx:id="ToDateDP" layoutX="102.0" layoutY="52.0" prefHeight="25.0" prefWidth="149.0" />
+    <Button fx:id="PrintPDFButton" disable="true" layoutX="567.0" layoutY="422.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
+    <Label fx:id="DateLabel" layoutX="29.0" layoutY="55.0" text="Date">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label fx:id="ToLabel" layoutX="80.0" layoutY="55.0" text="To">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label fx:id="FromLabel" layoutX="266.0" layoutY="55.0" text="From">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Button fx:id="SearchButton" layoutX="455.0" layoutY="55.0" mnemonicParsing="false" onAction="#ViewTransactionsAction" text="Search" /><DatePicker fx:id="FromDateDP" layoutX="299.0" layoutY="55.0" prefHeight="25.0" prefWidth="149.0" /><DatePicker fx:id="ToDateDP" layoutX="102.0" layoutY="55.0" prefHeight="25.0" prefWidth="149.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+<children>
+<Label layoutX="14.0" layoutY="8.0" text="Transactions Summary" textFill="WHITE">
+<font>
+<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+</font>
+</Label>
+</children>
+</Pane>
   </children>
 </AnchorPane>

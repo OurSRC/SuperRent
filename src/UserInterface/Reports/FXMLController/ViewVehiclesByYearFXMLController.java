@@ -140,7 +140,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
        VehiclesListTable.setItems(slist);
         System.out.println("I am here and it is working");
         
-               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("vehicleNo"));
+               VehicleNoColumn.setCellValueFactory(new PropertyValueFactory("plateNo"));
                VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("className"));
                VehicleModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
                YearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));

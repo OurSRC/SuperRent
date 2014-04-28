@@ -4,47 +4,71 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReturnInformationPageFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReturnInformationPageFXMLController">
 <children>
-    <Button alignment="CENTER" layoutX="517.0" layoutY="400.0" mnemonicParsing="false" onAction="#PaymentButtonAction" prefHeight="25.0" prefWidth="133.0" text="Proceed to Payment" />
-    <Label layoutX="38.0" layoutY="144.0" text="Damaged" />
-    <Label layoutX="37.0" layoutY="112.0" text="Fuel Status" />
-    <RadioButton fx:id="FuelFull" layoutX="166.0" layoutY="112.0" mnemonicParsing="false" onAction="#FullFuelRadioAction" selected="true" text="Full">
+    <Label layoutX="13.0" layoutY="175.0" text="Damaged">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <Label layoutX="13.0" layoutY="135.0" text="Fuel Status">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+    <RadioButton fx:id="FuelFull" layoutX="166.0" layoutY="135.0" mnemonicParsing="false" onAction="#FullFuelRadioAction" selected="true" text="Full">
 <toggleGroup>
 <ToggleGroup fx:id="FuelTG" />
 </toggleGroup>
 </RadioButton>
-<RadioButton fx:id="FuelNotFull" layoutX="223.0" layoutY="112.0" mnemonicParsing="false" onAction="#NotFullFuelRadioAction" text="Not Full" toggleGroup="$FuelTG" />
-<RadioButton fx:id="DamagedYes" layoutX="166.0" layoutY="146.0" mnemonicParsing="false" onAction="#DamagedRadioAction" text="Yes">
+<RadioButton fx:id="FuelNotFull" layoutX="223.0" layoutY="135.0" mnemonicParsing="false" onAction="#NotFullFuelRadioAction" text="Not Full" toggleGroup="$FuelTG" />
+<RadioButton fx:id="DamagedYes" layoutX="166.0" layoutY="175.0" mnemonicParsing="false" onAction="#DamagedRadioAction" text="Yes">
 <toggleGroup>
 <ToggleGroup fx:id="DamagedTG" />
 </toggleGroup>
 </RadioButton>
-<RadioButton fx:id="DamagedNo" layoutX="225.0" layoutY="146.0" mnemonicParsing="false" onAction="#NoDamagedRadioAction" selected="true" text="No" toggleGroup="$DamagedTG" />
-<TextField fx:id="MissingFuelTF" layoutX="317.0" layoutY="108.0" prefHeight="25.0" prefWidth="122.0" promptText="Missing Fuel" />
-<TextField fx:id="DamagedTF" layoutX="317.0" layoutY="141.0" prefHeight="25.0" prefWidth="122.0" promptText="Damage Charges" /><Label layoutX="37.0" layoutY="179.0" text="Road Star" /><RadioButton fx:id="RoadStarYes" layoutX="165.0" layoutY="179.0" mnemonicParsing="false" onAction="#RoadStarYesCBAction" text="Yes">
+<RadioButton fx:id="DamagedNo" layoutX="225.0" layoutY="175.0" mnemonicParsing="false" onAction="#NoDamagedRadioAction" selected="true" text="No" toggleGroup="$DamagedTG" />
+<TextField fx:id="MissingFuelTF" layoutX="317.0" layoutY="135.0" prefHeight="25.0" prefWidth="122.0" promptText="Missing Fuel" />
+<TextField fx:id="DamagedTF" layoutX="317.0" layoutY="175.0" prefHeight="25.0" prefWidth="122.0" promptText="Damage Charges" /><Label layoutX="13.0" layoutY="215.0" text="Road Star">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><RadioButton fx:id="RoadStarYes" layoutX="165.0" layoutY="215.0" mnemonicParsing="false" onAction="#RoadStarYesCBAction" text="Yes">
 <toggleGroup>
 <ToggleGroup fx:id="RoadStarTG" />
 </toggleGroup>
 </RadioButton>
-<RadioButton fx:id="RoadStarNo" layoutX="224.0" layoutY="179.0" mnemonicParsing="false" onAction="#RoadStarNoCBAction" selected="true" text="No" toggleGroup="$RoadStarTG" />
-<Label layoutX="37.0" layoutY="292.0" text="Odometer Reading" />
-<TextField fx:id="OdometerReadingTF" layoutX="161.0" layoutY="288.0" prefHeight="25.0" prefWidth="101.0" />
-<Label layoutX="272.0" layoutY="292.0" text="kms" />
-<Label fx:id="RedeemPointsLabel" disable="true" layoutX="38.0" layoutY="253.0" text="Redeem Points" />
-<RadioButton fx:id="RedeemPointsYesRB" disable="true" layoutX="166.0" layoutY="253.0" mnemonicParsing="false" onAction="#RedeemPointsYesRBAction" selected="true" text="Yes">
+<RadioButton fx:id="RoadStarNo" layoutX="224.0" layoutY="215.0" mnemonicParsing="false" onAction="#RoadStarNoCBAction" selected="true" text="No" toggleGroup="$RoadStarTG" />
+<Label layoutX="13.0" layoutY="335.0" text="Odometer Reading">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+<TextField fx:id="OdometerReadingTF" layoutX="161.0" layoutY="335.0" prefHeight="25.0" prefWidth="101.0" />
+<Label layoutX="272.0" layoutY="335.0" text="kms" />
+<Label fx:id="RedeemPointsLabel" disable="true" layoutX="13.0" layoutY="295.0" text="Redeem Points">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+<RadioButton fx:id="RedeemPointsYesRB" disable="true" layoutX="166.0" layoutY="295.0" mnemonicParsing="false" onAction="#RedeemPointsYesRBAction" selected="true" text="Yes">
 <toggleGroup>
 <ToggleGroup fx:id="RedeemPointsTG" />
 </toggleGroup>
 </RadioButton>
-<RadioButton fx:id="RedeemPointsNoRB" disable="true" layoutX="226.0" layoutY="253.0" mnemonicParsing="false" onAction="#RedeemPointsNoRB" text="No" toggleGroup="$RedeemPointsTG" />
-<TextField fx:id="RedeemPointsTF" disable="true" editable="false" layoutX="165.0" layoutY="211.0" prefHeight="25.0" prefWidth="122.0" promptText="Non Member" />
-<TextField fx:id="ReturnDateTF" layoutX="162.0" layoutY="30.0" prefHeight="25.0" prefWidth="122.0" />
-<Label layoutX="38.0048828125" layoutY="33.5" text="Return Date" />
-<Label fx:id="AvailablePointsLable" disable="true" layoutX="37.0048828125" layoutY="215.0" text="Available Points" />
-<Label layoutX="38.009765625" layoutY="333.5" text="Payment Mode" />
-<ComboBox fx:id="PaymentModeCB" layoutX="162.0" layoutY="330.0" prefHeight="25.0" prefWidth="133.0" visibleRowCount="2">
+<RadioButton fx:id="RedeemPointsNoRB" disable="true" layoutX="226.0" layoutY="295.0" mnemonicParsing="false" onAction="#RedeemPointsNoRB" text="No" toggleGroup="$RedeemPointsTG" />
+<TextField fx:id="RedeemPointsTF" disable="true" editable="false" layoutX="162.0" layoutY="251.0" prefHeight="25.0" prefWidth="122.0" promptText="Non Member" />
+<TextField fx:id="ReturnDateTF" layoutX="162.0" layoutY="55.0" prefHeight="25.0" prefWidth="122.0" />
+<Label layoutX="13.0" layoutY="55.0" text="Return Date">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+<Label fx:id="AvailablePointsLable" disable="true" layoutX="13.0" layoutY="255.0" text="Available Points">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+<Label layoutX="13.0" layoutY="375.0" text="Payment Mode">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+<ComboBox fx:id="PaymentModeCB" layoutX="162.0" layoutY="375.0" prefHeight="25.0" prefWidth="133.0" visibleRowCount="2">
     <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="Cash" />
@@ -52,7 +76,18 @@
             </FXCollections>
           </items>
         </ComboBox>
-<Label layoutX="36.0" layoutY="71.0" text="Contract #" />
-<TextField fx:id="ContractNumberTF" layoutX="162.0" layoutY="67.0" prefHeight="25.0" prefWidth="122.0" />
+<Label layoutX="13.0" layoutY="95.0" text="Contract #">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+<TextField fx:id="ContractNumberTF" layoutX="162.0" layoutY="95.0" prefHeight="25.0" prefWidth="122.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" /><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+<children>
+    <Button alignment="CENTER" layoutX="499.0" layoutY="7.0" mnemonicParsing="false" onAction="#PaymentButtonAction" prefHeight="25.0" prefWidth="133.0" text="Proceed to Payment" />
+</children>
+</Pane><Label layoutX="14.0" layoutY="8.0" text="Return Summary" textFill="WHITE">
+<font>
+<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+</font>
+</Label>
 </children>
 </AnchorPane>

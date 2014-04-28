@@ -6,38 +6,54 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ViewDailyRentalsFXMLController">
-    <children>
+<AnchorPane id="AnchorPane" prefHeight="453.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ViewDailyRentalsFXMLController">
+    <children><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
         <Label layoutX="21.0" layoutY="14.0" text="">
             <font>
                 <Font size="14.0" fx:id="x1" />
             </font>
         </Label>
-        <Label font="$x1" layoutX="16.0" layoutY="16.0" text="Rentals " />
-        <Label id="DateLBL" fx:id="DateLabel" layoutX="354.0" layoutY="41.0" text="Date" />
-        <DatePicker fx:id="SearchDateDP" layoutX="394.0" layoutY="37.0" onAction="#SearchDateAction" />
-        <Button fx:id="SearchButton" layoutX="583.0" layoutY="72.0" mnemonicParsing="false" onAction="#SearchDailyRentalsAction" prefHeight="25.0" prefWidth="71.0" text="Search" />
-        <Button fx:id="PrintPDFButton" disable="true" layoutX="587.0" layoutY="417.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
-        <CheckBox fx:id="EmailCHB" disable="true" layoutX="525.0" layoutY="420.0" mnemonicParsing="false" text="Email" />
+        <Label id="DateLBL" fx:id="DateLabel" layoutX="244.0" layoutY="55.0" text="Date">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+        <DatePicker fx:id="SearchDateDP" layoutX="295.0" layoutY="55.0" onAction="#SearchDateAction" prefHeight="25.0" prefWidth="104.0" />
+        <Button fx:id="SearchButton" layoutX="550.0" layoutY="96.0" mnemonicParsing="false" onAction="#SearchDailyRentalsAction" prefHeight="25.0" prefWidth="71.0" text="Search">
+<font>
+<Font size="14.0" />
+</font></Button>
+        <Button fx:id="PrintPDFButton" disable="true" layoutX="567.0" layoutY="421.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
         <Label fx:id="RentalDateLabel" font="$x1" layoutX="69.0" layoutY="16.0" text=" " />
-        <TableView fx:id="DailyRentalsTable" layoutX="5.0" layoutY="111.0" prefHeight="275.0" prefWidth="681.0">
+        <TableView fx:id="DailyRentalsTable" layoutX="1.0" layoutY="141.0" prefHeight="216.0" prefWidth="630.0">
             <columns>
                 <TableColumn fx:id="PlateNumberColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="137.0" text="Plate Number" />
                 <TableColumn fx:id="VehicleClassColoumn" maxWidth="5000.0" minWidth="10.0" prefWidth="108.0" text="Vehicle Class" />
                 <TableColumn fx:id="ModelColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="167.0" text="Brand &amp; Model" />
                 <TableColumn fx:id="ManufacturingYearColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="144.0" text="Manufacturer Year " />
-                <TableColumn fx:id="BranchIDColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="124.0" text="BranchID" />
+                <TableColumn fx:id="BranchIDColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="79.0" text="BranchID" />
             </columns>
         </TableView>
-        <Label layoutX="94.5048828125" layoutY="41.0" text="Branch" />
-        <Label id="DateLBL" fx:id="TotalRentalsLabel" layoutX="437.0" layoutY="392.0" text="Total Numberof  Rentals:" />
-        <Label fx:id="totalRentalsForTheDay" layoutX="578.0048828125" layoutY="392.0" />
-        <ComboBox fx:id="BranchCB" layoutX="150.0" layoutY="39.0" onAction="#BranchCBAction" prefHeight="21.0" prefWidth="159.0">
+        <Label layoutX="13.0" layoutY="55.0" text="Branch">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+        <Label id="DateLBL" fx:id="TotalRentalsLabel" layoutX="437.0" layoutY="360.0" text="Total Numberof  Rentals:">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+        <Label fx:id="totalRentalsForTheDay" layoutX="578.0" layoutY="360.0" />
+        <ComboBox fx:id="BranchCB" layoutX="76.0" layoutY="55.0" onAction="#BranchCBAction" prefHeight="25.0" prefWidth="104.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Branch 1" />
                 </FXCollections>
             </items>
-        </ComboBox>
+        </ComboBox><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+<children><Label layoutX="14.0" layoutY="8.0" text="Daily Rentals" textFill="WHITE">
+<font>
+<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+</font>
+</Label>
+</children></Pane>
     </children>
 </AnchorPane>

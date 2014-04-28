@@ -3,32 +3,63 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReturnMainPageFXMLController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ReturnMainPageFXMLController">
   <children>
     <StackPane fx:id="ReturnInnerPane" layoutX="14.0" layoutY="14.0" prefHeight="435.0" prefWidth="662.0">
       <children>
-        <Pane prefHeight="423.0" prefWidth="662.0">
+        <Pane prefHeight="453.0" prefWidth="641.0">
           <children>
-            <Label layoutX="42.0" layoutY="26.0" text="Contract #" />
-            <TextField fx:id="RentalAgreementTF" layoutX="183.0" layoutY="26.0" prefHeight="25.0" prefWidth="138.0" />
-            <Button alignment="CENTER" layoutX="502.0" layoutY="26.0" mnemonicParsing="false" onAction="#SearchRentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Search Rent " />
-            <Separator layoutX="15.0" layoutY="69.0" prefWidth="633.0" />
-            <Pane fx:id="RentalPane" layoutX="15.0" layoutY="76.0" prefHeight="358.0" prefWidth="633.0">
-              <children>
-                <Label fx:id="CustomerNumberLabel" layoutX="342.0" layoutY="12.0" text="Customer Number" />
-                <TextField fx:id="CustomerPhoneTF" editable="false" layoutX="483.0" layoutY="8.0" prefHeight="25.0" prefWidth="138.0" />
-                <Label fx:id="VechicleTypeLabel" layoutX="342.0" layoutY="44.0" text="Vehicle Model" />
-                <Label fx:id="VehicleNumberLabel" layoutX="29.0" layoutY="44.0" text="Vechile Number" />
-                <Label fx:id="RentStartDateLabel" layoutX="29.0" layoutY="77.0" text="Rental Start Date" />
-                <TextField fx:id="VehicleModelTF" editable="false" layoutX="483.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField fx:id="VehiclePlateTF" editable="false" layoutX="169.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField fx:id="RentStartDate" editable="false" layoutX="170.0" layoutY="73.0" prefHeight="25.0" prefWidth="138.0" /><Button alignment="CENTER" layoutX="481.0" layoutY="307.0" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="138.0" text="Proceed to Return" /><TextField fx:id="ReservationNumberTF" layoutX="168.0" layoutY="8.0" prefHeight="25.0" prefWidth="138.0" /><Label layoutX="27.0048828125" layoutY="12.0" text="Reservation Number" /><ListView fx:id="AdditionalEquipmentList" layoutX="36.0" layoutY="147.0" prefHeight="107.0" prefWidth="274.0" /><ListView fx:id="InsuranceList" layoutX="342.0" layoutY="147.0" prefHeight="107.0" prefWidth="274.0" /><Label layoutX="36.0048828125" layoutY="123.5" text="Additional Equipment" /><Label layoutX="342.0048828125" layoutY="123.5" text="Insurance" />
+            <Label layoutY="55.0" text="Contract #">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+            <TextField fx:id="RentalAgreementTF" layoutX="153.0" layoutY="52.0" prefHeight="25.0" prefWidth="138.0" />
+            <Button alignment="CENTER" layoutX="460.0" layoutY="52.0" mnemonicParsing="false" onAction="#SearchRentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Search Rent " />
+            <Separator layoutX="-6.0" layoutY="92.0" prefWidth="633.0" />
+            <Pane fx:id="RentalPane" layoutX="-5.0" layoutY="76.0" prefHeight="357.0" prefWidth="633.0">
+              <children><Pane layoutX="-8.5" layoutY="324.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+<children><Button alignment="CENTER" layoutX="499.0" layoutY="7.0" mnemonicParsing="false" onAction="#NextButtonAction" prefHeight="25.0" prefWidth="138.0" text="Proceed to Return" />
+</children></Pane>
+                <Label fx:id="CustomerNumberLabel" layoutX="336.0" layoutY="44.0" text="Customer Number">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+                <TextField fx:id="CustomerPhoneTF" editable="false" layoutX="468.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
+                <Label fx:id="VechicleTypeLabel" layoutX="342.0" layoutY="85.0" text="Vehicle Model">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+                <Label fx:id="VehicleNumberLabel" layoutX="9.0" layoutY="85.0" text="Vechile Number">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+                <Label fx:id="RentStartDateLabel" layoutX="9.0" layoutY="125.0" text="Rental Start Date">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
+                <TextField fx:id="VehicleModelTF" editable="false" layoutX="468.0" layoutY="82.0" prefHeight="25.0" prefWidth="138.0" />
+                <TextField fx:id="VehiclePlateTF" editable="false" layoutX="158.0" layoutY="82.0" prefHeight="25.0" prefWidth="138.0" />
+                <TextField fx:id="RentStartDate" editable="false" layoutX="158.0" layoutY="122.0" prefHeight="25.0" prefWidth="138.0" /><TextField fx:id="ReservationNumberTF" layoutX="158.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" /><Label layoutX="9.0" layoutY="44.0" text="Reservation Number">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><ListView fx:id="AdditionalEquipmentList" layoutX="11.0" layoutY="194.0" prefHeight="107.0" prefWidth="274.0" /><ListView fx:id="InsuranceList" layoutX="342.0" layoutY="154.0" prefHeight="107.0" prefWidth="274.0" /><Label layoutX="9.0" layoutY="166.0" text="Additional Equipment">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label><Label layoutX="342.0048828125" layoutY="125.0" text="Insurance">
+<font>
+<Font name="ArnoPro-SmText" size="14.0" />
+</font></Label>
               </children>
             </Pane>
           </children>
         </Pane>
       </children>
-    </StackPane>
+    </StackPane><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" /><Label layoutX="14.0" layoutY="8.0" text="Return Vehicle" textFill="WHITE">
+<font>
+<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+</font>
+</Label>
   </children>
 </AnchorPane>
