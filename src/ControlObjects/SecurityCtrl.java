@@ -54,7 +54,7 @@ public class SecurityCtrl {
 
     /**
      *This method returns the digest string of a password (by adding original password and salt)
-     * @param text The specified text
+     * @param passwd The specified text
      * @return The digest string
      */
     static public String digestPassword(String passwd) {
