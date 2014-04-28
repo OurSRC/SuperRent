@@ -14,8 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *<p>This is the Constructor of Branch Controller</p>
- * @author Elitward
+ *<p>
+ * This is one of the components in Logical Control, get input from Database and output data to support User Interface
+ * </p>
  */
 public class BranchCtrl {
     
