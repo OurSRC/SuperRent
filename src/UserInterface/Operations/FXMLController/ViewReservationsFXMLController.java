@@ -9,6 +9,7 @@ import ControlObjects.BranchCtrl;
 import ControlObjects.Reservation;
 import ControlObjects.ReserveCtrl;
 import SystemOperations.DateClass;
+import SystemOperations.DialogFX;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -132,7 +133,10 @@ public class ViewReservationsFXMLController implements Initializable {
             //System.out.println(rrr.getReservationNumber());
             if (ReserveCtrl.cancelReserve(selectedReservation)) {
                 System.out.println("Reservation Successfully Cancelled");
-
+                DialogFX dialog = new DialogFX(DialogFX.Type.ERROR);
+                dialog.setTitleText("Cancel Success");
+                dialog.setMessage("Reservation# " + selectedReservation .getReservationNo() + " Successfully Cancelled");
+                dialog.showDialog();
                 ReservationTable.getItems().clear();
                 getList();
 
