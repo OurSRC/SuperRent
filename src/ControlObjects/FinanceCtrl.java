@@ -119,7 +119,7 @@ public class FinanceCtrl {
     }
 
     /**
-     * 
+     * This method calculates the estimated reservation cost with given {@code reserve}
      * @param reserve
      * @return cost of estimate reservation
      */
@@ -142,7 +142,7 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * This method calculates Return Cost find {@link PaymentItem} with given {@code returnInfo, usePoint, roadStar}
      * @param returnInfo
      * @param usePoint
      * @param roadStar
@@ -235,10 +235,10 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * This method find a {@link PaymentItem} with given {@code years, branchId}
      * @param years
-     * @param branchId
-     * @return
+     * @param branchId id of the branch
+     * @return Payment Item
      */
     public PaymentItem calulateMembershipCost(int years, int branchId) {
         //ArrayList<PaymentItem> list = new ArrayList<>();
@@ -249,8 +249,8 @@ public class FinanceCtrl {
     }
 
     /**
-     *
-     * @return
+     * The method create payment
+     * @return null
      */
     public Payment createPayment() {
         return null;
@@ -286,9 +286,9 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * This method calculates membership point for one day with given {@code reserve}
      * @param reserve
-     * @return
+     * @return point per day
      */
     static public int calculateMembershipPointForOneDay(Reservation reserve) {
         int perDayPoint;
@@ -308,9 +308,9 @@ public class FinanceCtrl {
     }
 
     /**
-     *
+     * This method calculates membership point for days with given {@code reserve}
      * @param reserve
-     * @return
+     * @return 
      */
     public int calculateMenbershipPointEnoughForDays(Reservation reserve) {
         TimeGroup tg = countTimes(reserve.getReturnTime(), reserve.getPickupTime());
