@@ -4,29 +4,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLRegisterController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLRegisterController">
   <children>
-    <Pane id="SignUpPane" prefHeight="342.0" prefWidth="534.0">
+    <Pane id="SignUpPane" prefHeight="461.0" prefWidth="641.0">
       <children>
-        <Label fx:id="MobileLabel" layoutX="273.0" layoutY="53.0" text="Phone Number" textFill="BLACK" />
-        <Label fx:id="AddressLabel" layoutX="24.0" layoutY="151.0" text="Address" textFill="BLACK" />
-        <Label fx:id="EmailLabel" layoutX="273.0" layoutY="86.0" text="Email " textFill="BLACK" />
-        <TextField id="Name" fx:id="FirstNameTF" layoutX="120.0" layoutY="49.0" prefHeight="25.0" prefWidth="137.0" />
-        <TextField fx:id="MiddleNameTF" layoutX="121.0" layoutY="82.0" prefWidth="134.0" />
-        <TextField fx:id="LastNameTF" layoutX="122.0" layoutY="116.0" prefWidth="134.0" />
-        <TextField id="MobileNumber" fx:id="PhoneNumberTF" layoutX="376.0" layoutY="47.0" prefHeight="25.0" prefWidth="137.0" />
-        <TextField id="Email" fx:id="EmailTF" layoutX="377.0" layoutY="82.0" prefHeight="25.0" prefWidth="137.0" />
-        <TextField fx:id="LicenseNoTF" layoutX="378.0" layoutY="116.0" prefWidth="134.0" />
-        <TextField id="Address" fx:id="AddressTF" layoutX="122.0" layoutY="151.0" prefHeight="25.0" prefWidth="257.0" />
-        <Label fx:id="NameLabel" layoutX="23.0" layoutY="52.0" text="First Name" textFill="BLACK" />
-        <Label layoutX="24.0" layoutY="189.0" text="Username" textFill="BLACK" />
-        <TextField id="Username" fx:id="UsernameTF" layoutX="123.0" layoutY="186.0" prefWidth="137.0" />
-        <PasswordField id="Password" fx:id="PasswordPF" layoutX="125.0" layoutY="219.0" prefWidth="137.0" />
-        <Label layoutX="25.0" layoutY="224.0" text="Password" textFill="BLACK" />
-        <Label layoutX="25.0" layoutY="258.0" text="Confirm Password" textFill="BLACK" />
-        <PasswordField id="ConfirmPassword" fx:id="ConfirmPasswordPF" layoutX="126.0" layoutY="253.0" prefWidth="137.0" />
-        <Button fx:id="submitButton" layoutX="415.0" layoutY="282.0" mnemonicParsing="false" onAction="#SubmitButtonAction" prefWidth="96.0" text="Submit" />
-        <Button fx:id="ResetButton" layoutX="310.0" layoutY="282.0" mnemonicParsing="false" onAction="#ResetCustomerFieldsAction" prefWidth="96.0" text="Reset Fields" /><Label layoutX="273.0" layoutY="121.0" text="License Number" textFill="BLACK" /><Label layoutX="23.0" layoutY="86.0" text="Middle Name" textFill="BLACK" /><Label layoutX="23.0" layoutY="120.0" text="Last Name" textFill="BLACK" />
+        <Label fx:id="MobileLabel" layoutX="347.0" layoutY="65.0" text="Phone Number" textFill="BLACK" />
+        <Label fx:id="AddressLabel" layoutX="28.0" layoutY="176.0" text="Address" textFill="BLACK" />
+        <Label fx:id="EmailLabel" layoutX="347.0" layoutY="103.0" text="Email " textFill="BLACK" />
+        <TextField id="Name" fx:id="FirstNameTF" layoutX="136.0" layoutY="60.0" prefHeight="25.0" prefWidth="137.0" />
+        <TextField fx:id="MiddleNameTF" layoutX="137.0" layoutY="98.0" prefWidth="134.0" />
+        <TextField fx:id="LastNameTF" layoutX="138.0" layoutY="136.0" prefWidth="134.0" />
+        <TextField id="MobileNumber" fx:id="PhoneNumberTF" layoutX="450.0" layoutY="59.0" prefHeight="25.0" prefWidth="137.0" />
+        <TextField id="Email" fx:id="EmailTF" layoutX="452.0" layoutY="98.0" prefHeight="25.0" prefWidth="137.0" />
+        <TextField fx:id="LicenseNoTF" layoutX="453.0" layoutY="137.0" prefWidth="134.0" />
+        <TextField id="Address" fx:id="AddressTF" layoutX="138.0" layoutY="176.0" prefHeight="25.0" prefWidth="201.0" />
+        <Label fx:id="NameLabel" layoutX="27.0" layoutY="63.0" text="First Name" textFill="BLACK" />
+        <Label layoutX="28.0" layoutY="217.0" text="Username" textFill="BLACK" />
+        <TextField id="Username" fx:id="UsernameTF" layoutX="139.0" layoutY="214.0" prefWidth="137.0" />
+        <PasswordField id="Password" fx:id="PasswordPF" layoutX="141.0" layoutY="251.0" prefWidth="137.0" />
+        <Label layoutX="29.0" layoutY="256.0" text="Password" textFill="BLACK" />
+        <Label layoutX="27.0" layoutY="296.0" text="Confirm Password" textFill="BLACK" />
+        <PasswordField id="ConfirmPassword" fx:id="ConfirmPasswordPF" layoutX="140.0" layoutY="291.0" prefWidth="137.0" />
+        <Button fx:id="submitButton" layoutX="495.0" layoutY="416.0" mnemonicParsing="false" onAction="#SubmitButtonAction" prefWidth="96.0" text="Submit" />
+        <Button fx:id="ResetButton" layoutX="370.0" layoutY="416.0" mnemonicParsing="false" onAction="#ResetCustomerFieldsAction" prefWidth="96.0" text="Reset Fields" /><Label layoutX="347.0" layoutY="142.0" text="License Number" textFill="BLACK" /><Label layoutX="27.0" layoutY="102.0" text="Middle Name" textFill="BLACK" /><Label layoutX="27.0" layoutY="140.0" text="Last Name" textFill="BLACK" />
       </children>
     </Pane>
   </children>
