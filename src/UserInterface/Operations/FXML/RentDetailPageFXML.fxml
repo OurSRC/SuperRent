@@ -47,10 +47,10 @@
 </font></Label><Label layoutX="13.0" layoutY="97.5" text="Vehicle Model">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><Label layoutX="13.0" layoutY="132.0" text="Manufaturer Date">
+</font></Label><Label layoutX="13.0" layoutY="132.0" text="Manufacture Date">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><Label layoutX="13.0" layoutY="165.5" text="Odomter Reading">
+</font></Label><Label layoutX="13.0" layoutY="165.5" text="Odometer Reading">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label><TextField fx:id="VehicleModelTF" editable="false" layoutX="150.0" layoutY="94.0" /><TextField fx:id="ManufatureDateTF" editable="false" layoutX="150.0" layoutY="127.0" /><TextField fx:id="OdometerReadingTF" layoutX="150.0" layoutY="162.0" /><Label layoutX="13.0" layoutY="368.5" text="Card Validated">
