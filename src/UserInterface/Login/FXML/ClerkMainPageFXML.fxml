@@ -2,16 +2,19 @@
 
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="858.0" style="-fx-background-color: #c0c0c0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLClerkMainPageController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="858.0" style="-fx-background-color: #c0c0c0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Login.FXMLController.FXMLClerkMainPageController">
   <children>
-    <ToolBar layoutX="0.0" layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="59.0" prefWidth="858.0">
+    <ToolBar layoutX="0.0" layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="69.0" prefWidth="858.0">
       <items>
         <Pane prefHeight="27.0" prefWidth="277.0">
-          <children>
-            <Label fx:id="UserNameLabel" layoutX="176.0" layoutY="16.0" prefHeight="18.0" prefWidth="79.0" text="UserName" />
-          </children>
+<children><ImageView fitHeight="49.0" fitWidth="242.0" layoutX="44.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../../../Images/logoforclerk.jpg" />
+</image></ImageView>
+</children>
         </Pane>
         <Button fx:id="HomeButton" alignment="CENTER" mnemonicParsing="false" onAction="#HomeButtonAction" prefHeight="40.0" prefWidth="79.0" styleClass="." text="Home" />
         <Button fx:id="OperationsButton" alignment="CENTER" mnemonicParsing="false" onAction="#OperationsButtonAction" prefHeight="40.0" prefWidth="79.0" text="Operations" />
@@ -26,7 +29,7 @@
         </MenuButton>
       </items>
     </ToolBar>
-    <StackPane fx:id="ClerkMainStackPane" layoutY="59.0" prefHeight="478.0" prefWidth="858.0">
+    <StackPane fx:id="ClerkMainStackPane" layoutY="69.0" prefHeight="478.0" prefWidth="858.0">
       <children>
         <Pane id="ClerkMainStackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="858.0" style="-fx-background-color: #FFFFFF;" />
       </children>
