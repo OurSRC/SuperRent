@@ -41,6 +41,8 @@ import java.util.logging.Logger;
 public class PdfGen {
 
     private static DateFormat df = new SimpleDateFormat("yyyy");
+    
+    private static DateFormat tf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 
     private static Font TitleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -102,6 +104,33 @@ public class PdfGen {
                 addTableContent(table, Integer.toString(v.getVehicleNo()), v.getClassName(),
                         v.getMode(), df.format(v.getManufactureDate()),
                         Integer.toString(v.getOdometer()), v.getSellingPrice());
+            }
+            document.add(table);
+
+            document.close();
+        } catch (Exception ex) {
+            Logger.getLogger(PdfGen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void genUnrentedReservation(ArrayList<Reservation> resList, String title) {
+        try {
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(title + ".pdf"));
+            document.open();
+
+            document.newPage();
+            addMetaData(document, title);
+            addTitle(document, title);
+
+            PdfPTable table = new PdfPTable(6);
+            addTableContent(table, "Reservation #", "Vehicle Class",
+                    "Pickup Date", "Return Date", "Customer Name");
+            for (Reservation res : resList) {
+                addTableContent(table, res.getReservationNo(), res.getVehicleClass(),
+                        tf.format(res.getPickupTime()), tf.format(res.getReturnTime()),
+                        res.getCustomerName());
             }
             document.add(table);
 
