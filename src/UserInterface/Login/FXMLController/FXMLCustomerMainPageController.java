@@ -70,6 +70,7 @@ public class FXMLCustomerMainPageController implements Initializable {
 
     public void setStackPane(Node node) {
         CustomerMainStackPane.getChildren().setAll(node);
+        
     }
 
     public void ClearStackPane() {
