@@ -128,7 +128,7 @@ public class AddVehicleFXMLController implements Initializable {
             } else {
                 DialogFX dialog = new DialogFX(Type.ERROR);
                 dialog.setTitleText("Error");
-                dialog.setMessage(" Pleas enter the Mandatory Fields");
+                dialog.setMessage(" Please enter the Mandatory Fields");
                 dialog.showDialog();
             }
         } catch (IllegalArgumentException e) {
