@@ -127,7 +127,7 @@ public class EquipmentCtrl {
 
     /**
      *This method get Vehicle Class By Equipment Type
-     * @param EquipmentType The specified {@cide EquipmentType }
+     * @param EquipmentType The specified EquipmentType 
      * @return an array list string {@link String} of matching {@code EquipmentType}or null
      */
     public ArrayList<String> getVehicleClassByEquipmentType(String EquipmentType) {
