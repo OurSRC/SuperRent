@@ -80,7 +80,7 @@ public class PaymentPageFXMLController implements Initializable {
             ExpiryDateYearTF.setDisable(false);
             creditCardPay = true;
         }
-        
+        CreditCardNumberTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(16));
         ExpiryDateYearTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(4));
         ExpiryDateMonthTF.addEventFilter(KeyEvent.KEY_TYPED, maxLength(2));
         
@@ -91,8 +91,12 @@ public class PaymentPageFXMLController implements Initializable {
     private void ConfirmPaymentButtonAction(ActionEvent event) throws ParseException {
         if (ValidateMandatory()) {
             if (creditCardPay) {
-                ReturnNavigator.newPaymentCtrl = new PaymentCtrl(ReturnNavigator.returnCustomer.getCustomerId(), "Rent Payment", CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
+                //ReturnNavigator.newPaymentCtrl = new PaymentCtrl(ReturnNavigator.returnCustomer.getCustomerId(), "Rent Payment", CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
+                ReturnNavigator.newPaymentCtrl.useCreditCard(CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
                 Payment p = ReturnNavigator.newPaymentCtrl.proceed();
+            }else
+            {
+                 Payment p = ReturnNavigator.newPaymentCtrl.proceed();
             }
         } else {
             System.out.println("Please Enter all the Mandatory Fields");
