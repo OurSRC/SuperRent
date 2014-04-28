@@ -15,7 +15,7 @@
     <Button layoutX="502.0" layoutY="419.0" mnemonicParsing="false" onAction="#ConfirmButtonAction" prefWidth="105.0" text="Confirm" />
     <Button layoutX="13.0" layoutY="419.0" mnemonicParsing="false" onAction="#BackToSearchButtonAction" prefHeight="25.0" prefWidth="130.0" text="Back to Search" />
     <TextField fx:id="WeeklyRateTF" layoutX="131.0" layoutY="109.0" prefHeight="25.0" prefWidth="149.0" />
-    <Label layoutX="339.0" layoutY="55.0" text="Vehicle Type">
+    <Label layoutX="339.0" layoutY="56.0" text="Vehicle Type">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
