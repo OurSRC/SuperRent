@@ -1,5 +1,12 @@
-INSERT INTO `super_rent`.`reserve_equipment` VALUES (1, 'Child Safety Seat', 500, 2500);
-INSERT INTO `super_rent`.`reserve_equipment` VALUES (1, 'Towing Equipment', 700, 4000);
-INSERT INTO `super_rent`.`reserve_equipment` VALUES (2, 'Ski Rack', 200, 1000);
-INSERT INTO `super_rent`.`reserve_equipment` VALUES (3, 'Lift Gate', 300, 2000);
-INSERT INTO `super_rent`.`reserve_equipment` VALUES (8, 'Child Safety Seat', 100, 700);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (1, 'Child Safety Seat', 300, 1500);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (1, 'GPS', 200, 800);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (1, 'Towing Equipment', 200, 1000);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (2, 'GPS', 200, 800);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (2, 'Ski Rack', 300, 1500);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (3, 'Lift Gate', 200, 1000);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (4, 'Protective Window Film', 100, 400);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (5, 'GPS', 200, 800);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (6, 'GPS', 200, 800);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (7, 'Tire Chains', 240, 1000);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (8, 'Child Safety Seat', 300, 1500);
+INSERT INTO `super_rent`.`reserve_equipment` VALUES (8, 'Tire Chains', 240, 1000);
