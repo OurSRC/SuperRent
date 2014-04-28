@@ -26,6 +26,12 @@ public class UserDao {
     public void UserDao() {
     }
 
+    /**
+     * Find {@link User} by {@code username}.
+     * @param username Username to search with.
+     * @return Matching {@link User} object.
+     * @throws DaoException
+     */
     public User find(String username) throws DaoException {
         User user = new User();
         SqlBuilder qb = new SqlBuilder();
@@ -53,6 +59,12 @@ public class UserDao {
         return user;
     }
 
+    /**
+     * Update user record in database with {@code value} of {@link User}.
+     * @param value Object of {@link User} to update.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean update(User value) throws DaoException {
         String pswd = value.getPassword();  //encrypt password in database
         if(pswd!=null && pswd.length()>0)
@@ -76,6 +88,12 @@ public class UserDao {
         return true;
     }
 
+    /**
+     * Add a {@link User} object into database.
+     * @param value The {@link User} to add.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean add(User value) throws DaoException {
         String pswd = value.getPassword();  //encrypt password in database
         if(pswd!=null && pswd.length()>0)
@@ -97,7 +115,13 @@ public class UserDao {
 
         return true;
     }
-
+    
+    /**
+     * Delete a user record from database.
+     * @param value The {@link User} with primary key to delete.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean delete(String pk) throws DaoException {
         if (pk == null) {
             return true;

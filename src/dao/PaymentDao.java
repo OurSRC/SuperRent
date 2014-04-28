@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dao;
 
 import entityParser.*;
@@ -13,11 +12,11 @@ import dbconn.SqlBuilder;
 
 /**
  * <p>
- * This class provides basic access methods, for example, find
- * for payment entity.</p>
+ * This class provides basic access methods, for example, find for payment
+ * entity.</p>
  */
-public class PaymentDao extends AbstractDao<Payment>{
-    
+public class PaymentDao extends AbstractDao<Payment> {
+
     protected static final String tb_name = "payment";
 
     protected static final AttributeParser ap[] = {
@@ -32,7 +31,14 @@ public class PaymentDao extends AbstractDao<Payment>{
     protected static final int[] pkIndex = {0};
 
     protected static final boolean pkIsAutoGen = true;
-    
+
+    /**
+     * Find {@link Payment} by {@code paymentId}.
+     *
+     * @param paymentId The id of payment to search with.
+     * @return Matching {@link Payment} object.
+     * @throws DaoException
+     */
     public Payment findById(int paymentId) throws DaoException {
         String cond = "PaymentId=" + SqlBuilder.wrapInt(paymentId);
         return findOne(cond);
@@ -42,5 +48,5 @@ public class PaymentDao extends AbstractDao<Payment>{
     protected Payment getInstance() {
         return new Payment();
     }
-    
+
 }

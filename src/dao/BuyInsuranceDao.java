@@ -37,6 +37,13 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
         return new BuyInsurance();
     }
     
+    /**
+     * Make a {@link BuyInsurance} object with given insuranceName and reservationInfoId.
+     * @param reservationInfoId The Id of {@link ReservationInfo} to buy insurance.
+     * @param insuranceName The name of the {@link Insurance} to buy.
+     * @return the created {@link BuyInsurance} object.
+     * @throws DaoException
+     */
     public BuyInsurance makeBuyInsurance(int reservationInfoId, String insuranceName) throws DaoException {
         InsuranceDao dao = new InsuranceDao();
         Insurance insu = dao.findByName(insuranceName);
@@ -48,6 +55,12 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
         return ans;
     }
     
+    /**
+     * Find {@link BuyInsurance} records by reservationInfoId.
+     * @param reservationId
+     * @return ArrayList of matching {@link BuyInsurance} object.
+     * @throws DaoException
+     */
     public ArrayList<BuyInsurance> findBuyInsuranceByReservationId(int reservationId) throws DaoException{
         return find("ReservationInfoId = "+ SqlBuilder.wrapInt(reservationId));
     }

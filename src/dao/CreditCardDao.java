@@ -37,6 +37,12 @@ public class CreditCardDao extends AbstractDao<CreditCard> {
         return new CreditCard();
     }
     
+    /**
+     * Search {@link CreditCard} by {@code cardNo}.
+     * @param cardNo The string represents credit card number.
+     * @return  Matching {@link CreditCard} object.
+     * @throws DaoException
+     */
     public CreditCard findByCardNumber(String cardNo) throws DaoException {
         String cond = "CreditCardNo=" + SqlBuilder.wrapStr(cardNo);
         return findOne(cond);

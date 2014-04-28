@@ -40,6 +40,13 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
         return new ReserveEquipment();
     }
     
+    /**
+     * Make a {@link ReseveEquipment} object.
+     * @param reservationInfoId Id of {@link ReservationInfo} correspond with this object.
+     * @param equipmentType Type of the equipment to reserve.
+     * @return Generated {@link ReserveEquopment} object.
+     * @throws DaoException
+     */
     public ReserveEquipment makeReserveEquipment( int reservationInfoId,String equipmentType ) throws DaoException{
         EquipmentTypeDao dao = new EquipmentTypeDao();
         EquipmentType eqt = dao.findEquipmentTypeByTypename(equipmentType);
@@ -53,6 +60,12 @@ public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
         return ans;
     }
     
+    /**
+     * Find {@link ReserveEquipment} objects {@code reservationId}.
+     * @param reservationId The reservationInfoId to search with.
+     * @return ArrayList of matching {@link ReserveEquipment} objects.
+     * @throws DaoException
+     */
     public ArrayList<ReserveEquipment> findReserveEquipmentByReservationId(int reservationId) throws DaoException{
         String cond;
         cond = "ReservationInfoId = " + SqlBuilder.wrapInt(reservationId);

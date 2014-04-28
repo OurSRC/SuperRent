@@ -40,6 +40,13 @@ public class StaffDao {
         new IntParser("BranchID", "BranchId")
     };
 
+    /**
+     * Update staff record with given {@code value}.
+     *
+     * @param value The {@link Staff} object to update to database.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean update(Staff value) throws DaoException {
         Connection conn = null;
         UserDao udao = new UserDao();
@@ -103,6 +110,13 @@ public class StaffDao {
         return true;
     }
 
+    /**
+     * Add a {@link Staff} record into database.
+     *
+     * @param value The entity to add.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean add(Staff value) throws DaoException {
         Connection conn = null;
         UserDao udao = new UserDao();
@@ -150,10 +164,25 @@ public class StaffDao {
         return true;
     }
 
+    /**
+     * Delete a staff record from database.
+     *
+     * @param staff {@link Staff} object with staffId of the record to delete
+     * from database.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean delete(Staff staff) throws DaoException {
         return delete(staff.getStaffId());
     }
 
+    /**
+     * Delete a staff record from database.
+     *
+     * @param pk The primary key of staff to be deleted.
+     * @return True on success, false otherwise.
+     * @throws DaoException
+     */
     public boolean delete(Integer pk) throws DaoException {
         Connection conn = null;
 
@@ -285,6 +314,14 @@ public class StaffDao {
 
     }
 
+    /**
+     * Find {@link Staff} objects by instance of {@link Staff} which populated
+     * with fields to search.
+     *
+     * @param value {@link Staff} which populated with fields to search.
+     * @return ArrayList of matching {@link Staff} objects.
+     * @throws DaoException
+     */
     public ArrayList<Staff> findByInstance(Staff value) throws DaoException {
         SqlBuilder qb = new SqlBuilder();
 
@@ -299,11 +336,23 @@ public class StaffDao {
         return find(sql);
     }
 
+    /**
+     * Search {@link Staff} by {@code username}.
+     * @param username The username of staff to search with.
+     * @return Matching {@link Staff} object.
+     * @throws DaoException
+     */
     public Staff findByUsername(String username) throws DaoException {
         Staff staff = findOne("Username=" + SqlBuilder.wrapStr(username));
         return staff;
     }
 
+    /**
+     * Find {@link Staff} by staff id {@code pk}.
+     * @param pk The staff id to search with.
+     * @return Matching {@link Staff} object.
+     * @throws DaoException
+     */
     public Staff find(Integer pk) throws DaoException {
         Staff staff = findOne("StaffID=" + SqlBuilder.wrapInt(pk));
         return staff;
