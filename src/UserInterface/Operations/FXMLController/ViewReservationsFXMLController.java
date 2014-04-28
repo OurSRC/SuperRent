@@ -126,12 +126,16 @@ public class ViewReservationsFXMLController implements Initializable {
     }
 
     @FXML
-    public void CancelReservationButtonAction(ActionEvent event) {
+    public void CancelReservationButtonAction(ActionEvent event) throws ParseException {
         if (!ReservationTable.getSelectionModel().isEmpty()) {
             Reservation selectedReservation = (Reservation) ReservationTable.getSelectionModel().getSelectedItem();
             //System.out.println(rrr.getReservationNumber());
             if (ReserveCtrl.cancelReserve(selectedReservation)) {
                 System.out.println("Reservation Successfully Cancelled");
+
+                ReservationTable.getItems().clear();
+                getList();
+
             } else {
                 System.out.println("Reservation Not updated ");
             }
