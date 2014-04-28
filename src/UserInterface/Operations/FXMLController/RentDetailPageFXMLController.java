@@ -118,7 +118,7 @@ public class RentDetailPageFXMLController implements Initializable {
             }
 
         });
-        
+
         CardHolderNameTF.lengthProperty().addListener(new ChangeListener<Number>() {
 
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -167,10 +167,18 @@ public class RentDetailPageFXMLController implements Initializable {
                     RentNavigator.loadVista(RentNavigator.ReserveSearchPage);
                 } else {
                     System.out.println("Rent Creation Failed");
+                    DialogFX dialog = new DialogFX(Type.ERROR);
+                    dialog.setTitleText("Renting Failed");
+                    dialog.setMessage("Rent Creation has Failed . Please contact System Administrator");
+                    dialog.showDialog();
                 }
 
             } else {
                 System.out.println("Invalid Odometer Reading");
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Invalid Odometer Reading");
+                dialog.setMessage("Please Enter a Valid Odometer Reading");
+                dialog.showDialog();
             }
         }
     }
@@ -183,11 +191,24 @@ public class RentDetailPageFXMLController implements Initializable {
                 Date ExpiryDate = DateClass.getDateObjectFromString(ExpiryDateYear.getText() + "/" + ExpiryDateMonth.getText() + "/01");
                 CreditCardCtrl.create(CreditCardNumberTF.getText(), ExpiryDate, CardHolderNameTF.getText());
                 CardValidatedTF.setText("Yes");
+                DialogFX dialog = new DialogFX(Type.INFO);
+                dialog.setTitleText("Credit Card Validated");
+                dialog.setMessage("Credit Card Successfully Validated");
+                dialog.showDialog();
                 validateFlag = true;
             } else {
                 System.out.println("Please Enter a valid date");
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Invalid Date");
+                dialog.setMessage("Please Enter a valid Date");
+                dialog.showDialog();
+
             }
         } else {
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Invalid Details");
+            dialog.setMessage("Please Enter all Mandatory Fields");
+            dialog.showDialog();
             System.out.println("Please Enter all the details");
         }
     }
@@ -200,6 +221,10 @@ public class RentDetailPageFXMLController implements Initializable {
 
     private boolean ValidateMandatory() {
         if (!validateFlag) {
+            DialogFX dialog = new DialogFX(Type.ERROR);
+            dialog.setTitleText("Validate Card");
+            dialog.setMessage("Please Validate Credit Card to Complete Rent");
+            dialog.showDialog();
             System.out.println("Please Validate Credit Card");
             return false;
         } else {
@@ -208,6 +233,10 @@ public class RentDetailPageFXMLController implements Initializable {
                 return true;
 
             } else {
+                DialogFX dialog = new DialogFX(Type.ERROR);
+                dialog.setTitleText("Invalid Details");
+                dialog.setMessage("Please enter all the required fields");
+                dialog.showDialog();
                 System.out.println("Please enter all the required fields");
                 return false;
             }
