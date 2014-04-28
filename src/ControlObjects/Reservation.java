@@ -112,6 +112,11 @@ public final class Reservation {
     public Date getPickupTime() {
         return reserveInfo.getPickupTime();
     }
+    
+    public String getPickupTimeString()
+    {
+        return reserveInfo.getPickupTime().toLocaleString();
+    }
 
     public void setPickupTime(Date pickupTime) {
         this.reserveInfo.setPickupTime(pickupTime);
@@ -119,6 +124,11 @@ public final class Reservation {
 
     public Date getReturnTime() {
         return reserveInfo.getReturnTime();
+    }
+    
+    public String getReturnTimeString()
+    {
+        return reserveInfo.getReturnTime().toLocaleString();
     }
 
     public void setReturnTime(Date returnTime) {

@@ -23,8 +23,7 @@
         <Button fx:id="UserButton" alignment="CENTER" mnemonicParsing="false" onAction="#UserButtonAction" prefHeight="40.0" prefWidth="79.0" text="User" />
         <MenuButton fx:id="UserActionMenuButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" text="Actions">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#LogoutAction" text="Logout" />
-            <MenuItem mnemonicParsing="false" text="Action 2" />
+            <MenuItem mnemonicParsing="false" onAction="#LogoutAction" text="Logout               " />
           </items>
         </MenuButton>
       </items>

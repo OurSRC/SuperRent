@@ -71,6 +71,7 @@ public class FXMLLoginController {
                 Clerkstage.setScene(Clerkscene);
                 Clerkstage.setWidth(840);
                 Clerkstage.setHeight(570);
+                Clerkstage.setTitle(UserName.toUpperCase());
                 Clerkstage.resizableProperty().setValue(Boolean.FALSE);
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 Clerkstage.show();
