@@ -7,10 +7,13 @@
 package UserInterface.Reports.FXMLController;
 
 import ControlObjects.VehicleCtrl;
+import SystemOperations.DateClass;
 import dao.DaoException;
 import dao.VehicleDao;
 import entity.Vehicle;
 import entity.VehicleClass;
+import java.awt.Desktop;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,6 +36,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
+import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -84,6 +88,7 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
     private Font x1;
     @FXML
     private ToggleGroup VehicleTypeTG;
+    private ArrayList<Vehicle> vehicleArray;
 
     /** 
      * Initializes the controller class.
@@ -118,7 +123,7 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
         VehiclesforSaleTable.getItems().clear();
        
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
-        ArrayList<Vehicle> vehicleArray = newVehicleCtrl.searchVehicle(newVehicle); /* Get the Arraylist from the Control Object */
+        vehicleArray = newVehicleCtrl.searchVehicle(newVehicle); /* Get the Arraylist from the Control Object */
         // deleting the vehicles with the correct type according to radio button
         for(int i=0; i < vehicleArray.size(); i++) {
             VehicleClass vehicle = newVehicleCtrl.findVehicleClass(vehicleArray.get(i).getClassName());
@@ -128,6 +133,15 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
             }
             
         }
+        
+        //Enabling - Disabling the PrintPDF button
+        if (vehicleArray.size() > 0) {
+            PrintPDFButton.setDisable(false);
+        } else {
+            PrintPDFButton.setDisable(true);
+        }
+        
+        
        ObservableList<Vehicle> slist = FXCollections.observableArrayList(vehicleArray);
        VehiclesforSaleTable.setItems(slist);
         System.out.println("I am here and it is working");
@@ -142,6 +156,22 @@ public class ViewVehiclesforSaleFXMLController implements Initializable {
      
     @FXML
     private void PrintPDFAction(ActionEvent event) {
+        String title_vehicleClass;
+        if (vehicleClass == null) {
+            title_vehicleClass = "";
+        } else {
+            title_vehicleClass = ", " + vehicleClass;
+        }
+        String pdfName = "Vehicles for sale" + title_vehicleClass;
+        PdfGen.genVehicleForSaleReport(vehicleArray, pdfName);
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(pdfName + ".pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @FXML

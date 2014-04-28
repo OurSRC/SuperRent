@@ -7,11 +7,14 @@
 package UserInterface.Reports.FXMLController;
 
 import ControlObjects.VehicleCtrl;
+import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import dao.DaoException;
 import dao.VehicleDao;
 import entity.Vehicle;
 import entity.VehicleClass;
+import java.awt.Desktop;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
+import report.PdfGen;
 
 /**
  * FXML Controller class
@@ -81,7 +85,7 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
     private int Maxmanufactureyear ;
     private int currentyear ;
     private int ageinyears ;
-
+    ArrayList<Vehicle> vehicleArray;
 
     /**
      * Initializes the controller class.
@@ -134,8 +138,16 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
         VehiclesListTable.getItems().clear();
        
         VehicleDao newVehicleCtrl = new VehicleDao();
-        ArrayList<Vehicle> vehicleArray = newVehicleCtrl.findVehicleOlderThan(Maxmanufactureyear,vehicleClass,vehicleTypeEnum); /* Get the Arraylist from the Control Object */
+        vehicleArray = newVehicleCtrl.findVehicleOlderThan(Maxmanufactureyear,vehicleClass,vehicleTypeEnum); /* Get the Arraylist from the Control Object */
 
+        
+        //Enabling - Disabling the PrintPDF button
+        if (vehicleArray.size() > 0) {
+            PrintPDFButton.setDisable(false);
+        } else {
+            PrintPDFButton.setDisable(true);
+        }
+        
         ObservableList<Vehicle> slist = FXCollections.observableArrayList(vehicleArray);
        VehiclesListTable.setItems(slist);
         System.out.println("I am here and it is working");
@@ -170,6 +182,18 @@ public class ViewVehiclesByYearFXMLController implements Initializable {
 
     @FXML
     private void PrintPDFAction(ActionEvent event) {
+        
+        String pdfName = "List of Vehicles Older Than " + ageinyears;
+        PdfGen.genVehicleListReport(vehicleArray, pdfName);
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File(pdfName + ".pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        
     }
 
     @FXML
