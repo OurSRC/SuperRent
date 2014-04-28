@@ -9,9 +9,18 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * 
+ */
 public class CustomerCtrl {
     static final int MEMBERSHIP_INIT_POINT = 500;
 
+    /**
+     *
+     * @param customer
+     * @return
+     */
     public Customer createCustomer(Customer customer) {
         try {
             CustomerDao customerDAO = new CustomerDao();
@@ -34,6 +43,11 @@ public class CustomerCtrl {
         return null;
     }
 
+    /**
+     *
+     * @param customer
+     * @return
+     */
     public boolean updateCustomer(Customer customer) {
         CustomerDao customerDAO = new CustomerDao();
         boolean ans = false;
@@ -46,6 +60,11 @@ public class CustomerCtrl {
         return ans;
     }
 
+    /**
+     *
+     * @param customerId
+     * @return
+     */
     public boolean deleteCustomer(int customerId) {
         CustomerDao customerDAO = new CustomerDao();
         boolean ans = false;
@@ -58,6 +77,11 @@ public class CustomerCtrl {
         return ans;
     }
 
+    /**
+     *
+     * @param phone
+     * @return
+     */
     public Customer getCustomerByPhone(String phone) {
         CustomerDao customerDAO = new CustomerDao();
         Customer customer = null;
@@ -70,6 +94,11 @@ public class CustomerCtrl {
         return customer;
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public Customer getCustomerByUsername(String username) {
         CustomerDao customerDAO = new CustomerDao();
         Customer customer = null;
@@ -82,6 +111,11 @@ public class CustomerCtrl {
         return customer;
     }
 
+    /**
+     *
+     * @param customerId
+     * @return
+     */
     public Customer getCustomerById(int customerId) {
         CustomerDao customerDAO = new CustomerDao();
         Customer customer = null;
@@ -94,6 +128,11 @@ public class CustomerCtrl {
         return customer;
     }
 
+    /**
+     *
+     * @param customer
+     * @return
+     */
     public ArrayList<Customer> searchCustomer(Customer customer) {
         CustomerDao customerDAO = new CustomerDao();
         ArrayList<Customer> list = null;
@@ -106,6 +145,11 @@ public class CustomerCtrl {
         return list;
     }
 
+    /**
+     *
+     * @param customer
+     * @return
+     */
     public boolean checkMembershipActive(Customer customer) {
         if (customer.getIsClubMember()) {
             if (customer.getMembershipExpiry().compareTo(new Date()) > 0) {
@@ -115,6 +159,13 @@ public class CustomerCtrl {
         return false;
     }
 
+    /**
+     *
+     * @param customer
+     * @param years
+     * @param start
+     * @return
+     */
     public boolean extendMembership(Customer customer, int years, Date start) {
         if(customer!=null){
             if( checkMembershipActive(customer) ){
@@ -138,11 +189,22 @@ public class CustomerCtrl {
         }
     }
 
+    /**
+     *
+     * @param customer
+     * @param Years
+     * @return
+     */
     public boolean payClubMemberFee(Customer customer, int Years) {
         ErrorMsg.setLastError(ErrorMsg.ERROR_NOT_SUPPORT_YET);
         return false;
     }
     
+    /**
+     *
+     * @param customer
+     * @return
+     */
     public Customer checkCreateCustomer(Customer customer) {
         ArrayList<Customer>  list = searchCustomer(customer);
         if( list!=null && list.size()>0 ){

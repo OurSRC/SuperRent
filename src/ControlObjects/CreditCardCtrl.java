@@ -17,11 +17,18 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Elitward
+ * 
  */
 public class CreditCardCtrl {
     static final boolean ENABLE_ENCRYPT = false;
     
+    /**
+     *
+     * @param cardNum
+     * @param expire
+     * @param name
+     * @return
+     */
     static public boolean create( String cardNum, Date expire, String name){
         CreditCard creditcard = new CreditCard(cardNum, expire, name);
         return create(creditcard);
