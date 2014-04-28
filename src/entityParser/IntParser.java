@@ -28,12 +28,7 @@ public class IntParser extends AttributeParser {
     protected String wrapAttrEx(Object entity) throws NoSuchMethodException, IllegalAccessException, 
             IllegalArgumentException, InvocationTargetException {
         
-        int obj = (int) entity.getClass().getMethod("get" + getAttrName()).invoke(entity);
-        
-        if (obj == 0) {
-            return "null";
-        }
-                
+        int obj = (int) entity.getClass().getMethod("get" + getAttrName()).invoke(entity);           
         return Integer.toString(obj);
     }
 

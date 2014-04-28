@@ -11,6 +11,7 @@ import entity.ReservationInfo;
 import entityParser.AttributeParser;
 import entityParser.DatetimeParser;
 import entityParser.EnumParser;
+import entityParser.IntNullableParser;
 import entityParser.IntParser;
 import entityParser.StringParser;
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         new DatetimeParser("PickUpTime", "PickupTime"),
         new DatetimeParser("ReturnTime", "ReturnTime"),
         new IntParser("CustomerId", "CustomerId"),
-        new IntParser("StaffId", "StaffId"),
+        new IntNullableParser("StaffId", "StaffId"),
+        //new IntParser("StaffId", "StaffId"),
         new StringParser("VehicleClass", "VehicleClass"),
         new IntParser("VDailyRate", "vDailyRate"),
         new IntParser("VHourlyRate", "vHourlyRate"),
