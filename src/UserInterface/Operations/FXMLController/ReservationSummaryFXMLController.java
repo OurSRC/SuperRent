@@ -113,7 +113,7 @@ public class ReservationSummaryFXMLController implements Initializable {
             String resservationNumber = newReserveCtrl.createReservationNumber(newReservation);
             System.out.println(newReservation.getReservationNo());
             PdfGen.genReservationConfirmation(newReservation,resservationNumber);
-            DialogFX dialog = new DialogFX(Type.QUESTION);
+            DialogFX dialog = new DialogFX(Type.INFO);
             dialog.setTitleText("Success");
             dialog.setMessage("Reservation Successfully Created. Reservation # : " + newReservation.getReservationNo());
             dialog.showDialog();
