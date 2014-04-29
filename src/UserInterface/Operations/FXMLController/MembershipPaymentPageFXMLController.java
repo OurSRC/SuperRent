@@ -87,8 +87,6 @@ public class MembershipPaymentPageFXMLController implements Initializable {
         CustomerNameLabel.setText(customer.getFirstName() + " " + customer.getLastName());
         MembershipFeeLabel.setText(Price.toText(branch.getClubMemberFeeRate()));
 
-        paymentCtrl = new PaymentCtrl(customer.getCustomerId(), "SuperRent Club Membership Fee");
-
         CreditCardNumberLabel.setDisable(true);
         CreditCardNameLabel.setDisable(true);
         ExpiryDateLabel.setDisable(true);
@@ -137,7 +135,7 @@ public class MembershipPaymentPageFXMLController implements Initializable {
     private void NumberofYearsTFAction(ActionEvent event) {
         if (ValidateFields.CheckIntegerNumbersOnly(NumberOfYearsTF.getText())) {
             noYears = Integer.parseInt(NumberOfYearsTF.getText());
-
+            paymentCtrl = new PaymentCtrl(customer.getCustomerId(), "SuperRent Club Membership Fee");
             paymentCtrl.addForMembershipFee(noYears, branchId);
             int total = paymentCtrl.getTotalAmount();
             String totalAmountString = paymentCtrl.getTotalAmountText();
