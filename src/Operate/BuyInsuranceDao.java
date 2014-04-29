@@ -22,9 +22,9 @@ import java.util.ArrayList;
  */
 public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
     
-    protected static final String tb_name = "buy_insurance";
+    public static final String tb_name = "buy_insurance";
     
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new StringParser("InsuranceName", "InsuranceName"),
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new IntParser("HourlyRate", "HourlyRate"),
@@ -32,9 +32,9 @@ public class BuyInsuranceDao extends AbstractDao<BuyInsurance> {
         new IntParser("WeeklyRate", "WeeklyRate")
     };
     
-    protected static final int[] pkIndex = {0, 1};
+    public static final int[] pkIndex = {0, 1};
 
-    protected static final boolean pkIsAutoGen = false;
+    public static final boolean pkIsAutoGen = false;
 
     @Override
     protected BuyInsurance getInstance() {

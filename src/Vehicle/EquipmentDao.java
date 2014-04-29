@@ -22,9 +22,9 @@ import java.util.ArrayList;
  *  for equipment entity.</p>
  */
 public class EquipmentDao extends AbstractDao<Equipment>{
-    protected static final String tb_name = "equipment";
+    public static final String tb_name = "equipment";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("EquipmentId", "EquipmentId"),
         new StringParser("EquipmentType", "EquipmentType"),
         new EnumParser("Status", "Status"),
@@ -33,8 +33,8 @@ public class EquipmentDao extends AbstractDao<Equipment>{
         new StringParser("Model", "Mode"),
         new IntParser("BranchId", "BranchId"),
     };
-    protected static final int[] pkIndex = {0};
-    protected static final boolean pkIsAutoGen = true;
+    public static final int[] pkIndex = {0};
+    public static final boolean pkIsAutoGen = true;
     
     /**
      * This method find a {@link Equipment} with given {@code id}

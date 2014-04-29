@@ -20,15 +20,15 @@ import java.util.ArrayList;
  *  for supportEquipment entity.</p>
  */
 public class SupportEquipmentDao extends AbstractDao<SupportEquipment>{
-    protected static final String tb_name = "support";
-    protected static final AttributeParser ap[] = {
+    public static final String tb_name = "support";
+    public static final AttributeParser ap[] = {
         new StringParser("EquipmentType", "EquipmentType"),
         new StringParser("VehicleClassName", "VehicleClass"),
     };
     
-    protected static final int[] pkIndex = {0,1};
+    public static final int[] pkIndex = {0,1};
     
-    protected static final boolean pkIsAutoGen = false;
+    public static final boolean pkIsAutoGen = false;
    
     /**
      * This method find boolean value with given {@code vehicleClass, equipmentType}

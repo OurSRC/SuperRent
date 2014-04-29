@@ -21,9 +21,9 @@ import java.util.ArrayList;
  */
 public class PaymentItemDao extends AbstractDao<PaymentItem> {
 
-    protected static final String tb_name = "item";
+    public static final String tb_name = "item";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("ItemId", "ItemId"),
         new IntParser("PaymentId", "PaymentId"),
         new EnumParser("Type", "Type"),
@@ -32,9 +32,9 @@ public class PaymentItemDao extends AbstractDao<PaymentItem> {
         new IntParser("Quantity", "Quantity")
     };
 
-    protected static final int[] pkIndex = {0};
+    public static final int[] pkIndex = {0};
 
-    protected static final boolean pkIsAutoGen = true;
+    public static final boolean pkIsAutoGen = true;
 
     /**
      * Find {@link PaymentItem} objects by {@code PaymentId}.

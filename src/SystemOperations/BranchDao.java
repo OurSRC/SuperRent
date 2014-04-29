@@ -20,9 +20,9 @@ import Dao.EntityParser.StringParser;
  */
 public class BranchDao extends AbstractDao<Branch> {
 
-    protected static final String tb_name = "branch";
+    public static final String tb_name = "branch";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("BranchId", "BranchID"),
         new StringParser("BranchName", "BranchName"),
         new StringParser("BranchPhone", "BranchPhone"),
@@ -32,9 +32,9 @@ public class BranchDao extends AbstractDao<Branch> {
         new IntParser("ClubMemberFeeRate", "ClubMemberFeeRate")
     };
 
-    protected static final int[] pkIndex = {0};
+    public static final int[] pkIndex = {0};
 
-    protected static final boolean pkIsAutoGen = true;
+    public static final boolean pkIsAutoGen = true;
 
     @Override
     protected Branch getInstance() {

@@ -20,9 +20,9 @@ import java.util.ArrayList;
  * This class provides basic access methods for vehicle class entity</p>
  */
 public class VehicleClassDao extends AbstractDao<VehicleClass> {
-    protected static final String tb_name = "vehicle_class";
+    public static final String tb_name = "vehicle_class";
     
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new StringParser("ClassName", "ClassName"),
         new EnumParser("Type", "VehicleType"),
         new IntParser("HourlyRate", "HourlyRate"),
@@ -30,9 +30,9 @@ public class VehicleClassDao extends AbstractDao<VehicleClass> {
         new IntParser("WeeklyRate", "WeeklyRate"),
     };
     
-    protected static final int[] pkIndex = {0};
+    public static final int[] pkIndex = {0};
     
-    protected static final boolean pkIsAutoGen = false;
+    public static final boolean pkIsAutoGen = false;
     
     @Override
     protected VehicleClass getInstance() {

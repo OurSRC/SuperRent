@@ -21,9 +21,9 @@ import java.util.Date;
  */
 public class ReturnDao extends AbstractDao<Return> {
 
-    protected static final String tb_name = "return_record";
+    public static final String tb_name = "return_record";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("ContractNo", "ContractNo"),
         new DatetimeParser("ReturnTime", "ReturnTime"),
         new IntParser("FuelLevel", "FuelLevel"),
@@ -32,8 +32,8 @@ public class ReturnDao extends AbstractDao<Return> {
         new IntParser("PaymentId", "PaymentId"),
         new IntParser("DamageCost", "DamageCost")
     };
-    protected static final int[] pkIndex = {0};
-    protected static final boolean pkIsAutoGen = false;
+    public static final int[] pkIndex = {0};
+    public static final boolean pkIsAutoGen = false;
     private int branchID;
 
     @Override

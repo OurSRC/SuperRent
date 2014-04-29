@@ -26,9 +26,9 @@ import java.util.Date;
  */
 public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
 
-    protected static final String tb_name = "reservation_info";
+    public static final String tb_name = "reservation_info";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new IntParser("BranchId", "BranchId"),
         new DatetimeParser("ReserveTime", "ReserveTime"),
@@ -45,9 +45,9 @@ public class ReservationInfoDao extends AbstractDao<ReservationInfo> {
         new EnumParser("ReservationStatus", "ReservationStatus")
     };
 
-    protected static final int[] pkIndex = {0};
+    public static final int[] pkIndex = {0};
 
-    protected static final boolean pkIsAutoGen = true;
+    public static final boolean pkIsAutoGen = true;
 
     @Override
     protected ReservationInfo getInstance() {

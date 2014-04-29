@@ -29,9 +29,9 @@ import java.util.logging.Logger;
  */
 public class StaffDao {
 
-    private static final String tb_name = "staff";
+    public static final String tb_name = "staff";
 
-    private static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("StaffID", "StaffId"),
         new StringParser("FirstName", "FistName"),
         new StringParser("MiddleName", "MiddleName"),

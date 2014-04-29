@@ -23,9 +23,9 @@ import java.util.logging.Logger;
  */
 public class VehicleDao extends AbstractDao<Vehicle> {
 
-    protected static final String tb_name = "vehicle";
+    public static final String tb_name = "vehicle";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("VehicleNo", "VehicleNo"),
         new StringParser("PlateNo", "PlateNo"),
         new DateParser("ManufactureDate", "ManufactureDate"),
@@ -39,9 +39,9 @@ public class VehicleDao extends AbstractDao<Vehicle> {
         new EnumParser("SellStatus", "SellStatus")
     };
 
-    protected static final int[] pkIndex = {0};
+    public static final int[] pkIndex = {0};
 
-    protected static final boolean pkIsAutoGen = true;
+    public static final boolean pkIsAutoGen = true;
 
     @Override
     protected Vehicle getInstance() {

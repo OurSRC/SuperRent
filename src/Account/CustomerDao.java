@@ -31,9 +31,9 @@ import java.util.logging.Logger;
  */
 public class CustomerDao {
 
-    private static final String tb_name = "customer";
+    public static final String tb_name = "customer";
 
-    private static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("CustomerId", "CustomerId"),
         new StringParser("PhoneNo", "Phone"),
         new StringParser("FirstName", "FirstName"),

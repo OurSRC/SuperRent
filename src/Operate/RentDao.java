@@ -23,8 +23,8 @@ import java.util.Date;
  */
 public class RentDao extends AbstractDao<Rent> {
 
-    protected static final String tb_name = "rent";
-    protected static final AttributeParser ap[] = {
+    public static final String tb_name = "rent";
+    public static final AttributeParser ap[] = {
         new IntParser("ContractNo", "ContractNo"),
         new IntParser("ReservationInfoId", "ReservationInfold"),
         new IntParser("VehicleNo", "VehicleNo"),
@@ -35,8 +35,8 @@ public class RentDao extends AbstractDao<Rent> {
         new DatetimeParser("Time", "Time")
     };
 
-    protected static final int[] pkIndex = {0};
-    protected static final boolean pkIsAutoGen = true;
+    public static final int[] pkIndex = {0};
+    public static final boolean pkIsAutoGen = true;
 
     @Override
     protected Rent getInstance() {

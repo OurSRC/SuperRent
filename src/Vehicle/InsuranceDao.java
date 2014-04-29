@@ -21,18 +21,18 @@ import java.util.ArrayList;
  */
 public class InsuranceDao extends AbstractDao<Insurance> {
     
-    protected static final String tb_name = "insurance";
+    public static final String tb_name = "insurance";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new StringParser("Name", "Name"),
         new IntParser("HourlyRate", "HourlyRate"),
         new IntParser("DailyRate", "DailyRate"),
         new IntParser("WeeklyRate", "WeeklyRate"),
     };
 
-    protected static final int[] pkIndex = {0};
+    public static final int[] pkIndex = {0};
 
-    protected static final boolean pkIsAutoGen = false;
+    public static final boolean pkIsAutoGen = false;
     
 
     @Override

@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  */
 public class UserDao {
 
-    private static final String tb_name = "user";
+    public static final String tb_name = "user";
     
-    private static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new StringParser("Username", "Username"),
         new StringParser("Password", "Password"),
         new EnumParser("Type", "Type")

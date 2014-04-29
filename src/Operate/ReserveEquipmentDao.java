@@ -24,18 +24,18 @@ import java.util.Date;
  */
 public class ReserveEquipmentDao extends AbstractDao<ReserveEquipment> {
 
-    protected static final String tb_name = "reserve_equipment";
+    public static final String tb_name = "reserve_equipment";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("ReservationInfoId", "ReservationInfoId"),
         new StringParser("EquipmentType", "EquipmentType"),
         new IntParser("EHourlyRate", "EHourlyRate"),
         new IntParser("EDailyRate", "EDailyRate")
     };
 
-    protected static final int[] pkIndex = {0, 1};
+    public static final int[] pkIndex = {0, 1};
 
-    protected static final boolean pkIsAutoGen = false;
+    public static final boolean pkIsAutoGen = false;
 
     @Override
     protected ReserveEquipment getInstance() {

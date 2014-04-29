@@ -20,9 +20,9 @@ import Dao.SqlBuilder;
  */
 public class PaymentDao extends AbstractDao<Payment> {
 
-    protected static final String tb_name = "payment";
+    public static final String tb_name = "payment";
 
-    protected static final AttributeParser ap[] = {
+    public static final AttributeParser ap[] = {
         new IntParser("PaymentId", "PaymentId"),
         new IntParser("CustomerId", "CustomerId"),
         new StringParser("Title", "Title"),
@@ -31,9 +31,9 @@ public class PaymentDao extends AbstractDao<Payment> {
         new DatetimeParser("Time", "Time")
     };
 
-    protected static final int[] pkIndex = {0};
+    public static final int[] pkIndex = {0};
 
-    protected static final boolean pkIsAutoGen = true;
+    public static final boolean pkIsAutoGen = true;
 
     /**
      * Find {@link Payment} by {@code paymentId}.
