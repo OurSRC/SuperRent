@@ -1,12 +1,21 @@
 package UserInterface.Login.FXMLController;
 
-import Account.LoginCtrl;
+import Account.Customer;
 import Account.CustomerCtrl;
+import Account.LoginCtrl;
 import Account.User;
+import SystemOperations.ErrorMsg;
+import SystemOperations.ValidateFields;
+import UserInterface.Operations.FXMLController.ReservationNavigator;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,14 +24,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import SystemOperations.ErrorMsg;
-import UserInterface.Operations.FXMLController.ReservationNavigator;
-import Account.Customer;
 
 /**
  * Controller class for the first vista.
  */
-public class FXMLLoginController {
+public class FXMLLoginController implements Initializable{
 
     @FXML
     private TextField UserNameTF;
@@ -99,6 +105,31 @@ public class FXMLLoginController {
                 break;
         }
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        UserNameTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = UserNameTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9') && !ValidateFields.CheckLettersOnly(String.valueOf(ch))) {
+
+                        //if it's not number then just setText to previous one
+                        UserNameTF.setText(UserNameTF.getText().substring(0, UserNameTF.getText().length() - 1));
+                    }
+                }
+            }
+
+           
+
+        }); 
     }
     
     
