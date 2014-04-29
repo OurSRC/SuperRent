@@ -70,8 +70,12 @@ public class UserDao {
      */
     public boolean update(User value) throws DaoException {
         String pswd = value.getPassword();  //encrypt password in database
-        if(pswd!=null && pswd.length()>0)
+        if(pswd!=null && pswd.length()>0){
             value.setPassword(SecurityCtrl.digestPassword(pswd));
+        }else{
+            User readBack = find(value.getUsername());
+            value.setPassword(readBack.getPassword());  //do not encrypt again, for the password read from database has already been encrypted.
+        }
         
         SqlBuilder qb = new SqlBuilder();
         qb.update(tb_name);
