@@ -33,7 +33,7 @@ public class StartApplication extends Application {
         MainStage.show();
         MainStage.setResizable(false);
         MainStage.setWidth(630);
-        MainStage.setHeight(509);
+        MainStage.setHeight(540);
         MainStage.show();
     }
 

@@ -216,7 +216,6 @@ public class VehicleSearchFXMLController implements Initializable {
         VehicleClassColoumn.setCellValueFactory(new PropertyValueFactory("className"));
         ManufacturingYearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
         StatusColumn.setCellValueFactory(new PropertyValueFactory("status"));
-        SellingPriceColumn.setCellValueFactory(new PropertyValueFactory("sellingPrice"));
     }
 
     public boolean ValidateMandatoryFields() {

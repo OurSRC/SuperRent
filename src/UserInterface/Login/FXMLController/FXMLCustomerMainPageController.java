@@ -49,7 +49,15 @@ public class FXMLCustomerMainPageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            // TODO
+            ReservationNavigator.newReserve = new Reservation();
+            ReservationNavigator.reservation = true;
+            ReservationNavigator.setMainController(this);
+            ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLCustomerMainPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -86,7 +94,7 @@ public class FXMLCustomerMainPageController implements Initializable {
         final Stage stage = (Stage) LogoutButton.getScene().getWindow();
         stage.close();
         stage.close();
-        Stage MainStage = new Stage(StageStyle.TRANSPARENT);
+        Stage MainStage = new Stage();
         FXMLLoader loader = new FXMLLoader();
         Pane mainPane = (Pane) loader.load(getClass().getResourceAsStream(LoginNavigator.MAIN));
         Scene scene = new Scene(mainPane);
@@ -98,7 +106,7 @@ public class FXMLCustomerMainPageController implements Initializable {
         MainStage.show();
         MainStage.setResizable(false);
         MainStage.setWidth(630);
-        MainStage.setHeight(509);
+        MainStage.setHeight(530);
         MainStage.show();
     }
 

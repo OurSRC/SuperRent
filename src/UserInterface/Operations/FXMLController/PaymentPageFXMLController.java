@@ -175,7 +175,6 @@ public class PaymentPageFXMLController implements Initializable {
                 //ReturnNavigator.newPaymentCtrl = new PaymentCtrl(ReturnNavigator.returnCustomer.getCustomerId(), "Rent Payment", CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
                 ReturnNavigator.newPaymentCtrl.useCreditCard(CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
                 Payment p = ReturnNavigator.newPaymentCtrl.proceed();
-                System.out.println("I am here -----");
                 DialogFX dialog = new DialogFX(Type.INFO);
                 dialog.setTitleText("Return Success");
                 dialog.setMessage("Vehicle Plate Number " + ReturnNavigator.returnVehicle.getPlateNo() + " successfully Returned");

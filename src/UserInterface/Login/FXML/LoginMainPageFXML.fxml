@@ -4,17 +4,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.MainController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="630.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.MainController">
   <children>
     <Pane layoutY="56.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0">
       <children>
         <StackPane fx:id="LoginStackPane" prefHeight="453.0" prefWidth="641.0" />
       </children>
-    </Pane><ToolBar layoutY="-2.0" prefHeight="53.0" prefWidth="630.0">
-  <items>
-    <Button fx:id="GuestReserveButton" mnemonicParsing="false" onAction="#GuestReserveButtonAction" prefHeight="40.0" prefWidth="100.0" text="Reserve" /><Pane prefHeight="43.0" prefWidth="282.0" /><Button mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="38.0" prefWidth="91.0" text="Login" /><Button mnemonicParsing="false" onAction="#RegisterButtonAction" prefHeight="37.0" prefWidth="89.0" text="Register" />
+    </Pane>
+    <ToolBar layoutY="-2.0" prefHeight="53.0" prefWidth="630.0">
+      <items>
+        <Button fx:id="GuestReserveButton" mnemonicParsing="false" onAction="#GuestReserveButtonAction" prefHeight="40.0" prefWidth="100.0" text="Reserve" />
+        <Pane prefHeight="43.0" prefWidth="271.0" />
+        <Button mnemonicParsing="false" onAction="#LoginButtonAction" prefHeight="38.0" prefWidth="91.0" text="Login" />
+        <Button mnemonicParsing="false" onAction="#RegisterButtonAction" prefHeight="37.0" prefWidth="89.0" text="Register" />
         <Button fx:id="CloseButton" layoutX="575.0" layoutY="8.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="14.0" mnemonicParsing="false" onAction="#CloseButtonAction" prefHeight="36.0" prefWidth="39.0" style="-fx-background-image: url(&quot;Images/off.png&quot;);" />
-  </items>
-</ToolBar>
+      </items>
+    </ToolBar>
   </children>
 </AnchorPane>
