@@ -5,10 +5,11 @@
  */
 package ControlObjects;
 
-import entity.Branch;
-import entity.Equipment;
-import static entity.Equipment.STATUS.UNAVAILABLE;
-import entity.Rent;
+import Vehicle.EquipmentCtrl;
+import SystemOperations.Branch;
+import Vehicle.Equipment;
+import static Vehicle.Equipment.STATUS.UNAVAILABLE;
+import Operate.Rent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

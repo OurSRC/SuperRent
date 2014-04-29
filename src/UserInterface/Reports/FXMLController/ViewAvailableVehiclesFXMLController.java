@@ -5,11 +5,11 @@
  */
 package UserInterface.Reports.FXMLController;
 
-import ControlObjects.BranchCtrl;
-import ControlObjects.VehicleCtrl;
+import SystemOperations.BranchCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
-import entity.VehicleClass;
+import Vehicle.VehicleClass;
 import java.awt.Desktop;
 import java.io.File;
 import java.net.URL;
@@ -32,7 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
-import report.PdfGen;
+import SystemOperations.PdfGen;
 
 /**
  * FXML Controller class

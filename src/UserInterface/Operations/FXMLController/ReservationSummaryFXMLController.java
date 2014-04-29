@@ -5,17 +5,17 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.BranchCtrl;
-import ControlObjects.FinanceCtrl;
-import ControlObjects.Reservation;
-import ControlObjects.ReserveCtrl;
-import ControlObjects.StaffCtrl;
+import SystemOperations.BranchCtrl;
+import Finance.FinanceCtrl;
+import Operate.Reservation;
+import Operate.ReserveCtrl;
+import Account.StaffCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
-import entity.ReservationInfo;
-import entity.Staff;
-import finance.Price;
+import Operate.ReservationInfo;
+import Account.Staff;
+import Finance.Price;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
-import report.PdfGen;
+import SystemOperations.PdfGen;
 
 /**
  * FXML Controller class

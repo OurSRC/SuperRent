@@ -5,13 +5,13 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.CustomerCtrl;
-import ControlObjects.EquipmentCtrl;
-import ControlObjects.InsuranceCtrl;
-import ControlObjects.VehicleCtrl;
+import Account.CustomerCtrl;
+import Vehicle.EquipmentCtrl;
+import Vehicle.InsuranceCtrl;
+import Vehicle.VehicleCtrl;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import UserInterface.Login.FXMLController.CustomerNavigator;
-import entity.Customer;
+import Account.Customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

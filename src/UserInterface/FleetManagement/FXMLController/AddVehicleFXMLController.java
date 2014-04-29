@@ -5,13 +5,13 @@
  */
 package UserInterface.FleetManagement.FXMLController;
 
-import ControlObjects.VehicleCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ErrorMsg;
 import SystemOperations.ValidateFields;
-import entity.Vehicle;
+import Vehicle.Vehicle;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;

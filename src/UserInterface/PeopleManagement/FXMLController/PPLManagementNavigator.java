@@ -7,7 +7,7 @@
 package UserInterface.PeopleManagement.FXMLController;
 
 import UserInterface.Operations.FXMLController.OperationsFXMLController;
-import entity.Staff;
+import Account.Staff;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

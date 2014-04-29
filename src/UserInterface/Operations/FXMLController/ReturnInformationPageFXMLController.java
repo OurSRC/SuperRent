@@ -5,12 +5,12 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.PaymentCtrl;
-import ControlObjects.StaffCtrl;
+import Finance.PaymentCtrl;
+import Account.StaffCtrl;
 import SystemOperations.ValidateFields;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
-import entity.Return;
-import entity.Staff;
+import Operate.Return;
+import Account.Staff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;

@@ -6,11 +6,11 @@
 
 package UserInterface.PeopleManagement.FXMLController;
 
-import ControlObjects.StaffCtrl;
+import Account.StaffCtrl;
 import SystemOperations.DialogFX;
-import dao.DaoException;
-import dao.UserDao;
-import entity.Staff;
+import Dao.DaoException;
+import Account.UserDao;
+import Account.Staff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

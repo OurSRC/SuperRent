@@ -5,9 +5,9 @@
  */
 package UserInterface.Login.FXML;
 
-import ControlObjects.PieChatCtrl;
-import ControlObjects.Reservation;
-import ControlObjects.ReserveCtrl;
+import SystemOperations.PieChatCtrl;
+import Operate.Reservation;
+import Operate.ReserveCtrl;
 import java.io.IOException;
 import static java.lang.Math.E;
 import java.net.URL;

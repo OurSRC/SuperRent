@@ -1,7 +1,8 @@
 package UserInterface.Login.FXMLController;
 
-import ControlObjects.*;
-import entity.User;
+import Account.LoginCtrl;
+import Account.CustomerCtrl;
+import Account.User;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import SystemOperations.ErrorMsg;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
-import entity.Customer;
+import Account.Customer;
 
 /**
  * Controller class for the first vista.

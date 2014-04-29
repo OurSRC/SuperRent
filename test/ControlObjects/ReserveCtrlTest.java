@@ -5,9 +5,15 @@
  */
 package ControlObjects;
 
-import entity.Branch;
-import entity.Customer;
-import entity.Staff;
+import SystemOperations.BranchCtrl;
+import Operate.ReserveCtrl;
+import Operate.Reservation;
+import Account.CustomerCtrl;
+import Account.StaffCtrl;
+import Finance.FinanceCtrl;
+import SystemOperations.Branch;
+import Account.Customer;
+import Account.Staff;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;

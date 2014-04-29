@@ -7,7 +7,7 @@
 package ControlObjects;
 
 
-import ControlObjects.PieChatCtrl;
+import SystemOperations.PieChatCtrl;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import static org.junit.Assert.*;

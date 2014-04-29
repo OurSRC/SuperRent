@@ -6,12 +6,12 @@
 
 package UserInterface.PeopleManagement.FXMLController;
 
-import ControlObjects.StaffCtrl;
+import Account.StaffCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ErrorMsg;
 import SystemOperations.ValidateFields;
-import entity.Staff;
+import Account.Staff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

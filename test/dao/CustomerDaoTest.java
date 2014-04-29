@@ -5,9 +5,12 @@
  */
 package dao;
 
-import ControlObjects.LoginCtrl;
-import entity.Customer;
-import entity.User;
+import Dao.DaoException;
+import Account.UserDao;
+import Account.CustomerDao;
+import Account.LoginCtrl;
+import Account.Customer;
+import Account.User;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

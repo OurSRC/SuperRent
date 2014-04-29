@@ -6,8 +6,9 @@
 
 package ControlObjects;
 
-import entity.Payment;
-import entity.Return;
+import Finance.PaymentCtrl;
+import Finance.Payment;
+import Operate.Return;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;

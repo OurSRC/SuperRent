@@ -5,12 +5,12 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.PaymentCtrl;
+import Finance.PaymentCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ValidateFields;
-import entity.Payment;
+import Finance.Payment;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;

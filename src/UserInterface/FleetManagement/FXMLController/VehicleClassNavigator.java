@@ -6,7 +6,7 @@
 
 package UserInterface.FleetManagement.FXMLController;
 
-import entity.VehicleClass;
+import Vehicle.VehicleClass;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

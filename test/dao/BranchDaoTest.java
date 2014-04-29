@@ -6,8 +6,10 @@
 
 package dao;
 
-import entity.Branch;
-import entity.VehicleClass;
+import Dao.DaoException;
+import SystemOperations.BranchDao;
+import SystemOperations.Branch;
+import Vehicle.VehicleClass;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;

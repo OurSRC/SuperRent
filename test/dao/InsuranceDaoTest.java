@@ -6,7 +6,9 @@
 
 package dao;
 
-import entity.Insurance;
+import Dao.DaoException;
+import Vehicle.InsuranceDao;
+import Vehicle.Insurance;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;

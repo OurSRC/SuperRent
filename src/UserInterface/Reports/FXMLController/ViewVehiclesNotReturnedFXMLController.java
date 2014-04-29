@@ -5,8 +5,8 @@
  */
 package UserInterface.Reports.FXMLController;
 
-import ControlObjects.Reservation;
-import ControlObjects.ReserveCtrl;
+import Operate.Reservation;
+import Operate.ReserveCtrl;
 import SystemOperations.DateClass;
 import java.awt.Desktop;
 import java.io.File;
@@ -25,7 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
-import report.PdfGen;
+import SystemOperations.PdfGen;
 
 /**
  * FXML Controller class

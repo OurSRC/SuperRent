@@ -1,8 +1,8 @@
 package UserInterface.Login.FXMLController;
 
-import ControlObjects.StaffCtrl;
+import Account.StaffCtrl;
 import UserInterface.MainController;
-import entity.Staff;
+import Account.Staff;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

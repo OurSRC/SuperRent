@@ -5,14 +5,14 @@
  */
 package UserInterface.FleetManagement.FXMLController;
 
-import ControlObjects.BranchCtrl;
-import ControlObjects.Reservation;
-import ControlObjects.VehicleCtrl;
+import SystemOperations.BranchCtrl;
+import Operate.Reservation;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
-import entity.VehicleClass;
+import Vehicle.VehicleClass;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;

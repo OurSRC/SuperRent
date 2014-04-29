@@ -6,10 +6,10 @@
 
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.Reservation;
+import Operate.Reservation;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import UserInterface.Login.FXMLController.FXMLCustomerMainPageController;
-import entity.ReservationInfo;
+import Operate.ReservationInfo;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

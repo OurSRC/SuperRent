@@ -5,7 +5,9 @@
  */
 package dao;
 
-import entity.User;
+import Dao.DaoException;
+import Account.UserDao;
+import Account.User;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

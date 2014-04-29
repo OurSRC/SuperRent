@@ -6,7 +6,8 @@
 
 package ControlObjects;
 
-import entity.Staff;
+import Account.StaffCtrl;
+import Account.Staff;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;

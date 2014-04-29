@@ -6,10 +6,14 @@
 
 package dao;
 
-import entity.Vehicle;
+import Dao.DaoException;
+import Vehicle.VehicleClassDao;
+import Vehicle.VehicleDao;
+import SystemOperations.BranchDao;
+import Vehicle.Vehicle;
 
-import entity.VehicleClass;
-import entity.Branch;
+import Vehicle.VehicleClass;
+import SystemOperations.Branch;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.After;

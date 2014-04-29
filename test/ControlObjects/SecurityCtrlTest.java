@@ -6,6 +6,7 @@
 
 package ControlObjects;
 
+import SystemOperations.SecurityCtrl;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

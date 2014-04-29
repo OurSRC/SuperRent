@@ -1,7 +1,7 @@
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.CustomerCtrl;
-import entity.Customer;
+import Account.CustomerCtrl;
+import Account.Customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

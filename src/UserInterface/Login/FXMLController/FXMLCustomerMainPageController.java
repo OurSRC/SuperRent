@@ -5,11 +5,11 @@
  */
 package UserInterface.Login.FXMLController;
 
-import ControlObjects.Reservation;
+import Operate.Reservation;
 import UserInterface.MainController;
 import UserInterface.Operations.FXMLController.OperationsFXMLController;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
-import entity.ReservationInfo;
+import Operate.ReservationInfo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

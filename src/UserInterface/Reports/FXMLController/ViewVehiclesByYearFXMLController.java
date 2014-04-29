@@ -6,13 +6,13 @@
 
 package UserInterface.Reports.FXMLController;
 
-import ControlObjects.VehicleCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
-import dao.DaoException;
-import dao.VehicleDao;
-import entity.Vehicle;
-import entity.VehicleClass;
+import Dao.DaoException;
+import Vehicle.VehicleDao;
+import Vehicle.Vehicle;
+import Vehicle.VehicleClass;
 import java.awt.Desktop;
 import java.io.File;
 import java.net.URL;
@@ -35,7 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
-import report.PdfGen;
+import SystemOperations.PdfGen;
 
 /**
  * FXML Controller class

@@ -6,7 +6,9 @@
 
 package dao;
 
-import entity.EquipmentType;
+import Dao.DaoException;
+import Vehicle.EquipmentTypeDao;
+import Vehicle.EquipmentType;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

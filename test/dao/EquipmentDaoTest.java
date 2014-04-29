@@ -5,9 +5,13 @@
  */
 package dao;
 
-import entity.Branch;
-import entity.Equipment;
-import entity.EquipmentType;
+import Dao.DaoException;
+import Vehicle.EquipmentTypeDao;
+import Vehicle.EquipmentDao;
+import SystemOperations.BranchDao;
+import SystemOperations.Branch;
+import Vehicle.Equipment;
+import Vehicle.EquipmentType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;

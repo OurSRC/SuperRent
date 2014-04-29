@@ -5,18 +5,18 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.CustomerCtrl;
-import ControlObjects.RentCtrl;
-import ControlObjects.Reservation;
-import ControlObjects.ReserveCtrl;
-import ControlObjects.ReturnCtrl;
-import ControlObjects.VehicleCtrl;
+import Account.CustomerCtrl;
+import Operate.RentCtrl;
+import Operate.Reservation;
+import Operate.ReserveCtrl;
+import Operate.ReturnCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
-import entity.Customer;
-import entity.Rent;
-import entity.Return;
-import entity.Vehicle;
+import Account.Customer;
+import Operate.Rent;
+import Operate.Return;
+import Vehicle.Vehicle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

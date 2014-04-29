@@ -1,8 +1,8 @@
 
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.Reservation;
-import entity.ReservationInfo;
+import Operate.Reservation;
+import Operate.ReservationInfo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

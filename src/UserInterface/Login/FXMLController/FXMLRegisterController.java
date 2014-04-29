@@ -2,12 +2,12 @@ package UserInterface.Login.FXMLController;
 
 
 
-import ControlObjects.CustomerCtrl;
+import Account.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.MailSender;
 import SystemOperations.ValidateFields;
 import UserInterface.PeopleManagement.FXMLController.PPLManagementNavigator;
-import entity.Customer;
+import Account.Customer;
 import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

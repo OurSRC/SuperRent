@@ -5,13 +5,13 @@
  */
 package UserInterface.Reports.FXMLController;
 
-import ControlObjects.RentCtrl;
-import ControlObjects.VehicleCtrl;
+import Operate.RentCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import com.itextpdf.text.DocumentException;
-import entity.Rent;
-import entity.Vehicle;
+import Operate.Rent;
+import Vehicle.Vehicle;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,7 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
-import report.PdfGen;
+import SystemOperations.PdfGen;
 
 /**
  * FXML Controller class

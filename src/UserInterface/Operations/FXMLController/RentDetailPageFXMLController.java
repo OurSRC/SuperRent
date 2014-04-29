@@ -5,20 +5,20 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.CreditCardCtrl;
-import ControlObjects.FinanceCtrl;
-import ControlObjects.RentCtrl;
-import ControlObjects.ReserveCtrl;
-import ControlObjects.StaffCtrl;
+import Finance.CreditCardCtrl;
+import Finance.FinanceCtrl;
+import Operate.RentCtrl;
+import Operate.ReserveCtrl;
+import Account.StaffCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import SystemOperations.ValidateFields;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
-import entity.Rent;
-import entity.ReservationInfo;
-import entity.Staff;
-import finance.Price;
+import Operate.Rent;
+import Operate.ReservationInfo;
+import Account.Staff;
+import Finance.Price;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;

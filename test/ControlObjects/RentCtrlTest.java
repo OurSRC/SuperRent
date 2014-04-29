@@ -5,6 +5,7 @@
  */
 package ControlObjects;
 
+import Operate.RentCtrl;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,7 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import entity.Rent;
+import Operate.Rent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

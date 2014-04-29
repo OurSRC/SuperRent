@@ -5,19 +5,19 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.BranchCtrl;
-import ControlObjects.CustomerCtrl;
-import ControlObjects.FinanceCtrl;
-import ControlObjects.PaymentCtrl;
+import SystemOperations.BranchCtrl;
+import Account.CustomerCtrl;
+import Finance.FinanceCtrl;
+import Finance.PaymentCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import SystemOperations.ValidateFields;
 import static UserInterface.Operations.FXMLController.PaymentPageFXMLController.maxLength;
-import entity.Branch;
-import entity.Customer;
-import entity.Payment;
-import entity.PaymentItem;
-import finance.Price;
+import SystemOperations.Branch;
+import Account.Customer;
+import Finance.Payment;
+import Finance.PaymentItem;
+import Finance.Price;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;

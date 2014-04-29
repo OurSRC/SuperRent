@@ -6,7 +6,9 @@
 
 package dao;
 
-import entity.CreditCard;
+import Dao.DaoException;
+import Finance.CreditCardDao;
+import Finance.CreditCard;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;

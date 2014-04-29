@@ -6,11 +6,17 @@
 
 package dao;
 
-import entity.Branch;
-import entity.Customer;
-import entity.ReservationInfo;
-import entity.Staff;
-import entity.VehicleClass;
+import Dao.DaoException;
+import Vehicle.VehicleClassDao;
+import Account.StaffDao;
+import Operate.ReservationInfoDao;
+import Account.CustomerDao;
+import SystemOperations.BranchDao;
+import SystemOperations.Branch;
+import Account.Customer;
+import Operate.ReservationInfo;
+import Account.Staff;
+import Vehicle.VehicleClass;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

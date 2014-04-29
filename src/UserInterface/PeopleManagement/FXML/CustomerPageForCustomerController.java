@@ -5,12 +5,12 @@
  */
 package UserInterface.PeopleManagement.FXML;
 
-import ControlObjects.CustomerCtrl;
+import Account.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.CustomerNavigator;
 import UserInterface.Operations.FXMLController.MembershipPaymentPageFXMLController;
-import entity.Customer;
+import Account.Customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

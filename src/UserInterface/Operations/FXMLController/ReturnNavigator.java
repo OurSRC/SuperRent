@@ -7,13 +7,13 @@
 package UserInterface.Operations.FXMLController;
 
 
-import ControlObjects.PaymentCtrl;
-import ControlObjects.Reservation;
+import Finance.PaymentCtrl;
+import Operate.Reservation;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
-import entity.Customer;
-import entity.Rent;
-import entity.Return;
-import entity.Vehicle;
+import Account.Customer;
+import Operate.Rent;
+import Operate.Return;
+import Vehicle.Vehicle;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

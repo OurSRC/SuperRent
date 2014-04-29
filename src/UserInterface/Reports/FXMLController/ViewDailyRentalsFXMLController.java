@@ -5,13 +5,13 @@
  */
 package UserInterface.Reports.FXMLController;
 
-import ControlObjects.RentCtrl;
-import ControlObjects.VehicleCtrl;
+import Operate.RentCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
-import entity.Rent;
-import entity.Staff;
-import entity.Vehicle;
+import Operate.Rent;
+import Account.Staff;
+import Vehicle.Vehicle;
 import java.awt.Desktop;
 import java.io.File;
 import java.net.URL;
@@ -35,7 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
-import report.PdfGen;
+import SystemOperations.PdfGen;
 
 /**
  * FXML Controller class

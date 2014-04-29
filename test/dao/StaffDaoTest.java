@@ -5,8 +5,11 @@
  */
 package dao;
 
-import entity.Staff;
-import entity.Branch;
+import Dao.DaoException;
+import Account.StaffDao;
+import SystemOperations.BranchDao;
+import Account.Staff;
+import SystemOperations.Branch;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -6,10 +6,11 @@
 
 package report;
 
+import SystemOperations.PdfGen;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import dao.VehicleDao;
+import Vehicle.VehicleDao;
 
 /**
  *

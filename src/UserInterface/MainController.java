@@ -1,6 +1,6 @@
 package UserInterface;
 
-import ControlObjects.Reservation;
+import Operate.Reservation;
 import UserInterface.Login.FXMLController.ClerkMainPageNavigator;
 import UserInterface.Login.FXMLController.CustomerNavigator;
 import UserInterface.Login.FXMLController.LoginNavigator;

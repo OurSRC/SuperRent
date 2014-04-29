@@ -5,9 +5,9 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.BranchCtrl;
-import ControlObjects.Reservation;
-import ControlObjects.ReserveCtrl;
+import SystemOperations.BranchCtrl;
+import Operate.Reservation;
+import Operate.ReserveCtrl;
 import SystemOperations.DateClass;
 import SystemOperations.DialogFX;
 import java.io.IOException;

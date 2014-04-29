@@ -6,8 +6,11 @@
 
 package dao;
 
-import entity.Payment;
-import entity.Customer;
+import Dao.DaoException;
+import Finance.PaymentDao;
+import Account.CustomerDao;
+import Finance.Payment;
+import Account.Customer;
 
 import java.util.ArrayList;
 import java.util.Date;

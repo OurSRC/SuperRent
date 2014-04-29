@@ -5,16 +5,27 @@
  */
 package dao;
 
-import entity.Branch;
-import entity.CreditCard;
-import entity.Customer;
-import entity.Rent;
-import entity.ReservationInfo;
-import entity.Return;
-import entity.Staff;
-import entity.Vehicle;
-import entity.VehicleClass;
-import entity.Payment;
+import Dao.DaoException;
+import Vehicle.VehicleClassDao;
+import Operate.ReturnDao;
+import Account.StaffDao;
+import Operate.ReservationInfoDao;
+import Operate.RentDao;
+import Finance.PaymentDao;
+import Vehicle.VehicleDao;
+import Account.CustomerDao;
+import Finance.CreditCardDao;
+import SystemOperations.BranchDao;
+import SystemOperations.Branch;
+import Finance.CreditCard;
+import Account.Customer;
+import Operate.Rent;
+import Operate.ReservationInfo;
+import Operate.Return;
+import Account.Staff;
+import Vehicle.Vehicle;
+import Vehicle.VehicleClass;
+import Finance.Payment;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;

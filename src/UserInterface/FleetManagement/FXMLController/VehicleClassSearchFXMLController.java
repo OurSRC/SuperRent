@@ -5,10 +5,10 @@
  */
 package UserInterface.FleetManagement.FXMLController;
 
-import ControlObjects.VehicleCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
-import entity.VehicleClass;
+import Vehicle.VehicleClass;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

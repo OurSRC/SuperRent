@@ -6,11 +6,11 @@
 
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.BranchCtrl;
-import ControlObjects.VehicleCtrl;
+import SystemOperations.BranchCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
-import entity.Vehicle;
+import Vehicle.Vehicle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

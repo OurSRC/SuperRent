@@ -6,7 +6,7 @@
 
 package UserInterface.Operations.FXMLController;
 
-import ControlObjects.VehicleCtrl;
+import Vehicle.VehicleCtrl;
 import SystemOperations.DateClass;
 import static SystemOperations.DateClass.getDateTimeObject;
 import java.io.IOException;
