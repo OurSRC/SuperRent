@@ -4,18 +4,19 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.MembershipPaymentPageFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.MembershipPaymentPageFXMLController">
     <children>
         <Label fx:id="CreditCardNumberLabel" disable="true" layoutX="40.0" layoutY="205.0" text="Credit Card #" />
         <Label fx:id="ExpiryDateLabel" disable="true" layoutX="40.0" layoutY="282.0" text="Expiry Date" />
         <Label fx:id="CreditCardNameLabel" disable="true" layoutX="38.0" layoutY="243.0" text="Card Holder Name" />
-        <TextField fx:id="NumberOfYearsTF" layoutX="180.73046875" layoutY="123.5" onAction="#NumberofYearsTFAction" />
+        <TextField fx:id="NumberOfYearsTF" layoutX="180.73046875" layoutY="120.5" onAction="#NumberofYearsTFAction" />
         <TextField fx:id="CreditCardNumberTF" disable="true" layoutX="180.0" layoutY="200.0" />
         <TextField fx:id="CreditCardNameTF" disable="true" layoutX="179.0" layoutY="239.0" />
         <TextField fx:id="ExpiryDateYearTF" layoutX="180.0" layoutY="278.0" prefHeight="25.0" prefWidth="56.0" promptText="yyyy" />
         <TextField fx:id="ExpiryDateMonthTF" layoutX="264.0" layoutY="278.0" prefHeight="25.0" prefWidth="43.0" promptText="mm" />
-        <ComboBox fx:id="CardTypeCB" disable="true" layoutX="180.0" layoutY="316.0" prefWidth="150.0">
+        <ComboBox fx:id="CardTypeCB" disable="true" layoutX="180.0" layoutY="316.0" prefHeight="23.0" prefWidth="138.0">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="American Express" />
@@ -24,16 +25,27 @@
             </FXCollections>
         </items>
     </ComboBox>
-        <Button alignment="CENTER" layoutX="475.0" layoutY="372.0" mnemonicParsing="false" onAction="#ConfirmPaymentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Confirm Payment" />
-        <Label fx:id="CustomerNameLabel" layoutX="40.0048828125" layoutY="47.5" text="Customer Name" />
-        <Label layoutX="40.009765625" layoutY="87.5" text="Membership Fee ($/year)" />
-        <Label layoutX="40.0048828125" layoutY="127.5" text="Number of Years" />
-        <Label layoutX="40.0" layoutY="165.0" text="Amount" />
+        <Label fx:id="CustomerNameLabel" layoutX="38.0048828125" layoutY="55.5" text="Customer Name" />
+        <Label layoutX="39.009765625" layoutY="88.5" text="Membership Fee ($/year)" />
+        <Label layoutX="40.0048828125" layoutY="124.5" text="Number of Years" />
+        <Label layoutX="40.0" layoutY="162.0" text="Amount" />
         <Label fx:id="slashLabel" disable="true" layoutX="244.5048828125" layoutY="282.0" text="/" />
-        <Label fx:id="CustomerNameLabel" layoutX="182.0048828125" layoutY="47.5" />
-        <Label fx:id="MembershipFeeLabel" layoutX="182.0048828125" layoutY="88.5" />
-        <Label fx:id="AmountLabel" layoutX="182.0048828125" layoutY="164.5" />
-        <Label fx:id="CreditCardTypeLabel" disable="true" layoutX="40.0" layoutY="320.0" text="Credit Card Type" />
-    <Button alignment="CENTER" layoutX="320.0" layoutY="372.0" mnemonicParsing="false" onAction="#CancelButtonAction" prefHeight="25.0" prefWidth="138.0" text="Cancel" />
+        <Label fx:id="CustomerNameLabel" layoutX="180.0" layoutY="56.0" prefHeight="15.0" prefWidth="138.0" />
+        <Label fx:id="MembershipFeeLabel" layoutX="191.0" layoutY="88.0" prefHeight="15.0" prefWidth="146.0" />
+        <Label fx:id="AmountLabel" layoutX="182.0" layoutY="162.0" prefHeight="15.0" prefWidth="138.0" />
+        <Label fx:id="CreditCardTypeLabel" disable="true" layoutX="40.0" layoutY="320.0" text="Credit Card Type" /><Pane prefHeight="39.0" prefWidth="546.0" style="-fx-background-color: #496791;">
+<children>
+<Label layoutX="14.0" layoutY="8.0" text="Club Member Fee Payment" textFill="WHITE">
+<font>
+<Font size="14.0" />
+</font>
+</Label>
+</children>
+</Pane><Pane layoutY="388.0" prefHeight="39.0" prefWidth="546.0" style="-fx-background-color: #496791;">
+<children>
+    <Button alignment="CENTER" layoutX="10.0" layoutY="5.5" mnemonicParsing="false" onAction="#CancelButtonAction" prefHeight="25.0" prefWidth="138.0" text="Cancel" />
+        <Button alignment="CENTER" layoutX="400.0" layoutY="5.0" mnemonicParsing="false" onAction="#ConfirmPaymentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Confirm Payment" />
+</children>
+</Pane>
     </children>
 </AnchorPane>

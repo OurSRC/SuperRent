@@ -5,19 +5,21 @@
  */
 package UserInterface.PeopleManagement.FXML;
 
+import Account.Customer;
 import Account.CustomerCtrl;
+import Account.CustomerDao;
+import Dao.DaoException;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import UserInterface.Login.FXMLController.CustomerNavigator;
 import UserInterface.Operations.FXMLController.MembershipPaymentPageFXMLController;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
-import Account.CustomerDao;
-import Dao.DaoException;
-import Account.Customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -86,6 +88,28 @@ public class CustomerMainPageFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        PhoneTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = PhoneTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9')) {
+
+                        //if it's not number then just setText to previous one
+                        PhoneTF.setText(PhoneTF.getText().substring(0, PhoneTF.getText().length() - 1));
+                    }
+                }
+            }
+
+
+           
+
+        }); 
         modifyFlag = false;
         if (!CustomerNavigator.CurrentUserName.equals("")) {
             NewCustomerButton.setVisible(false);

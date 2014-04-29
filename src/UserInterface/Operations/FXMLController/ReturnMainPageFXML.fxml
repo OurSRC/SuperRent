@@ -38,7 +38,7 @@
                 <TextField fx:id="VehicleModelTF" editable="false" layoutX="468.0" layoutY="82.0" prefHeight="25.0" prefWidth="138.0" />
                 <TextField fx:id="VehiclePlateTF" editable="false" layoutX="158.0" layoutY="82.0" prefHeight="25.0" prefWidth="138.0" />
                 <TextField fx:id="RentStartDate" editable="false" layoutX="158.0" layoutY="122.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField fx:id="ReservationNumberTF" layoutX="158.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
+                <TextField fx:id="ReservationNumberTF" editable="false" layoutX="158.0" layoutY="40.0" prefHeight="25.0" prefWidth="138.0" />
                 <Label font="$x1" layoutX="9.0" layoutY="44.0" text="Reservation Number" />
                 <ListView fx:id="AdditionalEquipmentList" layoutX="11.0" layoutY="185.0" prefHeight="107.0" prefWidth="274.0" />
                 <ListView fx:id="InsuranceList" layoutX="342.0" layoutY="185.0" prefHeight="107.0" prefWidth="274.0" />
@@ -46,7 +46,7 @@
                 <Label font="$x1" layoutX="342.0" layoutY="163.0" text="Insurance" />
               </children>
             </Pane>
-            <Label layoutX="75.0" layoutY="52.0" prefWidth="43.0" text="*" textFill="#ff0202" />
+            <Label layoutX="73.0" layoutY="52.0" prefWidth="43.0" text="*" textFill="#ff0202" />
           </children>
         </Pane>
       </children>

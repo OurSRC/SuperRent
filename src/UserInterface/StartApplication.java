@@ -18,7 +18,7 @@ public class StartApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Stage MainStage = new Stage(StageStyle.TRANSPARENT);
+        Stage MainStage = new Stage();
 
         FXMLLoader loader = new FXMLLoader();
 

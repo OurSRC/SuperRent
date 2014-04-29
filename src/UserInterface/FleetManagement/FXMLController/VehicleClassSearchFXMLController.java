@@ -62,6 +62,7 @@ public class VehicleClassSearchFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        VehicleClassNavigator.vehicleClass = new VehicleClass(); // Added before the presentation to fix the static variable issue
         vehicleClass = "";
         vehicleType = vehicleType.Car;
         VehicleCtrl vehicleControl = new VehicleCtrl();

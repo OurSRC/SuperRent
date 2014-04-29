@@ -78,7 +78,7 @@ public class FXMLClerkMainPageController implements Initializable {
     public void LogoutAction(ActionEvent event) throws IOException {
 
         System.out.println("Inside the logout action");
-        final Stage dialog = new Stage(StageStyle.TRANSPARENT);
+        final Stage dialog = new Stage();
         final Stage stage = (Stage) UserActionMenuButton.getScene().getWindow();
         stage.close();
         stage.close();

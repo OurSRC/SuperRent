@@ -5,19 +5,20 @@
  */
 package UserInterface.Operations.FXMLController;
 
-import SystemOperations.BranchCtrl;
+import Account.Customer;
 import Account.CustomerCtrl;
 import Finance.FinanceCtrl;
-import Finance.PaymentCtrl;
-import SystemOperations.DateClass;
-import SystemOperations.DialogFX;
-import SystemOperations.ValidateFields;
-import static UserInterface.Operations.FXMLController.PaymentPageFXMLController.maxLength;
-import SystemOperations.Branch;
-import Account.Customer;
 import Finance.Payment;
+import Finance.PaymentCtrl;
 import Finance.PaymentItem;
 import Finance.Price;
+import SystemOperations.Branch;
+import SystemOperations.BranchCtrl;
+import SystemOperations.DateClass;
+import SystemOperations.DialogFX;
+import SystemOperations.DialogFX.Type;
+import SystemOperations.ValidateFields;
+import static UserInterface.Operations.FXMLController.PaymentPageFXMLController.maxLength;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
@@ -78,8 +79,9 @@ public class MembershipPaymentPageFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
     }
+
     private void initializeFunction() {
         branchId = 1;
         BranchCtrl branchCtrl = new BranchCtrl();
@@ -104,28 +106,32 @@ public class MembershipPaymentPageFXMLController implements Initializable {
 
     @FXML
     private void ConfirmPaymentButtonAction(ActionEvent event) {
-        try{
-        if (ValidateMandatory()) {
-            paymentCtrl.useCreditCard(CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
-            Payment p = paymentCtrl.proceed();
-            System.out.println("Payment Success");
-            ((Node) (event.getSource())).getScene().getWindow().hide(); 
-            
-        }
-        } catch(ParseException e){
+        try {
+            if (ValidateMandatory()) {
+                paymentCtrl.useCreditCard(CreditCardNumberTF.getText(), ExpiryDate, CreditCardNameTF.getText());
+                Payment p = paymentCtrl.proceed();
+                System.out.println("Payment Success");
+                DialogFX dialog = new DialogFX(Type.INFO);
+                dialog.setTitleText("Payment Success");
+                dialog.setMessage("Payment towards Club Member Fee is successfully processed.");
+                dialog.showDialog();
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+
+            }
+        } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
     }
 
     @FXML
     private void CancelButtonAction(ActionEvent event) {
-        ((Node) (event.getSource())).getScene().getWindow().hide(); 
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 
     public void storeCustomer(String Customerphone) {
         /*The original initialzie function runs before this function, therefore another
-        function should be created and called by this function.
-        */
+         function should be created and called by this function.
+         */
         CustomerCtrl newCustomerCtrl = new CustomerCtrl();
         customer = newCustomerCtrl.getCustomerByPhone(Customerphone);
         initializeFunction();

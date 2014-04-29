@@ -12,23 +12,19 @@
         <Font name="System Italic" size="12.0" fx:id="x1" />
       </font>
     </Label>
-    <Label layoutX="13.0" layoutY="55.0" text="Pick Up Date">
-      <font>
-        <Font size="14.0" fx:id="x2" />
-      </font>
-    </Label>
-    <Label font="$x2" layoutX="360.0" layoutY="55.0" text="Return Date" />
-    <TextField fx:id="PickUpDateTF" layoutX="120.0" layoutY="52.0" prefHeight="25.0" prefWidth="156.0" />
-    <TextField fx:id="ReturnDateTF" layoutX="447.0" layoutY="52.0" prefHeight="25.0" prefWidth="173.0" />
-    <Label font="$x2" layoutX="13.0" layoutY="95.0" text="Vehicle Class" />
+    <Label layoutX="13.0" layoutY="55.0" text="Pick Up Date" />
+    <Label layoutX="360.0" layoutY="55.0" text="Return Date" />
+    <TextField fx:id="PickUpDateTF" editable="false" layoutX="120.0" layoutY="52.0" prefHeight="25.0" prefWidth="156.0" />
+    <TextField fx:id="ReturnDateTF" editable="false" layoutX="447.0" layoutY="52.0" prefHeight="25.0" prefWidth="173.0" />
+    <Label layoutX="13.0" layoutY="95.0" text="Vehicle Class" />
     <TextField fx:id="VehicleClassTF" editable="false" layoutX="120.0" layoutY="92.0" prefHeight="25.0" prefWidth="156.0" />
-    <Label font="$x2" layoutX="14.0" layoutY="136.0" text="Addtional Equipment Selected" />
+    <Label layoutX="14.0" layoutY="136.0" text="Addtional Equipment Selected" />
     <ListView fx:id="AdditionalEquipmentList" layoutX="14.0" layoutY="158.0" prefHeight="95.0" prefWidth="262.0" />
-    <TextField fx:id="EstimatedCostTF" layoutX="139.0" layoutY="316.0" prefHeight="25.0" prefWidth="73.0" />
-    <Label font="$x2" layoutX="13.0" layoutY="319.5" text="Estimated Cost" />
-    <Label font="$x2" layoutX="360.0" layoutY="136.0" text="Insurance Selected" />
+    <TextField fx:id="EstimatedCostTF" editable="false" layoutX="139.0" layoutY="316.0" prefHeight="25.0" prefWidth="73.0" />
+    <Label layoutX="13.0" layoutY="319.5" text="Estimated Cost" />
+    <Label layoutX="360.0" layoutY="136.0" text="Insurance Selected" />
     <ListView fx:id="InsuranceList" layoutX="360.0" layoutY="158.0" prefHeight="95.0" prefWidth="260.0" />
-    <Label font="$x2" layoutX="13.0" layoutY="281.0" text="Customer Phone" />
+    <Label layoutX="13.0" layoutY="281.0" text="Customer Phone" />
     <TextField fx:id="CustomerTF" editable="false" layoutX="137.0" layoutY="278.0" prefHeight="25.0" prefWidth="139.0" />
     <Label layoutX="248.0" layoutY="3.0" text="Reservation Summary">
       <font>
@@ -37,7 +33,11 @@
     </Label>
     <Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
       <children>
-        <Label font="$x3" layoutX="14.0" layoutY="8.0" text="Reservation Summary" textFill="WHITE" />
+        <Label layoutX="14.0" layoutY="8.0" text="Reservation Summary" textFill="WHITE">
+          <font>
+            <Font size="14.0" />
+          </font>
+        </Label>
       </children>
     </Pane>
     <Pane layoutY="415.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
