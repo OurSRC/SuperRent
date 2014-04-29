@@ -65,6 +65,8 @@ public class UserProfileRemoveFXMLController implements Initializable {
     private Staff.TYPE type;
     private Staff.STATUS status;
     private int branchID;
+    private final String initialDummyPassword = "1!2@3#";
+    private final String initialDummyReenterPassword = "3!2@1#";
     
     /**
      * Initializes the controller class.
@@ -78,9 +80,10 @@ public class UserProfileRemoveFXMLController implements Initializable {
         LastNameTF.setText(PPLManagementNavigator.modifyStaff.getLastName());
         PhoneNumberTF.setText(PPLManagementNavigator.modifyStaff.getPhone());
         EmailTF.setText(PPLManagementNavigator.modifyStaff.getEmail());
-        SetNewPasswordPF.setText(PPLManagementNavigator.modifyStaff.getPassword());
-        ReenterNewPasswordPF.setText(PPLManagementNavigator.modifyStaff.getPassword());
+        SetNewPasswordPF.setText(initialDummyPassword);
+        ReenterNewPasswordPF.setText(initialDummyReenterPassword);
         userNameLabel.setText(PPLManagementNavigator.modifyStaff.getUsername());
+        
         
         switch(PPLManagementNavigator.modifyStaff.getBranchId()){
             case 1:
@@ -133,8 +136,11 @@ public class UserProfileRemoveFXMLController implements Initializable {
             middleName = MiddleNameTF.getText().trim();
             email = EmailTF.getText().trim();
             phone = PhoneNumberTF.getText().trim();
-            password = SetNewPasswordPF.getText();
-            
+            if ((SetNewPasswordPF.getText().equals(initialDummyPassword) && ReenterNewPasswordPF.getText().equals(initialDummyReenterPassword) )) {
+                password = null; 
+            } else {
+                password = SetNewPasswordPF.getText();
+            }
             switch(StatusCB.getSelectionModel().getSelectedItem().toString())
             {
                 case "Active": 
@@ -205,7 +211,9 @@ public class UserProfileRemoveFXMLController implements Initializable {
     
     private boolean ValidatePassword()
     {
-     if (SetNewPasswordPF.getText().equals(ReenterNewPasswordPF.getText()))
+     if ((SetNewPasswordPF.getText().equals(ReenterNewPasswordPF.getText())) || 
+             (SetNewPasswordPF.getText().equals(initialDummyPassword) && 
+             ReenterNewPasswordPF.getText().equals(initialDummyReenterPassword )) )
      {
          return true;
      }
