@@ -8,31 +8,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.ModifyVehiclePageFXMLController">
 <children><Pane layoutY="415.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
-    <Label layoutX="13.0" layoutY="143.0" text="Plate Number">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Label layoutX="13.0" layoutY="188.0" text="Manufature Date">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Label layoutX="13.0" layoutY="232.0" text="Model">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Label layoutX="13.0" layoutY="274.0" text="Odometer  Reading">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Label layoutX="13.0" layoutY="318.0" text="Status">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <TextField fx:id="PlateNumberTF" layoutX="150.0" layoutY="143.0" prefHeight="25.0" prefWidth="141.0" />
-    <TextField fx:id="ManufactureDate" editable="false" layoutX="150.0" layoutY="188.0" prefHeight="25.0" prefWidth="141.0" />
-    <TextField fx:id="ModelTF" layoutX="150.0" layoutY="232.0" prefHeight="25.0" prefWidth="141.0" />
-    <TextField fx:id="OdometerTF" layoutX="150.0" layoutY="274.0" prefHeight="25.0" prefWidth="141.0" />
-    <ComboBox fx:id="StatusCB" layoutX="150.0" layoutY="318.0" onAction="#StatusCBAction" prefHeight="25.0" prefWidth="141.0">
+    <Label layoutX="15.0" layoutY="143.0" text="Plate Number" />
+    <Label layoutX="15.0" layoutY="188.0" text="Manufature Date" />
+    <Label layoutX="15.0" layoutY="232.0" text="Model" />
+    <Label layoutX="15.0" layoutY="274.0" text="Odometer  Reading" />
+    <Label layoutX="15.0" layoutY="318.0" text="Status" />
+    <TextField fx:id="PlateNumberTF" layoutX="150.0" layoutY="141.0" prefHeight="25.0" prefWidth="174.0" />
+    <TextField fx:id="ManufactureDate" editable="false" layoutX="150.0" layoutY="186.0" prefHeight="25.0" prefWidth="174.0" />
+    <TextField fx:id="ModelTF" layoutX="150.0" layoutY="230.0" prefHeight="25.0" prefWidth="174.0" />
+    <TextField fx:id="OdometerTF" layoutX="150.0" layoutY="272.0" prefHeight="25.0" prefWidth="174.0" />
+    <ComboBox fx:id="StatusCB" layoutX="150.0" layoutY="316.0" onAction="#StatusCBAction" prefHeight="25.0" prefWidth="174.0">
         <items>
             <FXCollections fx:factory="observableArrayList">
               <String fx:value="Available For Rent" />
@@ -40,28 +25,19 @@
             </FXCollections>
           </items>
         </ComboBox>
-    <Label layoutX="13.0" layoutY="99.0" text="Vehicle Class">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Label layoutX="13.0" layoutY="55.0" text="Vehicle Type">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Button alignment="CENTER" layoutX="502.0" layoutY="419.0" mnemonicParsing="false" onAction="#UpdateVehicleButtonAction" prefHeight="25.0" prefWidth="105.0" text="Update" />
-    <Label fx:id="SellingPriceLabel" disable="true" layoutX="355.0" layoutY="318.0" text="Selling Price">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <TextField fx:id="SellingPriceTF" disable="true" layoutX="455.0" layoutY="318.0" prefHeight="25.0" prefWidth="141.0" />
+    <Label layoutX="15.0" layoutY="99.0" text="Vehicle Class" />
+    <Label layoutX="15.0" layoutY="55.0" text="Vehicle Type" />
+    <Button alignment="CENTER" layoutX="506.0" layoutY="420.0" mnemonicParsing="false" onAction="#UpdateVehicleButtonAction" prefHeight="25.0" prefWidth="116.0" text="Update" />
+    <Label fx:id="SellingPriceLabel" disable="true" layoutX="356.0" layoutY="321.0" text="Selling Price" />
+    <TextField fx:id="SellingPriceTF" disable="true" layoutX="455.0" layoutY="316.0" prefHeight="25.0" prefWidth="141.0" />
     <Button alignment="CENTER" layoutX="13.0" layoutY="419.0" mnemonicParsing="false" onAction="#BackToSearchButtonAction" prefHeight="25.0" prefWidth="116.0" text="Back to Search" />
-    <TextField fx:id="VehicleTypeTF" editable="false" layoutX="150.0" layoutY="55.0" prefHeight="25.0" prefWidth="141.0" /><TextField fx:id="VehicleClassTF" editable="false" layoutX="150.0" layoutY="99.0" prefHeight="25.0" prefWidth="141.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+    <TextField fx:id="VehicleTypeTF" editable="false" layoutX="150.0" layoutY="53.0" prefHeight="25.0" prefWidth="174.0" /><TextField fx:id="VehicleClassTF" editable="false" layoutX="150.0" layoutY="97.0" prefHeight="25.0" prefWidth="174.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
 <children>
 <Label layoutX="14.0" layoutY="8.0" text="Modify Vehicle" textFill="WHITE">
 <font>
-<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+<Font size="14.0" />
 </font>
 </Label>
 </children>
-</Pane>
+</Pane><Label layoutX="90.0" layoutY="50.0" prefHeight="15.0" prefWidth="36.0" text="*" textFill="#ff0101" /><Label layoutX="93.0" layoutY="94.0" prefHeight="15.0" prefWidth="36.0" text="*" textFill="#ff0101" /><Label layoutX="95.0" layoutY="139.0" prefHeight="15.0" prefWidth="36.0" text="*" textFill="#ff0101" /><Label layoutX="114.0" layoutY="183.0" prefHeight="15.0" prefWidth="36.0" text="*" textFill="#ff0101" /><Label layoutX="54.0" layoutY="226.0" prefHeight="15.0" prefWidth="36.0" text="*" textFill="#ff0101" /><Label layoutX="131.0" layoutY="268.0" prefHeight="15.0" prefWidth="36.0" text="*" textFill="#ff0101" /><Label layoutX="54.0" layoutY="314.0" prefHeight="15.0" prefWidth="36.0" text="*" textFill="#ff0101" />
 </children></AnchorPane>

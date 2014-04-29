@@ -9,6 +9,8 @@ package UserInterface.Reports.FXMLController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,7 +56,15 @@ public class ReportsMainPageFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            // TODO
+            ReportsManagementStackPane.getChildren().clear();
+            FXMLLoader myLoader = new  FXMLLoader(getClass().getResource("/UserInterface/Reports/FXML/ViewDailyReturnsFXML.fxml"));
+            Pane ViewDailyReturnsPane  = (Pane)myLoader.load();
+            ReportsManagementStackPane.getChildren().add(ViewDailyReturnsPane);
+        } catch (IOException ex) {
+            Logger.getLogger(ReportsMainPageFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     //Report - Daily Rentals.

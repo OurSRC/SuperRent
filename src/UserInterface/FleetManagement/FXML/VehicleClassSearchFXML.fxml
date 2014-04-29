@@ -8,27 +8,21 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.FleetManagement.FXMLController.VehicleClassSearchFXMLController">
 <children><Pane layoutY="415.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
 <Button layoutX="13.0" layoutY="419.0" mnemonicParsing="false" onAction="#AddVehicleClassButtonAction" prefHeight="25.0" prefWidth="125.0" text="Add Vehicle Class" />
-<Label layoutX="13.0" layoutY="55.0" text="Vehicle Type ">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-<Label layoutX="13.0" layoutY="102.5" text="Vehicle Class">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-<RadioButton fx:id="VehicleTypeRBCar" layoutX="134.0" layoutY="55.0" mnemonicParsing="false" onAction="#VehicleTypeRBCarAction" selected="true" text="Car ">
+<Label layoutX="13.0" layoutY="55.0" text="Vehicle Type " />
+<Label layoutX="13.0" layoutY="102.5" text="Vehicle Class" />
+<RadioButton fx:id="VehicleTypeRBCar" layoutX="127.0" layoutY="50.0" mnemonicParsing="false" onAction="#VehicleTypeRBCarAction" selected="true" text="Car ">
 <toggleGroup>
 <ToggleGroup fx:id="VehicleTypeTG" />
 </toggleGroup>
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></RadioButton>
-<RadioButton fx:id="VehicleTypeRBTruck" layoutX="205.0" layoutY="55.0" mnemonicParsing="false" onAction="#VehicleTypeRBTruckAction" text="Truck" toggleGroup="$VehicleTypeTG">
+<RadioButton fx:id="VehicleTypeRBTruck" layoutX="198.0" layoutY="50.0" mnemonicParsing="false" onAction="#VehicleTypeRBTruckAction" text="Truck" toggleGroup="$VehicleTypeTG">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></RadioButton>
-<ComboBox fx:id="VehicleClassCB" layoutX="134.0" layoutY="99.0" onAction="#VehicleClassCBAction" prefHeight="25.0" prefWidth="125.0" />
-<TableView fx:id="VehicleClassTableView" layoutY="223.0" prefHeight="184.0" prefWidth="641.0">
+<ComboBox fx:id="VehicleClassCB" layoutX="127.0" layoutY="98.0" onAction="#VehicleClassCBAction" prefHeight="25.0" prefWidth="135.0" />
+<TableView fx:id="VehicleClassTableView" layoutY="149.0" prefHeight="258.0" prefWidth="641.0">
   <columns>
     <TableColumn fx:id="VehicleClassColumn" prefWidth="155.0" text="Vehicle Class" />
     <TableColumn fx:id="HourlyRateColumn" prefWidth="155.0" text="Hourly Rate" />
@@ -39,7 +33,7 @@
 <children>
 <Label layoutX="14.0" layoutY="8.0" text="Vechicle Class" textFill="WHITE">
 <font>
-<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+<Font size="14.0" />
 </font>
 </Label>
 </children>
