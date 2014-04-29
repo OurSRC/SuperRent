@@ -5,16 +5,18 @@
  */
 package UserInterface.PeopleManagement.FXML;
 
+import Account.Customer;
 import Account.CustomerCtrl;
 import SystemOperations.DialogFX;
 import SystemOperations.DialogFX.Type;
 import UserInterface.Operations.FXMLController.MembershipPaymentPageFXMLController;
 import UserInterface.Operations.FXMLController.ReservationNavigator;
-import Account.Customer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,15 +53,15 @@ public class CustomerPageForClerkReservationController implements Initializable 
     @FXML
     private TableView CustomerTable;
     @FXML
-    private TableColumn<?, ?> CustomerPhoneColumn;
+    private TableColumn CustomerPhoneColumn;
     @FXML
-    private TableColumn<?, ?> CustomerFullName;
+    private TableColumn CustomerFullName;
     @FXML
-    private TableColumn<?, ?> EmailColumn;
+    private TableColumn EmailColumn;
     @FXML
-    private TableColumn<?, ?> LicenseColumn;
+    private TableColumn LicenseColumn;
     @FXML
-    private TableColumn<?, ?> MiddleNameColumn;
+    private TableColumn MiddleNameColumn;
     @FXML
     private Button NeztButtonAction;
     @FXML
@@ -86,6 +88,27 @@ public class CustomerPageForClerkReservationController implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        CustomerNameTF.lengthProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = CustomerNameTF.getText().charAt(oldValue.intValue());
+                    System.out.println("Length:" + oldValue + "  " + newValue + " " + ch);
+
+                    //Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9')) {
+
+                        //if it's not number then just setText to previous one
+                        CustomerNameTF.setText(CustomerNameTF.getText().substring(0, CustomerNameTF.getText().length() - 1));
+                    }
+                }
+            }
+
+     
+           
+
+        });
     }
 
     @FXML
