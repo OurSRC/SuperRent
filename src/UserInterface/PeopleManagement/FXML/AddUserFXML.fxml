@@ -8,25 +8,25 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.PeopleManagement.FXMLController.AddUserFXMLController">
   <children>
-    <Label layoutX="13.0" layoutY="176.0" text="User Name">
+    <Label layoutX="13.0" layoutY="206.0" text="User Name">
       <font>
         <Font name="ArnoPro-SmText" size="14.0" fx:id="x1" />
       </font>
     </Label>
     <TextField fx:id="FirstNameTF" layoutX="206.0" layoutY="55.0" prefWidth="159.0" />
-    <TextField id="FirstNameTF" fx:id="MiddleNameTF" layoutX="467.0" layoutY="55.0" prefWidth="159.0" />
-    <TextField fx:id="LastNameTF" layoutX="206.0" layoutY="85.0" prefWidth="159.0" />
-    <TextField fx:id="PhoneNumberTF" layoutX="206.0" layoutY="115.0" prefWidth="159.0" />
-    <TextField fx:id="EmailTF" layoutX="206.0" layoutY="145.0" prefWidth="159.0" />
-    <TextField id="UserIdTF" fx:id="UserNameTF" layoutX="206.0" layoutY="176.0" prefWidth="159.0" />
-    <ComboBox fx:id="BranchCB" layoutX="206.0" layoutY="209.0" onAction="#BranchCBAction" prefHeight="21.0" prefWidth="159.0">
+    <TextField id="FirstNameTF" fx:id="MiddleNameTF" layoutX="206.0" layoutY="85.0" prefWidth="159.0" />
+    <TextField fx:id="LastNameTF" layoutX="206.0" layoutY="115.0" prefWidth="159.0" />
+    <TextField fx:id="PhoneNumberTF" layoutX="206.0" layoutY="145.0" prefWidth="159.0" />
+    <TextField fx:id="EmailTF" layoutX="206.0" layoutY="175.0" prefWidth="159.0" />
+    <TextField id="UserIdTF" fx:id="UserNameTF" layoutX="206.0" layoutY="206.0" prefWidth="159.0" />
+    <ComboBox fx:id="BranchCB" layoutX="206.0" layoutY="239.0" onAction="#BranchCBAction" prefHeight="21.0" prefWidth="159.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Branch 1" />
         </FXCollections>
       </items>
     </ComboBox>
-    <ComboBox fx:id="RoleCB" layoutX="206.0" layoutY="241.0" onAction="#RoleCBAction" prefHeight="21.0" prefWidth="159.0">
+    <ComboBox fx:id="RoleCB" layoutX="206.0" layoutY="271.0" onAction="#RoleCBAction" prefHeight="21.0" prefWidth="159.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Clerk" />
@@ -39,7 +39,7 @@
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <ComboBox fx:id="StatusCB" layoutX="206.0" layoutY="274.0" onAction="#StatusCBAction" prefHeight="21.0" prefWidth="159.0">
+    <ComboBox fx:id="StatusCB" layoutX="206.0" layoutY="304.0" onAction="#StatusCBAction" prefHeight="21.0" prefWidth="159.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Active" />
@@ -47,42 +47,42 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <PasswordField id="SetNewPasswordTF" fx:id="SetPasswordPF" layoutX="206.0" layoutY="305.0" prefWidth="159.0" />
-    <PasswordField id="ReenterNewPasswordTF" fx:id="ReenterPasswordPF" layoutX="206.0" layoutY="337.0" prefWidth="159.0" /><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
-    <Label layoutX="13.0" layoutY="85.0" text="Last Name">
+    <PasswordField id="SetNewPasswordTF" fx:id="SetPasswordPF" layoutX="206.0" layoutY="335.0" prefWidth="159.0" />
+    <PasswordField id="ReenterNewPasswordTF" fx:id="ReenterPasswordPF" layoutX="206.0" layoutY="367.0" prefWidth="159.0" /><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
+    <Label layoutX="13.0" layoutY="115.0" text="Last Name">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="13.0" layoutY="209.0" text="Branch">
+    <Label layoutX="13.0" layoutY="239.0" text="Branch">
       <font>
         <Font name="ArnoPro-SmText" size="14.0" fx:id="x2" />
       </font>
     </Label>
-    <Label layoutX="13.0" layoutY="241.0" text="Role">
+    <Label layoutX="13.0" layoutY="271.0" text="Role">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="13.0" layoutY="337.0" text="Re-enter Password">
+    <Label layoutX="13.0" layoutY="367.0" text="Re-enter Password">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="13.0" layoutY="305.0" text="Set Password">
+    <Label layoutX="13.0" layoutY="335.0" text="Set Password">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="13.0" layoutY="115.0" text="Phone Number">
+    <Label layoutX="13.0" layoutY="145.0" text="Phone Number">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="13.0" layoutY="145.0" text="Email">
+    <Label layoutX="13.0" layoutY="175.0" text="Email">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="13.0" layoutY="274.0" text="Status">
+    <Label layoutX="13.0" layoutY="304.0" text="Status">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label>
-    <Label layoutX="381.0" layoutY="55.0" text="Middle Name">
+    <Label layoutX="12.0" layoutY="85.0" text="Middle Name">
 <font>
 <Font name="ArnoPro-SmText" size="14.0" />
 </font></Label><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
