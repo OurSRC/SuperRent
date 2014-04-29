@@ -123,7 +123,9 @@ public class ReservationSummaryFXMLController implements Initializable {
     }
 
     @FXML
-    private void AbortButtonAction(ActionEvent event) {
+    private void AbortButtonAction(ActionEvent event) throws IOException, NoSuchMethodException {
+        ReservationNavigator.clearVista();
+        ReservationNavigator.loadVista(ReservationNavigator.VEHICLECLASSAVAILABILITY);
     }
 
 }

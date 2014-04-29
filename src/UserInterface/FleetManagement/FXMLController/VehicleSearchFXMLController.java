@@ -66,6 +66,8 @@ public class VehicleSearchFXMLController implements Initializable {
     private ComboBox StatusCB;
     @FXML
     private ComboBox VehicleClassCB;
+    @FXML
+    private TableColumn SellingPriceColumn;
 
     /* Variables in the Class */
     public String SearchVehicleClass;
@@ -91,25 +93,13 @@ public class VehicleSearchFXMLController implements Initializable {
         if (ValidateMandatoryFields()) {
             SearchVehicleClass = VehicleClassCB.getSelectionModel().getSelectedItem().toString();
 
-            if (!VehicleAgeTF.getText().isEmpty()) {
-                SearchVehicleAge = VehicleAgeTF.getText();
-                System.out.println("Vehicle Age : " + SearchVehicleAge);
-            } else {
-                SearchVehicleAge = null;
-            }
+ 
 
             if (!PlateNumberTF.getText().isEmpty()) {
                 SearchPlateNumber = PlateNumberTF.getText();
                 System.out.println("Vehicle Plate Number : " + SearchPlateNumber);
             } else {
                 SearchPlateNumber = null;
-            }
-
-            if (StatusCB.valueProperty().isNotNull().getValue()) {
-                SearchStatus = StatusCB.getValue().toString();
-                System.out.println("Vehicle Status : " + SearchVehicleClass);
-            } else {
-                SearchStatus = null;
             }
             populateSearchTable();
         } else {
@@ -185,6 +175,7 @@ public class VehicleSearchFXMLController implements Initializable {
                     dialog.setTitleText("Success");
                     dialog.setMessage("vehicle Successfully Sold");
                     dialog.showDialog();
+                    populateSearchTable();
                 } else {
                     System.out.println("Vehicle selling Failed. Please Contact System Administrator");
                 }
@@ -210,14 +201,22 @@ public class VehicleSearchFXMLController implements Initializable {
         VehicleCtrl newVehicleCtrl = new VehicleCtrl();
         ArrayList<Vehicle> vehicleArray = newVehicleCtrl.searchVehicle(newVehicle); /* Get the Arraylist from the Control Object */
 
-        ObservableList<Vehicle> slist = FXCollections.observableArrayList(vehicleArray);
+        ObservableList<Vehicle> slist = FXCollections.observableArrayList();
+        for(int i=0;i<vehicleArray.size();i++)
+        {
+            if(vehicleArray.get(i).getSellStatus() != Vehicle.SELLSTATUS.SOLD)
+            {
+                slist.add(vehicleArray.get(i));
+            } else {
+            }
+        }
         VehicleSearchTable.setItems(slist);
-        System.out.println("I am here and it is working");
         PlateNumberColumn.setCellValueFactory(new PropertyValueFactory("plateNo"));
         ModelColumn.setCellValueFactory(new PropertyValueFactory("mode"));
         VehicleClassColoumn.setCellValueFactory(new PropertyValueFactory("className"));
         ManufacturingYearColumn.setCellValueFactory(new PropertyValueFactory("manufactureDate"));
         StatusColumn.setCellValueFactory(new PropertyValueFactory("status"));
+        SellingPriceColumn.setCellValueFactory(new PropertyValueFactory("sellingPrice"));
     }
 
     public boolean ValidateMandatoryFields() {

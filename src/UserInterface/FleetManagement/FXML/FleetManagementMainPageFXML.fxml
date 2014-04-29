@@ -14,7 +14,7 @@
       <children>
         <Button fx:id="VehicleButton" alignment="CENTER" layoutX="6.0" layoutY="42.0" mnemonicParsing="false" onAction="#VehicleButtonAction" prefHeight="32.0" prefWidth="164.0" text="Vehicle" />
         <Button fx:id="VehicleClassButton" alignment="CENTER" layoutX="6.0" layoutY="82.0" mnemonicParsing="false" onAction="#VehicleClassButtonAction" prefHeight="32.0" prefWidth="164.0" text="Vehicle Class" />
-        <Button alignment="CENTER" layoutX="7.0" layoutY="121.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="164.0" text="Additional Equipment" />
+        <Button alignment="CENTER" disable="true" layoutX="7.0" layoutY="121.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="164.0" text="Additional Equipment" />
         <Pane layoutY="-0.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
           <children>
             <Label layoutX="61.0" layoutY="10.0" text="Vehicles">
