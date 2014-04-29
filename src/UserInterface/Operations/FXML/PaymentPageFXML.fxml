@@ -5,33 +5,38 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.PaymentPageFXMLController">
-<children><Label fx:id="CreditCardNumberLabel" disable="true" layoutX="13.0" layoutY="273.0" text="Credit Card #">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><Label fx:id="ExpiryDateLabel" disable="true" layoutX="13.0" layoutY="317.0" text="Expiry Date">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><Label fx:id="CreditCardNameLabel" disable="true" layoutX="325.0" layoutY="276.0" text="Card Holder Name">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><TextField fx:id="CreditCardNumberTF" disable="true" layoutX="120.0" layoutY="272.0" /><TextField fx:id="CreditCardNameTF" disable="true" layoutX="455.0" layoutY="272.0" /><TextField fx:id="PaymentModeTF" editable="false" layoutX="120.0" layoutY="55.0" /><Label layoutX="13.0" layoutY="55.0" text="Payment Mode">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><Label layoutX="13.0" layoutY="95.0" text="Contract #">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><TextField fx:id="ContractNumberTF" editable="false" layoutX="120.0" layoutY="95.0" /><TextField fx:id="VehiclePlateTF" editable="false" layoutX="120.0" layoutY="135.0" /><Label layoutX="13.0" layoutY="135.0" text="Vehicle Plate">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><Label layoutX="13.0" layoutY="228.0" text="Amount">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><TextField fx:id="AmountTF" editable="false" layoutX="120.0" layoutY="224.0" /><TextField fx:id="ExpiryDateYearTF" layoutX="120.0" layoutY="313.0" prefHeight="25.0" prefWidth="56.0" promptText="yyyy" /><TextField fx:id="ExpiryDateMonthTF" layoutX="210.0" layoutY="313.0" prefHeight="25.0" prefWidth="43.0" promptText="mm" /><Label layoutX="189.5048828125" layoutY="317.0" text="/" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" /><Pane layoutY="415.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
-<children><Button alignment="CENTER" layoutX="499.0" layoutY="7.0" mnemonicParsing="false" onAction="#ConfirmPaymentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Confirm Payment" />
-</children></Pane><Label layoutX="14.0" layoutY="8.0" text="Payments" textFill="WHITE">
-<font>
-<Font name="ArnoPro-SmbdDisplay" size="18.0" />
-</font>
-</Label>
-</children></AnchorPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.Operations.FXMLController.PaymentPageFXMLController">
+  <children>
+    <Label fx:id="CreditCardNumberLabel" disable="true" layoutX="13.0" layoutY="273.0" text="Credit Card #">
+      <font>
+        <Font size="12.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label fx:id="ExpiryDateLabel" disable="true" font="$x1" layoutX="13.0" layoutY="317.0" text="Expiry Date" />
+    <Label fx:id="CreditCardNameLabel" disable="true" font="$x1" layoutX="325.0" layoutY="276.0" text="Card Holder Name" />
+    <TextField fx:id="CreditCardNumberTF" disable="true" layoutX="120.0" layoutY="272.0" />
+    <TextField fx:id="CreditCardNameTF" disable="true" layoutX="455.0" layoutY="272.0" />
+    <TextField fx:id="PaymentModeTF" editable="false" layoutX="120.0" layoutY="55.0" />
+    <Label font="$x1" layoutX="13.0" layoutY="55.0" text="Payment Mode" />
+    <Label font="$x1" layoutX="13.0" layoutY="95.0" text="Contract #" />
+    <TextField fx:id="ContractNumberTF" editable="false" layoutX="120.0" layoutY="95.0" />
+    <TextField fx:id="VehiclePlateTF" editable="false" layoutX="120.0" layoutY="135.0" />
+    <Label font="$x1" layoutX="13.0" layoutY="135.0" text="Vehicle Plate" />
+    <Label font="$x1" layoutX="13.0" layoutY="228.0" text="Amount" />
+    <TextField fx:id="AmountTF" editable="false" layoutX="120.0" layoutY="224.0" />
+    <TextField fx:id="ExpiryDateYearTF" disable="true" layoutX="120.0" layoutY="313.0" prefHeight="25.0" prefWidth="56.0" promptText="yyyy" />
+    <TextField fx:id="ExpiryDateMonthTF" disable="true" layoutX="210.0" layoutY="313.0" prefHeight="25.0" prefWidth="43.0" promptText="mm" />
+    <Label layoutX="189.5048828125" layoutY="317.0" text="/" />
+    <Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
+    <Pane layoutY="415.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+      <children>
+        <Button alignment="CENTER" layoutX="499.0" layoutY="7.0" mnemonicParsing="false" onAction="#ConfirmPaymentButtonAction" prefHeight="25.0" prefWidth="138.0" text="Confirm Payment" />
+      </children>
+    </Pane>
+    <Label layoutX="14.0" layoutY="11.0" text="Payments" textFill="WHITE">
+      <font>
+        <Font size="14.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

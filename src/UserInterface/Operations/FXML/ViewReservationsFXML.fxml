@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.ViewReservationsFXMLController">
   <children>
-    <TableView fx:id="ReservationTable" layoutY="208.0" prefHeight="204.0" prefWidth="641.0" tableMenuButtonVisible="true">
+    <TableView fx:id="ReservationTable" layoutY="189.0" prefHeight="223.0" prefWidth="641.0" tableMenuButtonVisible="true">
       <columns>
         <TableColumn fx:id="ReservationNumber" minWidth="0.0" prefWidth="132.0" text="Reservation #" /><TableColumn fx:id="VehicleClass" prefWidth="138.0" text="Vehicle Class" /><TableColumn fx:id="CustomerNameColumn" prefWidth="75.0" text="CustomerName" visible="false" />
         <TableColumn fx:id="CustomerPhone" editable="false" prefWidth="149.0" sortable="false" text="Customer Phone" /><TableColumn fx:id="PickUpDate" editable="false" prefWidth="142.0" sortable="false" text="Pick Up Date" /><TableColumn fx:id="ReturnDate" editable="false" prefWidth="118.0" sortable="false" text="Return Date" />
@@ -18,10 +18,10 @@
 </columnResizePolicy>
     </TableView><Pane layoutX="1.0" prefHeight="173.0" prefWidth="681.0">
 <children>
-    <Label layoutX="17.0" layoutY="72.0" text="Date From " />
-    <Label layoutX="384.0" layoutY="67.0" text="Date To " />
+    <Label layoutX="17.0" layoutY="72.0" text="Reserve From " />
+    <Label layoutX="358.0" layoutY="73.0" text="Reserve To " />
     <Label layoutX="17.0" layoutY="115.0" text="Reservation #" />
-    <Button fx:id="DisplayReservationsButton" layoutX="497.0" layoutY="136.0" mnemonicParsing="false" onAction="#DisplayReservationsButtonAction" prefHeight="25.0" prefWidth="132.0" text="Display Reservations" />
+    <Button fx:id="DisplayReservationsButton" layoutX="497.0" layoutY="142.0" mnemonicParsing="false" onAction="#DisplayReservationsButtonAction" prefHeight="25.0" prefWidth="132.0" text="Show Reservations" />
     <TextField fx:id="ReservationNo" layoutX="112.0" layoutY="111.0" prefHeight="25.0" prefWidth="98.0" />
     <DatePicker fx:id="ReserveFromTime" layoutX="112.0" layoutY="68.0" prefHeight="25.0" prefWidth="98.0" />
     <DatePicker fx:id="ReserveToTime" layoutX="431.0" layoutY="68.0" prefHeight="25.0" prefWidth="105.0" />
@@ -71,8 +71,8 @@
 <font>
 <Font name="ArnoPro-SmbdDisplay" size="18.0" />
 </font>
-</Label><Button layoutX="22.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="New Reservation" /><Button layoutX="360.0" layoutY="7.0" mnemonicParsing="false" onAction="#CancelReservationButtonAction" prefHeight="25.0" prefWidth="123.0" text="Cancel Reservation" />
-        <Button fx:id="ViewReservationButton" layoutX="495.0" layoutY="5.0" mnemonicParsing="false" onAction="#ViewReservationButtonAction" prefHeight="25.0" prefWidth="132.0" text="View Reservation" />
+</Label><Button disable="true" layoutX="22.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="New Reservation" /><Button layoutX="360.0" layoutY="7.0" mnemonicParsing="false" onAction="#CancelReservationButtonAction" prefHeight="25.0" prefWidth="123.0" text="Cancel " />
+        <Button fx:id="ViewReservationButton" layoutX="495.0" layoutY="5.0" mnemonicParsing="false" onAction="#ViewReservationButtonAction" prefHeight="25.0" prefWidth="132.0" text="View" />
 </children>
 </Pane>
   </children>

@@ -4,37 +4,39 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Operations.FXMLController.OperationsFXMLController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="834.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.Operations.FXMLController.OperationsFXMLController">
   <children>
     <StackPane fx:id="MainOperationsStackPane" layoutX="184.0" layoutY="5.0" prefHeight="453.0" prefWidth="641.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;" />
     <Pane layoutX="2.0" layoutY="6.0" prefHeight="453.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
       <children>
-        <Button alignment="CENTER_RIGHT" layoutX="6.0" layoutY="82.0" mnemonicParsing="false" onAction="#CreateReservationAction" prefHeight="32.0" prefWidth="164.0" text="Reserve Vehicle" />
-        <Button alignment="CENTER_RIGHT" layoutX="6.0" layoutY="121.0" mnemonicParsing="false" onAction="#RentVehicleAction" prefHeight="32.0" prefWidth="164.0" text="Rent Vehicle" />
-        <Button alignment="CENTER_RIGHT" layoutX="6.0" layoutY="161.0" mnemonicParsing="false" onAction="#ReturnVehicleAction" prefHeight="32.0" prefWidth="164.0" text="Return Vehicle" />
-        <Button alignment="CENTER_RIGHT" layoutX="7.0" layoutY="292.0" mnemonicParsing="false" onAction="#ViewReservationAction" prefHeight="32.0" prefWidth="164.0" text="View Reservation" /><Button alignment="CENTER_RIGHT" layoutX="6.0" layoutY="42.0" mnemonicParsing="false" onAction="#CustomerButtonAction" prefHeight="32.0" prefWidth="164.0" text="Customer Info" /><Pane layoutY="-0.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
-<children>
-<Label layoutX="52.0" layoutY="10.0" text="Operations" textFill="#f8f6f6">
-<font>
-<Font name="System Bold" size="14.0" />
-</font>
-</Label>
-</children>
-</Pane><Pane layoutY="414.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
-<children>
-<Label layoutX="52.0" layoutY="10.0" textFill="#f8f6f6">
-<font>
-<Font name="System Bold" size="14.0" />
-</font>
-</Label>
-</children>
-</Pane>
+        <Button alignment="CENTER" layoutX="6.0" layoutY="82.0" mnemonicParsing="false" onAction="#CreateReservationAction" prefHeight="32.0" prefWidth="164.0" text="Reserve Vehicle" textAlignment="LEFT" />
+        <Button alignment="CENTER" layoutX="6.0" layoutY="121.0" mnemonicParsing="false" onAction="#RentVehicleAction" prefHeight="32.0" prefWidth="164.0" text="Rent Vehicle" textAlignment="LEFT" />
+        <Button alignment="CENTER" layoutX="6.0" layoutY="161.0" mnemonicParsing="false" onAction="#ReturnVehicleAction" prefHeight="32.0" prefWidth="164.0" text="Return Vehicle" textAlignment="LEFT" />
+        <Button alignment="CENTER" layoutX="6.0" layoutY="42.0" mnemonicParsing="false" onAction="#CustomerButtonAction" prefHeight="32.0" prefWidth="164.0" text="Customer Info" textAlignment="LEFT" />
+        <Pane layoutY="-0.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
+          <children>
+            <Label layoutX="52.0" layoutY="10.0" text="Operations">
+              <font>
+                <Font name="System Bold" size="14.0" fx:id="x1" />
+              </font>
+              <textFill>
+                <Color blue="0.965" green="0.965" red="0.973" fx:id="x2" />
+              </textFill>
+            </Label>
+          </children>
+        </Pane>
+        <Pane layoutY="414.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
+          <children>
+            <Label font="$x1" layoutX="52.0" layoutY="10.0" textFill="$x2" />
+          </children>
+        </Pane>
       </children>
     </Pane>
   </children>
-<effect>
-<DropShadow blurType="ONE_PASS_BOX" />
-</effect>
+  <effect>
+    <DropShadow blurType="ONE_PASS_BOX" />
+  </effect>
 </AnchorPane>

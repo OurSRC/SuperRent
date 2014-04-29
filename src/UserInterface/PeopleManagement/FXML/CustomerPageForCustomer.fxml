@@ -7,14 +7,8 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.PeopleManagement.FXML.CustomerPageForCustomerController">
   <children><Pane layoutY="414.0" prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" />
-    <Label layoutX="13.0" layoutY="55.0" text="Phone">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Label layoutX="13.0" layoutY="91.0" text="First Name">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
+    <Label layoutX="13.0" layoutY="55.0" text="Phone" />
+    <Label layoutX="13.0" layoutY="91.0" text="First Name" />
     <TextField fx:id="PhoneTF" layoutX="139.0" layoutY="55.0" prefWidth="162.0" />
     <TextField fx:id="FirstNameTF" layoutX="139.0" layoutY="91.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
     <Pane layoutX="-8.0" layoutY="409.0" prefHeight="50.0" prefWidth="667.0">
@@ -24,49 +18,25 @@
         <Button fx:id="ModifyCustomerButton" alignment="CENTER" disable="true" layoutX="521.0" layoutY="13.0" mnemonicParsing="false" onAction="#ModifyCustomerButtonAction" prefHeight="25.0" prefWidth="112.0" text="Modify Details" />
       </children>
     </Pane>
-    <Label layoutX="360.0" layoutY="91.0" text="Middle Name">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Label layoutX="13.0" layoutY="126.0" text=" Last Name">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
+    <Label layoutX="360.0" layoutY="91.0" text="Middle Name" />
+    <Label layoutX="11.0" layoutY="126.0" text=" Last Name" />
     <TextField fx:id="MiddleNameTF" layoutX="466.0" layoutY="91.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
     <TextField fx:id="LastNameTF" layoutX="139.0" layoutY="126.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
-    <Label layoutX="360.0" layoutY="126.0" text="Email">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
+    <Label layoutX="360.0" layoutY="126.0" text="Email" />
     <TextField fx:id="EmailTF" layoutX="466.0" layoutY="126.0" onKeyTyped="#ModifyCheckAction" prefWidth="162.0" />
-    <Label layoutX="13.0" layoutY="163.0" text="Address">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
+    <Label layoutX="13.0" layoutY="163.0" text="Address" />
     <TextField fx:id="AddressTF" layoutX="140.0" layoutY="163.0" onKeyTyped="#ModifyCheckAction" prefWidth="161.0" />
-    <Label layoutX="13.0" layoutY="260.0" prefHeight="19.0" prefWidth="123.0" text="Club Member Points">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <TextField fx:id="ClubMemberPointsTF" editable="false" layoutX="184.0" layoutY="257.0" prefHeight="25.0" prefWidth="102.0" />
-    <Label layoutX="13.0" layoutY="307.0" text="Membership Expiry">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <TextField fx:id="MemberShipExpiryTF" editable="false" layoutX="184.0" layoutY="304.0" prefHeight="25.0" prefWidth="102.0" />
-    <Separator layoutX="13.0" layoutY="201.0" prefHeight="3.0" prefWidth="622.0" />
-    <Label layoutX="13.0" layoutY="208.0" text="Club Membership Details">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
-    <Separator layoutX="13.0" layoutY="230.0" prefHeight="3.0" prefWidth="622.0" /><Label layoutX="360.0" layoutY="55.0" text="License No">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><TextField fx:id="LicenseNumberTF" layoutX="466.0" layoutY="53.0" onKeyTyped="#ModifyCheckAction" prefWidth="161.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
+    <Label layoutX="13.0" layoutY="260.0" prefHeight="19.0" prefWidth="145.0" text="Club Member Points" />
+    <TextField fx:id="ClubMemberPointsTF" editable="false" layoutX="140.0" layoutY="260.0" prefHeight="25.0" prefWidth="102.0" />
+    <Label layoutX="13.0" layoutY="307.0" text="Membership Expiry" />
+    <TextField fx:id="MemberShipExpiryTF" editable="false" layoutX="140.0" layoutY="307.0" prefHeight="25.0" prefWidth="102.0" />
+    <Separator layoutX="13.0" layoutY="207.0" prefHeight="3.0" prefWidth="622.0" />
+    <Label layoutX="13.0" layoutY="215.0" text="Club Membership Details" />
+    <Separator layoutX="13.0" layoutY="237.0" prefHeight="3.0" prefWidth="622.0" /><Label layoutX="360.0" layoutY="55.0" text="License No" /><TextField fx:id="LicenseNumberTF" layoutX="466.0" layoutY="53.0" onKeyTyped="#ModifyCheckAction" prefWidth="161.0" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;">
 <children>
 <Label layoutX="14.0" layoutY="8.0" text="Customer" textFill="WHITE">
 <font>
-<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+<Font size="14.0" />
 </font>
 </Label>
 </children>

@@ -4,9 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Reports.FXMLController.ReportsMainPageFXMLController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="858.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="UserInterface.Reports.FXMLController.ReportsMainPageFXMLController">
   <children>
     <Label layoutX="68.0" layoutY="19.0" text="Daily Reports">
       <font>
@@ -14,40 +15,40 @@
       </font>
     </Label>
     <Label font="$x1" layoutX="63.0" layoutY="126.0" text="Other Reports" />
-    <StackPane fx:id="ReportsManagementStackPane" layoutX="184.0" layoutY="5.0" prefHeight="453.0" prefWidth="641.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;" /><Pane layoutX="2.0" layoutY="6.0" prefHeight="453.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
-<children>
-<Pane layoutY="-0.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
-<children>
-<Label layoutX="52.0" layoutY="10.0" text="Reports" textFill="#f8f6f6">
-<font>
-<Font name="System Bold" size="14.0" />
-</font>
-</Label>
-</children>
-</Pane>
-<Pane layoutY="414.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
-<children>
-<Label layoutX="52.0" layoutY="10.0" textFill="#f8f6f6">
-<font>
-<Font name="System Bold" size="14.0" />
-</font>
-</Label>
-</children>
-</Pane>
-    <Button id="Rbtn" fx:id="ViewDailyRentalsButton" alignment="CENTER" layoutX="6.0" layoutY="42.0" mnemonicParsing="false" onAction="#ViewDailyRentalsAction" prefHeight="32.0" prefWidth="164.0" text="Rentals" />
-    <Button fx:id="ViewDailyReturnsButton" alignment="CENTER" layoutX="6.0" layoutY="78.0" mnemonicParsing="false" onAction="#ViewDailyReturnsAction" prefHeight="32.0" prefWidth="164.0" text="Returns" textAlignment="RIGHT" />
-    <Button fx:id="ViewAvailableVehiclesButton" alignment="CENTER" layoutX="6.0" layoutY="114.0" mnemonicParsing="false" onAction="#ViewAvailableVehiclesAction" prefHeight="32.0" prefWidth="164.0" text="Available Vehicles" textAlignment="RIGHT" />
-    <Button fx:id="ViewUnrentedReservationsButton" alignment="CENTER" layoutX="6.0" layoutY="151.0" mnemonicParsing="false" onAction="#ViewNotRentedAction" prefHeight="32.0" prefWidth="164.0" text="Unrented Reservations" textAlignment="RIGHT" />
-    <Button fx:id="ViewVehiclesNotReturnedButton" alignment="CENTER" layoutX="6.0" layoutY="187.0" mnemonicParsing="false" onAction="#ViewNotReturnedAction" prefHeight="32.0" prefWidth="164.0" text=" Vehicles not Returned" textAlignment="RIGHT" />
-    <Button fx:id="ViewVehiclesForSaleButton" alignment="CENTER" layoutX="6.0" layoutY="224.0" mnemonicParsing="false" onAction="#ViewVehiclesforSaleAction" prefHeight="32.0" prefWidth="164.0" text="Vehicles for Sale" textAlignment="RIGHT" />
-    <Button fx:id="ViewRentedVehiclesButton" alignment="CENTER" layoutX="6.0" layoutY="261.0" mnemonicParsing="false" onAction="#ViewRentedAction" prefHeight="32.0" prefWidth="164.0" text="Rented Vehicles" textAlignment="RIGHT" />
-    <Button fx:id="ViewReturnedVehiclesButton" alignment="CENTER" layoutX="6.0" layoutY="297.0" mnemonicParsing="false" onAction="#ViewReturnedAction" prefHeight="32.0" prefWidth="164.0" text="Returned Vehicles" textAlignment="RIGHT" />
-    <Button fx:id="ViewVehiclesListButton" alignment="CENTER" layoutX="6.0" layoutY="334.0" mnemonicParsing="false" onAction="#ViewVehiclesByYearAction" prefHeight="32.0" prefWidth="164.0" text=" Vehicles List" textAlignment="CENTER" />
-    <Button fx:id="ViewTransactionsButton" alignment="CENTER" disable="true" layoutX="6.0" layoutY="372.0" mnemonicParsing="false" onAction="#ViewTransactionsAction" prefHeight="32.0" prefWidth="164.0" text="View Transactions" textAlignment="CENTER" />
-</children>
-</Pane>
+    <StackPane fx:id="ReportsManagementStackPane" layoutX="184.0" layoutY="5.0" prefHeight="453.0" prefWidth="641.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;" />
+    <Pane layoutX="2.0" layoutY="6.0" prefHeight="453.0" prefWidth="176.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
+      <children>
+        <Pane layoutY="-0.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
+          <children>
+            <Label layoutX="62.0" layoutY="10.0" text="Reports">
+              <font>
+                <Font name="System Bold" size="14.0" fx:id="x2" />
+              </font>
+              <textFill>
+                <Color blue="0.965" green="0.965" red="0.973" fx:id="x3" />
+              </textFill>
+            </Label>
+          </children>
+        </Pane>
+        <Pane layoutY="414.5" prefHeight="39.0" prefWidth="176.0" style="-fx-background-color: #496791;">
+          <children>
+            <Label font="$x2" layoutX="52.0" layoutY="10.0" textFill="$x3" />
+          </children>
+        </Pane>
+        <Button id="Rbtn" fx:id="ViewDailyRentalsButton" alignment="CENTER" layoutX="6.0" layoutY="42.0" mnemonicParsing="false" onAction="#ViewDailyRentalsAction" prefHeight="32.0" prefWidth="164.0" text="Rentals" />
+        <Button fx:id="ViewDailyReturnsButton" alignment="CENTER" layoutX="6.0" layoutY="78.0" mnemonicParsing="false" onAction="#ViewDailyReturnsAction" prefHeight="32.0" prefWidth="164.0" text="Returns" textAlignment="RIGHT" />
+        <Button fx:id="ViewAvailableVehiclesButton" alignment="CENTER" layoutX="6.0" layoutY="114.0" mnemonicParsing="false" onAction="#ViewAvailableVehiclesAction" prefHeight="32.0" prefWidth="164.0" text="Available Vehicles" textAlignment="RIGHT" />
+        <Button fx:id="ViewUnrentedReservationsButton" alignment="CENTER" layoutX="6.0" layoutY="151.0" mnemonicParsing="false" onAction="#ViewNotRentedAction" prefHeight="32.0" prefWidth="164.0" text="Unrented Reservations" textAlignment="RIGHT" />
+        <Button fx:id="ViewVehiclesNotReturnedButton" alignment="CENTER" layoutX="6.0" layoutY="187.0" mnemonicParsing="false" onAction="#ViewNotReturnedAction" prefHeight="32.0" prefWidth="164.0" text=" Vehicles not Returned" textAlignment="RIGHT" />
+        <Button fx:id="ViewVehiclesForSaleButton" alignment="CENTER" layoutX="6.0" layoutY="224.0" mnemonicParsing="false" onAction="#ViewVehiclesforSaleAction" prefHeight="32.0" prefWidth="164.0" text="Vehicles for Sale" textAlignment="RIGHT" />
+        <Button fx:id="ViewRentedVehiclesButton" alignment="CENTER" layoutX="6.0" layoutY="261.0" mnemonicParsing="false" onAction="#ViewRentedAction" prefHeight="32.0" prefWidth="164.0" text="Rented Vehicles" textAlignment="RIGHT" />
+        <Button fx:id="ViewReturnedVehiclesButton" alignment="CENTER" layoutX="6.0" layoutY="297.0" mnemonicParsing="false" onAction="#ViewReturnedAction" prefHeight="32.0" prefWidth="164.0" text="Returned Vehicles" textAlignment="RIGHT" />
+        <Button fx:id="ViewVehiclesListButton" alignment="CENTER" layoutX="6.0" layoutY="334.0" mnemonicParsing="false" onAction="#ViewVehiclesByYearAction" prefHeight="32.0" prefWidth="164.0" text=" Vehicles List" textAlignment="CENTER" />
+        <Button fx:id="ViewTransactionsButton" alignment="CENTER" disable="true" layoutX="6.0" layoutY="372.0" mnemonicParsing="false" onAction="#ViewTransactionsAction" prefHeight="32.0" prefWidth="164.0" text="View Transactions" textAlignment="CENTER" />
+      </children>
+    </Pane>
   </children>
-<effect>
-<DropShadow />
-</effect>
+  <effect>
+    <DropShadow />
+  </effect>
 </AnchorPane>

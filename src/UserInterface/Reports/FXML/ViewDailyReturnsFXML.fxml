@@ -14,10 +14,7 @@
             </font>
         </Label>
         <Label fx:id="PrintDateLabel" layoutX="126.0" layoutY="17.0" />
-        <Label layoutX="13.0" layoutY="55.0" text="Branch">
-<font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label>
+        <Label layoutX="13.0" layoutY="62.0" text="Branch" />
        <ComboBox fx:id="BranchCB" layoutX="76.0" layoutY="55.0" onAction="#BranchCBAction" prefHeight="25.0" prefWidth="104.0">
             <items>
                 <FXCollections fx:factory="observableArrayList">
@@ -25,8 +22,8 @@
                 </FXCollections>
             </items>
         </ComboBox>
-        <DatePicker fx:id="SearchDateDP" layoutX="295.0" layoutY="55.0" onAction="#SearchDateAction" prefHeight="25.0" prefWidth="104.0" />
-        <Button fx:id="SearchButton" layoutX="550.0" layoutY="96.0" mnemonicParsing="false" onAction="#SearchDailyReturnsAction" prefHeight="25.0" prefWidth="71.0" text="Search">
+        <DatePicker fx:id="SearchDateDP" layoutX="295.0" layoutY="55.0" onAction="#SearchDateAction" prefHeight="25.0" prefWidth="124.0" />
+        <Button fx:id="SearchButton" layoutX="534.0" layoutY="56.0" mnemonicParsing="false" onAction="#SearchDailyReturnsAction" prefHeight="28.0" prefWidth="91.0" text="Search">
 <font>
 <Font size="14.0" />
 </font></Button>
@@ -41,14 +38,11 @@
         </TableView>
         <Label id="TotalLabel" fx:id="TotalReturnsLabel" layoutX="437.0" layoutY="360.0" text="Total Number of  Returns:" />
         <Label fx:id="totalReturnsForTheDay" layoutX="578.0" layoutY="360.0" />
-        <Button fx:id="PrintPDFButton" disable="true" layoutX="567.0" layoutY="421.0" mnemonicParsing="false" onAction="#PrintPDFAction" text="Print PDF" />
-        <Label id="DateLBL" layoutX="244.0" layoutY="55.0" text="Date">
+        <Button fx:id="PrintPDFButton" disable="true" layoutX="545.0" layoutY="421.0" mnemonicParsing="false" onAction="#PrintPDFAction" prefHeight="23.0" prefWidth="91.0" text="Print PDF" />
+        <Label id="DateLBL" layoutX="244.0" layoutY="62.0" text="Date" /><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" /><Label layoutX="14.0" layoutY="8.0" text="Daily Returns" textFill="WHITE">
 <font>
-<Font name="ArnoPro-SmText" size="14.0" />
-</font></Label><Pane prefHeight="39.0" prefWidth="641.0" style="-fx-background-color: #496791;" /><Label layoutX="14.0" layoutY="8.0" text="Daily Returns" textFill="WHITE">
-<font>
-<Font name="ArnoPro-SmbdDisplay" size="18.0" />
+<Font size="14.0" />
 </font>
-</Label>
+</Label><Label layoutX="272.1337890625" layoutY="56.5" text="*" textFill="#ff0404" />
     </children>
 </AnchorPane>
