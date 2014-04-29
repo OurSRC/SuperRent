@@ -96,7 +96,7 @@ public class PendingReturnFXMLController implements Initializable {
 
         ReservationNumberColumn.setCellValueFactory(new PropertyValueFactory("reservationNo"));
         VehicleClassColumn.setCellValueFactory(new PropertyValueFactory("vehicleClass"));
-        ReturnDateColumn.setCellValueFactory(new PropertyValueFactory("returnTime"));
+        ReturnDateColumn.setCellValueFactory(new PropertyValueFactory("returnTimeString"));
         CustomerPhoneColumn.setCellValueFactory(new PropertyValueFactory("customerPhone"));
         CustomerNameColumn.setCellValueFactory(new PropertyValueFactory("customerName"));
 
